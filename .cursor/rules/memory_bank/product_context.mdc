@@ -1,0 +1,39 @@
+---
+alwaysApply: true
+---
+
+# Product Context — Burooj Corporate Website
+
+## User & Audience Needs
+- **Corporate decision-makers** (developers, investors, property owners) need a concise overview of Burooj’s capabilities.
+- **Facilities/property managers** require proof of operational excellence, stats, and service breadth.
+- **Prospective clients** need a clear contact path with confidence-building projects and client logos.
+
+## Value Proposition
+- One-stop, technology-driven services spanning design, construction, property management, and drone cleaning.
+- Demonstrates innovation (GSAP animations, drone emphasis) without overwhelming users.
+- Positions Burooj as modern, trustworthy, and fast through precise copy and metrics.
+
+## Experience Principles
+1. **Professional polish:** Clean typography, structured sections, subtle motion.
+2. **Clarity first:** No filler text, emphasize real stats, services, and differentiators.
+3. **Actionable CTAs:** Service exploration and contact pathways are always visible.
+4. **Performance-aware:** Animations enhance storytelling without hurting load times.
+5. **Future-ready:** Architecture that can expand to Arabic, CMS, and backend integrations.
+
+## User Stories
+- “As a property owner, I want to scan services quickly so I know Burooj covers my needs.”
+- “As a corporate client, I want proof of experience (stats/projects) before reaching out.”
+- “As a facilities manager, I need a secure method to share RFP files with the contact form.”
+- “As a marketing lead, I want the hero to spotlight our multi-disciplinary capabilities.”
+
+## Tone & Content Guidelines
+- Confident, concise, technology-forward copy.
+- Highlight Saudi leadership and regional firsts (e.g., Burooj Air pioneer claim).
+- Use consistent CTA language (e.g., “Visit Burooj Air Website”, “Contact Us”).
+- Maintain consistent naming: “Burooj Air” (never shorten internally).
+
+## Key Journeys
+1. **Landing → Services → Contact:** Primary conversion path.
+2. **Landing → Projects → Contact:** Proof-driven path for visual credibility.
+3. **Landing → Drone sections → External CTA:** Users seeking Burooj Air offerings.

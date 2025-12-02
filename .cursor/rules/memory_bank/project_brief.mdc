@@ -1,0 +1,37 @@
+---
+alwaysApply: true
+---
+
+# Project Brief — Burooj Corporate Website
+
+## Objective
+- Build a premium, multi-page corporate website for Burooj, highlighting its construction, property management, and drone-cleaning divisions.
+- Deliver a fast, accessible, animation-enhanced experience that showcases services, projects, and contact funnels for Saudi-based corporate clients.
+
+## Key Deliverables
+1. Fully responsive Nuxt 3 site with pages for Home, About, Services, Projects, and Contact.
+2. Reusable component system (buttons, sections, stats, services, projects, clients, forms).
+3. GSAP-powered hero, scroll-trigger, and counter animations respecting performance budgets.
+4. Validated contact form ready for API integration (client-side validation + file upload).
+5. SEO, accessibility, and performance optimizations aligned with Lighthouse 90+ targets.
+
+## Success Criteria
+- Accurate implementation of the provided content/branding copy.
+- Consistent design system (colors, typography, spacing).
+- Smooth animations that respect `prefers-reduced-motion`.
+- WCAG 2.1 AA compliance, semantic HTML, structured data.
+- Deployable build (SSG/SSR) with clear path for future Arabic support.
+
+## Constraints & Policies
+- No internal Burooj Air microsite; all CTAs open `https://buroojair.com` in a new tab.
+- Avoid lorem ipsum; use supplied text blocks.
+- Prefer Tailwind CSS utilities; keep code extensible for CMS/i18n future phases.
+- Follow Memory Bank workflow for planning, execution, validation, documentation.
+
+## Stakeholders & Audience
+- Internal: Burooj leadership, marketing, engineering partners.
+- External: Saudi corporate clients, developers, investors, property owners seeking integrated services.
+
+## Current Phase
+- Documentation & planning complete (project description + memory bank kickoff).
+- Next step: scaffold Nuxt 3 app and begin implementing layout/components per specs.

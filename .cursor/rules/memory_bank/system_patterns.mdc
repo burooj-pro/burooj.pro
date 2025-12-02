@@ -1,0 +1,48 @@
+---
+alwaysApply: true
+---
+
+# System Patterns — Burooj Corporate Website
+
+## Architectural Overview
+- **Nuxt 3** app using file-based routing for five core pages.
+- **Layout-first approach:** `layouts/default.vue` wraps all pages with shared header/footer.
+- **Composable-driven utilities:** `useGsap`, `useNavigation`, `useForm` to keep logic centralized.
+- **Component library:** Base primitives (buttons, section wrappers) feed higher-level presentation components (stats, services, projects, contact form).
+- **Data-as-config:** Static content stored in local arrays/constants for SSG until CMS integration.
+
+```mermaid
+flowchart TD
+    Layout["layouts/default.vue<br>Header + Footer"] --> Pages["pages/*.vue<br>Home/About/Services/Projects/Contact"]
+    Pages --> Components["components/*<br>(BaseButton, StatsGrid, etc.)"]
+    Components --> Composables["composables/*<br>(useGsap, useForm, useNavigation)"]
+    Composables --> Plugins["plugins/gsap.client.ts"]
+```
+
+**Diagram Description:** The layout wraps every page, which consumes reusable components. Components rely on composables for logic (animations, form state), while composables tap into client-only plugins such as GSAP registration.
+
+## Design & Interaction Patterns
+- **Hero + CTA pattern:** H1, supporting text, dual buttons (primary scroll, secondary external).
+- **Section wrapper pattern:** Consistent `max-w-7xl mx-auto px-6 py-16` container.
+- **Card grid pattern:** Shared Tailwind classes for stats, services, projects, and clients with hover/focus states.
+- **CTA blocks:** Gradient backgrounds, centered text, single primary button.
+- **Animation hooks:** Use `ref`s + `useGsap` to register ScrollTrigger once per component; respect `prefers-reduced-motion`.
+
+## Navigation & Layout Behavior
+- **Sticky header** with transparent-to-solid scroll option (future enhancement).
+- **Mobile drawer** toggled via `aria-expanded` attributes, closed on route change.
+- **Footer grid** collapses to single column on mobile.
+
+## Content Strategy Patterns
+- **Service grouping:** Always display Construction & Engineering first, Property Management second, Drone (Burooj Air) teaser third with external CTA.
+- **Projects:** Use consistent data shape `{ title, category, description, image }`.
+- **Stats:** Provide numeric string plus label (and optional suffix) for counter animations.
+
+## Animation Patterns
+- Hero load-in sequence defined once and reused via `useGsap`.
+- Section fade/slide triggered when 20‑30% of element is visible.
+- Counters animate from 0 with `snap` to integers; run once per session.
+
+## Future Patterns
+- Placeholder for CMS integration (e.g., contentful composable).
+- Bilingual/RTL toggle via Nuxt i18n once Arabic copy is ready.

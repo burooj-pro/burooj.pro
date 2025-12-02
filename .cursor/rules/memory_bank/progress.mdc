@@ -1,0 +1,25 @@
+---
+alwaysApply: true
+---
+
+# Progress — Burooj Corporate Website
+
+## Summary
+- Project requirements consolidated into `project_description.mdc`.
+- Memory Bank initialized to capture ongoing context.
+- Implementation not yet started; next milestone is project scaffolding.
+
+## Task Ledger
+- [x] Compile comprehensive project description and specs.
+- [x] Create Memory Bank structure and populate core files.
+- [x] Scaffold Nuxt 3 project with Tailwind, GSAP, and baseline tooling.
+- [x] Build default layout with header/footer adhering to brand guidelines.
+- [~] Implement Home page sections (Hero → Contact CTA) with animations.
+- [~] Implement About, Services, Projects, Contact pages using shared components.
+- [ ] Create reusable component library (BaseButton, SectionWrapper, StatsGrid, ServicesGroup, ProjectGrid, ClientLogos, ContactForm).
+- [ ] Wire contact form validation and success/error states.
+- [ ] Add SEO/meta tags, structured data, and accessibility refinements.
+- [ ] Prepare deployment configuration (SSG/SSR) and run final QA checklist.
+
+## Known Issues / Risks
+- None logged yet; to be updated as development progresses.

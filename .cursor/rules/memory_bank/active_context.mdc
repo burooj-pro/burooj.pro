@@ -1,0 +1,25 @@
+---
+alwaysApply: true
+---
+
+# Active Context — Burooj Corporate Website
+
+## Current Focus (2025-12-02)
+1. **Foundation completed:** Nuxt 3 project scaffolded with Tailwind, GSAP plugin, default layout, and top-level pages.
+2. **Next Implementation Step:** Flesh out component library (BaseButton, SectionWrapper, StatsGrid, etc.) and begin detailed Home/About/Services content polish.
+3. **Validation:** Maintain build success (`npm run build`) and monitor Node engine warnings until environment upgrades to ≥20.19.
+
+## Pending Decisions / Questions
+- Confirm preferred package manager (npm vs pnpm) before initializing project.
+- Determine whether to start with SSG (`nuxt generate`) or SSR deployment target.
+- Clarify hosting provider (Vercel vs alternative) for environment-specific configs.
+
+## Immediate Next Actions
+1. Implement reusable base components (buttons, wrappers, grids) to reduce duplication in pages.
+2. Wire GSAP composable into sections with ScrollTrigger hooks.
+3. Expand Services/Projects data configs for future CMS integration.
+
+## Risks / Watch Items
+- Animation performance: ensure ScrollTrigger instances cleaned up and reduced-motion respected.
+- Form validation scope: confirm acceptable file types/sizes for uploads before wiring UI.
+- Content updates: keep copy source-of-truth in project description; sync before edits.

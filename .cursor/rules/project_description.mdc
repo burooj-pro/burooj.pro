@@ -1,0 +1,1157 @@
+---
+alwaysApply: true
+---
+
+# Burooj Corporate Website - Project Description
+
+## Project Overview
+
+You are building a modern corporate website for a Saudi company called "Burooj" - a multi-disciplinary company offering comprehensive solutions across engineering, construction, property management, and drone cleaning services.
+
+---
+
+## Technology Stack & Setup
+
+### Core Framework
+- **Framework:** Nuxt 3 (latest stable version)
+- **Language:** Vue 3 with Composition API (`<script setup>`)
+- **TypeScript:** Recommended for type safety (optional but preferred)
+- **Node Version:** Node.js 18+ (LTS)
+
+### Styling
+- **Primary:** Tailwind CSS with custom configuration
+- **CSS Architecture:** Component-scoped styles, utility-first approach
+- **Responsive:** Mobile-first design methodology
+
+### Animations
+- **Library:** GSAP (GreenSock Animation Platform)
+- **Plugins:** 
+  - `gsap/ScrollTrigger` for scroll-based animations
+  - `gsap/TextPlugin` if needed for text animations
+- **Performance:** Use `will-change` CSS property sparingly, prefer GPU-accelerated transforms
+
+### Build & Development
+- **Package Manager:** npm
+- **Development Server:** Nuxt dev server with HMR
+- **Build:** Static site generation (SSG) or SSR as needed
+- **Code Quality:** ESLint + Prettier configured
+
+---
+
+## Brand & Design System
+
+### Brand Identity
+- **Brand:** Modern, professional, tech-driven
+- **Sector:** Construction & Engineering, Property Management, Drone Cleaning (Burooj Air)
+- **Tone:** Premium but clean, with subtle motion (not overwhelming animations)
+- **Target Audience:** Corporate clients, developers, investors, property owners in Saudi Arabia
+
+### Color Palette
+**Primary Colors:**
+- Primary Accent: Choose one strong corporate color (e.g., deep blue #003366, or teal #006B7D)
+- Background: Neutral light base (#FFFFFF, #FAFAFA, #F5F5F5)
+- Text Primary: Dark gray/black (#1A1A1A, #2D2D2D)
+- Text Secondary: Medium gray (#666666, #808080)
+
+**Semantic Colors:**
+- Success: Green (#10B981 or similar)
+- Error/Warning: Red/Orange (#EF4444 or similar)
+- Info: Blue (#3B82F6 or similar)
+
+**Recommendation:** Define a complete palette in `tailwind.config.js` or CSS variables for consistency.
+
+### Typography
+- **Primary Font:** Modern sans-serif (e.g., Inter, Poppins, or system font stack)
+- **Headings:** Bold, clear hierarchy (H1: 2.5-3rem, H2: 2rem, H3: 1.5rem on desktop)
+- **Body:** 16px base, line-height 1.6-1.8
+- **Responsive:** Scale down proportionally on mobile (use `clamp()` or Tailwind responsive classes)
+
+### Spacing & Layout
+- **Container Max Width:** 1280px (or 1200px) for main content
+- **Section Padding:** Consistent vertical spacing (e.g., py-16 md:py-24)
+- **Grid System:** CSS Grid or Flexbox with Tailwind utilities
+- **Breakpoints:** 
+  - Mobile: < 640px
+  - Tablet: 640px - 1024px
+  - Desktop: > 1024px
+  - Large Desktop: > 1280px
+
+### Animation Guidelines
+- **Duration:** 300-600ms for most transitions
+- **Easing:** `ease-out` or custom cubic-bezier for natural feel
+- **Scroll Animations:** Trigger when element is 20-30% visible in viewport
+- **Performance:** Use `transform` and `opacity` only (avoid animating `width`, `height`, `top`, `left`)
+- **Reduced Motion:** Respect `prefers-reduced-motion` media query
+
+---
+
+## Routes & Pages Structure
+
+### Main Routes
+```
+/ → Home
+/about → About Burooj
+/services → All services (unified page)
+/contact → Contact page
+/projects → Projects showcase
+```
+
+### Route Configuration
+- Use Nuxt 3 file-based routing (`pages/` directory)
+- Implement proper meta tags for SEO on each page
+- Add structured data (JSON-LD) for better search visibility
+
+### Burooj Air External Link Policy
+- **Burooj Air** has its own website: https://buroojair.com
+- **DO NOT** build internal Burooj Air pages
+- All "Visit Burooj Air" CTAs link to `https://buroojair.com` in a new tab (`target="_blank"` with `rel="noopener noreferrer"`)
+
+---
+
+## Global Layout (`layouts/default.vue`)
+
+### Header Component
+**Structure:**
+- Logo: "BUROOJ" text or placeholder image (left-aligned)
+- Navigation Links: Home, About, Services, Projects, Contact (center or right-aligned)
+- CTA Button (desktop only): "Visit Burooj Air" → links to https://buroojair.com (opens in new tab)
+- Mobile Menu: Hamburger icon with slide-down or slide-in navigation
+
+**Behavior:**
+- Sticky header on scroll (optional, but recommended)
+- Active route highlighting
+- Smooth scroll for anchor links
+- Mobile menu closes on route change
+
+**Animation:**
+- Header fade-in on page load
+- Mobile menu slide animation (300ms ease-out)
+
+### Footer Component
+**Sections:**
+1. **Company Description:** Short 2-3 line description of Burooj
+2. **Quick Links:** Same navigation as header (Home, About, Services, Projects, Contact)
+3. **Contact Information:**
+   - Phone: `+966 54 836 6111` (clickable `tel:` link)
+   - Email: `contact@burooj.pro` (clickable `mailto:` link)
+   - Address: `Prince Turki Street, Corniche District, Khobar`
+4. **Copyright:** `© [Current Year] Burooj. All rights reserved.`
+
+**Layout:**
+- Responsive grid (1 column mobile, 2-3 columns desktop)
+- Social media links (if applicable) - optional
+
+### Layout Slots
+- Use Nuxt `<slot />` for page content
+- Ensure consistent spacing and max-width constraints
+
+---
+
+## Page Specifications
+
+### HOME PAGE (`/`)
+
+#### 1. Hero Section
+
+**Content:**
+- **Headline:** `Burooj: Design. Manage. Clean. Elevated.`
+- **Subheadline:** `Integrated construction, property management, and drone-powered cleaning built for today's modern developments.`
+
+**CTAs:**
+- Primary Button: "Explore Our Services" → smooth scroll to Services section (`#services`)
+- Secondary Button: "Visit Burooj Air Website" → https://buroojair.com (new tab)
+
+**Design:**
+- Full-width section with optional background image/gradient
+- Centered content with max-width container
+- Large, bold typography for headline
+- Sufficient contrast for readability
+
+**GSAP Animations:**
+- On page load:
+  - Headline: Fade in + slide up (from `y: 30, opacity: 0` to `y: 0, opacity: 1`, duration: 800ms, delay: 200ms)
+  - Subheadline: Fade in + slide up (delay: 400ms, duration: 800ms)
+  - Buttons: Staggered fade-in (delay: 600ms, duration: 600ms, stagger: 0.2s)
+- Background: Optional slow parallax or scale animation (if background image exists)
+- Use `gsap.fromTo()` or `gsap.from()` with proper easing
+
+**Accessibility:**
+- Ensure proper heading hierarchy (H1 for headline)
+- Alt text for any background images
+- Keyboard navigation support for buttons
+
+#### 2. About Burooj (Short Intro)
+
+**Content:**
+> Burooj is a multi-disciplinary Saudi company offering comprehensive solutions across engineering, construction, property management, and drone cleaning. With a commitment to quality, speed, and technology-driven efficiency, we support buildings and properties throughout their entire lifecycle—from design and development to operation and maintenance.
+
+**Design:**
+- Clean 2-3 line paragraph layout
+- Optional icon or illustration (SVG recommended)
+- Centered or left-aligned text
+- Max-width for readability (e.g., 800px)
+
+**GSAP Animation:**
+- On scroll into view (ScrollTrigger):
+  - Fade in + slight upward motion (`y: 20` to `y: 0`, `opacity: 0` to `1`)
+  - Duration: 600ms
+  - Trigger: When section is 30% visible in viewport
+
+#### 3. Statistics Breaker Section ("Burooj in Numbers")
+
+**Layout:**
+- Full-width section as visual breaker
+- Title: `Burooj in Numbers` (centered, H2)
+
+**Statistics to Display:**
+- `7+` — `Years of Experience`
+- `120+` — `Completed Projects`
+- `30+` — `Active Properties Managed`
+- `15,000+ m²` — `Cleaned Using Drones`
+- `40+` — `Corporate Clients`
+
+**Design:**
+- Responsive grid: 1 column (mobile), 2-3 columns (tablet), 5 columns (desktop)
+- Each stat as a card or inline block
+- Large, bold numbers with descriptive labels below
+- Consistent spacing and styling
+
+**GSAP Animations:**
+- Counter animation: Numbers count up from 0 to target value when section enters viewport
+  - Use `gsap.to()` with `innerHTML` or a custom counter function
+  - Duration: 2-3 seconds with ease-out
+- Card animations: Fade + scale-up each stat card with stagger
+  - Stagger delay: 0.1s between each card
+  - Scale: `scale: 0.9` to `scale: 1`, `opacity: 0` to `opacity: 1`
+- Use ScrollTrigger with `start: "top 80%"`
+
+**Implementation Notes:**
+- Create reusable `StatsGrid` component
+- Use `useGSAP` composable or `v-gsap` directive pattern
+- Ensure numbers are accessible (use `<span aria-label>` for screen readers)
+
+#### 4. Our Services (Unified Section)
+
+**Section Title:** `Our Services`
+
+**Structure:**
+Visually group services into three logical clusters, but present them under one unified "Services" section (not as separate department pages).
+
+**Group A: Construction & Engineering Services**
+
+Services list with short descriptions:
+
+1. **Architecture Design**
+   - Description: Innovative architectural solutions combining creativity, functionality, and compliance—supported by detailed drawings, 3D models, and visual presentations.
+
+2. **Interior Design**
+   - Description: Practical, beautiful, and personalized interiors designed for lifestyle, brand identity, and function.
+
+3. **Landscape Design**
+   - Description: Harmonious outdoor environments balancing aesthetics, usability, and sustainability.
+
+4. **Furniture Design**
+   - Description: Custom-designed furniture that blends craftsmanship with practical comfort.
+
+5. **HVAC Installation**
+   - Description: High-efficiency HVAC systems engineered for performance, comfort, and durability.
+
+6. **Fire Systems**
+   - Description: Firefighting and alarm systems designed and installed according to safety standards.
+
+7. **Electrical Works**
+   - Description: Safe, reliable electrical installs for residential, commercial, and industrial spaces.
+
+8. **Plumbing Services**
+   - Description: End-to-end plumbing and water system solutions.
+
+9. **Finishing & Fit-Out**
+   - Description: Premium finishing, including painting, flooring, plastering, and full interior fit-out.
+
+10. **Smart Systems**
+    - Description: Smart lighting, security, energy-saving, irrigation automation, smart panels, central vacuum, laundry jet, and shading automation.
+
+**Group B: Property Management Services**
+
+Services list (descriptions can be 1-2 lines each, or just titles if space is limited):
+
+1. Real Estate Marketing
+2. Real Estate Leasing
+3. Pricing Optimization
+4. Real Estate Listing
+5. Tenant Request Management
+6. LOI Documentation
+7. Legal Affairs
+8. Government Requirements
+9. Contract Documentation
+10. Revenue Collection
+11. Automated Reporting
+12. Real Estate Valuation
+13. Operational Cost Reduction
+14. Cleaning & Maintenance
+15. Security Monitoring & Logs
+16. Improving Operational Efficiency
+17. Zakat & Tax Services
+
+**Group C: Drone Cleaning Services (Burooj Air Teaser)**
+
+**Content:**
+> Burooj Air is the first drone-cleaning provider in Saudi Arabia and the GCC, offering fast, safe, and eco-friendly cleaning for high-rise buildings, solar panels, industrial structures, and high-access assets.
+
+**Key Services (Bullet Points):**
+- Façade Cleaning
+- Solar Panel Cleaning
+- Bridges & Highways
+- Large Water Tanks
+- Industrial Structures
+- High Signage & Billboards
+
+**CTA:** Button `Visit BuroojAir.com` → https://buroojair.com (new tab)
+
+**Design:**
+- Service cards in a responsive grid
+- Each card: Icon (optional), Title, Description
+- Hover effects: Subtle lift or shadow increase
+- Group headers: Visual separation (e.g., colored background or border)
+
+**GSAP Animations:**
+- On scroll: Each service card fades/slides in with slight stagger
+- Use ScrollTrigger: `start: "top 80%"`
+- Stagger delay: 0.05-0.1s between cards
+- Animation: `y: 30, opacity: 0` → `y: 0, opacity: 1`
+
+**Component:** Create reusable `ServicesGroup` component for use on both Home and Services pages.
+
+#### 5. Burooj Air Highlight Section (Optional)
+
+**Title:** `Reinventing Cleaning Through Drone Technology`
+
+**Content:**
+> Burooj Air introduces a safer, faster, and more efficient approach to cleaning across the Kingdom—removing the need for scaffolding, reducing risks, and delivering consistent results.
+
+**Key Benefits (Display as chips/icons):**
+- 10x Faster
+- Zero Scaffolding
+- High-Access Coverage
+- Eco-Efficient
+
+**CTA:** Button `Visit BuroojAir.com` → https://buroojair.com
+
+**Design:**
+- Bold visual section (full-width background, contrasting colors)
+- Benefits displayed horizontally as chips or with icons
+- Centered content with strong typography
+
+**Animation:**
+- Fade-in on scroll with slight stagger for benefit chips
+
+#### 6. Featured Projects
+
+**Section Title:** `Featured Projects`
+
+**Layout:**
+- Responsive grid: 1 column (mobile), 2 columns (tablet), 3 columns (desktop)
+- Each project card includes:
+  - Thumbnail image (placeholder for now, aspect ratio 16:9 or 4:3)
+  - Project name (H3)
+  - Category badge/tag (e.g., "Residential Fit-Out", "Drone Cleaning", "Property Management")
+  - Short 1-sentence description
+
+**Example Projects (Placeholders):**
+1. "Luxury Residential Villa – Design & Fit-Out"
+   - Category: Construction & Engineering
+   - Description: Complete interior design and fit-out for a luxury residential villa.
+
+2. "Corporate Office – Smart System & Fit-Out"
+   - Category: Construction & Engineering
+   - Description: Modern office space with integrated smart systems and premium finishing.
+
+3. "Aramco Façade Cleaning – Burooj Air"
+   - Category: Drone Cleaning
+   - Description: High-rise façade cleaning using drone technology for a major corporate building.
+
+4. "Jenan Building – Drone Cleaning"
+   - Category: Drone Cleaning
+   - Description: Comprehensive drone-powered cleaning service for commercial building.
+
+5. "Commercial Tower – Property Management & Reporting"
+   - Category: Property Management
+   - Description: Full property management services including automated reporting and tenant management.
+
+**Design:**
+- Card-based layout with hover effects
+- Image: Lazy-loaded, optimized (use Nuxt Image component)
+- Category: Small badge/chip with color coding
+- Description: Truncated if too long (max 2 lines)
+
+**GSAP Animations:**
+- Project cards fade/scale in with stagger as grid scrolls into view
+- ScrollTrigger: `start: "top 80%"`
+- Stagger: 0.1s between cards
+- Animation: `scale: 0.95, opacity: 0` → `scale: 1, opacity: 1`
+
+**Component:** Create `ProjectGrid` and `ProjectCard` components for reuse.
+
+#### 7. Clients Section
+
+**Section Title:** `Trusted By`
+
+**Content:**
+> Trusted by leading companies, developers, investors, and organizations across Saudi Arabia.
+
+**Design:**
+- Simple logo grid: 2 columns (mobile), 3-4 columns (tablet), 6-8 columns (desktop)
+- Placeholder logo boxes (gray rectangles with company names or logos)
+- Grayscale logos with color on hover (optional)
+- Consistent sizing and spacing
+
+**Logos:** 6-8 placeholder logo boxes (can be replaced with actual client logos later)
+
+**Animation:**
+- Fade-in on scroll (subtle, no stagger needed)
+
+**Component:** Create `ClientLogos` component.
+
+#### 8. Contact CTA Section
+
+**Layout:**
+- Full-width section before footer
+- Centered content
+
+**Content:**
+> Let's build, manage, and maintain your property better.
+
+**CTA:** Button `Contact Us` → `/contact` (internal link)
+
+**Design:**
+- Prominent background (subtle gradient or solid color)
+- Large, clear call-to-action button
+- Sufficient padding for visual impact
+
+**Animation:**
+- Fade-in on scroll
+
+---
+
+### ABOUT PAGE (`/about`)
+
+#### Sections:
+
+1. **Hero / Title Section**
+   - Title: `About Burooj`
+   - Optional subtitle or brief intro
+
+2. **Who We Are**
+   - Extended description (2-3 paragraphs)
+   - Reuse and expand the intro text from homepage
+   - Add more detail about company history, expertise, and values
+
+3. **Vision & Mission**
+   - **Vision:** "To become the region's most trusted provider of integrated property, engineering, and cleaning solutions through innovation, quality, and reliability."
+   - **Mission:** "To deliver modern, high-quality, and technology-driven services that support clients throughout the entire lifecycle of their properties."
+   - Display as side-by-side cards or stacked sections
+
+4. **Values**
+   - List the 5 core values:
+     1. **Swiftness** - Quick response and efficient execution
+     2. **Reliability** - Consistent, dependable service delivery
+     3. **Simplicity** - Clear processes and straightforward solutions
+     4. **Agility** - Adaptability to changing needs and markets
+     5. **Holism** - Comprehensive, integrated approach to property management
+   - Display as cards or icons with descriptions
+
+5. **Our Approach (Optional)**
+   - Small graphic/section explaining Burooj's methodology
+   - Can include a simple flowchart or visual representation
+
+**Animations:**
+- Subtle scroll and fade animations via GSAP ScrollTrigger
+- Each section animates as it enters viewport
+
+**SEO:**
+- Proper H1 for page title
+- Meta description for about page
+- Structured data for Organization schema
+
+---
+
+### SERVICES PAGE (`/services`)
+
+**Structure:**
+- More detailed, structured version of the Services section from homepage
+- Top: Brief intro paragraph
+- Filtered/Tabbed Layout: Tabs or accordions for three groups:
+  1. Construction & Engineering
+  2. Property Management
+  3. Drone Cleaning
+
+**Content:**
+- Use the same service texts from homepage but with more detail if needed
+- Each service can have:
+  - Title
+  - Extended description (2-3 sentences)
+  - Optional icon or image
+  - Optional "Learn More" or "Contact Us" CTA
+
+**Burooj Air:**
+- Keep as teaser + external redirect (no internal deep content)
+- Prominent CTA to visit buroojair.com
+
+**Design:**
+- Clean, scannable layout
+- Filter/tab functionality (can use Vue transitions)
+- Service cards in grid layout
+- Consistent spacing and typography
+
+**Components:**
+- Reuse `ServicesGroup` component from homepage
+- Create tab/accordion component for filtering
+
+---
+
+### CONTACT PAGE (`/contact`)
+
+#### Content Structure:
+
+1. **Title Section**
+   - Title: `Contact Us`
+   - Paragraph: Short line inviting users to reach out for consultations or proposals
+
+2. **Contact Information Block**
+   - Display contact details:
+     - **Phone:** `+966 54 836 6111` (clickable `tel:` link)
+     - **Email:** `contact@burooj.pro` (clickable `mailto:` link)
+     - **Address:** `Prince Turki Street, Corniche District, Khobar`
+   - Optional: Map embed (Google Maps iframe)
+
+3. **Contact Form**
+   - Form fields:
+     - **Full Name** (required, text input)
+     - **Email** (required, email input with validation)
+     - **Phone Number** (required, tel input with format validation)
+     - **Service Required** (required, dropdown/select):
+       - Construction & Engineering
+       - Property Management
+       - Drone Cleaning
+       - Other
+     - **Message** (required, textarea, min 10 characters)
+     - **File Upload** (optional, for RFP/brief documents)
+       - Accept: PDF, DOC, DOCX, images
+       - Max file size: 5MB
+       - Multiple files allowed (optional)
+
+**Form Validation:**
+- Client-side validation using Vue 3 reactive forms
+- Real-time error messages below each field
+- Required field indicators (*)
+- Email format validation (regex)
+- Phone number format validation (Saudi format: +966XXXXXXXXX or 05XXXXXXXX)
+- Message length validation (min 10, max 2000 characters)
+- File type and size validation
+
+**Form Submission:**
+- Use `@submit.prevent` to prevent default form submission
+- Form validation before submission
+- Loading state during submission
+- Success/error message display
+- For now: Console.log form data (ready to connect to API later)
+- Future: Connect to backend API endpoint (e.g., `/api/contact`)
+
+**Form State Management:**
+- Use Vue `reactive` or `ref` for form state
+- Track: `isSubmitting`, `isSuccess`, `errorMessage`
+- Reset form after successful submission (optional)
+
+**Design:**
+- Two-column layout (contact info left, form right) on desktop
+- Stacked layout on mobile
+- Clear visual hierarchy
+- Accessible form labels and error messages
+- Focus states for all inputs
+
+**Accessibility:**
+- Proper `<label>` elements for all inputs
+- `aria-describedby` for error messages
+- `aria-invalid` for invalid fields
+- Keyboard navigation support
+- Screen reader friendly
+
+**Component:** Create `ContactForm` component with validation logic.
+
+---
+
+### PROJECTS PAGE (`/projects`)
+
+**Structure:**
+- Title: `Projects`
+- Grid similar to "Featured Projects" from homepage, but with more items
+- Each project card reuses the same `ProjectCard` component
+
+**Features:**
+- **Filter by Category** (optional):
+  - All Projects
+  - Construction & Engineering
+  - Property Management
+  - Drone Cleaning
+- Filter can be dropdown or button group
+- Filter state managed with Vue reactivity
+
+**Layout:**
+- Responsive grid: 1 column (mobile), 2 columns (tablet), 3 columns (desktop)
+- Consistent card styling with homepage
+
+**Pagination (Optional):**
+- If many projects, add pagination (e.g., 9-12 projects per page)
+- Or infinite scroll (load more on scroll)
+
+**Animation:**
+- Filter transition: Fade out old, fade in new projects
+- Use Vue `<TransitionGroup>` for smooth filtering
+
+**Component:** Reuse `ProjectGrid` and `ProjectCard` components.
+
+---
+
+## Component Architecture
+
+### Reusable Components
+
+Create these components in `components/` directory:
+
+1. **`BaseButton.vue`**
+   - Props: `variant` (primary/secondary/outline), `size` (sm/md/lg), `href` (for links), `type` (button/submit)
+   - Handles primary/secondary/outline styles
+   - Supports both button and link (NuxtLink) modes
+   - Loading state support
+   - Disabled state styling
+
+2. **`SectionWrapper.vue`**
+   - Props: `padding` (py-16, py-24, etc.), `maxWidth` (container max-width)
+   - Standard section padding and max-width constraints
+   - Consistent spacing utility
+
+3. **`StatsGrid.vue`**
+   - Props: `stats` (array of stat objects with `value`, `label`, `suffix`)
+   - Handles "Burooj in Numbers" layout
+   - GSAP counter animation integration
+   - Responsive grid layout
+
+4. **`ServicesGroup.vue`**
+   - Props: `services` (array), `groupTitle`, `groupDescription`
+   - Used on both Home and Services pages
+   - Service card rendering
+   - Icon/image support
+
+5. **`ProjectGrid.vue`**
+   - Props: `projects` (array), `columns` (responsive)
+   - Grid layout for projects
+   - Filter integration (optional)
+
+6. **`ProjectCard.vue`**
+   - Props: `project` (object with `title`, `category`, `description`, `image`, `slug`)
+   - Individual project card display
+   - Hover effects
+   - Optional link to project detail page
+
+7. **`ClientLogos.vue`**
+   - Props: `logos` (array of logo objects with `name`, `image`, `url`)
+   - Logo grid layout
+   - Optional link support
+
+8. **`ContactForm.vue`**
+   - Form validation logic
+   - Form state management
+   - Submission handling
+   - Error/success message display
+
+9. **`Navigation.vue`** (Header)
+   - Navigation links
+   - Mobile menu toggle
+   - Active route highlighting
+
+10. **`Footer.vue`**
+    - Footer content sections
+    - Contact information
+    - Links and copyright
+
+### Component Best Practices
+
+- Use `<script setup>` syntax
+- TypeScript types/interfaces for props (if using TypeScript)
+- Proper prop validation
+- Emit events for parent communication
+- Scoped styles or Tailwind classes
+- Accessibility attributes (ARIA labels, roles)
+- Keyboard navigation support
+
+---
+
+## GSAP Implementation Details
+
+### Installation
+```bash
+npm install gsap
+```
+
+### Setup
+- Create `composables/useGsap.ts` or `plugins/gsap.client.ts`
+- Register GSAP plugins (ScrollTrigger) in Nuxt plugin
+- Create reusable animation utilities
+
+### Animation Patterns
+
+**1. ScrollTrigger Setup:**
+```javascript
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+```
+
+**2. Fade-in on Scroll:**
+```javascript
+gsap.from('.element', {
+  opacity: 0,
+  y: 30,
+  duration: 0.8,
+  scrollTrigger: {
+    trigger: '.element',
+    start: 'top 80%',
+    toggleActions: 'play none none none'
+  }
+})
+```
+
+**3. Counter Animation:**
+```javascript
+gsap.to('.counter', {
+  innerHTML: targetValue,
+  duration: 2,
+  ease: 'power2.out',
+  snap: { innerHTML: 1 },
+  scrollTrigger: {
+    trigger: '.counter',
+    start: 'top 80%',
+    once: true
+  }
+})
+```
+
+**4. Stagger Animation:**
+```javascript
+gsap.from('.card', {
+  opacity: 0,
+  y: 30,
+  duration: 0.6,
+  stagger: 0.1,
+  scrollTrigger: {
+    trigger: '.container',
+    start: 'top 80%'
+  }
+})
+```
+
+### Performance Considerations
+
+- Use `will-change` sparingly (only during animation)
+- Prefer `transform` and `opacity` (GPU-accelerated)
+- Use `once: true` in ScrollTrigger to prevent re-triggering
+- Clean up ScrollTrigger instances on component unmount
+- Respect `prefers-reduced-motion`:
+```javascript
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+if (prefersReducedMotion.matches) {
+  // Skip animations or use minimal animations
+}
+```
+
+### Composable Pattern
+
+Create `composables/useGsap.ts`:
+```typescript
+export const useGsap = () => {
+  const fadeInUp = (element: string | Element, options = {}) => {
+    // Reusable fade-in-up animation
+  }
+  
+  const counterAnimation = (element: string | Element, target: number) => {
+    // Reusable counter animation
+  }
+  
+  return { fadeInUp, counterAnimation }
+}
+```
+
+---
+
+## SEO & Performance
+
+### SEO Requirements
+
+1. **Meta Tags:**
+   - Title tags for each page (unique, descriptive)
+   - Meta descriptions (150-160 characters)
+   - Open Graph tags for social sharing
+   - Twitter Card tags
+
+2. **Structured Data (JSON-LD):**
+   - Organization schema
+   - LocalBusiness schema (for contact page)
+   - Service schema (for services)
+   - BreadcrumbList schema
+
+3. **Semantic HTML:**
+   - Proper heading hierarchy (H1 → H2 → H3)
+   - Use semantic elements (`<nav>`, `<main>`, `<article>`, `<section>`)
+   - Alt text for all images
+
+4. **URL Structure:**
+   - Clean, descriptive URLs
+   - Proper use of Nuxt `useHead()` for page-specific meta
+
+5. **Sitemap:**
+   - Generate sitemap.xml (Nuxt can auto-generate)
+
+6. **Robots.txt:**
+   - Proper robots.txt configuration
+
+### Performance Optimization
+
+1. **Image Optimization:**
+   - Use Nuxt Image component (`<NuxtImg>` or `<NuxtPicture>`)
+   - Lazy loading for below-the-fold images
+   - Proper image formats (WebP with fallbacks)
+   - Responsive images with `srcset`
+
+2. **Code Splitting:**
+   - Nuxt 3 automatic code splitting
+   - Lazy load components when possible (`<LazyComponent>`)
+
+3. **Font Optimization:**
+   - Use `font-display: swap` for web fonts
+   - Preload critical fonts
+   - Consider system fonts for faster loading
+
+4. **CSS Optimization:**
+   - Purge unused Tailwind classes in production
+   - Critical CSS inlining (if needed)
+
+5. **JavaScript Optimization:**
+   - Tree-shaking enabled
+   - Minification in production
+   - Gzip/Brotli compression
+
+6. **Performance Targets:**
+   - Lighthouse Score: 90+ (Performance)
+   - First Contentful Paint (FCP): < 1.8s
+   - Largest Contentful Paint (LCP): < 2.5s
+   - Time to Interactive (TTI): < 3.8s
+
+---
+
+## Accessibility (a11y)
+
+### WCAG 2.1 Level AA Compliance
+
+1. **Keyboard Navigation:**
+   - All interactive elements keyboard accessible
+   - Visible focus indicators
+   - Logical tab order
+
+2. **Screen Readers:**
+   - Proper ARIA labels and roles
+   - Alt text for images
+   - Form labels associated with inputs
+   - Error messages associated with form fields
+
+3. **Color Contrast:**
+   - Text contrast ratio: 4.5:1 (normal text), 3:1 (large text)
+   - Interactive elements: 3:1 contrast
+
+4. **Focus Management:**
+   - Skip to main content link
+   - Focus trap in modals/menus
+   - Focus visible on all interactive elements
+
+5. **Reduced Motion:**
+   - Respect `prefers-reduced-motion` media query
+   - Provide alternative for motion-heavy content
+
+6. **Semantic HTML:**
+   - Use proper HTML elements (`<button>`, `<nav>`, `<main>`, etc.)
+   - Proper heading hierarchy
+
+7. **Form Accessibility:**
+   - Required field indicators
+   - Error messages with `aria-describedby`
+   - `aria-invalid` for invalid fields
+   - Form validation announcements
+
+---
+
+## Internationalization (i18n) Considerations
+
+### Future Arabic Support
+
+- Structure code to support RTL (Right-to-Left) layout
+- Use CSS logical properties (`margin-inline-start` instead of `margin-left`)
+- Consider Nuxt i18n module for future implementation
+- Keep text content separate from components (use composables or constants)
+- Design with RTL in mind (symmetric layouts, mirrored icons)
+
+### Current Implementation
+
+- English-only for now
+- Structure allows easy addition of Arabic later
+- Use Nuxt i18n module when ready (optional for now)
+
+---
+
+## Form Validation & Error Handling
+
+### Contact Form Validation
+
+**Client-Side Validation Rules:**
+
+1. **Full Name:**
+   - Required
+   - Min length: 2 characters
+   - Max length: 100 characters
+   - Pattern: Letters, spaces, hyphens, apostrophes only
+
+2. **Email:**
+   - Required
+   - Valid email format (regex: `/^[^\s@]+@[^\s@]+\.[^\s@]+$/`)
+   - Max length: 254 characters
+
+3. **Phone Number:**
+   - Required
+   - Format: Saudi format (`+966XXXXXXXXX` or `05XXXXXXXX`)
+   - Regex: `/^(\+966|0)?5\d{8}$/` or similar
+
+4. **Service Required:**
+   - Required
+   - Must be one of the dropdown options
+
+5. **Message:**
+   - Required
+   - Min length: 10 characters
+   - Max length: 2000 characters
+
+6. **File Upload:**
+   - Optional
+   - Allowed types: PDF, DOC, DOCX, JPG, PNG
+   - Max file size: 5MB per file
+   - Max total files: 5 (if multiple uploads)
+
+### Error Handling
+
+**Form Errors:**
+- Display inline error messages below each field
+- Use red color for errors
+- Clear errors when user starts typing (for that field)
+- Disable submit button if form is invalid
+
+**Submission Errors:**
+- Display error message at top of form if submission fails
+- Retry mechanism (optional)
+- Log errors to console (for debugging)
+
+**Success State:**
+- Display success message
+- Clear form (optional)
+- Redirect to thank you page (optional, future)
+
+### Validation Library
+
+- Use Vue 3 reactive forms
+- Consider `vee-validate` or `yup` for complex validation (optional)
+- Or implement custom validation functions
+
+---
+
+## State Management
+
+### Simple State (No Pinia/Vuex Needed Initially)
+
+- Use Vue 3 `ref` and `reactive` for component state
+- Use composables for shared state (e.g., `useForm`, `useNavigation`)
+- Props and emits for parent-child communication
+
+### Future Considerations
+
+- If state becomes complex, consider Pinia
+- For form state, consider form libraries
+- For global UI state (modals, notifications), use composables or Pinia
+
+---
+
+## Testing Considerations
+
+### Testing Strategy (Future)
+
+1. **Unit Tests:**
+   - Component tests (Vitest + Vue Test Utils)
+   - Utility function tests
+
+2. **E2E Tests:**
+   - Playwright or Cypress
+   - Critical user flows (form submission, navigation)
+
+3. **Visual Regression:**
+   - Optional: Chromatic or Percy
+
+### Current Implementation
+
+- Manual testing during development
+- Browser testing (Chrome, Firefox, Safari, Edge)
+- Mobile device testing (iOS Safari, Chrome Mobile)
+- Accessibility testing (WAVE, axe DevTools)
+
+---
+
+## Deployment Considerations
+
+### Build Configuration
+
+- Static site generation (SSG) recommended for performance
+- Or SSR if dynamic content needed
+- Configure in `nuxt.config.ts`
+
+### Environment Variables
+
+- Use `.env` files for configuration
+- API endpoints (when backend is ready)
+- Contact form endpoint
+- Analytics IDs (Google Analytics, etc.)
+
+### Hosting Options
+
+- Vercel (recommended for Nuxt)
+- Netlify
+- AWS Amplify
+- Traditional hosting with Node.js
+
+### Pre-Deployment Checklist
+
+- [ ] All pages tested
+- [ ] Forms validated
+- [ ] Images optimized
+- [ ] SEO meta tags added
+- [ ] Accessibility checked
+- [ ] Performance optimized
+- [ ] Cross-browser tested
+- [ ] Mobile responsive verified
+- [ ] Analytics configured (if needed)
+- [ ] Error tracking set up (if needed)
+
+---
+
+## General Requirements Summary
+
+### Design
+- ✅ Fully responsive design (mobile, tablet, desktop)
+- ✅ Clean, modern typography
+- ✅ Consistent spacing and layout
+- ✅ Professional color scheme
+- ✅ Subtle, performance-friendly animations
+
+### Content
+- ✅ No fake "lorem ipsum" - use provided content
+- ✅ All copy provided in this document
+- ✅ Placeholder images acceptable for now
+
+### Code Quality
+- ✅ Clear structure and clean code
+- ✅ Easy to extend later (Arabic, CMS integration)
+- ✅ Component-based architecture
+- ✅ Proper separation of concerns
+- ✅ TypeScript support (optional but recommended)
+
+### Performance
+- ✅ Fast page loads
+- ✅ Optimized images
+- ✅ Efficient animations
+- ✅ Code splitting
+
+### Accessibility
+- ✅ WCAG 2.1 AA compliance
+- ✅ Keyboard navigation
+- ✅ Screen reader support
+- ✅ Proper semantic HTML
+
+### SEO
+- ✅ Proper meta tags
+- ✅ Structured data
+- ✅ Semantic HTML
+- ✅ Clean URLs
+
+---
+
+## Development Workflow
+
+### Recommended Steps
+
+1. **Setup:**
+   - Initialize Nuxt 3 project
+   - Install dependencies (Tailwind, GSAP)
+   - Configure Tailwind
+   - Set up project structure
+
+2. **Layout:**
+   - Create default layout
+   - Build Header component
+   - Build Footer component
+
+3. **Pages:**
+   - Home page (sections 1-8)
+   - About page
+   - Services page
+   - Contact page
+   - Projects page
+
+4. **Components:**
+   - Build reusable components
+   - Implement GSAP animations
+   - Add form validation
+
+5. **Polish:**
+   - SEO optimization
+   - Accessibility audit
+   - Performance optimization
+   - Cross-browser testing
+
+6. **Deployment:**
+   - Build for production
+   - Deploy to hosting
+   - Verify live site
+
+---
+
+## Notes & Future Enhancements
+
+### Phase 1 (Current)
+- Basic website with all pages
+- Static content
+- Form validation (no backend)
+- GSAP animations
+
+### Phase 2 (Future)
+- Backend API integration for contact form
+- CMS integration for content management
+- Blog/news section
+- Project detail pages
+- Arabic language support (RTL)
+- Advanced filtering and search
+- Analytics integration
+- Email notifications
+
+### Phase 3 (Future)
+- Client portal/login
+- Project management dashboard
+- Real-time updates
+- Advanced features
+
+---
+
+**End of Project Description**

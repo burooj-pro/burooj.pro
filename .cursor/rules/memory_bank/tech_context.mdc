@@ -1,0 +1,39 @@
+---
+alwaysApply: true
+---
+
+# Tech Context — Burooj Corporate Website
+
+## Framework & Runtime
+- **Nuxt 3** (latest LTS) with hybrid rendering (SSR or SSG).
+- **Vue 3 Composition API** with `<script setup>` syntax.
+- **Node.js 18+** runtime, Vite-based dev server.
+
+## Languages & Tooling
+- **TypeScript (preferred):** Optional but recommended for component props and composables.
+- **Styling:** Tailwind CSS (custom config) + PostCSS. Scoped CSS allowed for edge cases.
+- **Linting/Formatting:** ESLint + Prettier aligned with Nuxt defaults.
+- **Package Manager:** TBD (npm default unless otherwise specified).
+
+## Dependencies
+- **Core:** `nuxt`, `vue`, `@nuxtjs/tailwindcss`.
+- **Animations:** `gsap` with `ScrollTrigger` (registered in client plugin).
+- **Forms:** Native Vue reactivity; optional future integration with `vee-validate` or `yup`.
+- **Images:** Nuxt Image module (optional) for optimization.
+
+## Build & Deployment
+- **Dev:** `npm run dev` (HMR).
+- **Build:** `npm run build` (Nitro) + `npm run preview`.
+- **Deployment Targets:** Vercel (preferred), Netlify, or custom Node hosting.
+- **Artifacts:** `/.output` for SSR, `dist/` for SSG.
+
+## Configuration Notes
+- Tailwind config should define brand palette, typography scale, container widths, custom utilities if needed.
+- `nuxt.config.ts` must include global meta tags, fonts, GSAP plugin registration, sitemap/robots modules when added.
+- Environment variables stored in `.env` for future API endpoints (contact form, analytics).
+
+## Performance & Monitoring
+- Aim for Lighthouse 90+ on performance/accessibility/SEO.
+- Use lazy-loaded images, code splitting (Nuxt handles automatically), minimal bundle sizes.
+- Enable compression (Brotli/Gzip) via hosting platform.
+- Future: add analytics (GA4) and error tracking (Sentry) once endpoints exist.

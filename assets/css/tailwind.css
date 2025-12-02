@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* RedHatDisplay Font Face Declarations */
+@font-face {
+  font-family: 'RedHatDisplay';
+  src: url('/fonts/RedHatDisplay-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'RedHatDisplay';
+  src: url('/fonts/RedHatDisplay-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'RedHatDisplay';
+  src: url('/fonts/RedHatDisplay-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  font-family: 'RedHatDisplay', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #0B1A33;
+  background-color: #FFFFFF;
+}
+
+body {
+  @apply bg-white text-slate-800 antialiased;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Smooth transitions for background overlay */
+.bg-overlay-transition {
+  transition: opacity 0.8s ease-in-out;
+  will-change: opacity;
+}
+
+/* Vue transition for fade effect */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.8s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+::selection {
+  @apply bg-primary text-white;
+}
+
+.section-wrapper {
+  @apply container py-16 md:py-24;
+}
+
+/* Unified grid system for consistent alignment */
+.content-grid {
+  @apply container;
+}
+
+/* Service section hover reveal animation */
+.service-bg-reveal {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover .service-bg-reveal {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* Service hover cursor */
+.service-item {
+  cursor: none;
+}
+
+/* Gradient borders */
+.gradient-border-top {
+  position: relative;
+}
+
+.gradient-border-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, rgba(0, 91, 82, 0.2), rgba(0, 165, 142, 0.2));
+}
+
+.gradient-border-bottom {
+  position: relative;
+}
+
+.gradient-border-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, rgba(0, 91, 82, 0.2), rgba(0, 165, 142, 0.2));
+}
+
+.gradient-border-right {
+  position: relative;
+}
+
+.gradient-border-right::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(0, 91, 82, 0.2), rgba(0, 165, 142, 0.2));
+}
+
