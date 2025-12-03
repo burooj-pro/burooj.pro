@@ -4,12 +4,14 @@ import { nextTick, onUnmounted } from 'vue'
 const { t } = useI18n()
 useHead({ title: t('about.title') })
 
-const { fadeInUp } = useGsap()
+const { fadeInUp, fadeInFromSide, scaleIn, staggerFadeIn } = useGsap()
 const heroSection = ref<HTMLElement | null>(null)
 const aboutSection = ref<HTMLElement | null>(null)
 const teamSection = ref<HTMLElement | null>(null)
 const btsSection = ref<HTMLElement | null>(null)
 const clientsSection = ref<HTMLElement | null>(null)
+const teamMembersRefs = ref<HTMLElement[]>([])
+const clientLogosRefs = ref<HTMLElement[]>([])
 
 const btsContainer = ref<HTMLElement | null>(null)
 const btsWrapper = ref<HTMLElement | null>(null)
@@ -94,11 +96,30 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
 }))
 
 onMounted(() => {
+  if (typeof window === 'undefined') return
+  
+  // Animate sections on scroll
+  fadeInUp(heroSection)
+  fadeInUp(aboutSection)
+  fadeInFromSide(teamSection, 'left')
+  scaleIn(btsSection)
+  fadeInUp(clientsSection)
+  
+  // Stagger animate team members and client logos - wait for refs to populate
   if (import.meta.client) {
-    fadeInUp(heroSection)
-    fadeInUp(aboutSection, { delay: 0.2 })
-    fadeInUp(teamSection, { delay: 0.3 })
-    fadeInUp(clientsSection, { delay: 0.5 })
+    nextTick(() => {
+      setTimeout(() => {
+        // Stagger animate team members
+        if (teamMembersRefs.value.length > 0) {
+          staggerFadeIn(teamMembersRefs, { stagger: 0.1 })
+        }
+        
+        // Stagger animate client logos
+        if (clientLogosRefs.value.length > 0) {
+          staggerFadeIn(clientLogosRefs, { stagger: 0.05 })
+        }
+      }, 200)
+    })
     
     // Setup infinite loop drag functionality for BTS section
     nextTick(() => {
@@ -223,7 +244,7 @@ onMounted(() => {
     />
     <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
     <div class="relative z-10 w-full pb-8 text-left text-white md:pb-12 lg:pb-16">
-      <div class="container w-full">
+      <div class="container w-full px-6 md:px-12 lg:px-16 xl:px-20">
         <div class="max-w-7xl space-y-6">
           <h1 class="w-full text-4xl font-normal leading-[1.1] tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
             {{ t('about.hero.headline') }}
@@ -238,14 +259,14 @@ onMounted(() => {
 
   <!-- About Section -->
   <section id="about-content" ref="aboutSection" class="relative z-10 bg-white py-16 md:py-24">
-    <div class="container">
+    <div class="container px-6 md:px-12 lg:px-16 xl:px-20">
       <div class="max-w-4xl space-y-12">
         <div class="space-y-6">
           <h2 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
-            {{ t('about.section.title') }}
+            {{ t('home.about.title') }}<span class="text-primary">{{ t('home.about.titleHighlight') }}</span>{{ t('home.about.titleSuffix') }}
           </h2>
           <p class="text-base font-serif leading-relaxed text-ink md:text-lg">
-            {{ t('about.section.description') }}
+            {{ t('home.about.description') }}
           </p>
         </div>
 
@@ -255,7 +276,7 @@ onMounted(() => {
 
   <!-- Team Section -->
   <section ref="teamSection" class="relative z-10 bg-white py-16 md:py-24">
-    <div class="container">
+    <div class="container px-6 md:px-12 lg:px-16 xl:px-20">
       <div class="space-y-12">
         <!-- Heading -->
         <div class="max-w-4xl">
@@ -289,7 +310,7 @@ onMounted(() => {
   <!-- Behind The Scenes Section -->
   <section ref="btsSection" class="relative z-10 bg-gradient-to-b from-stone-50 to-white py-16 md:py-24">
     <!-- Text Header Section -->
-    <div class="container mb-12 md:mb-16">
+    <div class="container px-6 md:px-12 lg:px-16 xl:px-20 mb-12 md:mb-16">
       <div class="mx-auto max-w-4xl text-center">
         <h2 class="mb-6 text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
           {{ t('about.bts.title') }}
@@ -373,8 +394,9 @@ onMounted(() => {
     </h2>
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       <div
-        v-for="logo in clientLogos"
+        v-for="(logo, index) in clientLogos"
         :key="logo.name"
+        :ref="el => { if (el) clientLogosRefs[index] = el as HTMLElement }"
         class="flex items-center justify-center rounded-lg px-8 py-14 transition-colors"
         style="background-color: #F4F2F2;"
       >

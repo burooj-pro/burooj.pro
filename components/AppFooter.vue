@@ -34,7 +34,7 @@ const localePath = useLocalePath()
                <!-- Social Media Icons -->
                <div class="mt-6 flex items-center gap-4">
                  <a
-                   href="https://linkedin.com/company/burooj"
+                   href="https://www.linkedin.com/company/burooj-building-services/"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="text-slate-400 transition-colors hover:text-primary"
@@ -45,7 +45,7 @@ const localePath = useLocalePath()
                    </svg>
                  </a>
                  <a
-                   href="https://instagram.com/burooj"
+                   href="https://www.instagram.com/buroojsa/"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="text-slate-400 transition-colors hover:text-primary"
@@ -56,7 +56,7 @@ const localePath = useLocalePath()
                    </svg>
                  </a>
                  <a
-                   href="https://x.com/burooj"
+                   href="https://x.com/buroojsa"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="text-slate-400 transition-colors hover:text-primary"
@@ -67,7 +67,7 @@ const localePath = useLocalePath()
                    </svg>
                  </a>
                  <a
-                   href="https://wa.me/966548366111"
+                   href="https://api.whatsapp.com/send/?phone=%2B966535558889&text&type=phone_number&app_absent=0"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="text-slate-400 transition-colors hover:text-primary"

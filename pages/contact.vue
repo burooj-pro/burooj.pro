@@ -2,6 +2,17 @@
 const { t } = useI18n()
 useHead({ title: t('contact.title') })
 
+const { fadeInUp, fadeInFromSide } = useGsap()
+const contactSection = ref<HTMLElement | null>(null)
+const contactInfo = ref<HTMLElement | null>(null)
+const contactForm = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  fadeInUp(contactSection)
+  fadeInFromSide(contactInfo, 'left')
+  fadeInFromSide(contactForm, 'right')
+})
+
 const form = reactive({
   name: '',
   email: '',
@@ -49,7 +60,7 @@ const handleSubmit = () => {
 </script>
 
 <template>
-  <section class="section-wrapper relative z-10 pt-32 pb-16 md:pt-40 md:pb-24">
+  <section ref="contactSection" class="section-wrapper relative z-10 pt-32 pb-16 md:pt-40 md:pb-24">
     <!-- Section Title -->
     <div class="mb-16 grid gap-8 md:grid-cols-2 md:items-center md:gap-12">
       <div>
@@ -67,7 +78,7 @@ const handleSubmit = () => {
     <!-- Content Grid -->
     <div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
       <!-- Contact Information -->
-      <div class="space-y-8">
+      <div ref="contactInfo" class="space-y-8">
         <div>
           <h2 class="mb-6 text-2xl font-serif leading-tight text-ink md:text-3xl">{{ t('contact.contactInformation') }}</h2>
           <div class="space-y-4 text-sm leading-relaxed text-slate-600 md:text-base">
@@ -93,7 +104,7 @@ const handleSubmit = () => {
             <p class="mb-4 text-xs font-semibold uppercase tracking-wide text-ink md:text-sm">{{ t('contact.followUs') }}</p>
             <div class="flex items-center gap-4">
               <a
-                href="https://linkedin.com/company/burooj"
+                href="https://www.linkedin.com/company/burooj-building-services/"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-slate-600 transition-colors hover:text-primary"
@@ -104,7 +115,7 @@ const handleSubmit = () => {
                 </svg>
               </a>
               <a
-                href="https://instagram.com/burooj"
+                href="https://www.instagram.com/buroojsa/"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-slate-600 transition-colors hover:text-primary"
@@ -115,7 +126,7 @@ const handleSubmit = () => {
                 </svg>
               </a>
               <a
-                href="https://x.com/burooj"
+                href="https://x.com/buroojsa"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-slate-600 transition-colors hover:text-primary"
@@ -126,7 +137,7 @@ const handleSubmit = () => {
                 </svg>
               </a>
               <a
-                href="https://wa.me/966548366111"
+                href="https://api.whatsapp.com/send/?phone=%2B966535558889&text&type=phone_number&app_absent=0"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-slate-600 transition-colors hover:text-primary"
@@ -142,7 +153,7 @@ const handleSubmit = () => {
       </div>
 
       <!-- Contact Form -->
-      <form class="space-y-6" novalidate @submit.prevent="handleSubmit">
+      <form ref="contactForm" class="space-y-6" novalidate @submit.prevent="handleSubmit">
         <div>
           <label for="name" class="mb-2 block text-sm font-medium text-ink">{{ t('contact.form.name') }} *</label>
           <input

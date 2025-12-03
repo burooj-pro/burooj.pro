@@ -1,6 +1,16 @@
 <script setup lang="ts">
 const { t } = useI18n()
 useHead({ title: t('privacyPolicy.title') })
+
+const informationItems = computed(() => {
+  const items = t('privacyPolicy.informationWeCollect.items')
+  return Array.isArray(items) ? items : []
+})
+
+const howWeUseItems = computed(() => {
+  const items = t('privacyPolicy.howWeUse.items')
+  return Array.isArray(items) ? items : []
+})
 </script>
 
 <template>
@@ -28,7 +38,7 @@ useHead({ title: t('privacyPolicy.title') })
             {{ t('privacyPolicy.informationWeCollect.content') }}
           </p>
           <ul class="list-disc space-y-2 pl-6">
-            <li v-for="(item, index) in t('privacyPolicy.informationWeCollect.items')" :key="index">
+            <li v-for="(item, index) in informationItems" :key="index">
               {{ item }}
             </li>
           </ul>
@@ -40,7 +50,7 @@ useHead({ title: t('privacyPolicy.title') })
             {{ t('privacyPolicy.howWeUse.content') }}
           </p>
           <ul class="list-disc space-y-2 pl-6">
-            <li v-for="(item, index) in t('privacyPolicy.howWeUse.items')" :key="index">
+            <li v-for="(item, index) in howWeUseItems" :key="index">
               {{ item }}
             </li>
           </ul>

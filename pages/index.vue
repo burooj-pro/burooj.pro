@@ -3,11 +3,16 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 useHead({ title: t('nav.home') })
 
-const { fadeInUp, animateCounter, fixedHero } = useGsap()
+const { fadeInUp, fadeInFromSide, scaleIn, staggerFadeIn, animateCounter, fixedHero } = useGsap()
 const heroSection = ref<HTMLElement | null>(null)
 const aboutSection = ref<HTMLElement | null>(null)
+const servicesSection = ref<HTMLElement | null>(null)
 const projectsSection = ref<HTMLElement | null>(null)
+const clientsSection = ref<HTMLElement | null>(null)
+const ctaSection = ref<HTMLElement | null>(null)
 const statRefs = [ref<HTMLElement | null>(null), ref<HTMLElement | null>(null), ref<HTMLElement | null>(null)]
+const projectItems = ref<HTMLElement[]>([])
+const clientLogosRefs = ref<HTMLElement[]>([])
 
 // Custom cursor for service items
 const cursorPosition = ref({ x: 0, y: 0 })
@@ -53,12 +58,20 @@ const aboutStats = computed(() => [
 ])
 
 onMounted(() => {
+  if (typeof window === 'undefined') return
+  
   window.addEventListener('mousemove', handleMouseMove)
   
   // Initialize fixed hero section
-  fadeInUp(heroSection)
-  fadeInUp(aboutSection, { delay: 0.1 })
   fixedHero(heroSection)
+  
+  // Animate sections on scroll - these will be triggered by ScrollTrigger
+  fadeInUp(heroSection)
+  fadeInUp(aboutSection)
+  fadeInFromSide(servicesSection, 'left')
+  fadeInUp(projectsSection)
+  scaleIn(clientsSection)
+  fadeInUp(ctaSection)
   
   // Animate counters - wait for DOM to be ready and refs to be assigned
   if (import.meta.client) {
@@ -72,7 +85,19 @@ onMounted(() => {
             if (statRefs[1].value) animateCounter(statRefs[1], 120, { prefix: '+', duration: 2 })
             if (statRefs[2].value) animateCounter(statRefs[2], 30, { prefix: '+', duration: 2 })
           
-            // Refresh ScrollTrigger after all counters are initialized
+            // Stagger animate project items - wait a bit more for refs to populate
+            setTimeout(() => {
+              if (projectItems.value.length > 0) {
+                staggerFadeIn(projectItems, { stagger: 0.15 })
+              }
+              
+              // Stagger animate client logos
+              if (clientLogosRefs.value.length > 0) {
+                staggerFadeIn(clientLogosRefs, { stagger: 0.05 })
+              }
+            }, 200)
+          
+            // Refresh ScrollTrigger after all animations are initialized
             ScrollTrigger.refresh()
           }, 500)
         })
@@ -182,7 +207,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     </div>
   </section>
 
-  <section id="services" class="relative z-10 w-full">
+  <section id="services" ref="servicesSection" class="relative z-10 w-full">
     <!-- Section Title -->
     <div class="section-wrapper py-16 md:py-24">
       <div class="grid gap-8 md:grid-cols-2 md:items-center md:gap-12">
@@ -280,9 +305,10 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
 
     <!-- Projects List -->
     <div>
-      <NuxtLink
+        <NuxtLink
         v-for="(project, index) in projects"
         :key="project.slug"
+        :ref="el => { if (el) projectItems[index] = el as HTMLElement }"
         :to="localePath(`/projects/${project.slug}`)"
         class="group relative cursor-none grid grid-cols-1 gap-12 md:grid-cols-[1fr_1.3fr] md:items-start"
         :class="{ 'gradient-border-top pt-20': index > 0, 'pb-20': index < projects.length - 1 }"
@@ -335,14 +361,15 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     </div>
   </section>
 
-  <section class="section-wrapper relative z-10">
+  <section ref="clientsSection" class="section-wrapper relative z-10">
     <h2 class="mb-8 text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
       {{ t('about.clients.title') }}
     </h2>
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       <div
-        v-for="logo in clientLogos"
+        v-for="(logo, index) in clientLogos"
         :key="logo.name"
+        :ref="el => { if (el) clientLogosRefs[index] = el as HTMLElement }"
         class="flex items-center justify-center rounded-lg px-8 py-14 transition-colors"
         style="background-color: #F4F2F2;"
       >
@@ -351,7 +378,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     </div>
   </section>
 
-  <section id="contact" class="relative z-10 w-full overflow-hidden">
+  <section id="contact" ref="ctaSection" class="relative z-10 w-full overflow-hidden">
     <div
       class="relative min-h-[500px] bg-cover bg-center bg-no-repeat"
       style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80');"

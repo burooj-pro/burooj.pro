@@ -19,20 +19,134 @@ export const useGsap = () => {
     }
 
     onMounted(() => {
-      const el = unref(target)
-      if (!el) return
+      if (typeof window === 'undefined') return
+      
+      nextTick(() => {
+        const el = unref(target)
+        if (!el) return
 
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 30 },
-        {
+        // Set initial state
+        gsap.set(el, { opacity: 0, y: 30 })
+
+        gsap.to(el, {
           opacity: 1,
           y: 0,
           duration: 0.8,
           ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
           ...options,
-        }
-      )
+        })
+      })
+    })
+  }
+
+  const fadeInFromSide = (target: MaybeRef<HTMLElement | null>, direction: 'left' | 'right' = 'left', options: gsap.TweenVars = {}) => {
+    if (prefersReducedMotion.value) {
+      return
+    }
+
+    onMounted(() => {
+      if (typeof window === 'undefined') return
+      
+      nextTick(() => {
+        const el = unref(target)
+        if (!el) return
+
+        const xValue = direction === 'left' ? -50 : 50
+
+        // Set initial state
+        gsap.set(el, { opacity: 0, x: xValue })
+
+        gsap.to(el, {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+          ...options,
+        })
+      })
+    })
+  }
+
+  const scaleIn = (target: MaybeRef<HTMLElement | null>, options: gsap.TweenVars = {}) => {
+    if (prefersReducedMotion.value) {
+      return
+    }
+
+    onMounted(() => {
+      if (typeof window === 'undefined') return
+      
+      nextTick(() => {
+        const el = unref(target)
+        if (!el) return
+
+        // Set initial state
+        gsap.set(el, { opacity: 0, scale: 0.95 })
+
+        gsap.to(el, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+          ...options,
+        })
+      })
+    })
+  }
+
+  const staggerFadeIn = (targets: MaybeRef<HTMLElement[] | null>, options: { stagger?: number; delay?: number } = {}) => {
+    if (prefersReducedMotion.value) {
+      return
+    }
+
+    onMounted(() => {
+      if (typeof window === 'undefined') return
+      
+      nextTick(() => {
+        setTimeout(() => {
+          const els = unref(targets)
+          if (!els || els.length === 0) return
+
+          // Filter out null/undefined elements
+          const validEls = els.filter(el => el !== null && el !== undefined)
+          if (validEls.length === 0) return
+
+          // Set initial state
+          gsap.set(validEls, { opacity: 0, y: 30 })
+
+          gsap.to(validEls, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+            stagger: options.stagger || 0.1,
+            delay: options.delay || 0,
+            scrollTrigger: {
+              trigger: validEls[0],
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+              once: true,
+            },
+          })
+        }, 100)
+      })
     })
   }
 
@@ -144,6 +258,14 @@ export const useGsap = () => {
     })
   }
 
-  return { fadeInUp, expandImageOnScroll, animateCounter, fixedHero }
+  return { 
+    fadeInUp, 
+    fadeInFromSide, 
+    scaleIn, 
+    staggerFadeIn,
+    expandImageOnScroll, 
+    animateCounter, 
+    fixedHero 
+  }
 }
 

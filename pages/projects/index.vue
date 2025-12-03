@@ -3,7 +3,26 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 useHead({ title: t('projects.title') })
 
+const { fadeInUp, staggerFadeIn } = useGsap()
+const projectsSection = ref<HTMLElement | null>(null)
+const projectItems = ref<HTMLElement[]>([])
+
 const { projects } = useProjects()
+
+onMounted(() => {
+  fadeInUp(projectsSection)
+  
+  // Stagger animate project items
+  if (import.meta.client) {
+    nextTick(() => {
+      setTimeout(() => {
+        if (projectItems.value.length > 0) {
+          staggerFadeIn(projectItems, { stagger: 0.1 })
+        }
+      }, 100)
+    })
+  }
+})
 
 const filters = computed(() => [
   t('projects.showAll'),
@@ -87,6 +106,7 @@ onUnmounted(() => {
       <NuxtLink
         v-for="(project, projectIndex) in filteredProjects"
         :key="project.slug"
+        :ref="el => { if (el) projectItems[projectIndex] = el as HTMLElement }"
         :to="localePath(`/projects/${project.slug}`)"
         class="group relative block cursor-pointer overflow-hidden"
         @mouseenter="handleProjectEnter(projectIndex)"

@@ -2,6 +2,15 @@
 const { t } = useI18n()
 useHead({ title: t('services.title') })
 
+const { fadeInUp, scaleIn } = useGsap()
+const servicesSection = ref<HTMLElement | null>(null)
+const servicesContent = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  fadeInUp(servicesSection)
+  scaleIn(servicesContent)
+})
+
 const tabKeys = ['Construction & Engineering', 'Property Management', 'Drone Cleaning'] as const
 const activeTabKey = ref<(typeof tabKeys)[number]>('Construction & Engineering')
 
@@ -80,7 +89,7 @@ const tabContent = computed(() => ({
 </script>
 
 <template>
-  <section class="section-wrapper space-y-8">
+  <section ref="servicesSection" class="section-wrapper space-y-8">
     <div class="space-y-3">
       <p class="text-xs font-semibold uppercase tracking-[0.35em] text-primary">{{ t('services.page.title') }}</p>
       <h1 class="text-4xl font-semibold text-ink">{{ t('services.page.headline') }}</h1>
@@ -102,7 +111,7 @@ const tabContent = computed(() => ({
       </button>
     </div>
 
-    <div class="rounded-3xl border border-slate-100 bg-surface p-8 shadow-soft">
+    <div ref="servicesContent" class="rounded-3xl border border-slate-100 bg-surface p-8 shadow-soft">
       <p class="text-sm font-semibold uppercase tracking-[0.35em] text-primary">{{ activeTab }}</p>
       <h2 class="mt-3 text-2xl font-semibold text-ink">{{ tabContent[activeTabKey].title }}</h2>
       <p class="mt-3 text-slate-600">{{ tabContent[activeTabKey].description }}</p>
