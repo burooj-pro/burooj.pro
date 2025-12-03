@@ -5,7 +5,7 @@ const switchLocalePath = useSwitchLocalePath()
 
 const navLinks = computed(() => [
   { label: t('nav.home'), to: localePath('/') },
-  { label: t('nav.about'), to: '/#about' },
+  { label: t('nav.about'), to: localePath('/about') },
   { label: t('nav.services'), to: '/#services' },
   { label: t('nav.projects'), to: localePath('/projects') },
   { label: t('nav.contact'), to: '/#contact' },
@@ -13,15 +13,18 @@ const navLinks = computed(() => [
 
 const isMenuOpen = ref(false)
 const isScrolledPastHero = ref(false)
-const isLangMenuOpen = ref(false)
 
-const availableLocales = computed(() => {
-  return locales.value.filter((i: any) => i.code !== locale.value)
-})
+      const availableLocales = computed(() => {
+        // Show only the opposite language
+        if (locale.value === 'en') {
+          return locales.value.filter((i: any) => i.code === 'ar')
+        } else {
+          return locales.value.filter((i: any) => i.code === 'en')
+        }
+      })
 
 const switchLanguage = async (lang: string) => {
   await navigateTo(switchLocalePath(lang))
-  isLangMenuOpen.value = false
 }
 
 // Only watch route changes on client side
@@ -33,7 +36,12 @@ if (import.meta.client) {
   // Helper function to check if current page has a hero section
   const isPageWithoutHero = () => {
     if (!clientRoute?.path) return false
-    return clientRoute.path === '/projects' || clientRoute.path.startsWith('/projects') || clientRoute.path === '/contact' || clientRoute.path.startsWith('/contact')
+    // Pages with hero sections: /, /about (both have hero sections)
+    // Pages without hero sections: /projects, /contact, /privacy-policy, /terms-and-conditions
+    return clientRoute.path === '/projects' || clientRoute.path.startsWith('/projects') || 
+           clientRoute.path === '/contact' || clientRoute.path.startsWith('/contact') ||
+           clientRoute.path === '/privacy-policy' || clientRoute.path.startsWith('/privacy-policy') ||
+           clientRoute.path === '/terms-and-conditions' || clientRoute.path.startsWith('/terms-and-conditions')
   }
   
   // Set initial state based on route
@@ -43,7 +51,6 @@ if (import.meta.client) {
       () => clientRoute.fullPath,
       () => {
         isMenuOpen.value = false
-        isLangMenuOpen.value = false
         // Set navbar to dark immediately on pages without hero
         if (isPageWithoutHero()) {
           isScrolledPastHero.value = true
@@ -54,19 +61,6 @@ if (import.meta.client) {
       }
     )
     
-    // Close language menu when clicking outside
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement
-      if (!target.closest('.relative')) {
-        isLangMenuOpen.value = false
-      }
-    }
-    
-    document.addEventListener('click', handleClickOutside)
-    
-    onUnmounted(() => {
-      document.removeEventListener('click', handleClickOutside)
-    })
 
     // Check scroll position to determine if past hero section
     const checkScrollPosition = () => {
@@ -134,36 +128,16 @@ if (import.meta.client) {
           </NuxtLink>
           
           <!-- Language Switcher -->
-          <div class="relative">
-            <button
-              @click="isLangMenuOpen = !isLangMenuOpen"
-              class="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm transition-colors duration-300"
-              :class="isScrolledPastHero ? 'hover:bg-slate-100 text-ink' : 'hover:bg-white/10 text-white'"
-              type="button"
-              :aria-expanded="isLangMenuOpen"
-              :aria-label="t('nav.language')"
-            >
-              <span>{{ locale.toUpperCase() }}</span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div
-              v-if="isLangMenuOpen"
-              class="absolute end-0 top-full mt-2 min-w-[120px] rounded-lg border shadow-lg backdrop-blur-md"
-              :class="isScrolledPastHero ? 'border-slate-200 bg-white' : 'border-white/20 bg-black/80'"
-            >
-              <button
-                v-for="availableLocale in availableLocales"
-                :key="availableLocale.code"
-                @click="switchLanguage(availableLocale.code)"
-                class="block w-full px-4 py-2 text-left text-sm transition-colors duration-300"
-                :class="isScrolledPastHero ? 'hover:bg-slate-100 text-ink' : 'hover:bg-white/10 text-white'"
-              >
-                {{ availableLocale.name }}
-              </button>
-            </div>
-          </div>
+          <button
+            v-if="availableLocales.length > 0"
+            @click="switchLanguage(availableLocales[0].code)"
+            class="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm transition-colors duration-300"
+            :class="isScrolledPastHero ? 'hover:bg-slate-100 text-ink' : 'hover:bg-white/10 text-white'"
+            type="button"
+            :aria-label="t('nav.language')"
+          >
+            <span>{{ availableLocales[0].name }}</span>
+          </button>
         </nav>
 
         <button
@@ -207,19 +181,14 @@ if (import.meta.client) {
             </NuxtLink>
             
             <!-- Mobile Language Switcher -->
-            <div class="flex items-center gap-2 border-t pt-3">
-              <span class="text-xs opacity-70">{{ t('nav.language') || 'Language' }}:</span>
-              <div class="flex gap-2">
-                <button
-                  v-for="availableLocale in availableLocales"
-                  :key="availableLocale.code"
-                  @click="switchLanguage(availableLocale.code)"
-                  class="rounded-lg px-3 py-1.5 text-xs transition-colors duration-300"
-                  :class="isScrolledPastHero ? 'bg-slate-100 text-ink hover:bg-slate-200' : 'bg-white/10 text-white hover:bg-white/20'"
-                >
-                  {{ availableLocale.name }}
-                </button>
-              </div>
+            <div class="flex justify-center border-t pt-3" v-if="availableLocales.length > 0">
+              <button
+                @click="switchLanguage(availableLocales[0].code)"
+                class="rounded-lg px-4 py-2 text-sm font-semibold transition-colors duration-300"
+                :class="isScrolledPastHero ? 'bg-primary text-white hover:bg-primary-dark' : 'bg-white text-ink hover:bg-white/90'"
+              >
+                {{ availableLocales[0].name }}
+              </button>
             </div>
           </div>
         </div>

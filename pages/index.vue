@@ -1,5 +1,7 @@
 <script setup lang="ts">
-useHead({ title: 'Home' })
+const { t } = useI18n()
+const localePath = useLocalePath()
+useHead({ title: t('nav.home') })
 
 const { fadeInUp, animateCounter, fixedHero } = useGsap()
 const heroSection = ref<HTMLElement | null>(null)
@@ -44,11 +46,11 @@ onUnmounted(() => {
   window.removeEventListener('mousemove', handleMouseMove)
 })
 
-const aboutStats = [
-  { value: 7, prefix: '+', label: 'Delivering Engineering, Management, And Drone-Powered Cleaning Solutions Across The Region.' },
-  { value: 120, prefix: '+', label: 'Covering Villas, Commercial Fit-Outs, Smart Systems, And High-Rise Cleaning.' },
-  { value: 30, prefix: '+', label: 'End-To-End Property Management With Complete Reporting Automation.' },
-]
+const aboutStats = computed(() => [
+  { value: 7, prefix: '+', label: t('stats.stat1') },
+  { value: 120, prefix: '+', label: t('stats.stat2') },
+  { value: 30, prefix: '+', label: t('stats.stat3') },
+])
 
 onMounted(() => {
   window.addEventListener('mousemove', handleMouseMove)
@@ -79,40 +81,47 @@ onMounted(() => {
   }
 })
 
-const constructionServices = [
-  'Architecture Design',
-  'Interior Design',
-  'Landscape Design',
-  'Furniture Design',
-  'HVAC Installation',
-  'Fire Systems',
-  'Electrical Works',
-  'Plumbing Services',
-  'Finishing & Fit-Out',
-  'Smart Systems',
-]
+const constructionServices = computed(() => [
+  t('services.construction.items.architecture'),
+  t('services.construction.items.interior'),
+  t('services.construction.items.landscape'),
+  t('services.construction.items.furniture'),
+  t('services.construction.items.hvac'),
+  t('services.construction.items.fire'),
+  t('services.construction.items.electrical'),
+  t('services.construction.items.plumbing'),
+  t('services.construction.items.finishing'),
+  t('services.construction.items.smart'),
+])
 
-const propertyServices = [
-  'Real Estate Marketing',
-  'Real Estate Leasing',
-  'Pricing Optimization',
-  'Real Estate Listing',
-  'Tenant Request Management',
-  'LOI Documentation',
-  'Legal Affairs',
-  'Government Requirements',
-  'Contract Documentation',
-  'Revenue Collection',
-  'Automated Reporting',
-  'Real Estate Valuation',
-  'Operational Cost Reduction',
-  'Cleaning & Maintenance',
-  'Security Monitoring & Logs',
-  'Improving Operational Efficiency',
-  'Zakat & Tax Services',
-]
+const propertyServices = computed(() => [
+  t('services.property.items.marketing'),
+  t('services.property.items.leasing'),
+  t('services.property.items.pricing'),
+  t('services.property.items.listing'),
+  t('services.property.items.tenant'),
+  t('services.property.items.loi'),
+  t('services.property.items.legal'),
+  t('services.property.items.government'),
+  t('services.property.items.contract'),
+  t('services.property.items.revenue'),
+  t('services.property.items.reporting'),
+  t('services.property.items.valuation'),
+  t('services.property.items.cost'),
+  t('services.property.items.cleaning'),
+  t('services.property.items.security'),
+  t('services.property.items.efficiency'),
+  t('services.property.items.zakat'),
+])
 
-const droneServices = ['Façade Cleaning', 'Solar Panel Cleaning', 'Bridges & Highways', 'Large Water Tanks', 'Industrial Structures', 'High Signage & Billboards']
+const droneServices = computed(() => [
+  t('services.drone.services.facade'),
+  t('services.drone.services.solar'),
+  t('services.drone.services.bridges'),
+  t('services.drone.services.tanks'),
+  t('services.drone.services.industrial'),
+  t('services.drone.services.signage'),
+])
 
 const projects = [
   {
@@ -173,10 +182,10 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
       <div class="container w-full">
         <div class="max-w-7xl space-y-6">
         <h1 class="w-full text-4xl font-normal leading-[1.1] tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
-          BUILT SMARTER. MANAGED BETTER. CLEANED WITH INNOVATION.
+          {{ t('home.hero.headline') }}
         </h1>
         <p class="max-w-4xl text-base font-normal leading-relaxed text-white/95 md:text-lg lg:text-xl">
-          Burooj Delivers Integrated Engineering, Property Management, And Drone-Powered Cleaning Solutions That Elevate Every Building We Touch.
+          {{ t('home.hero.subheadline') }}
         </p>
         </div>
       </div>
@@ -187,11 +196,11 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     <div class="container">
       <div class="max-w-4xl space-y-8">
         <h2 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
-          A multi-<span class="text-primary">disciplinary</span> Saudi company
+          {{ t('home.about.title') }}<span class="text-primary">{{ t('home.about.titleHighlight') }}</span>{{ t('home.about.titleSuffix') }}
         </h2>
 
         <p class="text-base font-serif leading-relaxed text-ink md:text-lg">
-          Burooj is a multi-disciplinary Saudi company offering comprehensive solutions across engineering, construction, property management, and drone cleaning. With a commitment to quality, speed, and technology-driven efficiency, we support buildings and properties throughout their entire lifecycle—from design and development to operation and maintenance.
+          {{ t('home.about.description') }}
         </p>
       </div>
     </div>
@@ -215,13 +224,13 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
       <div class="grid gap-8 md:grid-cols-2 md:items-center md:gap-12">
         <div>
           <h2 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
-            <span class="block">Our</span>
-            <span class="block">Services</span>
+            <span class="block">{{ t('services.title').split(' ')[0] }}</span>
+            <span class="block">{{ t('services.title').split(' ').slice(1).join(' ') }}</span>
           </h2>
         </div>
         <div>
           <p class="text-base leading-relaxed text-slate-600 md:text-lg">
-            Comprehensive solutions across engineering, construction, property management, and drone cleaning.
+            {{ t('home.services.construction.description') }}
           </p>
         </div>
       </div>
@@ -244,7 +253,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
         <!-- Text Overlay -->
         <div class="relative z-10 w-full p-8 pb-12 md:p-12 md:pb-16">
           <h3 class="text-3xl font-bold uppercase tracking-wide text-white md:text-4xl lg:text-5xl">
-            Construction & Engineering
+            {{ t('services.construction.title') }}
           </h3>
         </div>
       </div>
@@ -264,7 +273,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
         <!-- Text Overlay -->
         <div class="relative z-10 w-full p-8 pb-12 md:p-12 md:pb-16">
           <h3 class="text-3xl font-bold uppercase tracking-wide text-white md:text-4xl lg:text-5xl">
-            Property Management
+            {{ t('services.property.title') }}
           </h3>
         </div>
       </div>
@@ -284,7 +293,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
         <!-- Text Overlay -->
         <div class="relative z-10 w-full p-8 pb-12 md:p-12 md:pb-16">
           <h3 class="text-3xl font-bold uppercase tracking-wide text-white md:text-4xl lg:text-5xl">
-            Drone Cleaning
+            {{ t('services.drone.title') }}
           </h3>
         </div>
       </div>
@@ -295,13 +304,13 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     <!-- Header -->
     <div class="mb-12 flex items-center justify-between border-b border-primary/30 pb-6">
       <h2 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
-        Our work, from petal to planet
+        {{ t('projects.title') }}
       </h2>
       <NuxtLink
-        to="/projects"
+        :to="localePath('/projects')"
         class="flex items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-slate-700"
       >
-        See all
+        {{ t('projects.viewAll') }}
         <span class="text-base">→</span>
       </NuxtLink>
     </div>
@@ -364,7 +373,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
 
   <section class="section-wrapper relative z-10">
     <h2 class="mb-8 text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
-      Our trusted partners, from bold startups to global icons
+      {{ t('about.clients.title') }}
     </h2>
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       <div
@@ -387,14 +396,14 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
       <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
       <div class="section-wrapper relative z-10 flex min-h-[500px] flex-col items-center justify-center py-16 text-center">
         <h3 class="text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-          Let's build, manage, and maintain your property better.
+          {{ t('cta.title') }}
         </h3>
         <div class="mt-8">
           <NuxtLink
-            to="/contact"
+            :to="localePath('/contact')"
             class="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-ink transition hover:bg-white/90"
           >
-            Book a Consultation
+            {{ t('nav.bookConsultation') }}
           </NuxtLink>
         </div>
       </div>

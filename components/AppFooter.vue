@@ -14,10 +14,10 @@ const localePath = useLocalePath()
       </div>
 
       <div>
-        <p class="text-sm font-semibold uppercase tracking-wide text-primary">{{ t('footer.quickLinks') }}</p>
-        <div class="mt-4 flex flex-col gap-2 text-sm text-slate-300">
+        <p class="text-sm font-semibold uppercase tracking-wide text-white">{{ t('footer.quickLinks') }}</p>
+        <div class="mt-4 flex flex-col gap-2 text-sm text-white">
                <NuxtLink :to="localePath('/')" class="hover:text-primary">{{ t('nav.home') }}</NuxtLink>
-               <NuxtLink to="/#about" class="hover:text-primary">{{ t('nav.about') }}</NuxtLink>
+               <NuxtLink :to="localePath('/about')" class="hover:text-primary">{{ t('nav.about') }}</NuxtLink>
                <NuxtLink to="/#services" class="hover:text-primary">{{ t('nav.services') }}</NuxtLink>
                <NuxtLink :to="localePath('/projects')" class="hover:text-primary">{{ t('nav.projects') }}</NuxtLink>
                <NuxtLink to="/#contact" class="hover:text-primary">{{ t('nav.contact') }}</NuxtLink>
@@ -25,8 +25,8 @@ const localePath = useLocalePath()
       </div>
 
              <div>
-               <p class="text-sm font-semibold uppercase tracking-wide text-primary">{{ t('footer.contact') }}</p>
-               <div class="mt-4 space-y-2 text-sm text-slate-300">
+               <p class="text-sm font-semibold uppercase tracking-wide text-white">{{ t('footer.contact') }}</p>
+               <div class="mt-4 space-y-2 text-sm text-white">
                  <a href="tel:+966548366111" class="block font-medium hover:text-primary">+966 54 836 6111</a>
                  <a href="mailto:contact@burooj.pro" class="block font-medium hover:text-primary">contact@burooj.pro</a>
                  <p>Prince Turki Street, Corniche District, Khobar</p>
@@ -81,9 +81,19 @@ const localePath = useLocalePath()
              </div>
     </div>
 
-    <div class="container mt-10 border-t border-primary/30 pt-6 text-xs text-slate-400">
-      © {{ new Date().getFullYear() }} Burooj. {{ t('footer.copyright') }}
-    </div>
+          <div class="container mt-10 border-t border-primary/30 pt-6">
+            <div class="flex flex-col items-center justify-between gap-4 text-xs text-slate-400 md:flex-row">
+              <p>© {{ new Date().getFullYear() }} Burooj. {{ t('footer.copyright') }}</p>
+              <div class="flex gap-6">
+                <NuxtLink :to="localePath('/privacy-policy')" class="hover:text-primary transition-colors">
+                  {{ t('footer.privacyPolicy') }}
+                </NuxtLink>
+                <NuxtLink :to="localePath('/terms-and-conditions')" class="hover:text-primary transition-colors">
+                  {{ t('footer.termsAndConditions') }}
+                </NuxtLink>
+              </div>
+            </div>
+          </div>
   </footer>
 </template>
 

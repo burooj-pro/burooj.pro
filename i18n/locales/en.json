@@ -16,7 +16,44 @@
   },
   "about": {
     "title": "About Burooj",
-    "description": "Burooj is a multi-disciplinary Saudi company offering comprehensive solutions across engineering, construction, property management, and drone cleaning. With a commitment to quality, speed, and technology-driven efficiency, we support buildings and properties throughout their entire lifecycle—from design and development to operation and maintenance."
+    "description": "Burooj is a multi-disciplinary Saudi company offering comprehensive solutions across engineering, construction, property management, and drone cleaning. With a commitment to quality, speed, and technology-driven efficiency, we support buildings and properties throughout their entire lifecycle—from design and development to operation and maintenance.",
+    "hero": {
+      "headline": "Building Excellence, Managing Innovation, Cleaning with Precision",
+      "subheadline": "A multi-disciplinary Saudi company delivering integrated solutions across engineering, construction, property management, and drone-powered cleaning."
+    },
+    "section": {
+      "title": "Who We Are",
+      "description": "Burooj is a multi-disciplinary Saudi company offering comprehensive solutions across engineering, construction, property management, and drone cleaning. With a commitment to quality, speed, and technology-driven efficiency, we support buildings and properties throughout their entire lifecycle—from design and development to operation and maintenance.",
+      "vision": {
+        "title": "Vision",
+        "description": "To become the region's most trusted provider of integrated property, engineering, and cleaning solutions through innovation, quality, and reliability."
+      },
+      "mission": {
+        "title": "Mission",
+        "description": "To deliver modern, high-quality, and technology-driven services that support clients throughout the entire lifecycle of their properties."
+      },
+      "values": {
+        "title": "Our Values",
+        "swiftness": "Swiftness",
+        "reliability": "Reliability",
+        "simplicity": "Simplicity",
+        "agility": "Agility",
+        "holism": "Holism"
+      }
+    },
+    "team": {
+      "title": "Our Team",
+      "subtitle": "Expert professionals dedicated to excellence",
+      "description": "Our diverse team of engineers, architects, project managers, and specialists brings decades of combined experience to every project."
+    },
+    "bts": {
+      "title": "Behind The Scenes",
+      "subtitle": "How We Work",
+      "description": "From initial concept to final delivery, see how our team brings projects to life with precision, innovation, and dedication."
+    },
+    "clients": {
+      "title": "Our trusted partners, from bold startups to global icons"
+    }
   },
   "stats": {
     "title": "Burooj in Numbers",
@@ -89,7 +126,14 @@
   },
   "projects": {
     "title": "Featured Projects",
-    "viewAll": "View All Projects"
+    "viewAll": "View All Projects",
+    "ourWork": "OUR WORK",
+    "showAll": "SHOW ALL",
+    "constructionEngineering": "CONSTRUCTION & ENGINEERING",
+    "droneCleaning": "DRONE CLEANING",
+    "propertyManagement": "Property Management",
+    "completed": "Completed",
+    "viewProject": "View the Project"
   },
   "clients": {
     "title": "Trusted By",
@@ -103,28 +147,149 @@
     "description": "Integrated construction, property management, and drone cleaning solutions powered by technology and Saudi expertise.",
     "quickLinks": "Quick Links",
     "contact": "Contact",
-    "copyright": "All rights reserved."
+    "copyright": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsAndConditions": "Terms and Conditions"
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated",
+    "introduction": {
+      "title": "Introduction",
+      "content": "Burooj (\"we,\" \"our,\" or \"us\") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website."
+    },
+    "informationWeCollect": {
+      "title": "Information We Collect",
+      "content": "We may collect information that you provide directly to us, including but not limited to:",
+      "items": [
+        "Name and contact information",
+        "Email address",
+        "Phone number",
+        "Any other information you choose to provide"
+      ]
+    },
+    "howWeUse": {
+      "title": "How We Use Your Information",
+      "content": "We use the information we collect to:",
+      "items": [
+        "Provide, maintain, and improve our services",
+        "Respond to your inquiries and requests",
+        "Send you updates and communications",
+        "Comply with legal obligations"
+      ]
+    },
+    "dataSecurity": {
+      "title": "Data Security",
+      "content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction."
+    },
+    "contactUs": {
+      "title": "Contact Us",
+      "content": "If you have any questions about this Privacy Policy, please contact us at:"
+    }
+  },
+  "termsAndConditions": {
+    "title": "Terms and Conditions",
+    "lastUpdated": "Last updated",
+    "agreementToTerms": {
+      "title": "Agreement to Terms",
+      "content": "By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement."
+    },
+    "useLicense": {
+      "title": "Use License",
+      "content": "Permission is granted to temporarily access the materials on Burooj's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title."
+    },
+    "disclaimer": {
+      "title": "Disclaimer",
+      "content": "The materials on Burooj's website are provided on an 'as is' basis. Burooj makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights."
+    },
+    "limitations": {
+      "title": "Limitations",
+      "content": "In no event shall Burooj or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Burooj's website."
+    },
+    "revisions": {
+      "title": "Revisions",
+      "content": "Burooj may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service."
+    },
+    "contactInformation": {
+      "title": "Contact Information",
+      "content": "If you have any questions about these Terms and Conditions, please contact us at:"
+    }
   },
   "contact": {
     "title": "Contact Us",
     "description": "Get in touch with us for consultations, proposals, or any inquiries.",
+    "getInTouch": "Get in Touch",
+    "descriptionFull": "Reach out for consultations, proposals, or to learn more about our comprehensive solutions across engineering, construction, property management, and drone cleaning.",
+    "contactInformation": "Contact Information",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "followUs": "Follow Us",
     "form": {
       "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
       "email": "Email",
+      "emailPlaceholder": "your.email{'@'}example.com",
       "phone": "Phone Number",
+      "phonePlaceholder": "+966 5X XXX XXXX",
       "service": "Service Required",
+      "servicePlaceholder": "Select a service",
       "message": "Message",
+      "messagePlaceholder": "Tell us about your project or inquiry...",
       "fileUpload": "Upload File",
-      "submit": "Send Message",
+      "fileUploadLabel": "Upload Brief / RFP (optional)",
+      "fileUploadHint": "PDF, DOC, DOCX, JPG, PNG (max 5MB per file)",
+      "submit": "Submit",
       "sending": "Sending...",
       "success": "Thank you! Your message has been sent successfully.",
-      "error": "Something went wrong. Please try again."
+      "error": "Something went wrong. Please try again.",
+      "errors": {
+        "name": "Please enter your full name.",
+        "email": "Enter a valid email address.",
+        "phone": "Use a valid Saudi mobile number.",
+        "service": "Select a service.",
+        "message": "Message should be at least 10 characters.",
+        "files": "Each file must be under 5MB."
+      }
     },
     "services": {
       "construction": "Construction & Engineering",
       "property": "Property Management",
       "drone": "Drone Cleaning",
       "other": "Other"
+    }
+  },
+  "home": {
+    "hero": {
+      "headline": "BUILT SMARTER. MANAGED BETTER. CLEANED WITH INNOVATION.",
+      "subheadline": "Burooj Delivers Integrated Engineering, Property Management, And Drone-Powered Cleaning Solutions That Elevate Every Building We Touch."
+    },
+    "about": {
+      "title": "A multi-",
+      "titleHighlight": "disciplinary",
+      "titleSuffix": " Saudi company",
+      "description": "Burooj is a multi-disciplinary Saudi company offering comprehensive solutions across engineering, construction, property management, and drone cleaning. With a commitment to quality, speed, and technology-driven efficiency, we support buildings and properties throughout their entire lifecycle—from design and development to operation and maintenance."
+    },
+    "services": {
+      "construction": {
+        "title": "Construction & Engineering Services",
+        "description": "Architecture, interiors, MEP, and smart systems that keep developments future-ready. Every solution is documented with detailed drawings and 3D visuals for clients and partners."
+      },
+      "property": {
+        "title": "Property Management Services",
+        "description": "360° operations that combine leasing, compliance, finance, and tenant services. We deliver transparent reporting and reliable execution at every stage."
+      },
+      "drone": {
+        "title": "Drone Cleaning — Burooj Air",
+        "description": "The region's first drone cleaning program, covering facades, solar farms, industrial infrastructure, and other high-access assets with zero scaffolding required."
+      }
+    }
+  },
+  "services": {
+    "page": {
+      "title": "Services",
+      "headline": "Integrated services from design to operations",
+      "description": "Burooj unifies construction, property management, and drone cleaning through a single team, ensuring consistent standards and faster delivery."
     }
   }
 }

@@ -1,8 +1,23 @@
 <script setup lang="ts">
-useHead({ title: 'Projects' })
+const { t } = useI18n()
+useHead({ title: t('projects.title') })
 
-const filters = ['SHOW ALL', 'CONSTRUCTION & ENGINEERING', 'DRONE CLEANING'] as const
-const activeFilter = ref<(typeof filters)[number]>('SHOW ALL')
+const filters = computed(() => [
+  t('projects.showAll'),
+  t('projects.constructionEngineering'),
+  t('projects.droneCleaning'),
+])
+const activeFilter = ref<string>(filters.value[0])
+
+const filterKeys = ['SHOW ALL', 'CONSTRUCTION & ENGINEERING', 'DRONE CLEANING'] as const
+const activeFilterKey = ref<(typeof filterKeys)[number]>('SHOW ALL')
+
+const getFilterKey = (filter: string) => {
+  if (filter.includes('ALL') || filter.includes('الكل')) return 'SHOW ALL'
+  if (filter.includes('CONSTRUCTION') || filter.includes('البناء')) return 'CONSTRUCTION & ENGINEERING'
+  if (filter.includes('DRONE') || filter.includes('الطائرات')) return 'DRONE CLEANING'
+  return 'SHOW ALL'
+}
 
 const projects = [
   {
@@ -43,12 +58,12 @@ const projects = [
 ]
 
 const filteredProjects = computed(() => {
-  if (activeFilter.value === 'SHOW ALL') return projects
+  if (activeFilterKey.value === 'SHOW ALL') return projects
   const filterMap: Record<string, string> = {
     'CONSTRUCTION & ENGINEERING': 'Construction & Engineering',
     'DRONE CLEANING': 'Drone Cleaning',
   }
-  return projects.filter((project) => project.category === filterMap[activeFilter.value])
+  return projects.filter((project) => project.category === filterMap[activeFilterKey.value])
 })
 
 // Custom cursor for project items
@@ -84,7 +99,7 @@ onUnmounted(() => {
     <!-- Header Section -->
     <div class="mb-12 space-y-6">
       <h1 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
-        OUR WORK
+        {{ t('projects.ourWork') }}
       </h1>
       
       <!-- Filter Navigation -->
@@ -95,7 +110,7 @@ onUnmounted(() => {
           class="transition-colors hover:text-primary"
           :class="filter === activeFilter ? 'text-ink underline decoration-2 underline-offset-4' : 'text-slate-500'"
           type="button"
-          @click="activeFilter = filter"
+          @click="activeFilter = filter; activeFilterKey = getFilterKey(filter)"
         >
           {{ filter }}
         </button>
@@ -139,7 +154,7 @@ onUnmounted(() => {
               {{ project.category }}
             </span>
             <span class="rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary">
-              {{ project.status }}
+              {{ t('projects.completed') }}
             </span>
           </div>
           <h2 class="text-xl font-bold leading-tight text-ink md:text-2xl">
@@ -159,6 +174,6 @@ onUnmounted(() => {
     class="pointer-events-none fixed z-[9999] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
     :style="{ left: cursorPosition.x - 70 + 'px', top: cursorPosition.y - 18 + 'px' }"
   >
-    View the Project
+    {{ t('projects.viewProject') }}
   </div>
 </template>

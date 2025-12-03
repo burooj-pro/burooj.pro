@@ -1,5 +1,6 @@
 <script setup lang="ts">
-useHead({ title: 'Contact' })
+const { t } = useI18n()
+useHead({ title: t('contact.title') })
 
 const form = reactive({
   name: '',
@@ -14,13 +15,13 @@ const errors = reactive<Record<string, string>>({})
 const isSubmitting = ref(false)
 
 const validate = () => {
-  errors.name = form.name.length >= 2 ? '' : 'Please enter your full name.'
-  errors.email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) ? '' : 'Enter a valid email address.'
-  errors.phone = /^(\+966|0)?5\d{8}$/.test(form.phone) ? '' : 'Use a valid Saudi mobile number.'
-  errors.service = form.service ? '' : 'Select a service.'
-  errors.message = form.message.length >= 10 ? '' : 'Message should be at least 10 characters.'
+  errors.name = form.name.length >= 2 ? '' : t('contact.form.errors.name')
+  errors.email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) ? '' : t('contact.form.errors.email')
+  errors.phone = /^(\+966|0)?5\d{8}$/.test(form.phone) ? '' : t('contact.form.errors.phone')
+  errors.service = form.service ? '' : t('contact.form.errors.service')
+  errors.message = form.message.length >= 10 ? '' : t('contact.form.errors.message')
   const invalidFile = form.files.find((file) => file.size > 5 * 1024 * 1024)
-  errors.files = invalidFile ? 'Each file must be under 5MB.' : ''
+  errors.files = invalidFile ? t('contact.form.errors.files') : ''
 
   return Object.values(errors).every((value) => !value)
 }
@@ -53,12 +54,12 @@ const handleSubmit = () => {
     <div class="mb-16 grid gap-8 md:grid-cols-2 md:items-center md:gap-12">
       <div>
         <h1 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
-          Get in Touch
+          {{ t('contact.getInTouch') }}
         </h1>
       </div>
       <div>
         <p class="text-base leading-relaxed text-slate-600 md:text-lg">
-          Reach out for consultations, proposals, or to learn more about our comprehensive solutions across engineering, construction, property management, and drone cleaning.
+          {{ t('contact.descriptionFull') }}
         </p>
       </div>
     </div>
@@ -68,28 +69,28 @@ const handleSubmit = () => {
       <!-- Contact Information -->
       <div class="space-y-8">
         <div>
-          <h2 class="mb-6 text-2xl font-serif leading-tight text-ink md:text-3xl">Contact Information</h2>
+          <h2 class="mb-6 text-2xl font-serif leading-tight text-ink md:text-3xl">{{ t('contact.contactInformation') }}</h2>
           <div class="space-y-4 text-sm leading-relaxed text-slate-600 md:text-base">
             <div>
-              <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-ink md:text-sm">Phone</p>
+              <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-ink md:text-sm">{{ t('contact.phone') }}</p>
               <a href="tel:+966548366111" class="font-medium text-ink transition-colors hover:text-primary">
                 +966 54 836 6111
               </a>
             </div>
             <div>
-              <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-ink md:text-sm">Email</p>
+              <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-ink md:text-sm">{{ t('contact.email') }}</p>
               <a href="mailto:contact@burooj.pro" class="font-medium text-ink transition-colors hover:text-primary">
                 contact@burooj.pro
               </a>
             </div>
             <div>
-              <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-ink md:text-sm">Address</p>
+              <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-ink md:text-sm">{{ t('contact.address') }}</p>
               <p class="font-medium text-ink">Prince Turki Street, Corniche District, Khobar</p>
             </div>
           </div>
           <!-- Social Media Icons -->
           <div class="mt-8">
-            <p class="mb-4 text-xs font-semibold uppercase tracking-wide text-ink md:text-sm">Follow Us</p>
+            <p class="mb-4 text-xs font-semibold uppercase tracking-wide text-ink md:text-sm">{{ t('contact.followUs') }}</p>
             <div class="flex items-center gap-4">
               <a
                 href="https://linkedin.com/company/burooj"
@@ -143,72 +144,72 @@ const handleSubmit = () => {
       <!-- Contact Form -->
       <form class="space-y-6" novalidate @submit.prevent="handleSubmit">
         <div>
-          <label for="name" class="mb-2 block text-sm font-medium text-ink">Full Name *</label>
+          <label for="name" class="mb-2 block text-sm font-medium text-ink">{{ t('contact.form.name') }} *</label>
           <input
             id="name"
             v-model="form.name"
             type="text"
             class="w-full border-b border-slate-300 bg-transparent px-0 py-3 text-ink placeholder:text-slate-400 focus:border-primary focus:outline-none"
-            placeholder="Enter your full name"
+            :placeholder="t('contact.form.namePlaceholder')"
           />
           <p v-if="errors.name" class="mt-1 text-xs text-red-500">{{ errors.name }}</p>
         </div>
 
         <div class="grid gap-6 md:grid-cols-2">
           <div>
-            <label for="email" class="mb-2 block text-sm font-medium text-ink">Email *</label>
+            <label for="email" class="mb-2 block text-sm font-medium text-ink">{{ t('contact.form.email') }} *</label>
             <input
               id="email"
               v-model="form.email"
               type="email"
               class="w-full border-b border-slate-300 bg-transparent px-0 py-3 text-ink placeholder:text-slate-400 focus:border-primary focus:outline-none"
-              placeholder="your.email@example.com"
+              :placeholder="t('contact.form.emailPlaceholder')"
             />
             <p v-if="errors.email" class="mt-1 text-xs text-red-500">{{ errors.email }}</p>
           </div>
           <div>
-            <label for="phone" class="mb-2 block text-sm font-medium text-ink">Phone *</label>
+            <label for="phone" class="mb-2 block text-sm font-medium text-ink">{{ t('contact.form.phone') }} *</label>
             <input
               id="phone"
               v-model="form.phone"
               type="tel"
               class="w-full border-b border-slate-300 bg-transparent px-0 py-3 text-ink placeholder:text-slate-400 focus:border-primary focus:outline-none"
-              placeholder="+966 5X XXX XXXX"
+              :placeholder="t('contact.form.phonePlaceholder')"
             />
             <p v-if="errors.phone" class="mt-1 text-xs text-red-500">{{ errors.phone }}</p>
           </div>
         </div>
 
         <div>
-          <label for="service" class="mb-2 block text-sm font-medium text-ink">Service Required *</label>
+          <label for="service" class="mb-2 block text-sm font-medium text-ink">{{ t('contact.form.service') }} *</label>
           <select
             id="service"
             v-model="form.service"
             class="w-full border-b border-slate-300 bg-transparent px-0 py-3 text-ink focus:border-primary focus:outline-none"
           >
-            <option value="" disabled>Select a service</option>
-            <option>Construction & Engineering</option>
-            <option>Property Management</option>
-            <option>Drone Cleaning</option>
-            <option>Other</option>
+            <option value="" disabled>{{ t('contact.form.servicePlaceholder') }}</option>
+            <option>{{ t('contact.services.construction') }}</option>
+            <option>{{ t('contact.services.property') }}</option>
+            <option>{{ t('contact.services.drone') }}</option>
+            <option>{{ t('contact.services.other') }}</option>
           </select>
           <p v-if="errors.service" class="mt-1 text-xs text-red-500">{{ errors.service }}</p>
         </div>
 
         <div>
-          <label for="message" class="mb-2 block text-sm font-medium text-ink">Message *</label>
+          <label for="message" class="mb-2 block text-sm font-medium text-ink">{{ t('contact.form.message') }} *</label>
           <textarea
             id="message"
             v-model="form.message"
             rows="5"
             class="w-full border-b border-slate-300 bg-transparent px-0 py-3 text-ink placeholder:text-slate-400 focus:border-primary focus:outline-none"
-            placeholder="Tell us about your project or inquiry..."
+            :placeholder="t('contact.form.messagePlaceholder')"
           />
           <p v-if="errors.message" class="mt-1 text-xs text-red-500">{{ errors.message }}</p>
         </div>
 
         <div>
-          <label for="files" class="mb-2 block text-sm font-medium text-ink">Upload Brief / RFP (optional)</label>
+          <label for="files" class="mb-2 block text-sm font-medium text-ink">{{ t('contact.form.fileUploadLabel') }}</label>
           <input
             id="files"
             type="file"
@@ -221,7 +222,7 @@ const handleSubmit = () => {
             }"
           />
           <p v-if="errors.files" class="mt-1 text-xs text-red-500">{{ errors.files }}</p>
-          <p class="mt-1 text-xs text-slate-500">PDF, DOC, DOCX, JPG, PNG (max 5MB per file)</p>
+          <p class="mt-1 text-xs text-slate-500">{{ t('contact.form.fileUploadHint') }}</p>
         </div>
 
         <button
@@ -229,7 +230,7 @@ const handleSubmit = () => {
           class="mt-8 rounded-lg bg-primary px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dark disabled:opacity-60"
           :disabled="isSubmitting"
         >
-          {{ isSubmitting ? 'Sending...' : 'Submit' }}
+          {{ isSubmitting ? t('contact.form.sending') : t('contact.form.submit') }}
         </button>
       </form>
     </div>
