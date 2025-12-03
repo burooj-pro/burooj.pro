@@ -1,26 +1,31 @@
+<script setup lang="ts">
+const { t } = useI18n()
+const localePath = useLocalePath()
+</script>
+
 <template>
   <footer class="border-t border-primary/30 bg-black py-12 text-white">
     <div class="container grid gap-10 md:grid-cols-3">
       <div class="space-y-3">
         <img src="/images/Burooj-logo.png" alt="Burooj" class="h-8 w-auto brightness-0 invert" />
         <p class="text-sm text-slate-300">
-          Integrated construction, property management, and drone cleaning solutions powered by technology and Saudi expertise.
+          {{ t('footer.description') }}
         </p>
       </div>
 
       <div>
-        <p class="text-sm font-semibold uppercase tracking-wide text-primary">Quick Links</p>
+        <p class="text-sm font-semibold uppercase tracking-wide text-primary">{{ t('footer.quickLinks') }}</p>
         <div class="mt-4 flex flex-col gap-2 text-sm text-slate-300">
-               <NuxtLink to="/" class="hover:text-primary">Home</NuxtLink>
-               <NuxtLink to="/#about" class="hover:text-primary">About</NuxtLink>
-               <NuxtLink to="/#services" class="hover:text-primary">Services</NuxtLink>
-               <NuxtLink to="/projects" class="hover:text-primary">Projects</NuxtLink>
-               <NuxtLink to="/#contact" class="hover:text-primary">Contact</NuxtLink>
+               <NuxtLink :to="localePath('/')" class="hover:text-primary">{{ t('nav.home') }}</NuxtLink>
+               <NuxtLink to="/#about" class="hover:text-primary">{{ t('nav.about') }}</NuxtLink>
+               <NuxtLink to="/#services" class="hover:text-primary">{{ t('nav.services') }}</NuxtLink>
+               <NuxtLink :to="localePath('/projects')" class="hover:text-primary">{{ t('nav.projects') }}</NuxtLink>
+               <NuxtLink to="/#contact" class="hover:text-primary">{{ t('nav.contact') }}</NuxtLink>
         </div>
       </div>
 
              <div>
-               <p class="text-sm font-semibold uppercase tracking-wide text-primary">Contact</p>
+               <p class="text-sm font-semibold uppercase tracking-wide text-primary">{{ t('footer.contact') }}</p>
                <div class="mt-4 space-y-2 text-sm text-slate-300">
                  <a href="tel:+966548366111" class="block font-medium hover:text-primary">+966 54 836 6111</a>
                  <a href="mailto:contact@burooj.pro" class="block font-medium hover:text-primary">contact@burooj.pro</a>
@@ -77,7 +82,7 @@
     </div>
 
     <div class="container mt-10 border-t border-primary/30 pt-6 text-xs text-slate-400">
-      © {{ new Date().getFullYear() }} Burooj. All rights reserved.
+      © {{ new Date().getFullYear() }} Burooj. {{ t('footer.copyright') }}
     </div>
   </footer>
 </template>

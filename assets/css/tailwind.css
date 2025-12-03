@@ -127,3 +127,21 @@ body {
   background: linear-gradient(to bottom, rgba(0, 91, 82, 0.2), rgba(0, 165, 142, 0.2));
 }
 
+/* RTL Support */
+[dir='rtl'] {
+  direction: rtl;
+}
+
+[dir='ltr'] {
+  direction: ltr;
+}
+
+/* RTL-specific adjustments */
+[dir='rtl'] .text-left {
+  text-align: right;
+}
+
+[dir='rtl'] .text-right {
+  text-align: left;
+}
+

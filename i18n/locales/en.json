@@ -1,0 +1,131 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "contact": "Contact",
+    "bookConsultation": "Book a Consultation",
+    "language": "Language"
+  },
+  "hero": {
+    "headline": "Burooj: Design. Manage. Clean. Elevated.",
+    "subheadline": "Integrated construction, property management, and drone-powered cleaning built for today's modern developments.",
+    "exploreServices": "Explore Our Services",
+    "visitBuroojAir": "Visit Burooj Air Website"
+  },
+  "about": {
+    "title": "About Burooj",
+    "description": "Burooj is a multi-disciplinary Saudi company offering comprehensive solutions across engineering, construction, property management, and drone cleaning. With a commitment to quality, speed, and technology-driven efficiency, we support buildings and properties throughout their entire lifecycle—from design and development to operation and maintenance."
+  },
+  "stats": {
+    "title": "Burooj in Numbers",
+    "stat1": "Delivering Engineering, Management, And Drone-Powered Cleaning Solutions Across The Region.",
+    "stat2": "Covering Villas, Commercial Fit-Outs, Smart Systems, And High-Rise Cleaning.",
+    "stat3": "End-To-End Property Management With Complete Reporting Automation."
+  },
+  "services": {
+    "title": "Our Services",
+    "construction": {
+      "title": "Construction & Engineering Services",
+      "items": {
+        "architecture": "Architecture Design",
+        "interior": "Interior Design",
+        "landscape": "Landscape Design",
+        "furniture": "Furniture Design",
+        "hvac": "HVAC Installation",
+        "fire": "Fire Systems",
+        "electrical": "Electrical Works",
+        "plumbing": "Plumbing Services",
+        "finishing": "Finishing & Fit-Out",
+        "smart": "Smart Systems"
+      }
+    },
+    "property": {
+      "title": "Property Management Services",
+      "items": {
+        "marketing": "Real Estate Marketing",
+        "leasing": "Real Estate Leasing",
+        "pricing": "Pricing Optimization",
+        "listing": "Real Estate Listing",
+        "tenant": "Tenant Request Management",
+        "loi": "LOI Documentation",
+        "legal": "Legal Affairs",
+        "government": "Government Requirements",
+        "contract": "Contract Documentation",
+        "revenue": "Revenue Collection",
+        "reporting": "Automated Reporting",
+        "valuation": "Real Estate Valuation",
+        "cost": "Operational Cost Reduction",
+        "cleaning": "Cleaning & Maintenance",
+        "security": "Security Monitoring & Logs",
+        "efficiency": "Improving Operational Efficiency",
+        "zakat": "Zakat & Tax Services"
+      }
+    },
+    "drone": {
+      "title": "Drone Cleaning Services",
+      "description": "Burooj Air is the first drone-cleaning provider in Saudi Arabia and the GCC, offering fast, safe, and eco-friendly cleaning for high-rise buildings, solar panels, industrial structures, and high-access assets.",
+      "services": {
+        "facade": "Façade Cleaning",
+        "solar": "Solar Panel Cleaning",
+        "bridges": "Bridges & Highways",
+        "tanks": "Large Water Tanks",
+        "industrial": "Industrial Structures",
+        "signage": "High Signage & Billboards"
+      },
+      "visitWebsite": "Visit BuroojAir.com"
+    },
+    "highlight": {
+      "title": "Reinventing Cleaning Through Drone Technology",
+      "description": "Burooj Air introduces a safer, faster, and more efficient approach to cleaning across the Kingdom—removing the need for scaffolding, reducing risks, and delivering consistent results.",
+      "benefits": {
+        "faster": "10x Faster",
+        "scaffolding": "Zero Scaffolding",
+        "coverage": "High-Access Coverage",
+        "eco": "Eco-Efficient"
+      }
+    }
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "viewAll": "View All Projects"
+  },
+  "clients": {
+    "title": "Trusted By",
+    "description": "Trusted by leading companies, developers, investors, and organizations across Saudi Arabia."
+  },
+  "cta": {
+    "title": "Let's build, manage, and maintain your property better.",
+    "button": "Contact Us"
+  },
+  "footer": {
+    "description": "Integrated construction, property management, and drone cleaning solutions powered by technology and Saudi expertise.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "copyright": "All rights reserved."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Get in touch with us for consultations, proposals, or any inquiries.",
+    "form": {
+      "name": "Full Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "service": "Service Required",
+      "message": "Message",
+      "fileUpload": "Upload File",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Thank you! Your message has been sent successfully.",
+      "error": "Something went wrong. Please try again."
+    },
+    "services": {
+      "construction": "Construction & Engineering",
+      "property": "Property Management",
+      "drone": "Drone Cleaning",
+      "other": "Other"
+    }
+  }
+}
+

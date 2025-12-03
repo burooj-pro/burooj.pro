@@ -2,7 +2,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['~/assets/css/tailwind.css'],
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n'],
   components: [
     {
       path: '~/components',
@@ -13,6 +13,35 @@ export default defineNuxtConfig({
     public: {
       siteUrl: 'https://burooj.pro',
     },
+  },
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US',
+        name: 'English',
+        file: 'en.json',
+        dir: 'ltr',
+      },
+      {
+        code: 'ar',
+        iso: 'ar-SA',
+        name: 'العربية',
+        file: 'ar.json',
+        dir: 'rtl',
+      },
+    ],
+    lazy: true,
+    langDir: 'locales',
+    defaultLocale: 'en',
+    strategy: 'prefix_except_default',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+      alwaysRedirect: false,
+    },
+    vueI18n: './i18n.config.ts',
   },
   app: {
     head: {
