@@ -27,19 +27,34 @@ const handleBtsMouseMove = (e: MouseEvent) => {
 
 const teamMembers = [
   {
-    name: 'Team Member 1',
+    name: 'Mohammed F',
     role: 'Role Title',
-    image: '/images/team1.jpg',
+    image: '/images/team/mohammedF.png',
   },
   {
-    name: 'Team Member 2',
+    name: 'Faisal',
     role: 'Role Title',
-    image: '/images/team2.jpg',
+    image: '/images/team/faisal.png',
   },
   {
-    name: 'Team Member 3',
+    name: 'Budoo',
     role: 'Role Title',
-    image: '/images/team3.jpg',
+    image: '/images/team/bedoor.png',
+  },
+  {
+    name: 'Omar',
+    role: 'Role Title',
+    image: '/images/team/omar.png',
+  },
+  {
+    name: 'Mohammed B',
+    role: 'Role Title',
+    image: '/images/team/mohammedB.png',
+  },
+  {
+    name: 'Moaen',
+    role: 'Role Title',
+    image: '/images/team/moaen.png',
   },
 ]
 

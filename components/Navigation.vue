@@ -36,12 +36,18 @@ if (import.meta.client) {
   // Helper function to check if current page has a hero section
   const isPageWithoutHero = () => {
     if (!clientRoute?.path) return false
-    // Pages with hero sections: /, /about (both have hero sections)
-    // Pages without hero sections: /projects, /contact, /privacy-policy, /terms-and-conditions
-    return clientRoute.path === '/projects' || clientRoute.path.startsWith('/projects') || 
-           clientRoute.path === '/contact' || clientRoute.path.startsWith('/contact') ||
-           clientRoute.path === '/privacy-policy' || clientRoute.path.startsWith('/privacy-policy') ||
-           clientRoute.path === '/terms-and-conditions' || clientRoute.path.startsWith('/terms-and-conditions')
+    const path = clientRoute.path
+    // Pages with hero sections: /, /about, /projects/[slug] (project detail pages have hero sections)
+    // Pages without hero sections: /projects (list only), /contact, /privacy-policy, /terms-and-conditions
+    return (
+      path === '/projects' ||
+      path === '/contact' ||
+      path.startsWith('/contact') ||
+      path === '/privacy-policy' ||
+      path.startsWith('/privacy-policy') ||
+      path === '/terms-and-conditions' ||
+      path.startsWith('/terms-and-conditions')
+    )
   }
   
   // Set initial state based on route
@@ -99,7 +105,7 @@ if (import.meta.client) {
   <header class="fixed inset-x-0 top-0 z-50 w-full">
     <div class="w-full bg-transparent backdrop-blur-md" :class="{ 'bg-white/95': isScrolledPastHero }">
       <div class="container">
-        <div class="flex items-center justify-between px-6 py-4 md:px-8 md:py-5">
+        <div class="flex items-center justify-between px-6 py-4 md:px-12 lg:px-16 xl:px-20 md:py-5">
         <NuxtLink to="/" class="flex items-center" prefetch>
           <img 
             :src="isScrolledPastHero ? '/images/Burroj-dark-logo.png' : '/images/Burooj-logo.png'" 

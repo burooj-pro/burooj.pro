@@ -5,7 +5,7 @@ const localePath = useLocalePath()
 
 <template>
   <footer class="border-t border-primary/30 bg-black py-12 text-white">
-    <div class="container grid gap-10 md:grid-cols-3">
+    <div class="container px-6 md:px-12 lg:px-16 xl:px-20 grid gap-10 md:grid-cols-3">
       <div class="space-y-3">
         <img src="/images/Burooj-logo.png" alt="Burooj" class="h-8 w-auto brightness-0 invert" />
         <p class="text-sm text-slate-300">
@@ -81,7 +81,7 @@ const localePath = useLocalePath()
              </div>
     </div>
 
-          <div class="container mt-10 border-t border-primary/30 pt-6">
+          <div class="container px-6 md:px-12 lg:px-16 xl:px-20 mt-10 border-t border-primary/30 pt-6">
             <div class="flex flex-col items-center justify-between gap-4 text-xs text-slate-400 md:flex-row">
               <p>© {{ new Date().getFullYear() }} Burooj. {{ t('footer.copyright') }}</p>
               <div class="flex gap-6">

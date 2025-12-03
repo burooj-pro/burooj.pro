@@ -123,43 +123,7 @@ const droneServices = computed(() => [
   t('services.drone.services.signage'),
 ])
 
-const projects = [
-  {
-    title: 'Albahar Villas – Modern Architectural Design & Residential Development',
-    category: 'Construction & Engineering',
-    status: 'Completed',
-    description: 'A contemporary residential villa project featuring minimalist architecture, thoughtful zoning, and a fully modernized layout designed to elevate everyday living.',
-    image: '/images/project1.png',
-  },
-  {
-    title: 'Efficiency Center Khobar branch',
-    category: 'Construction & Engineering',
-    status: 'Completed',
-    description: 'Modern office space with integrated smart systems and premium finishing.',
-    image: '/images/project2.png',
-  },
-  {
-    title: 'Aramco Façade Cleaning – Burooj Air',
-    category: 'Drone Cleaning',
-    status: 'Completed',
-    description: 'High-rise façade cleaning using drone technology for a major corporate building.',
-    image: '/images/project3.png',
-  },
-  {
-    title: 'Jenan Building – Drone Cleaning',
-    category: 'Drone Cleaning',
-    status: 'Completed',
-    description: 'Comprehensive drone-powered cleaning service for commercial building.',
-    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80',
-  },
-  {
-    title: 'Commercial Tower – Property Management & Reporting',
-    category: 'Property Management',
-    status: 'Completed',
-    description: 'Full property management services including automated reporting and tenant management.',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
-  },
-]
+const { projects } = useProjects()
 
 const clientLogos = Array.from({ length: 12 }, (_, index) => ({
   name: `Client ${index + 1}`,
@@ -179,7 +143,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     />
     <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
     <div class="relative z-10 w-full pb-8 text-left text-white md:pb-12 lg:pb-16">
-      <div class="container w-full">
+      <div class="container w-full px-6 md:px-12 lg:px-16 xl:px-20">
         <div class="max-w-7xl space-y-6">
         <h1 class="w-full text-4xl font-normal leading-[1.1] tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
           {{ t('home.hero.headline') }}
@@ -193,7 +157,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
   </section>
 
   <section id="about" ref="aboutSection" class="relative z-10 bg-white py-16 md:py-24">
-    <div class="container">
+    <div class="container px-6 md:px-12 lg:px-16 xl:px-20">
       <div class="max-w-4xl space-y-8">
         <h2 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
           {{ t('home.about.title') }}<span class="text-primary">{{ t('home.about.titleHighlight') }}</span>{{ t('home.about.titleSuffix') }}
@@ -207,7 +171,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
 
     <!-- Full Width Statistics Section -->
     <div class="gradient-border-top gradient-border-bottom w-full py-12 mt-16 md:mt-24">
-      <div class="container">
+      <div class="container px-6 md:px-12 lg:px-16 xl:px-20">
         <div class="grid gap-0 sm:grid-cols-3">
           <div v-for="(stat, index) in aboutStats" :key="index" class="space-y-4 px-4 pb-8 pt-4 sm:pr-8 lg:px-8">
             <p :ref="(el) => { if (el) { statRefs[index].value = el as HTMLElement } }" class="text-7xl font-light leading-none text-ink md:text-8xl lg:text-9xl">0</p>
@@ -224,8 +188,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
       <div class="grid gap-8 md:grid-cols-2 md:items-center md:gap-12">
         <div>
           <h2 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
-            <span class="block">{{ t('services.title').split(' ')[0] }}</span>
-            <span class="block">{{ t('services.title').split(' ').slice(1).join(' ') }}</span>
+            {{ t('home.services.title') }}
           </h2>
         </div>
         <div>
@@ -253,7 +216,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
         <!-- Text Overlay -->
         <div class="relative z-10 w-full p-8 pb-12 md:p-12 md:pb-16">
           <h3 class="text-3xl font-bold uppercase tracking-wide text-white md:text-4xl lg:text-5xl">
-            {{ t('services.construction.title') }}
+            {{ t('home.services.construction.title') }}
           </h3>
         </div>
       </div>
@@ -273,7 +236,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
         <!-- Text Overlay -->
         <div class="relative z-10 w-full p-8 pb-12 md:p-12 md:pb-16">
           <h3 class="text-3xl font-bold uppercase tracking-wide text-white md:text-4xl lg:text-5xl">
-            {{ t('services.property.title') }}
+            {{ t('home.services.property.title') }}
           </h3>
         </div>
       </div>
@@ -293,7 +256,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
         <!-- Text Overlay -->
         <div class="relative z-10 w-full p-8 pb-12 md:p-12 md:pb-16">
           <h3 class="text-3xl font-bold uppercase tracking-wide text-white md:text-4xl lg:text-5xl">
-            {{ t('services.drone.title') }}
+            {{ t('home.services.drone.title') }}
           </h3>
         </div>
       </div>
@@ -317,10 +280,11 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
 
     <!-- Projects List -->
     <div>
-      <article
+      <NuxtLink
         v-for="(project, index) in projects"
-        :key="project.title"
-        class="group relative cursor-none grid grid-cols-1 gap-12 md:grid-cols-[1fr_1.5fr] md:items-start"
+        :key="project.slug"
+        :to="localePath(`/projects/${project.slug}`)"
+        class="group relative cursor-none grid grid-cols-1 gap-12 md:grid-cols-[1fr_1.3fr] md:items-start"
         :class="{ 'gradient-border-top pt-20': index > 0, 'pb-20': index < projects.length - 1 }"
         @mouseenter="handleProjectEnter(index)"
         @mouseleave="handleProjectLeave"
@@ -360,14 +324,14 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
         </div>
 
             <!-- Right Column: Visual -->
-            <div class="relative z-10 aspect-[4/3] overflow-hidden rounded-xl group">
+            <div class="relative z-10 aspect-[16/9] overflow-hidden rounded-xl group">
               <img
                 :src="project.image"
                 :alt="project.title"
                 class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
             </div>
-      </article>
+      </NuxtLink>
     </div>
   </section>
 

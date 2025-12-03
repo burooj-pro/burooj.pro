@@ -135,6 +135,18 @@
     "completed": "Completed",
     "viewProject": "View the Project"
   },
+  "projectDetail": {
+    "overview": "Overview",
+    "location": "Location",
+    "year": "Year",
+    "client": "Client",
+    "services": "Services",
+    "challenge": "Challenge",
+    "solution": "Solution",
+    "results": "Results",
+    "gallery": "Gallery",
+    "backToProjects": "Back to Projects"
+  },
   "clients": {
     "title": "Trusted By",
     "description": "Trusted by leading companies, developers, investors, and organizations across Saudi Arabia."
@@ -271,16 +283,20 @@
       "description": "Burooj is a multi-disciplinary Saudi company offering comprehensive solutions across engineering, construction, property management, and drone cleaning. With a commitment to quality, speed, and technology-driven efficiency, we support buildings and properties throughout their entire lifecycle—from design and development to operation and maintenance."
     },
     "services": {
+      "title": "Our Services",
       "construction": {
-        "title": "Construction & Engineering Services",
+        "title": "CONSTRUCTION",
+        "titleFull": "Construction & Engineering Services",
         "description": "Architecture, interiors, MEP, and smart systems that keep developments future-ready. Every solution is documented with detailed drawings and 3D visuals for clients and partners."
       },
       "property": {
-        "title": "Property Management Services",
+        "title": "PROPERTY",
+        "titleFull": "Property Management Services",
         "description": "360° operations that combine leasing, compliance, finance, and tenant services. We deliver transparent reporting and reliable execution at every stage."
       },
       "drone": {
-        "title": "Drone Cleaning — Burooj Air",
+        "title": "DRONE",
+        "titleFull": "Drone Cleaning — Burooj Air",
         "description": "The region's first drone cleaning program, covering facades, solar farms, industrial infrastructure, and other high-access assets with zero scaffolding required."
       }
     }

@@ -68,11 +68,12 @@ export default <Partial<Config>>{
       container: {
         center: true,
         padding: {
-          DEFAULT: '7rem',
-          sm: '7.5rem',
-          lg: '8rem',
-          xl: '8.5rem',
-          '2xl': '9rem',
+          DEFAULT: '1rem',
+          sm: '1.5rem',
+          md: '2rem',
+          lg: '9rem',
+          xl: '10rem',
+          '2xl': '11rem',
         },
         screens: {
           sm: '100%',

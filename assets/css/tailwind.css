@@ -61,7 +61,7 @@ body {
 }
 
 .section-wrapper {
-  @apply container py-16 md:py-24;
+  @apply container px-6 md:px-12 lg:px-16 xl:px-20 py-16 md:py-24;
 }
 
 /* Unified grid system for consistent alignment */
