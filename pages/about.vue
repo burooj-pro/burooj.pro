@@ -2,6 +2,8 @@
 import { nextTick, onUnmounted } from 'vue'
 
 const { t } = useI18n()
+const config = useRuntimeConfig()
+const baseURL = config.app.baseURL || '/'
 useHead({ title: t('about.title') })
 
 const { fadeInUp, fadeInFromSide, scaleIn, staggerFadeIn } = useGsap()
@@ -238,7 +240,7 @@ onMounted(() => {
     style="margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);"
   >
     <img
-      src="/images/hero-image.png"
+      :src="`${baseURL}images/hero-image.png`"
       :alt="t('about.hero.headline')"
       class="absolute inset-0 h-full w-full object-cover"
     />

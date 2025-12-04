@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const localePath = useLocalePath()
+const config = useRuntimeConfig()
+const baseURL = config.app.baseURL || '/'
 useHead({ title: t('services.title') })
 
 const { fadeInUp, fadeInFromSide, staggerFadeIn } = useGsap()
@@ -160,7 +162,7 @@ onUnmounted(() => {
         >
           <div
             class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
-            style="background-image: url('/images/service1.png');"
+            :style="`background-image: url('${baseURL}images/service1.png');`"
           ></div>
           <!-- Gradient Overlay - Dark from bottom to light at top -->
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -181,7 +183,7 @@ onUnmounted(() => {
         >
           <div
             class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
-            style="background-image: url('/images/service2.png');"
+            :style="`background-image: url('${baseURL}images/service2.png');`"
           ></div>
           <!-- Gradient Overlay - Dark from bottom to light at top -->
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -204,7 +206,7 @@ onUnmounted(() => {
         >
           <div
             class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
-            style="background-image: url('/images/service3.png');"
+            :style="`background-image: url('${baseURL}images/service3.png');`"
           ></div>
           <!-- Gradient Overlay - Dark from bottom to light at top -->
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>

@@ -1,13 +1,15 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const localePath = useLocalePath()
+const config = useRuntimeConfig()
+const baseURL = config.app.baseURL || '/'
 </script>
 
 <template>
   <footer class="border-t border-primary/30 bg-black py-12 text-white">
     <div class="container px-6 md:px-12 lg:px-16 xl:px-20 grid gap-10 md:grid-cols-3">
       <div class="space-y-3">
-        <img src="/images/Burooj-logo.png" alt="Burooj" class="h-8 w-auto brightness-0 invert" />
+        <img :src="`${baseURL}images/Burooj-logo.png`" alt="Burooj" class="h-8 w-auto brightness-0 invert" />
         <p class="text-sm text-slate-300">
           {{ t('footer.description') }}
         </p>

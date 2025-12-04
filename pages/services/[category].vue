@@ -2,6 +2,8 @@
 const { t } = useI18n()
 const localePath = useLocalePath()
 const route = useRoute()
+const config = useRuntimeConfig()
+const baseURL = config.app.baseURL || '/'
 
 const { fadeInUp, fadeInFromSide, staggerFadeIn, scaleIn } = useGsap()
 const heroSection = ref<HTMLElement | null>(null)
@@ -362,7 +364,7 @@ onUnmounted(() => {
           <!-- Right: Image -->
           <div class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-100">
             <img
-              src="/images/floor.png"
+              :src="`${baseURL}images/floor.png`"
               alt="Customer Experience"
               class="h-full w-full object-cover"
             />

@@ -162,7 +162,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     style="margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);"
   >
     <img
-      src="/images/hero-image.png"
+      :src="`${baseURL}images/hero-image.png`"
       alt="Burooj modern development"
       class="absolute inset-0 h-full w-full object-cover"
     />
@@ -235,7 +235,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
       >
         <div
           class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
-          style="background-image: url('/images/service1.png');"
+                :style="`background-image: url('${baseURL}images/service1.png');`"
         ></div>
         <!-- Gradient Overlay - Dark from bottom to light at top -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -256,7 +256,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
       >
         <div
           class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
-          style="background-image: url('/images/service2.png');"
+                :style="`background-image: url('${baseURL}images/service2.png');`"
         ></div>
         <!-- Gradient Overlay - Dark from bottom to light at top -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -279,7 +279,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
       >
         <div
           class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
-          style="background-image: url('/images/service3.png');"
+                :style="`background-image: url('${baseURL}images/service3.png');`"
         ></div>
         <!-- Gradient Overlay - Dark from bottom to light at top -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
