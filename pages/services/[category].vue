@@ -85,11 +85,13 @@ if (!categoryInfo) {
 }
 
 const { getServicesByCategory, getLocalizedService } = useServices()
-const { projects: allProjects } = useProjects()
+const { projects: allProjects, getLocalizedProject } = useProjects()
 
 // Get projects for this category
 const categoryProjects = computed(() => {
-  return allProjects.filter((project: any) => project.category === categoryInfo.key)
+  return allProjects
+    .filter((project: any) => project.category === categoryInfo.key)
+    .map((project: any) => getLocalizedProject(project))
 })
 
 const clientLogos = Array.from({ length: 12 }, (_, index) => ({

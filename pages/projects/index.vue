@@ -7,7 +7,12 @@ const { fadeInUp, staggerFadeIn } = useGsap()
 const projectsSection = ref<HTMLElement | null>(null)
 const projectItems = ref<HTMLElement[]>([])
 
-const { projects } = useProjects()
+const { projects: allProjects, getLocalizedProject } = useProjects()
+
+// Localize projects to get correct image paths with baseURL
+const projects = computed(() => {
+  return allProjects.map((project: any) => getLocalizedProject(project))
+})
 
 onMounted(() => {
   fadeInUp(projectsSection)
@@ -42,12 +47,12 @@ const getFilterKey = (filter: string) => {
 }
 
 const filteredProjects = computed(() => {
-  if (activeFilterKey.value === 'SHOW ALL') return projects
+  if (activeFilterKey.value === 'SHOW ALL') return projects.value
   const filterMap: Record<string, string> = {
     'CONSTRUCTION & ENGINEERING': 'Construction & Engineering',
     'DRONE CLEANING': 'Drone Cleaning',
   }
-  return projects.filter((project) => project.category === filterMap[activeFilterKey.value])
+  return projects.value.filter((project: any) => project.category === filterMap[activeFilterKey.value])
 })
 
 // Custom cursor for project items
