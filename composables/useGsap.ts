@@ -174,7 +174,7 @@ export const useGsap = () => {
     })
   }
 
-  const animateCounter = (target: MaybeRef<HTMLElement | null>, endValue: number, options: { duration?: number; prefix?: string } = {}) => {
+  const animateCounter = (target: MaybeRef<HTMLElement | null>, endValue: number, options: { duration?: number; prefix?: string; suffix?: string } = {}) => {
     if (prefersReducedMotion.value) {
       return
     }
@@ -188,9 +188,10 @@ export const useGsap = () => {
 
     const duration = options.duration || 2
     const prefix = options.prefix || ''
+    const suffix = options.suffix || ''
 
     // Set initial value to 0
-    el.textContent = `${prefix}0`
+    el.textContent = `${prefix}0${suffix}`
 
     const obj = { value: 0 }
     
@@ -208,7 +209,7 @@ export const useGsap = () => {
           onUpdate: function () {
             const currentValue = Math.floor(obj.value)
             if (el) {
-              el.textContent = `${prefix}${currentValue}`
+              el.textContent = `${prefix}${currentValue.toLocaleString()}${suffix}`
             }
           },
         })
@@ -221,7 +222,7 @@ export const useGsap = () => {
           onUpdate: function () {
             const currentValue = Math.floor(obj.value)
             if (el) {
-              el.textContent = `${prefix}${currentValue}`
+              el.textContent = `${prefix}${currentValue.toLocaleString()}${suffix}`
             }
           },
           scrollTrigger: {

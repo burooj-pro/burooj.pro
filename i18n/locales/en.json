@@ -18,8 +18,8 @@
     "title": "About Burooj",
     "description": "Burooj is a multi-disciplinary Saudi company offering comprehensive solutions across engineering, construction, property management, and drone cleaning. With a commitment to quality, speed, and technology-driven efficiency, we support buildings and properties throughout their entire lifecycle—from design and development to operation and maintenance.",
     "hero": {
-      "headline": "Building Excellence, Managing Innovation, Cleaning with Precision",
-      "subheadline": "A multi-disciplinary Saudi company delivering integrated solutions across engineering, construction, property management, and drone-powered cleaning."
+      "headline": "Shaping Smarter Buildings and Stronger Communities.",
+      "subheadline": "Burooj delivers integrated engineering, property management, and drone-powered cleaning solutions—combining innovation, precision, and decades of multidisciplinary expertise to elevate every project we touch."
     },
     "section": {
       "title": "Who We Are",
@@ -42,9 +42,9 @@
       }
     },
     "team": {
-      "title": "Our Team",
+      "title": "A Multidisciplinary Team Leading, Designing, and Executing Every Project",
       "subtitle": "Expert professionals dedicated to excellence",
-      "description": "Our diverse team of engineers, architects, project managers, and specialists brings decades of combined experience to every project."
+      "description": "A Multidisciplinary Team Leading, Designing, and Executing Every Project"
     },
     "bts": {
       "title": "Behind The Scenes",
@@ -57,9 +57,18 @@
   },
   "stats": {
     "title": "Burooj in Numbers",
-    "stat1": "Delivering Engineering, Management, And Drone-Powered Cleaning Solutions Across The Region.",
-    "stat2": "Covering Villas, Commercial Fit-Outs, Smart Systems, And High-Rise Cleaning.",
-    "stat3": "End-To-End Property Management With Complete Reporting Automation."
+    "stat1": {
+      "title": "Projects Delivered",
+      "description": "Covering residential villas, commercial fit-outs, smart systems, and high-rise drone cleaning."
+    },
+    "stat2": {
+      "title": "Managed Units & Assets",
+      "description": "Providing structured, data-driven property management with reporting automation."
+    },
+    "stat3": {
+      "title": "Cleaned by Drones",
+      "description": "Fast, safe, and eco-efficient façade and solar panel cleaning across the Kingdom."
+    }
   },
   "services": {
     "title": "Our Services",
@@ -148,11 +157,12 @@
     "backToProjects": "Back to Projects"
   },
   "clients": {
-    "title": "Trusted By",
+    "title": "Trusted by Leading Developers and Corporates",
     "description": "Trusted by leading companies, developers, investors, and organizations across Saudi Arabia."
   },
   "cta": {
-    "title": "Let's build, manage, and maintain your property better.",
+    "title": "Let's Build, Manage,",
+    "titleLine2": "and Elevate Your Property Together.",
     "button": "Contact Us"
   },
   "footer": {
@@ -273,17 +283,19 @@
   },
   "home": {
     "hero": {
-      "headline": "BUILT SMARTER. MANAGED BETTER. CLEANED WITH INNOVATION.",
-      "subheadline": "Burooj Delivers Integrated Engineering, Property Management, And Drone-Powered Cleaning Solutions That Elevate Every Building We Touch."
+      "headline": "Integrated Solutions for Smarter, Stronger, and Cleaner Spaces.",
+      "subheadline": "Burooj unifies engineering, property management, and drone-powered cleaning into one seamless experience—delivering efficiency, precision, and long-lasting value across every project."
     },
     "about": {
-      "title": "A multi-",
-      "titleHighlight": "disciplinary",
+      "title": "A ",
+      "titleHighlight": "multi-disciplinary",
       "titleSuffix": " Saudi company",
-      "description": "Burooj is a multi-disciplinary Saudi company offering comprehensive solutions across engineering, construction, property management, and drone cleaning. With a commitment to quality, speed, and technology-driven efficiency, we support buildings and properties throughout their entire lifecycle—from design and development to operation and maintenance."
+      "titleLine2": "shaping modern property experiences.",
+      "description": "Burooj delivers integrated solutions across engineering, construction, property management, and drone-powered cleaning. With a focus on quality, speed, and technology-driven efficiency, we support buildings throughout their entire lifecycle—from design and development to daily operations and long-term maintenance.\n\nOur unified approach allows clients to rely on one trusted partner for everything their property needs—architecture, fit-outs, smart systems, asset management, and advanced cleaning solutions."
     },
     "services": {
       "title": "Our Services",
+      "subtitle": "Engineering, property management, and drone-powered cleaning—designed to support every stage of a building's lifecycle with clarity, precision, and modern efficiency.",
       "construction": {
         "title": "CONSTRUCTION",
         "titleFull": "Construction & Engineering Services",

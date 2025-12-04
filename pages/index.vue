@@ -54,9 +54,9 @@ onUnmounted(() => {
 })
 
 const aboutStats = computed(() => [
-  { value: 7, prefix: '+', label: t('stats.stat1') },
-  { value: 120, prefix: '+', label: t('stats.stat2') },
-  { value: 30, prefix: '+', label: t('stats.stat3') },
+  { value: 150, prefix: '+', label: { title: t('stats.stat1.title'), description: t('stats.stat1.description') } },
+  { value: 500, prefix: '+', label: { title: t('stats.stat2.title'), description: t('stats.stat2.description') } },
+  { value: 20000, prefix: '+', suffix: ' m²', label: { title: t('stats.stat3.title'), description: t('stats.stat3.description') } },
 ])
 
 onMounted(() => {
@@ -83,9 +83,9 @@ onMounted(() => {
         import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
           // Initialize counters after ensuring refs are set
           setTimeout(() => {
-            if (statRefs[0].value) animateCounter(statRefs[0], 7, { prefix: '+', duration: 2 })
-            if (statRefs[1].value) animateCounter(statRefs[1], 120, { prefix: '+', duration: 2 })
-            if (statRefs[2].value) animateCounter(statRefs[2], 30, { prefix: '+', duration: 2 })
+            if (statRefs[0].value) animateCounter(statRefs[0], 150, { prefix: '+', duration: 2 })
+            if (statRefs[1].value) animateCounter(statRefs[1], 500, { prefix: '+', duration: 2 })
+            if (statRefs[2].value) animateCounter(statRefs[2], 20000, { prefix: '+', suffix: ' m²', duration: 2 })
           
             // Stagger animate project items - wait a bit more for refs to populate
             setTimeout(() => {
@@ -190,24 +190,28 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
 
   <section id="about" ref="aboutSection" class="relative z-10 bg-white py-16 md:py-24">
     <div class="container px-6 md:px-12 lg:px-16 xl:px-20">
-      <div class="max-w-4xl space-y-8">
+      <div class="max-w-6xl space-y-8">
         <h2 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
-          {{ t('home.about.title') }}<span class="text-primary">{{ t('home.about.titleHighlight') }}</span>{{ t('home.about.titleSuffix') }}
+          <span>{{ t('home.about.title') }}<span class="text-primary">{{ t('home.about.titleHighlight') }}</span>{{ t('home.about.titleSuffix') }}</span><br />
+          <span>{{ t('home.about.titleLine2') }}</span>
         </h2>
 
-        <p class="text-base font-serif leading-relaxed text-ink md:text-lg">
+        <p class="whitespace-pre-line text-base font-serif leading-relaxed text-ink md:text-lg">
           {{ t('home.about.description') }}
         </p>
       </div>
     </div>
 
     <!-- Full Width Statistics Section -->
-    <div class="gradient-border-top gradient-border-bottom w-full py-12 mt-16 md:mt-24">
+    <div class="gradient-border-top gradient-border-bottom w-full py-8 mt-12 sm:py-12 sm:mt-16 md:mt-24">
       <div class="container px-6 md:px-12 lg:px-16 xl:px-20">
-        <div class="grid gap-0 sm:grid-cols-3">
-          <div v-for="(stat, index) in aboutStats" :key="index" class="space-y-4 px-4 pb-8 pt-4 sm:pr-8 lg:px-8">
-            <p :ref="(el) => { if (el) { statRefs[index].value = el as HTMLElement } }" class="text-7xl font-light leading-none text-ink md:text-8xl lg:text-9xl">0</p>
-            <p class="text-sm leading-relaxed text-slate-600 md:text-base">{{ stat.label }}</p>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-4 md:gap-6 lg:gap-8">
+          <div v-for="(stat, index) in aboutStats" :key="index" class="space-y-3 pb-4 pt-2 sm:space-y-4 sm:pb-6 sm:pt-4">
+            <p :ref="(el) => { if (el) { statRefs[index].value = el as HTMLElement } }" class="whitespace-nowrap text-3xl font-light leading-none text-ink sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl">0</p>
+            <p class="text-xs leading-relaxed sm:text-sm md:text-base">
+              <span class="text-primary font-medium">{{ stat.label.title }}</span><br />
+              <span class="text-slate-600">{{ stat.label.description }}</span>
+            </p>
           </div>
         </div>
       </div>
@@ -225,7 +229,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
         </div>
         <div>
           <p class="text-base leading-relaxed text-slate-600 md:text-lg">
-            {{ t('home.services.construction.description') }}
+            {{ t('home.services.subtitle') }}
           </p>
         </div>
       </div>
@@ -375,7 +379,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
 
   <section ref="clientsSection" class="section-wrapper relative z-10">
     <h2 class="mb-8 text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
-      {{ t('about.clients.title') }}
+      {{ t('clients.title') }}
     </h2>
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       <div
@@ -399,14 +403,15 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
       <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
       <div class="section-wrapper relative z-10 flex min-h-[500px] flex-col items-center justify-center py-16 text-center">
         <h3 class="text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-          {{ t('cta.title') }}
+          <span>{{ t('cta.title') }}</span><br />
+          <span>{{ t('cta.titleLine2') }}</span>
         </h3>
         <div class="mt-8">
           <NuxtLink
             :to="localePath('/contact')"
             class="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-ink transition hover:bg-white/90"
           >
-            {{ t('nav.bookConsultation') }}
+            {{ t('cta.button') }}
           </NuxtLink>
         </div>
       </div>

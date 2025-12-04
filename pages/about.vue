@@ -262,12 +262,13 @@ onMounted(() => {
   <!-- About Section -->
   <section id="about-content" ref="aboutSection" class="relative z-10 bg-white py-16 md:py-24">
     <div class="container px-6 md:px-12 lg:px-16 xl:px-20">
-      <div class="max-w-4xl space-y-12">
+      <div class="max-w-6xl space-y-8">
         <div class="space-y-6">
           <h2 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
-            {{ t('home.about.title') }}<span class="text-primary">{{ t('home.about.titleHighlight') }}</span>{{ t('home.about.titleSuffix') }}
+            <span>{{ t('home.about.title') }}<span class="text-primary">{{ t('home.about.titleHighlight') }}</span>{{ t('home.about.titleSuffix') }}</span><br />
+            <span>{{ t('home.about.titleLine2') }}</span>
           </h2>
-          <p class="text-base font-serif leading-relaxed text-ink md:text-lg">
+          <p class="whitespace-pre-line text-base font-serif leading-relaxed text-ink md:text-lg">
             {{ t('home.about.description') }}
           </p>
         </div>
@@ -392,7 +393,7 @@ onMounted(() => {
   <!-- Clients Section -->
   <section ref="clientsSection" class="section-wrapper relative z-10">
     <h2 class="mb-8 text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
-      {{ t('about.clients.title') }}
+      {{ t('clients.title') }}
     </h2>
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       <div
