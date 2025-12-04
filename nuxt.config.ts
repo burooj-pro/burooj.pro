@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  ssr: false, // Enable static site generation for GitHub Pages
   css: ['~/assets/css/tailwind.css'],
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n'],
   tailwindcss: {
@@ -46,6 +47,8 @@ export default defineNuxtConfig({
     vueI18n: './i18n.config.ts',
   },
   app: {
+    baseURL: '/', // Root path for GitHub Pages
+    buildAssetsDir: '/_nuxt/',
     head: {
       titleTemplate: '%s · Burooj',
       title: 'Burooj — Design. Manage. Clean.',
