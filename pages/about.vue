@@ -33,59 +33,59 @@ const teamMembers = [
   {
     name: 'Mohammed F',
     role: 'Role Title',
-    image: '/images/team/mohammedF.png',
+    image: `${baseURL}images/team/mohammedF.png`,
   },
   {
     name: 'Faisal',
     role: 'Role Title',
-    image: '/images/team/faisal.png',
+    image: `${baseURL}images/team/faisal.png`,
   },
   {
     name: 'Budoo',
     role: 'Role Title',
-    image: '/images/team/bedoor.png',
+    image: `${baseURL}images/team/bedoor.png`,
   },
   {
     name: 'Omar',
     role: 'Role Title',
-    image: '/images/team/omar.png',
+    image: `${baseURL}images/team/omar.png`,
   },
   {
     name: 'Mohammed B',
     role: 'Role Title',
-    image: '/images/team/mohammedB.png',
+    image: `${baseURL}images/team/mohammedB.png`,
   },
   {
     name: 'Moaen',
     role: 'Role Title',
-    image: '/images/team/moaen.png',
+    image: `${baseURL}images/team/moaen.png`,
   },
 ]
 
 const btsImages = [
   {
     title: 'Team Collaboration',
-    image: '/images/project1.png',
+    image: `${baseURL}images/project1.png`,
     description: 'Our team working together on innovative solutions',
   },
   {
     title: 'Creative Process',
-    image: '/images/project2.png',
+    image: `${baseURL}images/project2.png`,
     description: 'Brainstorming and ideation sessions',
   },
   {
     title: 'Project Execution',
-    image: '/images/project3.png',
+    image: `${baseURL}images/project3.png`,
     description: 'On-site execution and quality control',
   },
   {
     title: 'Modern Workspace',
-    image: '/images/project1.png',
+    image: `${baseURL}images/project1.png`,
     description: 'Our collaborative workspace environment',
   },
   {
     title: 'Team Meeting',
-    image: '/images/project2.png',
+    image: `${baseURL}images/project2.png`,
     description: 'Strategic planning and team coordination',
   },
 ]
