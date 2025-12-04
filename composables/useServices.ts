@@ -28,6 +28,20 @@ export interface Service {
 
 export const useServices = () => {
   const { t, locale } = useI18n()
+  const config = useRuntimeConfig()
+  const baseURL = config.app.baseURL || '/'
+  
+  // Helper function to add baseURL to image paths
+  const addBaseURL = (path: string | undefined): string | undefined => {
+    if (!path) return path
+    // If it's already a full URL (http/https), return as is
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return path
+    }
+    // Remove leading slash and add baseURL
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path
+    return `${baseURL}${cleanPath}`
+  }
 
   const services: Service[] = [
     // Construction & Engineering Services
@@ -801,19 +815,23 @@ export const useServices = () => {
   }
 
   const getLocalizedService = (service: Service): Service => {
-    if (locale.value === 'ar') {
-      return {
-        ...service,
-        title: service.titleAr || service.title,
-        description: service.descriptionAr || service.description,
-        overview: service.overviewAr || service.overview,
-        features: service.featuresAr || service.features,
-        benefits: service.benefitsAr || service.benefits,
-        subServices: service.subServicesAr || service.subServices,
-        process: service.processAr || service.process,
-      }
+    const localized = locale.value === 'ar' ? {
+      ...service,
+      title: service.titleAr || service.title,
+      description: service.descriptionAr || service.description,
+      overview: service.overviewAr || service.overview,
+      features: service.featuresAr || service.features,
+      benefits: service.benefitsAr || service.benefits,
+      subServices: service.subServicesAr || service.subServices,
+      process: service.processAr || service.process,
+    } : { ...service }
+    
+    // Add baseURL to all image paths
+    return {
+      ...localized,
+      image: addBaseURL(localized.image),
+      images: localized.images?.map(img => addBaseURL(img)).filter((img): img is string => !!img),
     }
-    return service
   }
 
   const getServicesByCategory = (category: 'Construction & Engineering' | 'Property Management'): Service[] => {

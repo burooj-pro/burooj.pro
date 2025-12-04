@@ -27,6 +27,20 @@ export interface Project {
 
 export const useProjects = () => {
   const { t, locale } = useI18n()
+  const config = useRuntimeConfig()
+  const baseURL = config.app.baseURL || '/'
+  
+  // Helper function to add baseURL to image paths
+  const addBaseURL = (path: string): string => {
+    if (!path) return path
+    // If it's already a full URL (http/https), return as is
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return path
+    }
+    // Remove leading slash and add baseURL
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path
+    return `${baseURL}${cleanPath}`
+  }
 
   const projects: Project[] = [
     {
@@ -131,20 +145,25 @@ export const useProjects = () => {
   }
 
   const getLocalizedProject = (project: Project): Project => {
-    if (locale.value === 'ar') {
-      return {
-        ...project,
-        title: project.titleAr || project.title,
-        description: project.descriptionAr || project.description,
-        location: project.locationAr || project.location,
-        overview: project.overviewAr || project.overview,
-        challenge: project.challengeAr || project.challenge,
-        solution: project.solutionAr || project.solution,
-        results: project.resultsAr || project.results,
-        services: project.servicesAr || project.services,
-      }
+    const localized = locale.value === 'ar' ? {
+      ...project,
+      title: project.titleAr || project.title,
+      description: project.descriptionAr || project.description,
+      location: project.locationAr || project.location,
+      overview: project.overviewAr || project.overview,
+      challenge: project.challengeAr || project.challenge,
+      solution: project.solutionAr || project.solution,
+      results: project.resultsAr || project.results,
+      services: project.servicesAr || project.services,
+    } : { ...project }
+    
+    // Add baseURL to all image paths
+    return {
+      ...localized,
+      image: addBaseURL(localized.image),
+      images: localized.images?.map(img => addBaseURL(img)),
+      fullWidthImage: localized.fullWidthImage ? addBaseURL(localized.fullWidthImage) : undefined,
     }
-    return project
   }
 
   return {
