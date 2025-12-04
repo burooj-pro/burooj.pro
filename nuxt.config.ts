@@ -47,7 +47,7 @@ export default defineNuxtConfig({
     vueI18n: './i18n.config.ts',
   },
   app: {
-    baseURL: '/', // Root path for GitHub Pages
+    baseURL: '/burooj.pro/', // Match GitHub Pages subdirectory
     buildAssetsDir: '/_nuxt/',
     head: {
       titleTemplate: '%s · Burooj',
