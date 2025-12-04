@@ -227,7 +227,8 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     <!-- Three Panel Layout -->
     <div class="grid grid-cols-1 md:grid-cols-3">
       <!-- Service 01: Construction & Engineering -->
-      <div
+      <NuxtLink
+        :to="localePath('/services/construction-engineering')"
         class="service-item group relative flex min-h-[600px] items-end overflow-hidden md:min-h-[700px] lg:min-h-[800px]"
         @mouseenter="handleServiceEnter('read-more')"
         @mouseleave="handleServiceLeave"
@@ -244,10 +245,11 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
             {{ t('home.services.construction.title') }}
           </h3>
         </div>
-      </div>
+      </NuxtLink>
 
       <!-- Service 02: Property Management -->
-      <div
+      <NuxtLink
+        :to="localePath('/services/property-management')"
         class="service-item group relative flex min-h-[600px] items-end overflow-hidden md:min-h-[700px] lg:min-h-[800px]"
         @mouseenter="handleServiceEnter('read-more')"
         @mouseleave="handleServiceLeave"
@@ -264,10 +266,13 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
             {{ t('home.services.property.title') }}
           </h3>
         </div>
-      </div>
+      </NuxtLink>
 
       <!-- Service 03: Drone Cleaning -->
-      <div
+      <a
+        href="https://buroojair.com"
+        target="_blank"
+        rel="noopener noreferrer"
         class="service-item group relative flex min-h-[600px] items-end overflow-hidden md:min-h-[700px] lg:min-h-[800px]"
         @mouseenter="handleServiceEnter('visit-website')"
         @mouseleave="handleServiceLeave"
@@ -284,7 +289,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
             {{ t('home.services.drone.title') }}
           </h3>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 

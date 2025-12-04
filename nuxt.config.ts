@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/tailwind.css'],
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n'],
+  tailwindcss: {
+    exposeConfig: false,
+  },
   components: [
     {
       path: '~/components',
@@ -31,7 +34,6 @@ export default defineNuxtConfig({
         dir: 'rtl',
       },
     ],
-    lazy: true,
     langDir: 'locales',
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
