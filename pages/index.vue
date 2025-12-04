@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const localePath = useLocalePath()
+const config = useRuntimeConfig()
+const baseURL = config.app.baseURL || '/'
 useHead({ title: t('nav.home') })
 
 const { fadeInUp, fadeInFromSide, scaleIn, staggerFadeIn, animateCounter, fixedHero } = useGsap()
@@ -148,7 +150,12 @@ const droneServices = computed(() => [
   t('services.drone.services.signage'),
 ])
 
-const { projects } = useProjects()
+const { projects: allProjects, getLocalizedProject } = useProjects()
+
+// Localize projects to get correct image paths with baseURL
+const projects = computed(() => {
+  return allProjects.map((project: any) => getLocalizedProject(project))
+})
 
 const clientLogos = Array.from({ length: 12 }, (_, index) => ({
   name: `Client ${index + 1}`,

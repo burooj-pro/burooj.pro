@@ -65,6 +65,8 @@ export default defineNuxtConfig({
         { name: 'theme-color', content: '#050915' },
       ],
       link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/burooj.pro/favicon.ico' },
+        { rel: 'apple-touch-icon', href: '/burooj.pro/favicon.ico' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         {
