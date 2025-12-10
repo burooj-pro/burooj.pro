@@ -12,7 +12,8 @@ const servicesSection = ref<HTMLElement | null>(null)
 const projectsSection = ref<HTMLElement | null>(null)
 const clientsSection = ref<HTMLElement | null>(null)
 const ctaSection = ref<HTMLElement | null>(null)
-const statRefs = [ref<HTMLElement | null>(null), ref<HTMLElement | null>(null), ref<HTMLElement | null>(null)]
+const statsSection = ref<HTMLElement | null>(null)
+const statRefs = ref<HTMLElement[]>([])
 const projectItems = ref<HTMLElement[]>([])
 const clientLogosRefs = ref<HTMLElement[]>([])
 
@@ -57,6 +58,7 @@ const aboutStats = computed(() => [
   { value: 150, prefix: '+', label: { title: t('stats.stat1.title'), description: t('stats.stat1.description') } },
   { value: 500, prefix: '+', label: { title: t('stats.stat2.title'), description: t('stats.stat2.description') } },
   { value: 20000, prefix: '+', suffix: ' m²', label: { title: t('stats.stat3.title'), description: t('stats.stat3.description') } },
+  { value: 7, prefix: '+', label: { title: 'Years of Excellence', description: t('about.stats.stat4.description') } },
 ])
 
 onMounted(() => {
@@ -70,6 +72,7 @@ onMounted(() => {
   // Animate sections on scroll - these will be triggered by ScrollTrigger
   fadeInUp(heroSection)
   fadeInUp(aboutSection)
+  fadeInUp(statsSection)
   fadeInFromSide(servicesSection, 'left')
   fadeInUp(projectsSection)
   scaleIn(clientsSection)
@@ -83,9 +86,10 @@ onMounted(() => {
         import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
           // Initialize counters after ensuring refs are set
           setTimeout(() => {
-            if (statRefs[0].value) animateCounter(statRefs[0], 150, { prefix: '+', duration: 2 })
-            if (statRefs[1].value) animateCounter(statRefs[1], 500, { prefix: '+', duration: 2 })
-            if (statRefs[2].value) animateCounter(statRefs[2], 20000, { prefix: '+', suffix: ' m²', duration: 2 })
+            if (statRefs.value[0]) animateCounter(statRefs.value[0], 150, { prefix: '+', duration: 2 })
+            if (statRefs.value[1]) animateCounter(statRefs.value[1], 500, { prefix: '+', duration: 2 })
+            if (statRefs.value[2]) animateCounter(statRefs.value[2], 20000, { prefix: '+', suffix: ' m²', duration: 2 })
+            if (statRefs.value[3]) animateCounter(statRefs.value[3], 7, { prefix: '+', duration: 2 })
           
             // Stagger animate project items - wait a bit more for refs to populate
             setTimeout(() => {
@@ -202,20 +206,54 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
       </div>
     </div>
 
-    <!-- Full Width Statistics Section -->
-    <div class="gradient-border-top gradient-border-bottom w-full py-8 mt-12 sm:py-12 sm:mt-16 md:mt-24">
-      <div class="container px-6 md:px-12 lg:px-16 xl:px-20">
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-4 md:gap-6 lg:gap-8">
-          <div v-for="(stat, index) in aboutStats" :key="index" class="space-y-3 pb-4 pt-2 sm:space-y-4 sm:pb-6 sm:pt-4">
-            <p :ref="(el) => { if (el) { statRefs[index].value = el as HTMLElement } }" class="whitespace-nowrap text-3xl font-light leading-none text-ink sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl">0</p>
-            <p class="text-xs leading-relaxed sm:text-sm md:text-base">
-              <span class="text-primary font-medium">{{ stat.label.title }}</span><br />
-              <span class="text-slate-600">{{ stat.label.description }}</span>
-            </p>
+    <!-- Statistics Section -->
+    <section ref="statsSection" class="relative z-10 bg-white py-16 md:py-24">
+      <div class="w-full px-6 md:px-12 lg:px-16 xl:px-20">
+        <div class="max-w-[1600px]">
+          <div class="grid gap-12 md:grid-cols-2 md:gap-16 lg:gap-20">
+            <!-- Left Column - Title (Sticky) -->
+            <div class="flex items-start">
+              <div class="sticky top-24 md:top-32">
+                <h2 class="text-4xl font-normal leading-tight text-ink md:text-5xl lg:text-6xl xl:text-7xl">
+                  {{ t('about.stats.title') }}<br />
+                  {{ t('about.stats.titleLine2') }}
+                </h2>
+              </div>
+            </div>
+
+            <!-- Right Column - Statistics (Scrollable) -->
+            <div class="flex flex-col space-y-8">
+              <div
+                v-for="(stat, index) in aboutStats"
+                :key="index"
+                class="relative"
+              >
+                <!-- Divider with dot - extends to end of page -->
+                <div v-if="index > 0" class="absolute -top-4 left-0 -right-6 md:-right-12 lg:-right-16 xl:-right-20 flex items-center">
+                  <div class="h-px flex-1 bg-primary/30"></div>
+                  <div class="h-1.5 w-1.5 rounded-full bg-primary"></div>
+                  <div class="h-px flex-1 bg-primary/30"></div>
+                </div>
+                
+                <!-- Stat Content -->
+                <div class="space-y-2 pt-4">
+                  <p 
+                    :ref="(el: HTMLElement | null) => { if (el) statRefs[index] = el }" 
+                    class="text-4xl font-light leading-none text-ink md:text-5xl lg:text-6xl xl:text-7xl"
+                  >
+                    0
+                  </p>
+                  <p class="max-w-lg space-y-1 text-sm leading-relaxed text-slate-600 md:text-base">
+                    <span class="block text-lg font-bold text-primary md:text-xl lg:text-2xl">{{ stat.label.title }}</span>
+                    <span class="block text-slate-600">{{ stat.label.description }}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </section>
 
   <section id="services" ref="servicesSection" class="relative z-10 w-full">
@@ -324,7 +362,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
         <NuxtLink
         v-for="(project, index) in projects"
         :key="project.slug"
-        :ref="el => { if (el) projectItems[index] = el as HTMLElement }"
+        :ref="(el: HTMLElement | null) => { if (el) projectItems[index] = el }"
         :to="localePath(`/projects/${project.slug}`)"
         class="group relative cursor-none grid grid-cols-1 gap-12 md:grid-cols-[1fr_1.3fr] md:items-start"
         :class="{ 'gradient-border-top pt-20': index > 0, 'pb-20': index < projects.length - 1 }"
@@ -385,7 +423,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
       <div
         v-for="(logo, index) in clientLogos"
         :key="logo.name"
-        :ref="el => { if (el) clientLogosRefs[index] = el as HTMLElement }"
+        :ref="(el: HTMLElement | null) => { if (el) clientLogosRefs[index] = el }"
         class="flex items-center justify-center rounded-lg px-8 py-14 transition-colors"
         style="background-color: #F4F2F2;"
       >

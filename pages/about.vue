@@ -1,18 +1,26 @@
 <script setup lang="ts">
 import { nextTick, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+if (import.meta.client) {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 const config = useRuntimeConfig()
 const baseURL = config.app.baseURL || '/'
 useHead({ title: t('about.title') })
 
-const { fadeInUp, fadeInFromSide, scaleIn, staggerFadeIn } = useGsap()
+const { fadeInUp, fadeInFromSide, scaleIn, staggerFadeIn, animateCounter } = useGsap()
 const heroSection = ref<HTMLElement | null>(null)
 const aboutSection = ref<HTMLElement | null>(null)
-const teamSection = ref<HTMLElement | null>(null)
+const statsSection = ref<HTMLElement | null>(null)
+const statRefs = ref<HTMLElement[]>([])
+const founderSection = ref<HTMLElement | null>(null)
 const btsSection = ref<HTMLElement | null>(null)
 const clientsSection = ref<HTMLElement | null>(null)
-const teamMembersRefs = ref<HTMLElement[]>([])
 const clientLogosRefs = ref<HTMLElement[]>([])
 
 const btsContainer = ref<HTMLElement | null>(null)
@@ -29,64 +37,27 @@ const handleBtsMouseMove = (e: MouseEvent) => {
   cursorPosition.value = { x: e.clientX, y: e.clientY }
 }
 
-const teamMembers = [
-  {
-    name: 'Mohammed F',
-    role: 'Role Title',
-    image: `${baseURL}images/team/mohammedF.png`,
-  },
-  {
-    name: 'Faisal',
-    role: 'Role Title',
-    image: `${baseURL}images/team/faisal.png`,
-  },
-  {
-    name: 'Budoo',
-    role: 'Role Title',
-    image: `${baseURL}images/team/bedoor.png`,
-  },
-  {
-    name: 'Omar',
-    role: 'Role Title',
-    image: `${baseURL}images/team/omar.png`,
-  },
-  {
-    name: 'Mohammed B',
-    role: 'Role Title',
-    image: `${baseURL}images/team/mohammedB.png`,
-  },
-  {
-    name: 'Moaen',
-    role: 'Role Title',
-    image: `${baseURL}images/team/moaen.png`,
-  },
-]
 
 const btsImages = [
   {
-    title: 'Team Collaboration',
-    image: `${baseURL}images/project1.png`,
+    title: 'Behind The Scenes',
+    image: `${baseURL}images/bts/bts1.png`,
     description: 'Our team working together on innovative solutions',
   },
   {
-    title: 'Creative Process',
-    image: `${baseURL}images/project2.png`,
+    title: 'Behind The Scenes',
+    image: `${baseURL}images/bts/bts2.png`,
     description: 'Brainstorming and ideation sessions',
   },
   {
-    title: 'Project Execution',
-    image: `${baseURL}images/project3.png`,
+    title: 'Behind The Scenes',
+    image: `${baseURL}images/bts/bts3.png`,
     description: 'On-site execution and quality control',
   },
   {
-    title: 'Modern Workspace',
-    image: `${baseURL}images/project1.png`,
+    title: 'Behind The Scenes',
+    image: `${baseURL}images/bts/bts4.png`,
     description: 'Our collaborative workspace environment',
-  },
-  {
-    title: 'Team Meeting',
-    image: `${baseURL}images/project2.png`,
-    description: 'Strategic planning and team coordination',
   },
 ]
 
@@ -103,19 +74,34 @@ onMounted(() => {
   // Animate sections on scroll
   fadeInUp(heroSection)
   fadeInUp(aboutSection)
-  fadeInFromSide(teamSection, 'left')
-  scaleIn(btsSection)
-  fadeInUp(clientsSection)
+  fadeInUp(statsSection)
   
-  // Stagger animate team members and client logos - wait for refs to populate
+  // Animate counters for stats
   if (import.meta.client) {
     nextTick(() => {
       setTimeout(() => {
-        // Stagger animate team members
-        if (teamMembersRefs.value.length > 0) {
-          staggerFadeIn(teamMembersRefs, { stagger: 0.1 })
-        }
-        
+        // Parse and animate each stat number
+        // stat1: "150+" -> 150
+        if (statRefs.value[0]) animateCounter(statRefs.value[0], 150, { prefix: '+', duration: 2 })
+        // stat2: "500+" -> 500
+        if (statRefs.value[1]) animateCounter(statRefs.value[1], 500, { prefix: '+', duration: 2 })
+        // stat3: "20,000+" -> 20000
+        if (statRefs.value[2]) animateCounter(statRefs.value[2], 20000, { prefix: '+', suffix: ' m²', duration: 2 })
+        // stat4: "7+" -> 7
+        if (statRefs.value[3]) animateCounter(statRefs.value[3], 7, { prefix: '+', duration: 2 })
+      }, 200)
+    })
+  }
+  
+  fadeInFromSide(founderSection, 'left')
+  scaleIn(btsSection)
+  fadeInUp(clientsSection)
+
+  
+  // Stagger animate client logos - wait for refs to populate
+  if (import.meta.client) {
+    nextTick(() => {
+      setTimeout(() => {
         // Stagger animate client logos
         if (clientLogosRefs.value.length > 0) {
           staggerFadeIn(clientLogosRefs, { stagger: 0.05 })
@@ -261,7 +247,7 @@ onMounted(() => {
 
   <!-- About Section -->
   <section id="about-content" ref="aboutSection" class="relative z-10 bg-white py-16 md:py-24">
-    <div class="container px-6 md:px-12 lg:px-16 xl:px-20">
+    <div class="w-full px-6 md:px-12 lg:px-16 xl:px-20">
       <div class="max-w-6xl space-y-8">
         <div class="space-y-6">
           <h2 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
@@ -277,33 +263,111 @@ onMounted(() => {
     </div>
   </section>
 
-  <!-- Team Section -->
-  <section ref="teamSection" class="relative z-10 bg-white py-16 md:py-24">
-    <div class="container px-6 md:px-12 lg:px-16 xl:px-20">
-      <div class="space-y-12">
-        <!-- Heading -->
-        <div class="max-w-4xl">
-          <h2 class="text-2xl font-normal leading-relaxed text-ink md:text-3xl lg:text-4xl">
-            {{ t('about.team.description') }}
-          </h2>
-        </div>
-
-        <!-- Team Members -->
-        <div class="grid gap-8 md:grid-cols-3">
-          <div
-            v-for="(member, index) in teamMembers"
-            :key="index"
-            class="group flex flex-col"
-          >
-            <div class="mb-4 aspect-[4/5] w-full max-w-[500px] overflow-hidden rounded-xl bg-stone-100">
-              <img
-                :src="member.image"
-                :alt="member.name"
-                class="h-full w-full object-cover object-center"
-              />
+  <!-- Stats Section -->
+  <section ref="statsSection" class="relative z-10 bg-white py-16 md:py-24">
+    <div class="w-full px-6 md:px-12 lg:px-16 xl:px-20">
+      <div class="max-w-[1600px]">
+        <div class="grid gap-12 md:grid-cols-2 md:gap-16 lg:gap-20">
+          <!-- Left Column - Title (Sticky) -->
+          <div class="flex items-start">
+            <div class="sticky top-24 md:top-32">
+              <h2 class="text-4xl font-normal leading-tight text-ink md:text-5xl lg:text-6xl xl:text-7xl">
+                {{ t('about.stats.title') }}<br />
+                {{ t('about.stats.titleLine2') }}
+              </h2>
             </div>
-            <h3 class="text-lg font-semibold text-ink text-left">{{ member.name }}</h3>
-            <p class="mt-1 text-left text-sm text-slate-600">{{ member.role }}</p>
+          </div>
+
+          <!-- Right Column - Statistics (Scrollable) -->
+          <div class="flex flex-col space-y-8">
+            <div
+              v-for="(stat, index) in [
+                { number: t('about.stats.stat1.number'), title: 'Projects delivered', description: t('about.stats.stat1.description').replace(/^Projects delivered, /, '') },
+                { number: t('about.stats.stat2.number'), title: 'Managed units & assets', description: t('about.stats.stat2.description').replace(/^Managed units & assets — /, '') },
+                { number: t('about.stats.stat3.number'), title: 'Square meters cleaned by drones', description: t('about.stats.stat3.description').replace(/^Square meters cleaned by drones — /, '') },
+                { number: t('about.stats.stat4.number'), title: 'Years of excellence', description: t('about.stats.stat4.description').replace(/^Years of excellence — /, '') },
+              ]"
+              :key="index"
+              class="relative"
+            >
+              <!-- Divider with dot - extends to end of page -->
+              <div v-if="index > 0" class="absolute -top-4 left-0 -right-6 md:-right-12 lg:-right-16 xl:-right-20 flex items-center">
+                <div class="h-px flex-1 bg-primary/30"></div>
+                <div class="h-1.5 w-1.5 rounded-full bg-primary"></div>
+                <div class="h-px flex-1 bg-primary/30"></div>
+              </div>
+              
+              <!-- Stat Content -->
+              <div class="space-y-2 pt-4">
+                <p 
+                  :ref="(el: HTMLElement | null) => { if (el) statRefs[index] = el }" 
+                  class="text-4xl font-light leading-none text-ink md:text-5xl lg:text-6xl xl:text-7xl"
+                >
+                  0
+                </p>
+                <p class="max-w-lg space-y-1 text-sm leading-relaxed text-slate-600 md:text-base">
+                  <span class="block text-lg font-bold text-primary md:text-xl lg:text-2xl">{{ stat.title }}</span>
+                  <span class="block text-slate-600">{{ stat.description }}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder Section -->
+  <section ref="founderSection" class="relative z-10 bg-white py-16 md:py-24">
+    <div class="w-full px-6 md:px-12 lg:px-16 xl:px-20">
+      <div class="max-w-[1600px]">
+        <div class="grid gap-12 md:grid-cols-2 md:gap-16 lg:gap-20">
+          <!-- Left Content (Sticky) -->
+          <div class="flex items-start">
+            <div class="sticky top-24 md:top-32">
+              <div class="flex flex-col justify-start space-y-6">
+                <p class="text-sm font-medium uppercase tracking-wider text-primary md:text-base">
+                  {{ t('about.founder.sectionTitle') }}
+                </p>
+                <div class="space-y-2">
+                  <h3 class="text-2xl font-semibold text-ink md:text-3xl lg:text-4xl">
+                    {{ t('about.founder.name') }}
+                  </h3>
+                  <p class="text-base font-medium text-primary md:text-lg">
+                    {{ t('about.founder.title') }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Content (Scrollable) -->
+          <div class="flex flex-col space-y-8">
+            <!-- Visual Element with Founder Photo -->
+            <div class="relative overflow-hidden rounded-lg bg-stone-50">
+              <div class="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+                <img
+                  :src="`${baseURL}images/team/mohammedF.png`"
+                  :alt="t('about.founder.name')"
+                  class="h-full w-full object-cover object-center"
+                />
+              </div>
+            </div>
+
+            <!-- Main Message -->
+            <p class="text-base leading-relaxed text-slate-600 md:text-lg">
+              {{ t('about.founder.messagePart1') }}
+            </p>
+
+            <!-- Two-Column Text -->
+            <div class="grid gap-8 md:grid-cols-2 md:gap-12">
+              <p class="text-sm leading-relaxed text-slate-600 md:text-base">
+                {{ t('about.founder.messagePart2') }}
+              </p>
+              <p class="text-sm leading-relaxed text-slate-600 md:text-base">
+                {{ t('about.founder.messagePart3') }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -313,7 +377,7 @@ onMounted(() => {
   <!-- Behind The Scenes Section -->
   <section ref="btsSection" class="relative z-10 bg-gradient-to-b from-stone-50 to-white py-16 md:py-24">
     <!-- Text Header Section -->
-    <div class="container px-6 md:px-12 lg:px-16 xl:px-20 mb-12 md:mb-16">
+    <div class="w-full px-6 md:px-12 lg:px-16 xl:px-20 mb-12 md:mb-16">
       <div class="mx-auto max-w-4xl text-center">
         <h2 class="mb-6 text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
           {{ t('about.bts.title') }}
@@ -399,7 +463,7 @@ onMounted(() => {
       <div
         v-for="(logo, index) in clientLogos"
         :key="logo.name"
-        :ref="el => { if (el) clientLogosRefs[index] = el as HTMLElement }"
+        :ref="(el: HTMLElement | null) => { if (el) clientLogosRefs[index] = el }"
         class="flex items-center justify-center rounded-lg px-8 py-14 transition-colors"
         style="background-color: #F4F2F2;"
       >

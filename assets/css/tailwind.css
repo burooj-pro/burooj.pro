@@ -80,9 +80,7 @@ body {
 }
 
 /* Service hover cursor */
-.service-item {
-  cursor: none;
-}
+/* Removed cursor hiding on service items */
 
 /* Gradient borders */
 .gradient-border-top {

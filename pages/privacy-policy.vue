@@ -11,6 +11,21 @@ const howWeUseItems = computed(() => {
   const items = t('privacyPolicy.howWeUse.items')
   return Array.isArray(items) ? items : []
 })
+
+const automaticallyCollectedItems = computed(() => {
+  const items = t('privacyPolicy.automaticallyCollected.items')
+  return Array.isArray(items) ? items : []
+})
+
+const informationSharingItems = computed(() => {
+  const items = t('privacyPolicy.informationSharing.items')
+  return Array.isArray(items) ? items : []
+})
+
+const yourRightsItems = computed(() => {
+  const items = t('privacyPolicy.yourRights.items')
+  return Array.isArray(items) ? items : []
+})
 </script>
 
 <template>
@@ -45,6 +60,18 @@ const howWeUseItems = computed(() => {
         </section>
 
         <section class="space-y-4">
+          <h2 class="text-2xl font-semibold text-ink">{{ t('privacyPolicy.automaticallyCollected.title') }}</h2>
+          <p class="text-base leading-relaxed">
+            {{ t('privacyPolicy.automaticallyCollected.content') }}
+          </p>
+          <ul class="list-disc space-y-2 pl-6">
+            <li v-for="(item, index) in automaticallyCollectedItems" :key="index">
+              {{ item }}
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-4">
           <h2 class="text-2xl font-semibold text-ink">{{ t('privacyPolicy.howWeUse.title') }}</h2>
           <p class="text-base leading-relaxed">
             {{ t('privacyPolicy.howWeUse.content') }}
@@ -57,9 +84,68 @@ const howWeUseItems = computed(() => {
         </section>
 
         <section class="space-y-4">
+          <h2 class="text-2xl font-semibold text-ink">{{ t('privacyPolicy.informationSharing.title') }}</h2>
+          <p class="text-base leading-relaxed">
+            {{ t('privacyPolicy.informationSharing.content') }}
+          </p>
+          <ul class="list-disc space-y-2 pl-6">
+            <li v-for="(item, index) in informationSharingItems" :key="index">
+              {{ item }}
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-4">
           <h2 class="text-2xl font-semibold text-ink">{{ t('privacyPolicy.dataSecurity.title') }}</h2>
           <p class="text-base leading-relaxed">
             {{ t('privacyPolicy.dataSecurity.content') }}
+          </p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-semibold text-ink">{{ t('privacyPolicy.yourRights.title') }}</h2>
+          <p class="text-base leading-relaxed">
+            {{ t('privacyPolicy.yourRights.content') }}
+          </p>
+          <ul class="list-disc space-y-2 pl-6">
+            <li v-for="(item, index) in yourRightsItems" :key="index">
+              {{ item }}
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-semibold text-ink">{{ t('privacyPolicy.cookies.title') }}</h2>
+          <p class="text-base leading-relaxed">
+            {{ t('privacyPolicy.cookies.content') }}
+          </p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-semibold text-ink">{{ t('privacyPolicy.thirdPartyLinks.title') }}</h2>
+          <p class="text-base leading-relaxed">
+            {{ t('privacyPolicy.thirdPartyLinks.content') }}
+          </p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-semibold text-ink">{{ t('privacyPolicy.dataRetention.title') }}</h2>
+          <p class="text-base leading-relaxed">
+            {{ t('privacyPolicy.dataRetention.content') }}
+          </p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-semibold text-ink">{{ t('privacyPolicy.childrenPrivacy.title') }}</h2>
+          <p class="text-base leading-relaxed">
+            {{ t('privacyPolicy.childrenPrivacy.content') }}
+          </p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-semibold text-ink">{{ t('privacyPolicy.changesToPolicy.title') }}</h2>
+          <p class="text-base leading-relaxed">
+            {{ t('privacyPolicy.changesToPolicy.content') }}
           </p>
         </section>
 

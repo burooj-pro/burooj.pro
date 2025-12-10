@@ -18,22 +18,14 @@ const clientsSection = ref<HTMLElement | null>(null)
 const clientLogosRefs = ref<HTMLElement[]>([])
 const ctaSection = ref<HTMLElement | null>(null)
 
-// Custom cursor for project items
-const cursorPosition = ref({ x: 0, y: 0 })
-const isHoveringProject = ref(false)
+// Project hover state
 const hoveredProjectIndex = ref<number | null>(null)
 
-const handleMouseMove = (e: MouseEvent) => {
-  cursorPosition.value = { x: e.clientX, y: e.clientY }
-}
-
 const handleProjectEnter = (index: number) => {
-  isHoveringProject.value = true
   hoveredProjectIndex.value = index
 }
 
 const handleProjectLeave = () => {
-  isHoveringProject.value = false
   hoveredProjectIndex.value = null
 }
 
@@ -151,8 +143,6 @@ useHead({
 onMounted(() => {
   if (typeof window === 'undefined') return
   
-  window.addEventListener('mousemove', handleMouseMove)
-  
   fadeInUp(heroSection)
   fadeInUp(aboutSection)
   fadeInFromSide(subservicesSection, 'left')
@@ -180,9 +170,6 @@ onMounted(() => {
   }
 })
 
-onUnmounted(() => {
-  window.removeEventListener('mousemove', handleMouseMove)
-})
 </script>
 
 <template>
@@ -252,7 +239,7 @@ onUnmounted(() => {
           <div
             v-for="service in categoryServices"
             :key="service.slug"
-            class="service-item group relative flex min-h-[600px] w-[100vw] flex-none items-end overflow-hidden md:min-h-[700px] md:w-[33.333333vw] lg:min-h-[800px]"
+            class="group relative flex min-h-[600px] w-[100vw] flex-none items-end overflow-hidden md:min-h-[700px] md:w-[33.333333vw] lg:min-h-[800px]"
           >
             <div
               v-if="service.image"
@@ -421,7 +408,7 @@ onUnmounted(() => {
           :key="project.slug"
           :to="localePath(`/projects/${project.slug}`)"
           :ref="(el: HTMLElement | null) => { if (el) projectItemsRefs[index] = el }"
-          class="group relative cursor-none grid grid-cols-1 gap-12 md:grid-cols-[1fr_1.3fr] md:items-start"
+          class="group relative grid grid-cols-1 gap-12 md:grid-cols-[1fr_1.3fr] md:items-start"
           :class="{ 'gradient-border-top pt-20': index > 0, 'pb-20': index < categoryProjects.length - 1 }"
           @mouseenter="handleProjectEnter(index)"
           @mouseleave="handleProjectLeave"
@@ -514,13 +501,5 @@ onUnmounted(() => {
       </div>
     </section>
 
-    <!-- Custom Cursor for Projects -->
-    <div
-      v-if="isHoveringProject"
-      class="pointer-events-none fixed z-[9999] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
-      :style="{ left: cursorPosition.x - 70 + 'px', top: cursorPosition.y - 18 + 'px' }"
-    >
-      {{ t('projects.viewProject') }}
-    </div>
   </div>
 </template>

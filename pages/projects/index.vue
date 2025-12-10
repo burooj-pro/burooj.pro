@@ -111,27 +111,12 @@ onUnmounted(() => {
       <NuxtLink
         v-for="(project, projectIndex) in filteredProjects"
         :key="project.slug"
-        :ref="el => { if (el) projectItems[projectIndex] = el as HTMLElement }"
+        :ref="(el: HTMLElement | null) => { if (el) projectItems[projectIndex] = el }"
         :to="localePath(`/projects/${project.slug}`)"
         class="group relative block cursor-pointer overflow-hidden"
         @mouseenter="handleProjectEnter(projectIndex)"
         @mouseleave="handleProjectLeave"
       >
-        <!-- Background Overlay for This Project -->
-        <transition name="fade">
-          <div
-            v-if="hoveredProjectIndex === projectIndex"
-            class="pointer-events-none absolute inset-0 z-[1] bg-overlay-transition"
-            :style="{
-              backgroundImage: `url(${project.image})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              filter: 'blur(40px) brightness(1.3)',
-              opacity: 0.3,
-            }"
-          />
-        </transition>
-
         <div class="relative z-10 aspect-[4/3] overflow-hidden rounded-xl">
           <img
             :src="project.image"
