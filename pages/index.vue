@@ -5,7 +5,7 @@ const config = useRuntimeConfig()
 const baseURL = config.app.baseURL || '/'
 useHead({ title: t('nav.home') })
 
-const { fadeInUp, fadeInFromSide, scaleIn, staggerFadeIn, animateCounter, fixedHero } = useGsap()
+const { fadeInUp, fadeInFromSide, scaleIn, staggerFadeIn, animateCounter } = useGsap()
 const heroSection = ref<HTMLElement | null>(null)
 const aboutSection = ref<HTMLElement | null>(null)
 const servicesSection = ref<HTMLElement | null>(null)
@@ -65,9 +65,6 @@ onMounted(() => {
   if (typeof window === 'undefined') return
   
   window.addEventListener('mousemove', handleMouseMove)
-  
-  // Initialize fixed hero section
-  fixedHero(heroSection)
   
   // Animate sections on scroll - these will be triggered by ScrollTrigger
   fadeInUp(heroSection)
@@ -169,16 +166,20 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
 <template>
   <section
     ref="heroSection"
-    class="relative isolate flex min-h-screen w-screen items-end justify-center overflow-hidden"
+    class="relative isolate h-screen w-screen"
     style="margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);"
   >
-    <img
-      :src="`${baseURL}images/hero-image.png`"
-      alt="Burooj modern development"
-      class="absolute inset-0 h-full w-full object-cover"
-    />
-    <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
-    <div class="relative z-10 w-full pb-8 text-left text-white md:pb-12 lg:pb-16">
+    <!-- Sticky Background - positioned to stick while scrolling -->
+    <div class="fixed top-0 left-0 right-0 z-0 h-screen w-full" style="margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);">
+      <img
+        :src="`${baseURL}images/hero-image.png`"
+        alt="Burooj modern development"
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
+    </div>
+    <!-- Content Overlay - visible in the hero section -->
+    <div class="relative z-20 flex h-full w-full items-end justify-center pb-8 text-left text-white md:pb-12 lg:pb-16">
       <div class="container w-full px-6 md:px-12 lg:px-16 xl:px-20">
         <div class="max-w-7xl space-y-6">
         <h1 class="w-full text-4xl font-normal leading-[1.1] tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
@@ -192,7 +193,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     </div>
   </section>
 
-  <section id="about" ref="aboutSection" class="relative z-10 bg-white py-16 md:py-24">
+  <section id="about" ref="aboutSection" class="relative z-30 bg-white py-16 md:py-24">
     <div class="container px-6 md:px-12 lg:px-16 xl:px-20">
       <div class="max-w-6xl space-y-8">
         <h2 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
@@ -207,7 +208,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     </div>
 
     <!-- Statistics Section -->
-    <section ref="statsSection" class="relative z-10 bg-white py-16 md:py-24">
+    <section ref="statsSection" class="relative z-30 bg-white py-16 md:py-24">
       <div class="w-full px-6 md:px-12 lg:px-16 xl:px-20">
         <div class="max-w-[1600px]">
           <div class="grid gap-12 md:grid-cols-2 md:gap-16 lg:gap-20">
@@ -256,9 +257,9 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     </section>
   </section>
 
-  <section id="services" ref="servicesSection" class="relative z-10 w-full">
+  <section id="services" ref="servicesSection" class="relative z-30 w-full bg-white">
     <!-- Section Title -->
-    <div class="section-wrapper py-16 md:py-24">
+    <div class="section-wrapper bg-white py-16 md:py-24">
       <div class="grid gap-8 md:grid-cols-2 md:items-center md:gap-12">
         <div>
           <h2 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
@@ -342,7 +343,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     </div>
   </section>
 
-  <section ref="projectsSection" class="section-wrapper relative z-10">
+  <section ref="projectsSection" class="section-wrapper relative z-30 bg-white">
     <!-- Header -->
     <div class="mb-12 flex items-center justify-between border-b border-primary/30 pb-6">
       <h2 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
@@ -415,7 +416,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     </div>
   </section>
 
-  <section ref="clientsSection" class="section-wrapper relative z-10">
+  <section ref="clientsSection" class="section-wrapper relative z-30 bg-white">
     <h2 class="mb-8 text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
       {{ t('clients.title') }}
     </h2>
@@ -432,7 +433,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     </div>
   </section>
 
-  <section id="contact" ref="ctaSection" class="relative z-10 w-full overflow-hidden">
+  <section id="contact" ref="ctaSection" class="relative z-30 w-full overflow-hidden">
     <div
       class="relative min-h-[500px] bg-cover bg-center bg-no-repeat"
       style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80');"
