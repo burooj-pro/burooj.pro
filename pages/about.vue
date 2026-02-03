@@ -458,15 +458,15 @@ onMounted(() => {
         v-for="(logo, index) in clientLogos"
         :key="`${logo.name}-${index}`"
         :ref="(el) => { const node = (el as any)?.$el ?? el; if (node && (node as any).nodeType === 1) clientLogosRefs[index] = node as HTMLElement }"
-        class="group flex items-center justify-center rounded-lg px-4 py-10 transition-colors sm:px-6 sm:py-12"
+        class="group flex min-h-0 min-w-0 items-center justify-center overflow-hidden rounded-lg px-3 py-6 transition-colors sm:px-4 sm:py-8 md:px-6 md:py-10"
         style="background-color: #F4F2F2;"
       >
         <img
           v-if="'image' in logo && logo.image"
           :src="logo.image"
           :alt="logo.name"
-          class="w-auto max-w-full object-contain opacity-80 grayscale transition group-hover:opacity-100"
-          :class="(logo.name === 'Thabat' || logo.name === 'GDC' || logo.name === 'Qiddiya') ? 'h-14 sm:h-16 md:h-20 max-w-[220px] sm:max-w-[260px] md:max-w-[320px]' : 'h-10 sm:h-12 md:h-14 max-w-[160px] sm:max-w-[190px] md:max-w-[220px]'"
+          class="max-h-full max-w-full object-contain opacity-80 grayscale transition group-hover:opacity-100"
+          :class="(logo.name === 'Thabat' || logo.name === 'GDC' || logo.name === 'Qiddiya' || logo.name === 'Barghash') ? 'h-12 max-h-14 w-auto sm:h-14 sm:max-h-16 md:h-16 md:max-h-20' : 'h-8 max-h-10 w-auto sm:h-10 sm:max-h-12 md:h-12 md:max-h-14'"
           loading="lazy"
         />
         <span v-else class="text-xs font-medium text-slate-500">Client placeholder</span>
