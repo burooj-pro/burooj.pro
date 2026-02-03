@@ -17,6 +17,9 @@ const statRefs = ref<HTMLElement[]>([])
 const projectItems = ref<HTMLElement[]>([])
 const clientLogosRefs = ref<HTMLElement[]>([])
 
+// Defer hero background video to improve LCP
+const enableHeroVideo = ref(false)
+
 // Custom cursor for service items
 const cursorPosition = ref({ x: 0, y: 0 })
 const isHoveringService = ref(false)
@@ -65,6 +68,18 @@ onMounted(() => {
   if (typeof window === 'undefined') return
   
   window.addEventListener('mousemove', handleMouseMove)
+
+  // Defer loading of large background videos until after first paint
+  const defer = (cb: () => void) => {
+    if ('requestIdleCallback' in window) {
+      ;(window as any).requestIdleCallback(cb, { timeout: 2000 })
+    } else {
+      setTimeout(cb, 1200)
+    }
+  }
+  defer(() => {
+    enableHeroVideo.value = true
+  })
   
   // Animate sections on scroll - these will be triggered by ScrollTrigger
   fadeInUp(heroSection)
@@ -101,7 +116,7 @@ onMounted(() => {
             }, 200)
           
             // Refresh ScrollTrigger after all animations are initialized
-            ScrollTrigger.refresh()
+            // ScrollTrigger.refresh() // avoid forced reflow on load
           }, 500)
         })
       }, 1200)
@@ -158,23 +173,36 @@ const projects = computed(() => {
   return allProjects.map((project: any) => getLocalizedProject(project))
 })
 
-const clientLogos = Array.from({ length: 12 }, (_, index) => ({
-  name: `Client ${index + 1}`,
-}))
+// Home page: show only 5 featured projects
+const featuredProjects = computed(() => projects.value.slice(0, 5))
+
+const { clientLogos } = useClientLogos({ placeholders: 0 })
 </script>
 
 <template>
   <section
     ref="heroSection"
-    class="relative isolate h-screen w-screen"
-    style="margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);"
+    data-hero
+    class="relative isolate h-screen w-full"
   >
     <!-- Sticky Background - positioned to stick while scrolling -->
-    <div class="fixed top-0 left-0 right-0 z-0 h-screen w-full" style="margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);">
+    <div class="fixed inset-x-0 top-0 z-0 h-screen w-full">
+      <video
+        :src="`${baseURL}videos/hero.MOV`"
+        class="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-label="Burooj hero background video"
+        v-if="enableHeroVideo"
+      />
       <img
         :src="`${baseURL}images/hero-image.png`"
-        alt="Burooj modern development"
-        class="absolute inset-0 h-full w-full object-cover"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover transition-opacity duration-500"
+        :class="enableHeroVideo ? 'opacity-0' : 'opacity-100'"
       />
       <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
     </div>
@@ -214,7 +242,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
           <div class="grid gap-12 md:grid-cols-2 md:gap-16 lg:gap-20">
             <!-- Left Column - Title (Sticky) -->
             <div class="flex items-start">
-              <div class="sticky top-24 md:top-32">
+              <div class="md:sticky md:top-32">
                 <h2 class="text-4xl font-normal leading-tight text-ink md:text-5xl lg:text-6xl xl:text-7xl">
                   {{ t('about.stats.title') }}<br />
                   {{ t('about.stats.titleLine2') }}
@@ -239,7 +267,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
                 <!-- Stat Content -->
                 <div class="space-y-2 pt-4">
                   <p 
-                    :ref="(el: HTMLElement | null) => { if (el) statRefs[index] = el }" 
+                    :ref="(el) => { const node = (el as any)?.$el ?? el; if (node && (node as any).nodeType === 1) statRefs[index] = node as HTMLElement }"
                     class="text-4xl font-light leading-none text-ink md:text-5xl lg:text-6xl xl:text-7xl"
                   >
                     0
@@ -279,7 +307,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
       <!-- Service 01: Construction & Engineering -->
       <NuxtLink
         :to="localePath('/services/construction-engineering')"
-        class="service-item group relative flex min-h-[600px] items-end overflow-hidden md:min-h-[700px] lg:min-h-[800px]"
+        class="service-item group relative flex min-h-[420px] items-end overflow-hidden sm:min-h-[520px] md:min-h-[700px] lg:min-h-[800px]"
         @mouseenter="handleServiceEnter('read-more')"
         @mouseleave="handleServiceLeave"
       >
@@ -300,7 +328,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
       <!-- Service 02: Property Management -->
       <NuxtLink
         :to="localePath('/services/property-management')"
-        class="service-item group relative flex min-h-[600px] items-end overflow-hidden md:min-h-[700px] lg:min-h-[800px]"
+        class="service-item group relative flex min-h-[420px] items-end overflow-hidden sm:min-h-[520px] md:min-h-[700px] lg:min-h-[800px]"
         @mouseenter="handleServiceEnter('read-more')"
         @mouseleave="handleServiceLeave"
       >
@@ -323,7 +351,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
         href="https://buroojair.com"
         target="_blank"
         rel="noopener noreferrer"
-        class="service-item group relative flex min-h-[600px] items-end overflow-hidden md:min-h-[700px] lg:min-h-[800px]"
+        class="service-item group relative flex min-h-[420px] items-end overflow-hidden sm:min-h-[520px] md:min-h-[700px] lg:min-h-[800px]"
         @mouseenter="handleServiceEnter('visit-website')"
         @mouseleave="handleServiceLeave"
       >
@@ -361,12 +389,12 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     <!-- Projects List -->
     <div>
         <NuxtLink
-        v-for="(project, index) in projects"
+        v-for="(project, index) in featuredProjects"
         :key="project.slug"
-        :ref="(el: HTMLElement | null) => { if (el) projectItems[index] = el }"
+        :ref="(el) => { const node = (el as any)?.$el ?? el; if (node && (node as any).nodeType === 1) projectItems[index] = node as HTMLElement }"
         :to="localePath(`/projects/${project.slug}`)"
         class="group relative cursor-none grid grid-cols-1 gap-12 md:grid-cols-[1fr_1.3fr] md:items-start"
-        :class="{ 'gradient-border-top pt-20': index > 0, 'pb-20': index < projects.length - 1 }"
+        :class="{ 'gradient-border-top pt-20': index > 0, 'pb-20': index < featuredProjects.length - 1 }"
         @mouseenter="handleProjectEnter(index)"
         @mouseleave="handleProjectLeave"
       >
@@ -423,23 +451,35 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       <div
         v-for="(logo, index) in clientLogos"
-        :key="logo.name"
-        :ref="(el: HTMLElement | null) => { if (el) clientLogosRefs[index] = el }"
-        class="flex items-center justify-center rounded-lg px-8 py-14 transition-colors"
+        :key="`${logo.name}-${index}`"
+        :ref="(el) => { const node = (el as any)?.$el ?? el; if (node && (node as any).nodeType === 1) clientLogosRefs[index] = node as HTMLElement }"
+        class="group flex items-center justify-center rounded-lg px-4 py-10 transition-colors sm:px-6 sm:py-12"
         style="background-color: #F4F2F2;"
       >
-        <span class="text-sm font-medium text-slate-700">{{ logo.name }}</span>
+        <img
+          v-if="'image' in logo && logo.image"
+          :src="logo.image"
+          :alt="logo.name"
+          class="w-auto max-w-full object-contain opacity-80 grayscale transition group-hover:opacity-100"
+          :class="(logo.name === 'Thabat' || logo.name === 'GDC' || logo.name === 'Qiddiya') ? 'h-14 sm:h-16 md:h-20 max-w-[220px] sm:max-w-[260px] md:max-w-[320px]' : 'h-10 sm:h-12 md:h-14 max-w-[160px] sm:max-w-[190px] md:max-w-[220px]'"
+          loading="lazy"
+        />
+        <span v-else class="text-xs font-medium text-slate-500">Client placeholder</span>
       </div>
     </div>
   </section>
 
   <section id="contact" ref="ctaSection" class="relative z-30 w-full overflow-hidden">
     <div
-      class="relative min-h-[500px] bg-cover bg-center bg-no-repeat"
-      style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80');"
+      class="relative min-h-[500px] overflow-hidden"
     >
-      <!-- Gradient overlay from black at bottom to transparent at top -->
-      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+      <img
+        :src="`${baseURL}images/hero-image.png`"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+      <!-- Same gradient overlay as hero section -->
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20"></div>
       <div class="section-wrapper relative z-10 flex min-h-[500px] flex-col items-center justify-center py-16 text-center">
         <h3 class="text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
           <span>{{ t('cta.title') }}</span><br />
@@ -460,7 +500,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
   <!-- Custom Cursor for Services -->
   <div
     v-if="isHoveringService"
-    class="pointer-events-none fixed z-[9999] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
+    class="pointer-events-none fixed z-[100] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
     :style="{ left: cursorPosition.x - 70 + 'px', top: cursorPosition.y - 18 + 'px' }"
   >
     {{ hoveredServiceType === 'visit-website' ? 'Visit the website' : 'Read More' }}
@@ -469,7 +509,7 @@ const clientLogos = Array.from({ length: 12 }, (_, index) => ({
   <!-- Custom Cursor for Projects -->
   <div
     v-if="isHoveringProject"
-    class="pointer-events-none fixed z-[9999] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
+    class="pointer-events-none fixed z-[100] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
     :style="{ left: cursorPosition.x - 70 + 'px', top: cursorPosition.y - 18 + 'px' }"
   >
     View the Project

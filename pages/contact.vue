@@ -7,56 +7,24 @@ const contactSection = ref<HTMLElement | null>(null)
 const contactInfo = ref<HTMLElement | null>(null)
 const contactForm = ref<HTMLElement | null>(null)
 
+const pipedriveFormUrl =
+  'https://webforms.pipedrive.com/f/6W8B7uZHws18uQtXpbXhoS7DhXv8sUTQlw9zzy8SYAESjOJ1MNxMfXt9X4ZqryjL2j'
+const pipedriveLoaderSrc = 'https://webforms.pipedrive.com/f/loader'
+
 onMounted(() => {
   fadeInUp(contactSection)
   fadeInFromSide(contactInfo, 'left')
   fadeInFromSide(contactForm, 'right')
+
+  // Pipedrive embed: load the loader script once on client
+  if (!import.meta.client) return
+  if (document.querySelector(`script[src="${pipedriveLoaderSrc}"]`)) return
+
+  const script = document.createElement('script')
+  script.src = pipedriveLoaderSrc
+  script.async = true
+  document.body.appendChild(script)
 })
-
-const form = reactive({
-  name: '',
-  email: '',
-  phone: '',
-  service: '',
-  message: '',
-  files: [] as File[],
-})
-
-const errors = reactive<Record<string, string>>({})
-const isSubmitting = ref(false)
-
-const validate = () => {
-  errors.name = form.name.length >= 2 ? '' : t('contact.form.errors.name')
-  errors.email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) ? '' : t('contact.form.errors.email')
-  errors.phone = /^(\+966|0)?5\d{8}$/.test(form.phone) ? '' : t('contact.form.errors.phone')
-  errors.service = form.service ? '' : t('contact.form.errors.service')
-  errors.message = form.message.length >= 10 ? '' : t('contact.form.errors.message')
-  const invalidFile = form.files.find((file) => file.size > 5 * 1024 * 1024)
-  errors.files = invalidFile ? t('contact.form.errors.files') : ''
-
-  return Object.values(errors).every((value) => !value)
-}
-
-const handleSubmit = () => {
-  if (!validate()) return
-  isSubmitting.value = true
-
-  setTimeout(() => {
-    // Placeholder for API integration
-    // TODO: Replace with actual API call
-    // Example: await $fetch('/api/contact', { method: 'POST', body: form })
-    isSubmitting.value = false
-    // Reset form after successful submission
-    Object.assign(form, {
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: '',
-      files: [],
-    })
-  }, 800)
-}
 </script>
 
 <template>
@@ -69,7 +37,7 @@ const handleSubmit = () => {
         </h1>
       </div>
       <div>
-        <p class="text-base leading-relaxed text-slate-600 md:text-lg">
+        <p class="max-w-[720px] text-base leading-relaxed text-slate-600 md:text-lg">
           {{ t('contact.descriptionFull') }}
         </p>
       </div>
@@ -126,6 +94,17 @@ const handleSubmit = () => {
                 </svg>
               </a>
               <a
+                href="https://www.tiktok.com/@buroojsa"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-slate-600 transition-colors hover:text-primary"
+                aria-label="TikTok"
+              >
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.708 2c.393 2.23 1.67 3.56 3.792 3.792v3.104c-1.642.106-3.07-.34-4.5-1.2v7.15c0 4.05-3.96 6.6-7.43 4.98-2.23-1.04-3.48-3.47-3.06-5.9.52-2.93 3.33-5.06 6.5-4.45v3.28c-.25-.04-.5-.05-.76-.03-1.22.1-2.24 1.03-2.42 2.22-.23 1.52.88 2.86 2.4 2.9 1.41.04 2.5-1.08 2.5-2.54V2h2.99Z"/>
+                </svg>
+              </a>
+              <a
                 href="https://x.com/buroojsa"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -153,98 +132,39 @@ const handleSubmit = () => {
       </div>
 
       <!-- Contact Form -->
-      <form ref="contactForm" class="space-y-6" novalidate @submit.prevent="handleSubmit">
-        <div>
-          <label for="name" class="mb-2 block text-sm font-medium text-ink">{{ t('contact.form.name') }} *</label>
-          <input
-            id="name"
-            v-model="form.name"
-            type="text"
-            class="w-full border-b border-slate-300 bg-transparent px-0 py-3 text-ink placeholder:text-slate-400 focus:border-primary focus:outline-none"
-            :placeholder="t('contact.form.namePlaceholder')"
-          />
-          <p v-if="errors.name" class="mt-1 text-xs text-red-500">{{ errors.name }}</p>
-        </div>
+      <div ref="contactForm" class="space-y-4">
+        <ClientOnly>
+          <div class="pipedriveWebForms w-full max-w-[720px]" :data-pd-webforms="pipedriveFormUrl" />
+          <template #fallback>
+            <div class="text-sm text-slate-600">Loading form…</div>
+          </template>
+        </ClientOnly>
 
-        <div class="grid gap-6 md:grid-cols-2">
-          <div>
-            <label for="email" class="mb-2 block text-sm font-medium text-ink">{{ t('contact.form.email') }} *</label>
-            <input
-              id="email"
-              v-model="form.email"
-              type="email"
-              class="w-full border-b border-slate-300 bg-transparent px-0 py-3 text-ink placeholder:text-slate-400 focus:border-primary focus:outline-none"
-              :placeholder="t('contact.form.emailPlaceholder')"
-            />
-            <p v-if="errors.email" class="mt-1 text-xs text-red-500">{{ errors.email }}</p>
-          </div>
-          <div>
-            <label for="phone" class="mb-2 block text-sm font-medium text-ink">{{ t('contact.form.phone') }} *</label>
-            <input
-              id="phone"
-              v-model="form.phone"
-              type="tel"
-              class="w-full border-b border-slate-300 bg-transparent px-0 py-3 text-ink placeholder:text-slate-400 focus:border-primary focus:outline-none"
-              :placeholder="t('contact.form.phonePlaceholder')"
-            />
-            <p v-if="errors.phone" class="mt-1 text-xs text-red-500">{{ errors.phone }}</p>
-          </div>
-        </div>
-
-        <div>
-          <label for="service" class="mb-2 block text-sm font-medium text-ink">{{ t('contact.form.service') }} *</label>
-          <select
-            id="service"
-            v-model="form.service"
-            class="w-full border-b border-slate-300 bg-transparent px-0 py-3 text-ink focus:border-primary focus:outline-none"
+        <p class="text-xs text-slate-500">
+          If the form doesn’t load, open it in a new tab:
+          <a
+            :href="pipedriveFormUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-medium text-primary hover:underline"
           >
-            <option value="" disabled>{{ t('contact.form.servicePlaceholder') }}</option>
-            <option>{{ t('contact.services.construction') }}</option>
-            <option>{{ t('contact.services.property') }}</option>
-            <option>{{ t('contact.services.drone') }}</option>
-            <option>{{ t('contact.services.other') }}</option>
-          </select>
-          <p v-if="errors.service" class="mt-1 text-xs text-red-500">{{ errors.service }}</p>
-        </div>
-
-        <div>
-          <label for="message" class="mb-2 block text-sm font-medium text-ink">{{ t('contact.form.message') }} *</label>
-          <textarea
-            id="message"
-            v-model="form.message"
-            rows="5"
-            class="w-full border-b border-slate-300 bg-transparent px-0 py-3 text-ink placeholder:text-slate-400 focus:border-primary focus:outline-none"
-            :placeholder="t('contact.form.messagePlaceholder')"
-          />
-          <p v-if="errors.message" class="mt-1 text-xs text-red-500">{{ errors.message }}</p>
-        </div>
-
-        <div>
-          <label for="files" class="mb-2 block text-sm font-medium text-ink">{{ t('contact.form.fileUploadLabel') }}</label>
-          <input
-            id="files"
-            type="file"
-            multiple
-            accept=".pdf,.doc,.docx,.jpg,.png"
-            class="w-full border-b border-dashed border-slate-300 bg-transparent px-0 py-3 text-sm text-slate-600 focus:border-primary focus:outline-none"
-            @change="(event: Event) => {
-              const input = event.target as HTMLInputElement
-              form.files = Array.from(input.files || [])
-            }"
-          />
-          <p v-if="errors.files" class="mt-1 text-xs text-red-500">{{ errors.files }}</p>
-          <p class="mt-1 text-xs text-slate-500">{{ t('contact.form.fileUploadHint') }}</p>
-        </div>
-
-        <button
-          type="submit"
-          class="mt-8 rounded-lg bg-primary px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dark disabled:opacity-60"
-          :disabled="isSubmitting"
-        >
-          {{ isSubmitting ? t('contact.form.sending') : t('contact.form.submit') }}
-        </button>
-      </form>
+            Service Interest Form
+          </a>
+        </p>
+      </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+/* Pipedrive injects an iframe; we can style the iframe element itself (not its internals). */
+.pipedriveWebForms :deep(iframe) {
+  width: 100%;
+  max-width: 100%;
+  border: 0;
+  background: transparent;
+  /* Reduce visual height (while still fitting most screens). */
+  height: clamp(720px, 78vh, 920px);
+}
+</style>
 

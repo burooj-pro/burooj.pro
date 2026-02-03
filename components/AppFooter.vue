@@ -20,9 +20,8 @@ const baseURL = config.app.baseURL || '/'
         <div class="mt-4 flex flex-col gap-2 text-sm text-white">
                <NuxtLink :to="localePath('/')" class="hover:text-primary">{{ t('nav.home') }}</NuxtLink>
                <NuxtLink :to="localePath('/about')" class="hover:text-primary">{{ t('nav.about') }}</NuxtLink>
-               <NuxtLink to="/#services" class="hover:text-primary">{{ t('nav.services') }}</NuxtLink>
+               <NuxtLink :to="{ path: localePath('/'), hash: '#services' }" class="hover:text-primary">{{ t('nav.services') }}</NuxtLink>
                <NuxtLink :to="localePath('/projects')" class="hover:text-primary">{{ t('nav.projects') }}</NuxtLink>
-               <NuxtLink to="/#contact" class="hover:text-primary">{{ t('nav.contact') }}</NuxtLink>
         </div>
       </div>
 
@@ -57,6 +56,17 @@ const baseURL = config.app.baseURL || '/'
                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                    </svg>
                  </a>
+                <a
+                  href="https://www.tiktok.com/@buroojsa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-slate-400 transition-colors hover:text-primary"
+                  aria-label="TikTok"
+                >
+                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.708 2c.393 2.23 1.67 3.56 3.792 3.792v3.104c-1.642.106-3.07-.34-4.5-1.2v7.15c0 4.05-3.96 6.6-7.43 4.98-2.23-1.04-3.48-3.47-3.06-5.9.52-2.93 3.33-5.06 6.5-4.45v3.28c-.25-.04-.5-.05-.76-.03-1.22.1-2.24 1.03-2.42 2.22-.23 1.52.88 2.86 2.4 2.9 1.41.04 2.5-1.08 2.5-2.54V2h2.99Z"/>
+                  </svg>
+                </a>
                  <a
                    href="https://x.com/buroojsa"
                    target="_blank"

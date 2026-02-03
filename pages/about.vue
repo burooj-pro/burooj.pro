@@ -64,9 +64,7 @@ const btsImages = [
 // Duplicate images for seamless infinite loop
 const duplicatedBtsImages = [...btsImages, ...btsImages, ...btsImages]
 
-const clientLogos = Array.from({ length: 12 }, (_, index) => ({
-  name: `Client ${index + 1}`,
-}))
+const { clientLogos } = useClientLogos({ placeholders: 0 })
 
 onMounted(() => {
   if (typeof window === 'undefined') return
@@ -222,8 +220,8 @@ onMounted(() => {
   <!-- Hero Section -->
   <section
     ref="heroSection"
-    class="relative isolate flex min-h-[70vh] w-screen items-end justify-center overflow-hidden"
-    style="margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);"
+    data-hero
+    class="relative isolate flex min-h-[70vh] w-full items-end justify-center overflow-hidden"
   >
     <img
       :src="`${baseURL}images/hero-image.png`"
@@ -270,7 +268,7 @@ onMounted(() => {
         <div class="grid gap-12 md:grid-cols-2 md:gap-16 lg:gap-20">
           <!-- Left Column - Title (Sticky) -->
           <div class="flex items-start">
-            <div class="sticky top-24 md:top-32">
+            <div class="md:sticky md:top-32">
               <h2 class="text-4xl font-normal leading-tight text-ink md:text-5xl lg:text-6xl xl:text-7xl">
                 {{ t('about.stats.title') }}<br />
                 {{ t('about.stats.titleLine2') }}
@@ -300,7 +298,7 @@ onMounted(() => {
               <!-- Stat Content -->
               <div class="space-y-2 pt-4">
                 <p 
-                  :ref="(el: HTMLElement | null) => { if (el) statRefs[index] = el }" 
+                    :ref="(el) => { const node = (el as any)?.$el ?? el; if (node && (node as any).nodeType === 1) statRefs[index] = node as HTMLElement }"
                   class="text-4xl font-light leading-none text-ink md:text-5xl lg:text-6xl xl:text-7xl"
                 >
                   0
@@ -324,7 +322,7 @@ onMounted(() => {
         <div class="grid gap-12 md:grid-cols-2 md:gap-16 lg:gap-20">
           <!-- Left Content (Sticky) -->
           <div class="flex items-start">
-            <div class="sticky top-24 md:top-32">
+            <div class="md:sticky md:top-32">
               <div class="flex flex-col justify-start space-y-6">
                 <p class="text-sm font-medium uppercase tracking-wider text-primary md:text-base">
                   {{ t('about.founder.sectionTitle') }}
@@ -391,8 +389,7 @@ onMounted(() => {
     <!-- Full-Width Horizontal Drag Gallery -->
     <div
       ref="btsContainer"
-      class="relative w-full overflow-hidden cursor-none"
-      style="margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);"
+      class="relative w-full overflow-hidden cursor-none -mx-6 md:-mx-12 lg:-mx-16 xl:-mx-20"
       @mouseenter="isHoveringBts = true"
       @mouseleave="isHoveringBts = false"
       @mousemove="handleBtsMouseMove"
@@ -406,8 +403,7 @@ onMounted(() => {
         <div
           v-for="(item, index) in btsImages"
           :key="`set1-${index}`"
-          class="bts-image-item group relative flex-shrink-0 overflow-hidden rounded-xl"
-          style="width: 25vw; min-width: 350px; height: 500px;"
+          class="bts-image-item group relative flex-shrink-0 overflow-hidden rounded-xl w-[85vw] min-w-[260px] h-[320px] sm:w-[70vw] sm:min-w-[300px] sm:h-[380px] md:w-[45vw] md:h-[460px] lg:w-[28vw] lg:min-w-[350px] lg:h-[500px]"
         >
           <img
             :src="item.image"
@@ -419,8 +415,7 @@ onMounted(() => {
         <div
           v-for="(item, index) in btsImages"
           :key="`set2-${index}`"
-          class="bts-image-item group relative flex-shrink-0 overflow-hidden rounded-xl"
-          style="width: 25vw; min-width: 350px; height: 500px;"
+          class="bts-image-item group relative flex-shrink-0 overflow-hidden rounded-xl w-[85vw] min-w-[260px] h-[320px] sm:w-[70vw] sm:min-w-[300px] sm:h-[380px] md:w-[45vw] md:h-[460px] lg:w-[28vw] lg:min-w-[350px] lg:h-[500px]"
         >
           <img
             :src="item.image"
@@ -432,8 +427,7 @@ onMounted(() => {
         <div
           v-for="(item, index) in btsImages"
           :key="`set3-${index}`"
-          class="bts-image-item group relative flex-shrink-0 overflow-hidden rounded-xl"
-          style="width: 25vw; min-width: 350px; height: 500px;"
+          class="bts-image-item group relative flex-shrink-0 overflow-hidden rounded-xl w-[85vw] min-w-[260px] h-[320px] sm:w-[70vw] sm:min-w-[300px] sm:h-[380px] md:w-[45vw] md:h-[460px] lg:w-[28vw] lg:min-w-[350px] lg:h-[500px]"
         >
           <img
             :src="item.image"
@@ -446,7 +440,7 @@ onMounted(() => {
       <!-- Custom Cursor for BTS Section -->
       <div
         v-if="isHoveringBts"
-        class="pointer-events-none fixed z-[9999] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
+        class="pointer-events-none fixed z-[100] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
         :style="{ left: cursorPosition.x - 70 + 'px', top: cursorPosition.y - 18 + 'px' }"
       >
         Drag
@@ -462,12 +456,20 @@ onMounted(() => {
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       <div
         v-for="(logo, index) in clientLogos"
-        :key="logo.name"
-        :ref="(el: HTMLElement | null) => { if (el) clientLogosRefs[index] = el }"
-        class="flex items-center justify-center rounded-lg px-8 py-14 transition-colors"
+        :key="`${logo.name}-${index}`"
+        :ref="(el) => { const node = (el as any)?.$el ?? el; if (node && (node as any).nodeType === 1) clientLogosRefs[index] = node as HTMLElement }"
+        class="group flex items-center justify-center rounded-lg px-4 py-10 transition-colors sm:px-6 sm:py-12"
         style="background-color: #F4F2F2;"
       >
-        <span class="text-sm font-medium text-slate-700">{{ logo.name }}</span>
+        <img
+          v-if="'image' in logo && logo.image"
+          :src="logo.image"
+          :alt="logo.name"
+          class="w-auto max-w-full object-contain opacity-80 grayscale transition group-hover:opacity-100"
+          :class="(logo.name === 'Thabat' || logo.name === 'GDC' || logo.name === 'Qiddiya') ? 'h-14 sm:h-16 md:h-20 max-w-[220px] sm:max-w-[260px] md:max-w-[320px]' : 'h-10 sm:h-12 md:h-14 max-w-[160px] sm:max-w-[190px] md:max-w-[220px]'"
+          loading="lazy"
+        />
+        <span v-else class="text-xs font-medium text-slate-500">Client placeholder</span>
       </div>
     </div>
   </section>

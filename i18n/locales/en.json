@@ -102,6 +102,10 @@
   },
   "services": {
     "title": "Our Services",
+    "process": {
+      "title": "Our Process",
+      "subtitle": "A structured approach to delivering exceptional results"
+    },
     "construction": {
       "title": "Construction & Engineering Services",
       "items": {

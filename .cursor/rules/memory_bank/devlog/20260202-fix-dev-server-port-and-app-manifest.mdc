@@ -1,0 +1,29 @@
+# Solution: Fix local dev server connection refused and Nuxt/Vite `#app-manifest` crash
+
+## 1. Problem Description
+Opening the site in the browser showed “This site can’t be reached (ERR_CONNECTION_REFUSED)”. The Nuxt dev server was failing during startup, so nothing reliable was listening on the expected local port.
+
+## 2. Error Messages or Anomalous Observations
+```
+Pre-transform error: Failed to resolve import "#app-manifest" from "node_modules/nuxt/dist/app/composables/manifest.js"
+ERR_CONNECTION_REFUSED
+```
+
+## 3. Root Cause(s) Identified
+- Vite tried to resolve Nuxt’s internal `#app-manifest` import during dev-time import analysis.
+- The local dev port expectation was inconsistent (browser pointing at 3001 while server was not reliably available).
+
+## 4. Solution Steps Implemented
+1. Added a stub module `app-manifest.stub.ts` to satisfy Vite resolution for `#app-manifest`.
+2. Added a Vite alias in `nuxt.config.ts` mapping `#app-manifest` to that stub file (cross-platform-safe path).
+3. Set the dev server port to 3001 via `devServer.port` and ensured `npm run dev` serves at `http://localhost:3001/burooj.pro/`.
+4. Updated `README.md` to reflect the correct local dev URL.
+
+## 5. Verification Process
+1. Run `npm run dev`
+2. Confirm the site opens at:
+   - `http://localhost:3001/burooj.pro/`
+3. Run `npm run build` to confirm production build is still successful.
+
+## 6. Future Improvements or Considerations (Optional)
+- If Nuxt/Vite no longer requires this alias in a future upgrade, remove the stub + alias to reduce configuration surface area.

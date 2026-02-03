@@ -29,30 +29,29 @@ onMounted(() => {
   }
 })
 
+type FilterKey = 'ALL' | 'CONSTRUCTION' | 'PROPERTY' | 'DRONE'
+
 const filters = computed(() => [
-  t('projects.showAll'),
-  t('projects.constructionEngineering'),
-  t('projects.droneCleaning'),
+  { key: 'ALL' as const, label: t('projects.showAll') },
+  { key: 'CONSTRUCTION' as const, label: t('projects.constructionEngineering') },
+  { key: 'PROPERTY' as const, label: t('projects.propertyManagement') },
+  { key: 'DRONE' as const, label: t('projects.droneCleaning') },
 ])
-const activeFilter = ref<string>(filters.value[0])
 
-const filterKeys = ['SHOW ALL', 'CONSTRUCTION & ENGINEERING', 'DRONE CLEANING'] as const
-const activeFilterKey = ref<(typeof filterKeys)[number]>('SHOW ALL')
-
-const getFilterKey = (filter: string) => {
-  if (filter.includes('ALL') || filter.includes('الكل')) return 'SHOW ALL'
-  if (filter.includes('CONSTRUCTION') || filter.includes('البناء')) return 'CONSTRUCTION & ENGINEERING'
-  if (filter.includes('DRONE') || filter.includes('الطائرات')) return 'DRONE CLEANING'
-  return 'SHOW ALL'
-}
+const activeFilterKey = ref<FilterKey>('ALL')
 
 const filteredProjects = computed(() => {
-  if (activeFilterKey.value === 'SHOW ALL') return projects.value
-  const filterMap: Record<string, string> = {
-    'CONSTRUCTION & ENGINEERING': 'Construction & Engineering',
-    'DRONE CLEANING': 'Drone Cleaning',
+  if (activeFilterKey.value === 'ALL') return projects.value
+  if (activeFilterKey.value === 'CONSTRUCTION') {
+    return projects.value.filter((project: any) => project.category === 'Construction & Engineering')
   }
-  return projects.value.filter((project: any) => project.category === filterMap[activeFilterKey.value])
+  if (activeFilterKey.value === 'PROPERTY') {
+    return projects.value.filter((project: any) => project.category === 'Property Management')
+  }
+  if (activeFilterKey.value === 'DRONE') {
+    return projects.value.filter((project: any) => project.category === 'Drone Cleaning')
+  }
+  return projects.value
 })
 
 // Custom cursor for project items
@@ -95,23 +94,23 @@ onUnmounted(() => {
       <div class="flex flex-wrap gap-6 text-sm font-medium uppercase tracking-wide">
         <button
           v-for="filter in filters"
-          :key="filter"
+          :key="filter.key"
           class="transition-colors hover:text-primary"
-          :class="filter === activeFilter ? 'text-ink underline decoration-2 underline-offset-4' : 'text-slate-500'"
+          :class="filter.key === activeFilterKey ? 'text-ink underline decoration-2 underline-offset-4' : 'text-slate-500'"
           type="button"
-          @click="activeFilter = filter; activeFilterKey = getFilterKey(filter)"
+          @click="activeFilterKey = filter.key"
         >
-          {{ filter }}
+          {{ filter.label }}
         </button>
       </div>
     </div>
 
     <!-- Projects Grid -->
-    <div class="grid gap-8 md:grid-cols-2 lg:gap-12">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
       <NuxtLink
         v-for="(project, projectIndex) in filteredProjects"
         :key="project.slug"
-        :ref="(el: HTMLElement | null) => { if (el) projectItems[projectIndex] = el }"
+        :ref="(el) => { const node = (el as any)?.$el ?? el; if (node && (node as any).nodeType === 1) projectItems[projectIndex] = node as HTMLElement }"
         :to="localePath(`/projects/${project.slug}`)"
         class="group relative block cursor-pointer overflow-hidden"
         @mouseenter="handleProjectEnter(projectIndex)"
@@ -147,7 +146,7 @@ onUnmounted(() => {
   <!-- Custom Cursor for Projects -->
   <div
     v-if="isHoveringProject"
-    class="pointer-events-none fixed z-[9999] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
+    class="pointer-events-none fixed z-[100] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
     :style="{ left: cursorPosition.x - 70 + 'px', top: cursorPosition.y - 18 + 'px' }"
   >
     {{ t('projects.viewProject') }}

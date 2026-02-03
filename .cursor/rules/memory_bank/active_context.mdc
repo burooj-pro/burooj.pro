@@ -4,10 +4,10 @@ alwaysApply: true
 
 # Active Context — Burooj Corporate Website
 
-## Current Focus (2025-12-02)
-1. **Foundation completed:** Nuxt 3 project scaffolded with Tailwind, GSAP plugin, default layout, and top-level pages.
-2. **Next Implementation Step:** Flesh out component library (BaseButton, SectionWrapper, StatsGrid, etc.) and begin detailed Home/About/Services content polish.
-3. **Validation:** Maintain build success (`npm run build`) and monitor Node engine warnings until environment upgrades to ≥20.19.
+## Current Focus (2026-02-01)
+1. **UI polish & responsiveness:** Ongoing responsive layout pass across pages (Home/About/Services/Projects).
+2. **Next Implementation Step:** Continue consolidating repeated UI into reusable components (buttons, wrappers, grids) and finish content polish.
+3. **Validation:** Keep `npm run build` green after layout/animation changes; watch animation performance and reduced-motion behavior.
 
 ## Pending Decisions / Questions
 - Confirm preferred package manager (npm vs pnpm) before initializing project.
@@ -18,6 +18,21 @@ alwaysApply: true
 1. Implement reusable base components (buttons, wrappers, grids) to reduce duplication in pages.
 2. Wire GSAP composable into sections with ScrollTrigger hooks.
 3. Expand Services/Projects data configs for future CMS integration.
+
+## Recently Completed
+- Responsive polish: projects grid uses 3 columns on large screens; project detail “label/value” rows stack on small screens.
+- About page BTS gallery: unified card sizing across all repeated image sets.
+- Sticky headings: enabled only on `md+` where layouts are two-column to avoid overlap on mobile.
+- Projects structure hardening: filters use stable keys (not translated text), added Property Management filter, fixed `baseURL` image path joining, prevented duplicate GSAP section refs, and standardized full-width image aspect ratio.
+- Project detail gallery layout updated: first 2 images stay in 2-column grid, next 3 show as 1 full-width + 2 below, plus an additional story paragraph block.
+- Added new project entry: “Al-Fakhreyah Villa Project” (placeholder images ready to replace when assets are provided).
+- Updated “Private Shalet” project to “Halfmoon Villa” and wired images from `public/images/projects/4/`.
+- Updated “GDC” project to “Co-working Space” and wired images from `public/images/projects/5/`.
+- Updated “Efficiency Center Khobar branch” project to “GDC” and wired images from `public/images/projects/6/`.
+- Updated “Tulip Spa” project to use images from `public/images/projects/7/`.
+- Updated “Thabat” project to “Thabat Booth” and wired images from `public/images/projects/8/`.
+- Updated “Roaya” project to use images from `public/images/projects/9/`.
+- Dev server reliability: fixed Nuxt/Vite dev crash caused by unresolved `#app-manifest` and aligned local dev port to 3001.
 
 ## Risks / Watch Items
 - Animation performance: ensure ScrollTrigger instances cleaned up and reduced-motion respected.

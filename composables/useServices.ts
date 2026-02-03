@@ -95,7 +95,7 @@ export const useServices = () => {
           description: 'We complete final walkthroughs, address snags, and provide post-handover support.',
         },
       ],
-      image: '/images/service1.png',
+      image: '/images/arch.png',
     },
     {
       slug: 'interior-design',
@@ -151,7 +151,7 @@ export const useServices = () => {
           description: 'We oversee installation and add final styling touches to bring your space to life.',
         },
       ],
-      image: '/images/service1.png',
+      image: '/images/inter.png',
     },
     {
       slug: 'finishing-fit-out',
@@ -173,7 +173,7 @@ export const useServices = () => {
         'Timely project completion',
         'Comprehensive service coverage',
       ],
-      image: '/images/service1.png',
+      image: '/images/fitout.png',
     },
     // Property Management Services
     {

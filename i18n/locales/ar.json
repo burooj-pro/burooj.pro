@@ -102,6 +102,10 @@
   },
   "services": {
     "title": "خدماتنا",
+    "process": {
+      "title": "منهجيتنا",
+      "subtitle": "نهج منظم لتقديم نتائج استثنائية"
+    },
     "construction": {
       "title": "خدمات البناء والهندسة",
       "items": {

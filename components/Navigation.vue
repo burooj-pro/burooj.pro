@@ -7,11 +7,9 @@ const config = useRuntimeConfig()
 const baseURL = config.app.baseURL || '/'
 
 const navLinks = computed(() => [
-  { label: t('nav.home'), to: localePath('/') },
   { label: t('nav.about'), to: localePath('/about') },
-  { label: t('nav.services'), to: '/#services' },
+  { label: t('nav.services'), to: { path: localePath('/'), hash: '#services' } },
   { label: t('nav.projects'), to: localePath('/projects') },
-  { label: t('nav.contact'), to: '/#contact' },
 ])
 
 const isMenuOpen = ref(false)
@@ -27,7 +25,7 @@ const isScrolledPastHero = ref(false)
       })
 
 const switchLanguage = async (lang: string) => {
-  await navigateTo(switchLocalePath(lang))
+  await navigateTo(switchLocalePath(lang as 'en' | 'ar'))
 }
 
 // Only watch route changes on client side
@@ -36,58 +34,30 @@ if (import.meta.client) {
     // Get route on client side only
     const clientRoute = useRoute()
   
-  // Helper function to check if current page has a hero section
-  const isPageWithoutHero = () => {
-    if (!clientRoute?.path) return false
-    const path = clientRoute.path
-    // Pages with hero sections: /, /about, /projects/[slug] (project detail pages have hero sections)
-    // Pages without hero sections: /projects (list only), /contact, /privacy-policy, /terms-and-conditions
-    return (
-      path === '/projects' ||
-      path === '/contact' ||
-      path.startsWith('/contact') ||
-      path === '/privacy-policy' ||
-      path.startsWith('/privacy-policy') ||
-      path === '/terms-and-conditions' ||
-      path.startsWith('/terms-and-conditions')
-    )
-  }
-  
-  // Set initial state based on route
-  isScrolledPastHero.value = isPageWithoutHero()
+  // Set initial state based on hero marker presence
+  isScrolledPastHero.value = !document.querySelector('section[data-hero]')
     
     watch(
       () => clientRoute.fullPath,
       () => {
         isMenuOpen.value = false
-        // Set navbar to dark immediately on pages without hero
-        if (isPageWithoutHero()) {
-          isScrolledPastHero.value = true
-        } else {
-          // Reset and check scroll position for pages with hero
-          checkScrollPosition()
-        }
+        // Re-evaluate after navigation (some pages don't have hero)
+        checkScrollPosition()
       }
     )
     
 
     // Check scroll position to determine if past hero section
     const checkScrollPosition = () => {
-      // If on a page without hero, always show dark navbar
-      if (isPageWithoutHero()) {
-        isScrolledPastHero.value = true
-        return
-      }
-      
-      // Find the hero section (first section with min-h-screen)
-      const heroSection = document.querySelector('section.min-h-screen')
+      // Find the hero section (explicit marker)
+      const heroSection = document.querySelector('section[data-hero]')
       if (heroSection) {
         const rect = heroSection.getBoundingClientRect()
         // Check if hero section bottom is above the viewport (scrolled past)
         isScrolledPastHero.value = rect.bottom <= 0
       } else {
-        // Fallback: check scroll position
-        isScrolledPastHero.value = window.scrollY > window.innerHeight * 0.8
+        // No hero on this page -> always show solid navbar
+        isScrolledPastHero.value = true
       }
     }
 
@@ -121,7 +91,7 @@ if (import.meta.client) {
         <nav class="hidden items-center gap-4 text-xs font-medium transition-colors duration-300 sm:gap-5 sm:text-sm md:gap-6 md:text-base lg:flex" :class="isScrolledPastHero ? 'text-ink' : 'text-white'">
           <NuxtLink
             v-for="link in navLinks"
-            :key="link.to"
+            :key="link.label"
             :to="link.to"
             class="transition-colors duration-300"
             :class="isScrolledPastHero ? 'hover:text-primary' : 'hover:text-primary-light'"
@@ -174,7 +144,7 @@ if (import.meta.client) {
           <div class="space-y-3 text-sm font-medium transition-colors duration-300 sm:text-base md:text-base" :class="isScrolledPastHero ? 'text-ink' : 'text-white'">
             <NuxtLink
               v-for="link in navLinks"
-              :key="link.to"
+              :key="link.label"
               :to="link.to"
               class="block rounded-lg px-4 py-2 transition-colors duration-300"
               :class="isScrolledPastHero ? 'hover:bg-slate-100' : 'hover:bg-white/10'"

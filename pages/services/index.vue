@@ -156,7 +156,7 @@ onUnmounted(() => {
         <!-- Service 01: Construction & Engineering -->
         <NuxtLink
           :to="localePath('/services/construction-engineering')"
-          class="service-item group relative flex min-h-[600px] items-end overflow-hidden md:min-h-[700px] lg:min-h-[800px]"
+          class="service-item group relative flex min-h-[420px] items-end overflow-hidden sm:min-h-[520px] md:min-h-[700px] lg:min-h-[800px]"
           @mouseenter="handleServiceEnter('read-more')"
           @mouseleave="handleServiceLeave"
         >
@@ -177,7 +177,7 @@ onUnmounted(() => {
         <!-- Service 02: Property Management -->
         <NuxtLink
           :to="localePath('/services/property-management')"
-          class="service-item group relative flex min-h-[600px] items-end overflow-hidden md:min-h-[700px] lg:min-h-[800px]"
+          class="service-item group relative flex min-h-[420px] items-end overflow-hidden sm:min-h-[520px] md:min-h-[700px] lg:min-h-[800px]"
           @mouseenter="handleServiceEnter('read-more')"
           @mouseleave="handleServiceLeave"
         >
@@ -200,7 +200,7 @@ onUnmounted(() => {
           href="https://buroojair.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="service-item group relative flex min-h-[600px] items-end overflow-hidden md:min-h-[700px] lg:min-h-[800px]"
+          class="service-item group relative flex min-h-[420px] items-end overflow-hidden sm:min-h-[520px] md:min-h-[700px] lg:min-h-[800px]"
           @mouseenter="handleServiceEnter('visit-website')"
           @mouseleave="handleServiceLeave"
         >
@@ -260,7 +260,7 @@ onUnmounted(() => {
     <!-- Custom Cursor for Services -->
     <div
       v-if="isHoveringService"
-      class="pointer-events-none fixed z-[9999] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
+      class="pointer-events-none fixed z-[100] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
       :style="{ left: cursorPosition.x - 70 + 'px', top: cursorPosition.y - 18 + 'px' }"
     >
       {{ hoveredServiceType === 'visit-website' ? t('services.drone.visitWebsite') : t('projects.viewProject') }}

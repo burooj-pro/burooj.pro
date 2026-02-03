@@ -1,6 +1,17 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        // Ensure Node.js types exist for config-time imports (cross-platform).
+        types: ['node'],
+      },
+    },
+  },
+  devServer: {
+    port: 3001,
+  },
   ssr: false, // Enable static site generation for GitHub Pages
   css: ['~/assets/css/tailwind.css'],
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n'],
@@ -67,13 +78,18 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/burooj.pro/favicon.ico' },
         { rel: 'apple-touch-icon', href: '/burooj.pro/favicon.ico' },
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
-        },
       ],
+    },
+  },
+  vite: {
+    resolve: {
+      alias: {
+        // Cross-platform file URL -> path without Node typings.
+        // Windows URL.pathname includes a leading slash before the drive letter (e.g. /C:/...).
+        '#app-manifest': decodeURIComponent(
+          new URL('./app-manifest.stub.ts', import.meta.url).pathname.replace(/^\/([A-Za-z]:\/)/, '$1'),
+        ),
+      },
     },
   },
 })

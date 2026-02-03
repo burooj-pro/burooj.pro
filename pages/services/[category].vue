@@ -86,9 +86,7 @@ const categoryProjects = computed(() => {
     .map((project: any) => getLocalizedProject(project))
 })
 
-const clientLogos = Array.from({ length: 12 }, (_, index) => ({
-  name: `Client ${index + 1}`,
-}))
+const { clientLogos } = useClientLogos({ placeholders: 0 })
 
 // Get services for this category
 const categoryServices = computed(() => {
@@ -142,7 +140,7 @@ useHead({
 
 onMounted(() => {
   if (typeof window === 'undefined') return
-  
+
   fadeInUp(heroSection)
   fadeInUp(aboutSection)
   fadeInFromSide(subservicesSection, 'left')
@@ -177,8 +175,8 @@ onMounted(() => {
     <!-- Hero Section - Same design as About page -->
     <section
       ref="heroSection"
-      class="relative isolate flex min-h-[70vh] w-screen items-end justify-center overflow-hidden"
-      style="margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);"
+      data-hero
+      class="relative isolate flex min-h-[70vh] w-full items-end justify-center overflow-hidden"
     >
       <img
         :src="categoryInfo.image"
@@ -234,12 +232,12 @@ onMounted(() => {
       </div>
 
       <!-- Horizontal Scrollable Grid - Same design as home page, no gaps -->
-      <div class="overflow-x-auto scrollbar-hide" style="margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);">
-        <div class="flex gap-0" style="width: max-content;">
+      <div class="overflow-x-auto scrollbar-hide -mx-6 md:-mx-12 lg:-mx-16 xl:-mx-20">
+        <div class="flex gap-0 px-6 md:px-12 lg:px-16 xl:px-20" style="width: max-content;">
           <div
             v-for="service in categoryServices"
             :key="service.slug"
-            class="group relative flex min-h-[600px] w-[100vw] flex-none items-end overflow-hidden md:min-h-[700px] md:w-[33.333333vw] lg:min-h-[800px]"
+            class="group relative flex min-h-[420px] w-[100vw] flex-none items-end overflow-hidden sm:min-h-[520px] md:min-h-[700px] md:w-[33.333333vw] lg:min-h-[800px]"
           >
             <div
               v-if="service.image"
@@ -269,10 +267,10 @@ onMounted(() => {
         <!-- Section Title -->
         <div class="space-y-4">
           <h2 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
-            Our Process
+            {{ t('services.process.title') }}
           </h2>
           <p class="text-base font-serif leading-relaxed text-slate-600 md:text-lg">
-            A structured approach to delivering exceptional results
+            {{ t('services.process.subtitle') }}
           </p>
         </div>
 
@@ -281,7 +279,7 @@ onMounted(() => {
           <div
             v-for="(step, index) in processSteps"
             :key="step.title"
-            :ref="(el: HTMLElement | null) => { if (el) processItemsRefs[index] = el }"
+            :ref="(el) => { const node = (el as any)?.$el ?? el; if (node && (node as any).nodeType === 1) processItemsRefs[index] = node as HTMLElement }"
             class="group relative border-b border-r border-primary/30 bg-white transition-colors"
             :class="{ 'bg-slate-50': expandedStepIndex === index }"
           >
@@ -333,58 +331,6 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- Customer Experience Section -->
-    <section ref="experienceSection" class="section-wrapper relative z-10 py-16 md:py-24">
-      <div class="space-y-16">
-        <!-- Top Section: Text Left + Image Right -->
-        <div class="grid gap-12 md:grid-cols-2 md:items-center">
-          <!-- Left: Text Content -->
-          <div class="space-y-6">
-            <h2 class="text-4xl font-bold leading-tight text-ink md:text-5xl lg:text-6xl">
-              Customer Experience
-            </h2>
-            <h3 class="text-xl font-bold leading-relaxed text-ink md:text-2xl">
-              Seamless service with exceptional care and communication
-            </h3>
-            <p class="text-base leading-relaxed text-slate-600 md:text-lg">
-              We nurture your landscape and relationship with ongoing support, ensuring your investment thrives for life.
-            </p>
-          </div>
-          <!-- Right: Image -->
-          <div class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-100">
-            <img
-              :src="`${baseURL}images/floor.png`"
-              alt="Customer Experience"
-              class="h-full w-full object-cover"
-            />
-          </div>
-        </div>
-
-        <!-- Bottom Section: Two Columns -->
-        <div class="grid gap-12 border-t border-primary/30 pt-16 md:grid-cols-2">
-          <!-- Left Column -->
-          <div class="space-y-4">
-            <h3 class="text-2xl font-bold leading-tight text-ink md:text-3xl">
-              Dedicated Client Representative
-            </h3>
-            <p class="text-base leading-relaxed text-slate-600 md:text-lg">
-              We introduce your personal client representative, who serves as your trusted point of contact for ongoing care and support. This step ensures a Seamless Customer Experience, with personalized attention that makes you feel valued. Your representative is dedicated to addressing your needs, fostering a lasting partnership you can rely on.
-            </p>
-          </div>
-
-          <!-- Right Column -->
-          <div class="space-y-4">
-            <h3 class="text-2xl font-bold leading-tight text-ink md:text-3xl">
-              Maintenance, Care & Warranty
-            </h3>
-            <p class="text-base leading-relaxed text-slate-600 md:text-lg">
-              We provide curated seasonal maintenance to keep your landscape vibrant, backed by our comprehensive warranty for peace of mind. Our Customer Experience and Built to Last commitments ensure your space remains beautiful and durable through exceptional care. You'll enjoy a thriving landscape and the confidence of a trusted partner for life.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Related Projects Section -->
     <section v-if="categoryProjects.length > 0" ref="projectsSection" class="section-wrapper relative z-10 py-16 md:py-24">
       <!-- Header -->
@@ -407,7 +353,7 @@ onMounted(() => {
           v-for="(project, index) in categoryProjects"
           :key="project.slug"
           :to="localePath(`/projects/${project.slug}`)"
-          :ref="(el: HTMLElement | null) => { if (el) projectItemsRefs[index] = el }"
+          :ref="(el) => { const node = (el as any)?.$el ?? el; if (node && (node as any).nodeType === 1) projectItemsRefs[index] = node as HTMLElement }"
           class="group relative grid grid-cols-1 gap-12 md:grid-cols-[1fr_1.3fr] md:items-start"
           :class="{ 'gradient-border-top pt-20': index > 0, 'pb-20': index < categoryProjects.length - 1 }"
           @mouseenter="handleProjectEnter(index)"
@@ -467,12 +413,20 @@ onMounted(() => {
       <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         <div
           v-for="(logo, index) in clientLogos"
-          :key="logo.name"
-          :ref="(el: HTMLElement | null) => { if (el) clientLogosRefs[index] = el }"
-          class="flex items-center justify-center rounded-lg px-8 py-14 transition-colors"
+          :key="`${logo.name}-${index}`"
+          :ref="(el) => { const node = (el as any)?.$el ?? el; if (node && (node as any).nodeType === 1) clientLogosRefs[index] = node as HTMLElement }"
+          class="group flex items-center justify-center rounded-lg px-4 py-10 transition-colors sm:px-6 sm:py-12"
           style="background-color: #F4F2F2;"
         >
-          <span class="text-sm font-medium text-slate-700">{{ logo.name }}</span>
+          <img
+            v-if="'image' in logo && logo.image"
+            :src="logo.image"
+            :alt="logo.name"
+            class="w-auto max-w-full object-contain opacity-80 grayscale transition group-hover:opacity-100"
+            :class="(logo.name === 'Thabat' || logo.name === 'GDC' || logo.name === 'Qiddiya') ? 'h-14 sm:h-16 md:h-20 max-w-[220px] sm:max-w-[260px] md:max-w-[320px]' : 'h-10 sm:h-12 md:h-14 max-w-[160px] sm:max-w-[190px] md:max-w-[220px]'"
+            loading="lazy"
+          />
+          <span v-else class="text-xs font-medium text-slate-500">Client placeholder</span>
         </div>
       </div>
     </section>
@@ -480,11 +434,15 @@ onMounted(() => {
     <!-- CTA Section -->
     <section ref="ctaSection" class="relative z-10 w-full overflow-hidden">
       <div
-        class="relative min-h-[500px] bg-cover bg-center bg-no-repeat"
-        style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80');"
+        class="relative min-h-[500px] overflow-hidden"
       >
-        <!-- Gradient overlay from black at bottom to transparent at top -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+        <img
+          :src="`${baseURL}images/hero-image.png`"
+          alt=""
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+        <!-- Same gradient overlay as hero section -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20"></div>
         <div class="section-wrapper relative z-10 flex min-h-[500px] flex-col items-center justify-center py-16 text-center">
           <h3 class="text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
             {{ t('cta.title') }}

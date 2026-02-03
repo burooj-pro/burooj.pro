@@ -7,7 +7,7 @@ alwaysApply: true
 ## Summary
 - Project requirements consolidated into `project_description.mdc`.
 - Memory Bank initialized to capture ongoing context.
-- Implementation not yet started; next milestone is project scaffolding.
+- Nuxt 3 site scaffolded and core pages implemented; current milestone is UI polish, component reuse, and SEO/a11y refinements.
 
 ## Task Ledger
 - [x] Compile comprehensive project description and specs.
@@ -16,6 +16,11 @@ alwaysApply: true
 - [x] Build default layout with header/footer adhering to brand guidelines.
 - [~] Implement Home page sections (Hero → Contact CTA) with animations.
 - [~] Implement About, Services, Projects, Contact pages using shared components.
+- [x] Responsive layout polish pass (Projects grid/detail stacking, BTS gallery sizing, sticky behavior on mobile).
+- [x] Harden projects structure (stable filter keys, property filter, robust baseURL image paths, GSAP section ref de-dupe).
+- [x] Update project detail gallery layout (2 + paragraph + 1 full + 2 + paragraph + rest).
+- [x] Add new project: Al-Fakhreyah Villa Project (data + placeholder images).
+- [x] Fix local dev server (port + `#app-manifest` Vite resolution) and update README.
 - [ ] Create reusable component library (BaseButton, SectionWrapper, StatsGrid, ServicesGroup, ProjectGrid, ClientLogos, ContactForm).
 - [ ] Wire contact form validation and success/error states.
 - [ ] Add SEO/meta tags, structured data, and accessibility refinements.

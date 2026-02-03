@@ -1,0 +1,36 @@
+# Solution: Stabilize projects filtering, image paths, and detail page refs
+
+## 1. Problem Description
+The Projects page filtering could break when translations change because it depended on checking the filter label text. Also, the Projects filters did not include “Property Management” even though projects exist in that category. In addition, image paths could be wrong if the site is deployed under a subfolder, and the project detail page could register the same section ref multiple times, causing duplicated animations.
+
+## 2. Error Messages or Anomalous Observations
+```
+- Projects filtering logic used string includes() on translated labels.
+- Property Management projects could not be filtered directly.
+- baseURL image joining could produce bad paths if baseURL does not end with "/".
+- Section refs could be pushed multiple times, potentially duplicating GSAP triggers.
+```
+
+## 3. Root Cause(s) Identified
+- Filter selection was based on translated display strings instead of stable internal keys.
+- Property Management filter was missing from the filter UI and mapping.
+- `addBaseURL()` assumed `config.app.baseURL` always ends with `/`.
+- Section ref registration used `push()` without de-duplication.
+
+## 4. Solution Steps Implemented
+1. Updated `pages/projects/index.vue` to use stable filter keys (`ALL | CONSTRUCTION | PROPERTY | DRONE`) and added a Property Management filter.
+2. Updated `composables/useProjects.ts` to normalize `baseURL` so it always ends with `/` before joining asset paths.
+3. Updated `pages/projects/[slug].vue` to register content section refs via a helper that de-dupes elements, and standardized the full-width image container to a consistent `aspect-[16/9]`.
+
+## 5. Verification Process
+1. Run:
+   - `npm run build`
+2. Manually check:
+   - Filters work in both English and Arabic, even if labels change.
+   - Property Management filter shows the property projects.
+   - Project images load correctly when deploying under a subpath.
+   - Project detail animations do not duplicate on re-render.
+
+## 6. Future Improvements or Considerations (Optional)
+- Add a strict enum for project categories to avoid category string drift.
+- Add cleanup for GSAP/ScrollTrigger instances on unmount if more animations are added.
