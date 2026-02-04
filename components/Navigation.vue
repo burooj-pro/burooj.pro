@@ -79,7 +79,7 @@ if (import.meta.client) {
     <div class="w-full bg-transparent" :class="{ 'bg-white/95': isScrolledPastHero }">
       <div class="container">
         <div class="flex items-center justify-between px-6 py-4 md:px-12 lg:px-16 xl:px-20 md:py-5">
-        <NuxtLink to="/" class="flex items-center" prefetch>
+        <NuxtLink :to="localePath('/')" class="flex items-center" prefetch>
           <img 
             :src="isScrolledPastHero ? `${baseURL}images/Burroj-dark-logo.png` : `${baseURL}images/Burooj-logo.png`" 
             alt="Burooj" 

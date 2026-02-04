@@ -54,6 +54,14 @@ const filteredProjects = computed(() => {
   return projects.value
 })
 
+const getCategoryLabel = (category: string) => {
+  if (category === 'Construction & Engineering') return t('projects.constructionEngineering')
+  if (category === 'Property Management') return t('projects.propertyManagement')
+  if (category === 'Drone Cleaning') return t('projects.droneCleaning')
+  return category
+}
+const getStatusLabel = (status: string) => (status === 'Completed' ? t('projects.completed') : status)
+
 // Custom cursor for project items
 const cursorPosition = ref({ x: 0, y: 0 })
 const isHoveringProject = ref(false)
@@ -126,10 +134,10 @@ onUnmounted(() => {
         <div class="relative z-10 mt-4 space-y-3">
           <div class="flex flex-wrap gap-2">
             <span class="rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary">
-              {{ project.category }}
+              {{ getCategoryLabel(project.category) }}
             </span>
             <span class="rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary">
-              {{ t('projects.completed') }}
+              {{ getStatusLabel(project.status) }}
             </span>
           </div>
           <h2 class="text-xl font-bold leading-tight text-ink md:text-2xl">

@@ -78,11 +78,19 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/burooj.pro/favicon.ico' },
         { rel: 'apple-touch-icon', href: '/burooj.pro/favicon.ico' },
+        // Preload LCP: hero video (or fallback image) for faster First Contentful Paint / LCP
+        { rel: 'preload', as: 'image', href: '/burooj.pro/images/hero-image.png', fetchpriority: 'high' },
       ],
     },
   },
   vite: {
+    build: {
+      commonjsOptions: {
+        transformMixedEsModules: true,
+      },
+    },
     resolve: {
+      dedupe: ['vue', 'vue-i18n', 'gsap'],
       alias: {
         // Cross-platform file URL -> path without Node typings.
         // Windows URL.pathname includes a leading slash before the drive letter (e.g. /C:/...).

@@ -151,12 +151,12 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <!-- Three Panel Layout -->
+      <!-- Three Panel Layout - responsive height and text so labels don't crop on small screens -->
       <div class="grid grid-cols-1 md:grid-cols-3">
         <!-- Service 01: Construction & Engineering -->
         <NuxtLink
           :to="localePath('/services/construction-engineering')"
-          class="service-item group relative flex min-h-[420px] items-end overflow-hidden sm:min-h-[520px] md:min-h-[700px] lg:min-h-[800px]"
+          class="service-item group relative flex min-h-[280px] max-h-[55vh] items-end overflow-hidden sm:min-h-[340px] sm:max-h-[60vh] md:min-h-[38vh] md:max-h-[520px] lg:min-h-[42vh] lg:max-h-[580px] xl:min-h-[45vh] xl:max-h-[640px]"
           @mouseenter="handleServiceEnter('read-more')"
           @mouseleave="handleServiceLeave"
         >
@@ -166,9 +166,9 @@ onUnmounted(() => {
           ></div>
           <!-- Gradient Overlay - Dark from bottom to light at top -->
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-          <!-- Text Overlay -->
-          <div class="relative z-10 w-full p-8 pb-12 md:p-12 md:pb-16">
-            <h3 class="text-3xl font-bold uppercase tracking-wide text-white md:text-4xl lg:text-5xl">
+          <!-- Text Overlay - min-w-0 and break-words so text isn't cropped -->
+          <div class="relative z-10 min-w-0 w-full p-6 pb-10 sm:p-8 sm:pb-12 md:p-12 md:pb-16">
+            <h3 class="text-2xl font-bold uppercase tracking-wide text-white break-words md:text-3xl lg:text-4xl xl:text-5xl">
               {{ t('home.services.construction.title') }}
             </h3>
           </div>
@@ -177,7 +177,7 @@ onUnmounted(() => {
         <!-- Service 02: Property Management -->
         <NuxtLink
           :to="localePath('/services/property-management')"
-          class="service-item group relative flex min-h-[420px] items-end overflow-hidden sm:min-h-[520px] md:min-h-[700px] lg:min-h-[800px]"
+          class="service-item group relative flex min-h-[280px] max-h-[55vh] items-end overflow-hidden sm:min-h-[340px] sm:max-h-[60vh] md:min-h-[38vh] md:max-h-[520px] lg:min-h-[42vh] lg:max-h-[580px] xl:min-h-[45vh] xl:max-h-[640px]"
           @mouseenter="handleServiceEnter('read-more')"
           @mouseleave="handleServiceLeave"
         >
@@ -187,9 +187,9 @@ onUnmounted(() => {
           ></div>
           <!-- Gradient Overlay - Dark from bottom to light at top -->
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-          <!-- Text Overlay -->
-          <div class="relative z-10 w-full p-8 pb-12 md:p-12 md:pb-16">
-            <h3 class="text-3xl font-bold uppercase tracking-wide text-white md:text-4xl lg:text-5xl">
+          <!-- Text Overlay - min-w-0 and break-words so text isn't cropped -->
+          <div class="relative z-10 min-w-0 w-full p-6 pb-10 sm:p-8 sm:pb-12 md:p-12 md:pb-16">
+            <h3 class="text-2xl font-bold uppercase tracking-wide text-white break-words md:text-3xl lg:text-4xl xl:text-5xl">
               {{ t('home.services.property.title') }}
             </h3>
           </div>
@@ -200,7 +200,7 @@ onUnmounted(() => {
           href="https://buroojair.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="service-item group relative flex min-h-[420px] items-end overflow-hidden sm:min-h-[520px] md:min-h-[700px] lg:min-h-[800px]"
+          class="service-item group relative flex min-h-[280px] max-h-[55vh] items-end overflow-hidden sm:min-h-[340px] sm:max-h-[60vh] md:min-h-[38vh] md:max-h-[520px] lg:min-h-[42vh] lg:max-h-[580px] xl:min-h-[45vh] xl:max-h-[640px]"
           @mouseenter="handleServiceEnter('visit-website')"
           @mouseleave="handleServiceLeave"
         >
@@ -210,9 +210,9 @@ onUnmounted(() => {
           ></div>
           <!-- Gradient Overlay - Dark from bottom to light at top -->
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-          <!-- Text Overlay -->
-          <div class="relative z-10 w-full p-8 pb-12 md:p-12 md:pb-16">
-            <h3 class="text-3xl font-bold uppercase tracking-wide text-white md:text-4xl lg:text-5xl">
+          <!-- Text Overlay - min-w-0 and break-words so text isn't cropped -->
+          <div class="relative z-10 min-w-0 w-full p-6 pb-10 sm:p-8 sm:pb-12 md:p-12 md:pb-16">
+            <h3 class="text-2xl font-bold uppercase tracking-wide text-white break-words md:text-3xl lg:text-4xl xl:text-5xl">
               {{ t('home.services.drone.title') }}
             </h3>
           </div>

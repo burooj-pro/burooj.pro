@@ -46,18 +46,26 @@
       "titleLine2": "that Define Us",
       "stat1": {
         "number": "150+",
+        "title": "Projects delivered",
+        "body": "Covering residential villas, commercial fit-outs, smart systems, and high-rise drone cleaning.",
         "description": "Projects delivered, covering residential villas, commercial fit-outs, smart systems, and high-rise drone cleaning."
       },
       "stat2": {
         "number": "500+",
+        "title": "Managed units & assets",
+        "body": "Providing structured, data-driven property management with reporting automation.",
         "description": "Managed units & assets — providing structured, data-driven property management with reporting automation."
       },
       "stat3": {
         "number": "20,000+",
+        "title": "Square meters cleaned by drones",
+        "body": "Fast, safe, and eco-efficient façade and solar panel cleaning across the Kingdom.",
         "description": "Square meters cleaned by drones — fast, safe, and eco-efficient façade and solar panel cleaning across the Kingdom."
       },
       "stat4": {
         "number": "7+",
+        "title": "Years of excellence",
+        "body": "Delivering integrated solutions across engineering, property management, and innovation.",
         "description": "Years of excellence — delivering integrated solutions across engineering, property management, and innovation."
       }
     },
@@ -78,7 +86,11 @@
     "bts": {
       "title": "Behind The Scenes",
       "subtitle": "How We Work",
-      "description": "From initial concept to final delivery, see how our team brings projects to life with precision, innovation, and dedication."
+      "description": "From initial concept to final delivery, see how our team brings projects to life with precision, innovation, and dedication.",
+      "slide1": { "title": "Behind The Scenes", "description": "Our team working together on innovative solutions" },
+      "slide2": { "title": "Behind The Scenes", "description": "Brainstorming and ideation sessions" },
+      "slide3": { "title": "Behind The Scenes", "description": "On-site execution and quality control" },
+      "slide4": { "title": "Behind The Scenes", "description": "Our collaborative workspace environment" }
     },
     "clients": {
       "title": "Our trusted partners, from bold startups to global icons"
@@ -98,13 +110,26 @@
     "stat3": {
       "title": "Cleaned by Drones",
       "description": "Fast, safe, and eco-efficient façade and solar panel cleaning across the Kingdom."
+    },
+    "stat4": {
+      "title": "Years of Excellence",
+      "description": "Years of excellence — delivering integrated solutions across engineering, property management, and innovation."
     }
+  },
+  "errors": {
+    "serviceCategoryNotFound": "Service category not found",
+    "projectNotFound": "Project not found"
   },
   "services": {
     "title": "Our Services",
     "process": {
       "title": "Our Process",
-      "subtitle": "A structured approach to delivering exceptional results"
+      "subtitle": "A structured approach to delivering exceptional results",
+      "step1": { "title": "Consultation", "description": "We begin by understanding your needs, requirements, and objectives through detailed consultation." },
+      "step2": { "title": "Planning & Design", "description": "Our team develops comprehensive plans and designs tailored to your specific requirements." },
+      "step3": { "title": "Implementation", "description": "We execute the project with precision, ensuring quality and adherence to timelines." },
+      "step4": { "title": "Quality Assurance", "description": "We conduct thorough quality checks to ensure all deliverables meet our high standards." },
+      "step5": { "title": "Delivery & Support", "description": "We deliver the completed project and provide ongoing support as needed." }
     },
     "construction": {
       "title": "Construction & Engineering Services",
@@ -197,7 +222,8 @@
   },
   "clients": {
     "title": "Trusted by Leading Developers and Corporates",
-    "description": "Trusted by leading companies, developers, investors, and organizations across Saudi Arabia."
+    "description": "Trusted by leading companies, developers, investors, and organizations across Saudi Arabia.",
+    "placeholder": "Client placeholder"
   },
   "cta": {
     "title": "Let's Build, Manage,",
@@ -454,6 +480,10 @@
     }
   },
   "home": {
+    "ctaTooltip": {
+      "visitWebsite": "Visit the website",
+      "readMore": "Read More"
+    },
     "hero": {
       "headline": "Integrated Solutions for Smarter, Stronger, and Cleaner Spaces.",
       "subheadline": "Burooj unifies engineering, property management, and drone-powered cleaning into one seamless experience—delivering efficiency, precision, and long-lasting value across every project."

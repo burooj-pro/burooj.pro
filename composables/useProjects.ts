@@ -13,6 +13,7 @@ export interface Project {
   locationAr?: string
   year?: string
   client?: string
+  clientAr?: string
   services?: string[]
   servicesAr?: string[]
   overview?: string
@@ -49,9 +50,11 @@ export const useProjects = () => {
     {
       slug: 'albahar-villas',
       title: 'Hay Albahar Villas',
+      titleAr: 'فلل حي البحر',
       category: 'Construction & Engineering',
       status: 'Completed',
       description: 'Modern design for four villas located in Hay Albahar, Al Khobar.',
+      descriptionAr: 'تصميم حديث لأربع فلل في حي البحر، الخبر.',
       image: '/images/projects/1/1.png',
       images: [
         '/images/projects/1/1.png',
@@ -71,8 +74,10 @@ export const useProjects = () => {
       ],
       fullWidthImage: '/images/projects/1/14.png',
       location: 'Hay Albahar, Al Khobar, Saudi Arabia',
+      locationAr: 'حي البحر، الخبر، المملكة العربية السعودية',
       year: '2023–2024',
       client: 'Private Client',
+      clientAr: 'عميل خاص',
       services: [
         'Architecture Design',
         'Site Analysis',
@@ -81,23 +86,36 @@ export const useProjects = () => {
         'Smart Systems',
         'Finishing & Fit-Out',
       ],
+      servicesAr: ['التصميم المعماري', 'تحليل الموقع', 'التصميم الداخلي', 'تصميم المناظر الطبيعية', 'الأنظمة الذكية', 'التشطيب والتجهيز'],
       overview:
         'A modern residential development of four villas in Hay Albahar. The design combines clean architectural lines with practical layouts, supported by site analysis and climate/solar orientation studies to optimize comfort and daylight.',
+      overviewAr:
+        'تطوير سكني حديث لأربع فلل في حي البحر. يجمع التصميم بين خطوط معمارية نظيفة وتخطيطات عملية، مدعومة بدراسات تحليل الموقع والمناخ والاتجاه الشمسي لتحسين الراحة والإضاءة النهارية.',
       diagramText:
         'These villa diagrams summarize the overall zoning and circulation strategy across the four units—supporting privacy, daylight access, and smooth movement between living, service, and outdoor areas.',
+      diagramTextAr:
+        'تلخص مخططات الفلل هذه استراتيجية التقسيم والحركة عبر الوحدات الأربع—داعمة للخصوصية والإضاءة النهارية والانتقال السلس بين مناطق المعيشة والخدمة والمساحات الخارجية.',
       challenge:
         'Designing four modern villas with a cohesive identity while responding to site constraints, surrounding context, and solar orientation for long-term comfort and efficiency.',
+      challengeAr:
+        'تصميم أربع فلل حديثة بهوية متسقة مع الاستجابة لقيود الموقع والسياق المحيط والاتجاه الشمسي للراحة والكفاءة على المدى الطويل.',
       solution:
         'We started with detailed site analysis (location context, surrounding buildings, and solar orientation), then developed an integrated architecture and interior concept with coordinated landscape and smart systems.',
+      solutionAr:
+        'بدأنا بتحليل مفصل للموقع (سياق الموقع والمباني المحيطة والاتجاه الشمسي)، ثم طورنا مفهوماً متكاملاً للعمارة والديكور الداخلي مع تنسيق المناظر الطبيعية والأنظمة الذكية.',
       results:
         'A cohesive villa development with a clear modern identity, optimized orientation, and a premium finish standard aligned with the client’s expectations.',
+      resultsAr:
+        'تطوير فلل متكامل بهوية حديثة واضحة وتوجيه محسّن ومعيار تشطيب عالي يتوافق مع توقعات العميل.',
     },
     {
       slug: 'efficiency-center-khobar',
       title: 'GDC',
+      titleAr: 'مركز الجودة والكفاءة',
       category: 'Construction & Engineering',
       status: 'Completed',
       description: 'A modern office and workspace project delivered under our Construction & Engineering services.',
+      descriptionAr: 'مشروع مكتب ومساحة عمل حديث نفذ ضمن خدمات البناء والهندسة.',
       image: '/images/projects/6/1.png',
       images: [
         '/images/projects/6/1.png',
@@ -117,17 +135,28 @@ export const useProjects = () => {
       ],
       fullWidthImage: '/images/projects/6/14.png',
       location: 'Saudi Arabia',
+      locationAr: 'المملكة العربية السعودية',
       year: '2024',
       client: 'GDC',
+      clientAr: 'GDC',
       services: ['Interior Design', 'Finishing & Fit-Out', 'Smart Systems', 'Electrical Works', 'HVAC Installation'],
+      servicesAr: ['التصميم الداخلي', 'التشطيب والتجهيز', 'الأنظمة الذكية', 'الأعمال الكهربائية', 'تركيب أنظمة التكييف'],
       overview:
         'A modern office and workspace project designed to support productivity and day-to-day operations, with a clean material palette, integrated lighting, and coordinated building systems.',
+      overviewAr:
+        'مشروع مكتب ومساحة عمل حديث مصمم لدعم الإنتاجية والعمليات اليومية، مع لوحة مواد نظيفة وإضاءة متكاملة وأنظمة مبنى منسقة.',
       challenge:
         'Creating a functional workspace layout while coordinating multiple disciplines (interiors, finishing, and MEP) to a consistent quality standard.',
+      challengeAr:
+        'إنشاء تخطيط مساحة عمل وظيفي مع تنسيق عدة تخصصات (الديكور الداخلي والتشطيب والأنظمة الميكانيكية والكهربائية والسباكة) وفق معيار جودة متسق.',
       solution:
         'We aligned space planning with interior detailing early, then delivered coordinated drawings and a finishing package supported by on-site quality control.',
+      solutionAr:
+        'نسقنا تخطيط المساحة مع تفاصيل الديكور الداخلي مبكراً، ثم قدمنا رسومات منسقة وحزمة تشطيب مدعومة بمراقبة الجودة في الموقع.',
       results:
         'A cohesive, modern workspace with premium finishes and reliable systems—ready for daily use with consistent performance and maintainability.',
+      resultsAr:
+        'مساحة عمل حديثة متكاملة بتشطيبات عالية وأنظمة موثوقة—جاهزة للاستخدام اليومي بأداء متسق وسهولة صيانة.',
     },
     // {
     //   slug: 'mada-tower',
@@ -140,9 +169,11 @@ export const useProjects = () => {
     {
       slug: 'private-shalet',
       title: 'Halfmoon Villa',
+      titleAr: 'فيلا هافمون',
       category: 'Construction & Engineering',
       status: 'Completed',
       description: 'Villa project delivered under our Construction & Engineering services.',
+      descriptionAr: 'مشروع فيلا نفذ ضمن خدمات البناء والهندسة.',
       image: '/images/projects/4/1.png',
       images: [
         '/images/projects/4/1.png',
@@ -160,24 +191,37 @@ export const useProjects = () => {
       ],
       fullWidthImage: '/images/projects/4/12.png',
       location: 'Saudi Arabia',
+      locationAr: 'المملكة العربية السعودية',
       year: '2024',
       client: 'Private Client',
+      clientAr: 'عميل خاص',
       services: ['Architecture Design', 'Interior Design', 'Finishing & Fit-Out', 'Smart Systems'],
+      servicesAr: ['التصميم المعماري', 'التصميم الداخلي', 'التشطيب والتجهيز', 'الأنظمة الذكية'],
       overview:
         'A contemporary villa project focused on a clean architectural identity, functional spatial planning, and premium finishing details designed for comfort and long-term durability.',
+      overviewAr:
+        'مشروع فيلا معاصر يركز على هوية معمارية واضحة وتخطيط مكاني وظيفي وتفاصيل تشطيب عالية الجودة مصممة للراحة والمتانة على المدى الطويل.',
       challenge:
         'Balancing privacy, daylight, and circulation while maintaining a cohesive modern look across the exterior and interior spaces.',
+      challengeAr:
+        'موازنة الخصوصية والإضاءة النهارية والحركة مع الحفاظ على مظهر حديث متسق في المساحات الخارجية والداخلية.',
       solution:
         'Aligned the architectural concept with interior detailing early, then executed a coordinated finishing package with clear drawings and on-site quality control.',
+      solutionAr:
+        'تم تنسيق المفهوم المعماري مع تفاصيل الديكور الداخلي مبكراً، ثم تنفيذ حزمة تشطيب منسقة برسومات واضحة ومراقبة جودة في الموقع.',
       results:
         'A refined villa outcome with consistent design language, premium finishes, and spaces optimized for daily living and maintainability.',
+      resultsAr:
+        'نتيجة فيلا منسقة بلغة تصميم متسقة وتشطيبات عالية ومساحات محسّنة للمعيشة اليومية وسهولة الصيانة.',
     },
     {
       slug: 'gdc',
       title: 'Co-working Space',
+      titleAr: 'مساحة العمل المشترك',
       category: 'Construction & Engineering',
       status: 'Completed',
       description: 'A modern co-working space designed for focus, collaboration, and premium day-to-day usability.',
+      descriptionAr: 'مساحة عمل مشترك حديثة مصممة للتركيز والتعاون والاستخدام اليومي المريح.',
       image: '/images/projects/5/1.png',
       images: [
         '/images/projects/5/1.png',
@@ -201,17 +245,28 @@ export const useProjects = () => {
       ],
       fullWidthImage: '/images/projects/5/18.png',
       location: 'Saudi Arabia',
+      locationAr: 'المملكة العربية السعودية',
       year: '2024',
       client: 'Private Client',
+      clientAr: 'عميل خاص',
       services: ['Interior Design', 'Finishing & Fit-Out', 'Smart Systems', 'Electrical Works', 'HVAC Installation'],
+      servicesAr: ['التصميم الداخلي', 'التشطيب والتجهيز', 'الأنظمة الذكية', 'الأعمال الكهربائية', 'تركيب أنظمة التكييف'],
       overview:
         'A contemporary co-working environment designed to support productive focus and social collaboration. The space balances open areas, meeting zones, and comfortable circulation with a clean material palette and modern lighting.',
+      overviewAr:
+        'بيئة عمل مشترك معاصرة مصممة لدعم التركيز الإنتاجي والتعاون الاجتماعي. توازن المساحة بين المناطق المفتوحة ومناطق الاجتماعات والحركة المريحة مع لوحة مواد نظيفة وإضاءة حديثة.',
       challenge:
         'Creating a flexible layout that serves different work styles while maintaining acoustic comfort, clear wayfinding, and a consistent premium feel across all zones.',
+      challengeAr:
+        'إنشاء تخطيط مرن يخدم أنماط عمل مختلفة مع الحفاظ على راحة صوتية ووضوح التوجيه وشعور راقٍ متسق في جميع المناطق.',
       solution:
         'We developed a clear zoning strategy (focus, collaboration, and support areas), aligned lighting and finishes to each zone, and coordinated smart-ready infrastructure to keep the space adaptable.',
+      solutionAr:
+        'طورنا استراتيجية تقسيم واضحة (مناطق تركيز وتعاون ودعم)، ونسقنا الإضاءة والتشطيبات لكل منطقة، ونسقنا البنية التحتية الجاهزة للذكاء لجعل المساحة قابلة للتكيف.',
       results:
         'A cohesive co-working destination with a strong modern identity, functional flow, and durable finishes—ready for daily high-traffic use.',
+      resultsAr:
+        'وجهة عمل مشترك متكاملة بهوية حديثة قوية وتدفق وظيفي وتشطيبات متينة—جاهزة للاستخدام اليومي العالي الازدحام.',
     },
     // {
     //   slug: 'almazroeyah',
@@ -224,6 +279,7 @@ export const useProjects = () => {
     {
       slug: 'albarghash',
       title: 'AlBarghash Business Lounge',
+      titleAr: 'صالة أعمال البرغش',
       category: 'Construction & Engineering',
       status: 'Completed',
       description: 'Construction & engineering project delivered by Burooj.',
@@ -254,17 +310,28 @@ export const useProjects = () => {
       ],
       fullWidthImage: '/images/projects/2/14.png',
       location: 'Al Khobar, Saudi Arabia',
+      locationAr: 'الخبر، المملكة العربية السعودية',
       year: '2024',
       client: 'Private Client',
+      clientAr: 'عميل خاص',
       services: ['Architecture Design', 'Interior Design', 'Finishing & Fit-Out', 'Smart Systems'],
+      servicesAr: ['التصميم المعماري', 'التصميم الداخلي', 'التشطيب والتجهيز', 'الأنظمة الذكية'],
       overview:
         'A modern residential project delivered under Burooj’s Construction & Engineering division. The scope focused on a clean architectural identity, functional planning, and premium finishes—supported by coordinated interior details and smart-ready infrastructure.',
+      overviewAr:
+        'مشروع سكني حديث نفذته قسم البناء والهندسة في بروج. ركز النطاق على هوية معمارية واضحة وتخطيط وظيفي وتشطيبات عالية الجودة—بدعم من تفاصيل داخلية منسقة وبنية تحتية جاهزة للأنظمة الذكية.',
       challenge:
         'Delivering a consistent modern look while maintaining practical day-to-day living needs, and coordinating multiple disciplines (architecture, interiors, and finishing) to a single quality standard.',
+      challengeAr:
+        'تحقيق مظهر حديث متناسق مع الحفاظ على احتياجات الحياة العملية اليومية، وتنسيق عدة تخصصات (المعمار والديكور الداخلي والتشطيب) وفق معيار جودة واحد.',
       solution:
         'We aligned architecture and interior details early, then executed finishing packages with clear drawings, material coordination, and on-site quality control to ensure consistency across all spaces.',
+      solutionAr:
+        'نسقنا التفاصيل المعمارية والداخلية مبكراً، ثم نفذنا حزم التشطيب برسومات واضحة وتنسيق المواد ومراقبة الجودة في الموقع لضمان التناسق في جميع المساحات.',
       results:
         'A cohesive, modern residential outcome with premium finishes and a layout that balances aesthetics, comfort, and long-term maintainability.',
+      resultsAr:
+        'نتيجة سكنية حديثة متكاملة بتشطيبات عالية الجودة وتخطيط يوازن بين الجمال والراحة وسهولة الصيانة على المدى الطويل.',
     },
     {
       slug: 'al-fakhreyah-villa-project',
@@ -287,6 +354,7 @@ export const useProjects = () => {
       locationAr: 'المملكة العربية السعودية',
       year: '2024',
       client: 'Private Client',
+      clientAr: 'عميل خاص',
       services: ['Architecture Design', 'Interior Design', 'Finishing & Fit-Out'],
       servicesAr: ['التصميم المعماري', 'التصميم الداخلي', 'التشطيب والتجهيز'],
       overview:
@@ -317,9 +385,11 @@ export const useProjects = () => {
     {
       slug: 'roaya',
       title: 'Roaya',
+      titleAr: 'رواية',
       category: 'Construction & Engineering',
       status: 'Completed',
       description: 'Construction & engineering project delivered by Burooj.',
+      descriptionAr: 'مشروع بناء وهندسة نفذته بروج.',
       image: '/images/projects/9/1.png',
       images: [
         '/images/projects/9/1.png',
@@ -331,18 +401,25 @@ export const useProjects = () => {
       ],
       fullWidthImage: '/images/projects/9/6.png',
       location: 'Saudi Arabia',
+      locationAr: 'المملكة العربية السعودية',
       year: '2024',
       client: 'Roaya',
+      clientAr: 'رواية',
       services: ['Construction', 'Engineering'],
+      servicesAr: ['البناء', 'الهندسة'],
       overview:
         'Construction and engineering project delivered by Burooj, covering design, execution, and delivery to meet the client’s requirements.',
+      overviewAr:
+        'مشروع بناء وهندسة نفذته بروج، يشمل التصميم والتنفيذ والتسليم لتحقيق متطلبات العميل.',
     },
     {
       slug: 'thabat',
       title: 'Thabat Booth',
+      titleAr: 'كشك ثابت',
       category: 'Construction & Engineering',
       status: 'Completed',
       description: 'A branded booth project delivered under our Construction & Engineering services.',
+      descriptionAr: 'مشروع كشك ذو علامة تجارية نفذ ضمن خدمات البناء والهندسة.',
       image: '/images/projects/8/1.png',
       images: [
         '/images/projects/8/1.png',
@@ -353,17 +430,28 @@ export const useProjects = () => {
       ],
       fullWidthImage: '/images/projects/8/5.png',
       location: 'Saudi Arabia',
+      locationAr: 'المملكة العربية السعودية',
       year: '2024',
       client: 'Thabat',
+      clientAr: 'ثابت',
       services: ['Interior Design', 'Finishing & Fit-Out', 'Electrical Works'],
+      servicesAr: ['التصميم الداخلي', 'التشطيب والتجهيز', 'الأعمال الكهربائية'],
       overview:
         'A modern booth design focused on clear branding, clean lines, and an inviting visitor flow—built with durable finishes suitable for high-traffic events.',
+      overviewAr:
+        'تصميم كشك حديث يركز على العلامة التجارية الواضحة والخطوط النظيفة وتدفق الزوار المريح—مبني بتشطيبات متينة مناسبة للفعاليات ذات الازدحام العالي.',
       challenge:
         'Delivering a strong brand presence in a compact footprint while keeping circulation smooth and the build details clean and consistent.',
+      challengeAr:
+        'تقديم حضور علامة تجارية قوي في مساحة مدمجة مع الحفاظ على حركة سلسة وتفاصيل بناء نظيفة ومتسقة.',
       solution:
         'We designed a simple, high-impact layout and coordinated materials, lighting, and fabrication details to achieve a premium look and reliable on-site execution.',
+      solutionAr:
+        'صممنا تخطيطاً بسيطاً عالي التأثير ونسقنا المواد والإضاءة وتفاصيل التصنيع لتحقيق مظهر راقٍ وتنفيذ موثوق في الموقع.',
       results:
         'A cohesive booth outcome with strong visual identity, refined detailing, and a comfortable visitor experience.',
+      resultsAr:
+        'نتيجة كشك متكاملة بهوية بصرية قوية وتفاصيل منسقة وتجربة زائر مريحة.',
     },
     // {
     //   slug: 'ogo',
@@ -376,17 +464,21 @@ export const useProjects = () => {
     {
       slug: 'ec',
       title: 'EC',
+      titleAr: 'EC',
       category: 'Construction & Engineering',
       status: 'Completed',
       description: 'Construction & engineering project delivered by Burooj.',
+      descriptionAr: 'مشروع بناء وهندسة نفذته بروج.',
       image: '/images/project3.png',
     },
     {
       slug: 'tulip-spa',
       title: 'Tulip Spa',
+      titleAr: 'توليب سبا',
       category: 'Construction & Engineering',
       status: 'Completed',
       description: 'A premium spa fit-out project delivered under our Construction & Engineering services.',
+      descriptionAr: 'مشروع تجهيز سبا فاخر نفذ ضمن خدمات البناء والهندسة.',
       image: '/images/projects/7/1.png',
       images: [
         '/images/projects/7/1.png',
@@ -399,17 +491,28 @@ export const useProjects = () => {
       ],
       fullWidthImage: '/images/projects/7/7.png',
       location: 'Saudi Arabia',
+      locationAr: 'المملكة العربية السعودية',
       year: '2024',
       client: 'Tulip Spa',
+      clientAr: 'توليب سبا',
       services: ['Interior Design', 'Finishing & Fit-Out', 'Electrical Works', 'Plumbing Services', 'HVAC Installation'],
+      servicesAr: ['التصميم الداخلي', 'التشطيب والتجهيز', 'الأعمال الكهربائية', 'خدمات السباكة', 'تركيب أنظمة التكييف'],
       overview:
         'A modern spa environment designed to feel calm and premium, with cohesive materials, controlled lighting, and practical circulation for guests and staff.',
+      overviewAr:
+        'بيئة سبا حديثة مصممة لتبث الهدوء والرفاهية، مع مواد متناسقة وإضاءة مضبوطة وحركة عملية للضيوف والطاقم.',
       challenge:
         'Delivering a high-end guest experience while coordinating MEP requirements, wet-area detailing, and finishing quality across multiple treatment zones.',
+      challengeAr:
+        'تقديم تجربة ضيوف فاخرة مع تنسيق متطلبات الأنظمة الميكانيكية والكهربائية والسباكة وتفاصيل المناطق الرطبة وجودة التشطيب في مناطق المعالجة المتعددة.',
       solution:
         'We aligned the interior concept with technical requirements early, then delivered coordinated drawings and finishing packages with close on-site quality control.',
+      solutionAr:
+        'نسقنا مفهوم الديكور الداخلي مع المتطلبات التقنية مبكراً، ثم قدمنا رسومات منسقة وحزم تشطيب مع مراقبة جودة دقيقة في الموقع.',
       results:
         'A refined spa fit-out with consistent detailing, durable finishes, and a welcoming atmosphere ready for daily operation.',
+      resultsAr:
+        'تجهيز سبا منسق بتفاصيل متسقة وتشطيبات متينة وأجواء ترحيبية جاهزة للتشغيل اليومي.',
     },
     // {
     //   slug: 'aramco-facade-cleaning',
@@ -482,6 +585,7 @@ export const useProjects = () => {
       title: project.titleAr || project.title,
       description: project.descriptionAr || project.description,
       location: project.locationAr || project.location,
+      client: project.clientAr || project.client,
       overview: project.overviewAr || project.overview,
       diagramText: project.diagramTextAr || project.diagramText,
       challenge: project.challengeAr || project.challenge,

@@ -17,8 +17,15 @@ const project = getProjectBySlug(projectSlug)
 if (!project) {
   throw createError({
     statusCode: 404,
-    statusMessage: 'Project not found',
+    statusMessage: t('errors.projectNotFound'),
   })
+}
+
+const getCategoryLabel = (category: string) => {
+  if (category === 'Construction & Engineering') return t('projects.constructionEngineering')
+  if (category === 'Property Management') return t('projects.propertyManagement')
+  if (category === 'Drone Cleaning') return t('projects.droneCleaning')
+  return category
 }
 
 const localizedProject = computed(() => getLocalizedProject(project))
@@ -444,6 +451,10 @@ onMounted(async () => {
       <img
         :src="localizedProject.image"
         :alt="localizedProject.title"
+        width="1920"
+        height="1080"
+        fetchpriority="high"
+        decoding="async"
         class="absolute inset-0 h-full w-full object-cover"
       />
       <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
@@ -455,7 +466,7 @@ onMounted(async () => {
         <!-- Left Column: Category, Title, Description -->
         <div class="space-y-6">
           <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
-            {{ localizedProject.category }}
+            {{ getCategoryLabel(localizedProject.category) }}
           </p>
           <h1 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
             {{ localizedProject.title }}
@@ -511,6 +522,10 @@ onMounted(async () => {
             <img
               :src="project3HeroImages[0]"
               :alt="`${localizedProject.title} - Image 1`"
+              width="800"
+              height="450"
+              loading="lazy"
+              decoding="async"
               class="h-full w-full object-cover"
             />
           </div>
@@ -523,6 +538,10 @@ onMounted(async () => {
               <img
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index + 2}`"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
                 class="h-full w-full object-cover"
               />
             </div>
@@ -541,6 +560,10 @@ onMounted(async () => {
             <img
               :src="project8HeroImages[0]"
               :alt="`${localizedProject.title} - Image 1`"
+              width="800"
+              height="450"
+              loading="lazy"
+              decoding="async"
               class="h-full w-full object-cover"
             />
           </div>
@@ -553,6 +576,10 @@ onMounted(async () => {
               <img
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index + 2}`"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
                 class="h-full w-full object-cover"
               />
             </div>
@@ -565,6 +592,10 @@ onMounted(async () => {
             <img
               :src="project7HeroImages[0]"
               :alt="`${localizedProject.title} - Image 3`"
+              width="800"
+              height="450"
+              loading="lazy"
+              decoding="async"
               class="h-full w-full object-cover"
             />
           </div>
@@ -577,6 +608,10 @@ onMounted(async () => {
               <img
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index + 1}`"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
                 class="h-full w-full object-cover"
               />
             </div>
@@ -589,6 +624,10 @@ onMounted(async () => {
             <img
               :src="project2CigarRoomImages[0]"
               :alt="`${localizedProject.title} - Image 1`"
+              width="800"
+              height="450"
+              loading="lazy"
+              decoding="async"
               class="h-full w-full object-cover"
             />
           </div>
@@ -601,6 +640,10 @@ onMounted(async () => {
               <img
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index + 2}`"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
                 class="h-full w-full object-cover"
               />
             </div>
@@ -623,6 +666,10 @@ onMounted(async () => {
               <img
                 :src="image"
                 :alt="`${localizedProject.title} - Showcase image ${index + 1}`"
+                width="800"
+                height="450"
+                loading="lazy"
+                decoding="async"
                 class="h-full w-full object-cover"
               />
             </div>
@@ -645,6 +692,10 @@ onMounted(async () => {
               <img
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index + 5}`"
+                width="800"
+                height="450"
+                loading="lazy"
+                decoding="async"
                 class="h-full w-full object-cover"
               />
             </div>
@@ -662,6 +713,10 @@ onMounted(async () => {
             <img
               :src="project2FinalBlockImages[0]"
               :alt="`${localizedProject.title} - Image 14`"
+              width="800"
+              height="450"
+              loading="lazy"
+              decoding="async"
               class="h-full w-full object-cover"
             />
           </div>
@@ -674,6 +729,10 @@ onMounted(async () => {
               <img
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index === 0 ? 16 : 17}`"
+                width="800"
+                height="450"
+                loading="lazy"
+                decoding="async"
                 class="h-full w-full object-cover"
               />
             </div>
@@ -737,6 +796,10 @@ onMounted(async () => {
                 <img
                   :src="img"
                   :alt="`${localizedProject.title} - Diagram ${i + 1}`"
+                  width="800"
+                  height="450"
+                  loading="lazy"
+                  decoding="async"
                   class="h-full w-full object-cover"
                 />
               </div>
@@ -758,6 +821,10 @@ onMounted(async () => {
                 <img
                   :src="image"
                   :alt="`${localizedProject.title} - Image ${index + 4}`"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                   class="h-full w-full object-cover"
                 />
               </div>
@@ -788,6 +855,10 @@ onMounted(async () => {
                 <img
                   :src="image"
                   :alt="`${localizedProject.title} - Image ${index + 3}`"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                   class="h-full w-full object-cover"
                 />
               </div>
@@ -803,6 +874,10 @@ onMounted(async () => {
                 <img
                   :src="image"
                   :alt="`${localizedProject.title} - Image ${index + 3}`"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                   class="h-full w-full object-cover"
                 />
               </div>
@@ -819,6 +894,10 @@ onMounted(async () => {
                 <img
                   :src="image"
                   :alt="`${localizedProject.title} - Image ${index + 3}`"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                   class="h-full w-full object-cover"
                 />
               </div>
@@ -835,6 +914,10 @@ onMounted(async () => {
             <img
               :src="image"
               :alt="`${localizedProject.title} - Image ${index + (gdcQuadImages.length === 4 || project4QuadImages.length === 4 || project5QuadImages.length === 4 ? 3 : 6)}`"
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
               class="h-full w-full object-cover"
             />
           </div>
@@ -851,6 +934,10 @@ onMounted(async () => {
                 <img
                   :src="img"
                   :alt="`${localizedProject.title} - Image ${i === 0 ? 10 : 12}`"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                   class="h-full w-full object-cover"
                 />
               </div>
@@ -868,6 +955,10 @@ onMounted(async () => {
                 <img
                   :src="img"
                   :alt="`${localizedProject.title} - Image ${i === 0 ? 12 : 13}`"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                   class="h-full w-full object-cover"
                 />
               </div>
@@ -885,6 +976,10 @@ onMounted(async () => {
                 <img
                   :src="img"
                   :alt="`${localizedProject.title} - Image ${i === 0 ? 10 : 11}`"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                   class="h-full w-full object-cover"
                 />
               </div>
@@ -902,6 +997,10 @@ onMounted(async () => {
                 <img
                   :src="img"
                   :alt="`${localizedProject.title} - Image ${i === 0 ? 5 : 6}`"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                   class="h-full w-full object-cover"
                 />
               </div>
@@ -920,6 +1019,10 @@ onMounted(async () => {
                 <img
                   :src="img"
                   :alt="`${localizedProject.title} - Image ${i === 0 ? 13 : 14}`"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                   class="h-full w-full object-cover"
                 />
               </div>
@@ -932,6 +1035,10 @@ onMounted(async () => {
           <img
             :src="localizedProject.fullWidthImage"
             :alt="`${localizedProject.title} - Full Width`"
+            width="1200"
+            height="675"
+            loading="lazy"
+            decoding="async"
             class="h-full w-full object-cover"
           />
         </div>
@@ -944,6 +1051,10 @@ onMounted(async () => {
         <img
           :src="`${baseURL}images/hero-image.png`"
           alt=""
+          width="1920"
+          height="1080"
+          loading="lazy"
+          decoding="async"
           class="absolute inset-0 h-full w-full object-cover"
         />
         <!-- Same gradient overlay as hero section -->

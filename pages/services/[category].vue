@@ -72,7 +72,7 @@ const categoryInfo = categoryMap[categorySlug]
 if (!categoryInfo) {
   throw createError({
     statusCode: 404,
-    statusMessage: 'Service category not found',
+    statusMessage: t('errors.serviceCategoryNotFound'),
   })
 }
 
@@ -85,6 +85,14 @@ const categoryProjects = computed(() => {
     .filter((project: any) => project.category === categoryInfo.key)
     .map((project: any) => getLocalizedProject(project))
 })
+
+const getCategoryLabel = (category: string) => {
+  if (category === 'Construction & Engineering') return t('projects.constructionEngineering')
+  if (category === 'Property Management') return t('projects.propertyManagement')
+  if (category === 'Drone Cleaning') return t('projects.droneCleaning')
+  return category
+}
+const getStatusLabel = (status: string) => (status === 'Completed' ? t('projects.completed') : status)
 
 const { clientLogos } = useClientLogos({ placeholders: 0 })
 
@@ -105,26 +113,11 @@ const processSteps = computed(() => {
   }
   // Default process for categories without specific process
   return [
-    {
-      title: 'Consultation',
-      description: 'We begin by understanding your needs, requirements, and objectives through detailed consultation.',
-    },
-    {
-      title: 'Planning & Design',
-      description: 'Our team develops comprehensive plans and designs tailored to your specific requirements.',
-    },
-    {
-      title: 'Implementation',
-      description: 'We execute the project with precision, ensuring quality and adherence to timelines.',
-    },
-    {
-      title: 'Quality Assurance',
-      description: 'We conduct thorough quality checks to ensure all deliverables meet our high standards.',
-    },
-    {
-      title: 'Delivery & Support',
-      description: 'We deliver the completed project and provide ongoing support as needed.',
-    },
+    { title: t('services.process.step1.title'), description: t('services.process.step1.description') },
+    { title: t('services.process.step2.title'), description: t('services.process.step2.description') },
+    { title: t('services.process.step3.title'), description: t('services.process.step3.description') },
+    { title: t('services.process.step4.title'), description: t('services.process.step4.description') },
+    { title: t('services.process.step5.title'), description: t('services.process.step5.description') },
   ]
 })
 
@@ -237,7 +230,7 @@ onMounted(() => {
           <div
             v-for="service in categoryServices"
             :key="service.slug"
-            class="group relative flex min-h-[420px] w-[100vw] flex-none items-end overflow-hidden sm:min-h-[520px] md:min-h-[700px] md:w-[33.333333vw] lg:min-h-[800px]"
+            class="group relative flex min-h-[280px] max-h-[55vh] w-[100vw] flex-none items-end overflow-hidden sm:min-h-[340px] sm:max-h-[60vh] md:min-h-[38vh] md:max-h-[520px] md:w-[33.333333vw] lg:min-h-[42vh] lg:max-h-[580px] xl:min-h-[45vh] xl:max-h-[640px]"
           >
             <div
               v-if="service.image"
@@ -250,9 +243,9 @@ onMounted(() => {
             ></div>
             <!-- Gradient Overlay - Dark from bottom to light at top -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-            <!-- Text Overlay -->
-            <div class="relative z-10 w-full p-8 pb-12 md:p-12 md:pb-16">
-              <h3 class="text-3xl font-bold uppercase tracking-wide text-white md:text-4xl lg:text-5xl">
+            <!-- Text Overlay - min-w-0 and break-words so text isn't cropped on small screens -->
+            <div class="relative z-10 min-w-0 w-full p-6 pb-10 sm:p-8 sm:pb-12 md:p-12 md:pb-16">
+              <h3 class="text-2xl font-bold uppercase tracking-wide text-white break-words md:text-3xl lg:text-4xl xl:text-5xl">
                 {{ service.title }}
               </h3>
             </div>
@@ -385,10 +378,10 @@ onMounted(() => {
             <!-- Tags -->
             <div class="flex flex-wrap gap-2 pt-1">
               <span class="rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary">
-                {{ project.category }}
+                {{ getCategoryLabel(project.category) }}
               </span>
               <span class="rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary">
-                {{ project.status }}
+                {{ getStatusLabel(project.status) }}
               </span>
             </div>
           </div>

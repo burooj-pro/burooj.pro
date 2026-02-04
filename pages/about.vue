@@ -38,31 +38,15 @@ const handleBtsMouseMove = (e: MouseEvent) => {
 }
 
 
-const btsImages = [
-  {
-    title: 'Behind The Scenes',
-    image: `${baseURL}images/bts/bts1.png`,
-    description: 'Our team working together on innovative solutions',
-  },
-  {
-    title: 'Behind The Scenes',
-    image: `${baseURL}images/bts/bts2.png`,
-    description: 'Brainstorming and ideation sessions',
-  },
-  {
-    title: 'Behind The Scenes',
-    image: `${baseURL}images/bts/bts3.png`,
-    description: 'On-site execution and quality control',
-  },
-  {
-    title: 'Behind The Scenes',
-    image: `${baseURL}images/bts/bts4.png`,
-    description: 'Our collaborative workspace environment',
-  },
-]
+const btsImages = computed(() => [
+  { title: t('about.bts.slide1.title'), image: `${baseURL}images/bts/bts1.png`, description: t('about.bts.slide1.description') },
+  { title: t('about.bts.slide2.title'), image: `${baseURL}images/bts/bts2.png`, description: t('about.bts.slide2.description') },
+  { title: t('about.bts.slide3.title'), image: `${baseURL}images/bts/bts3.png`, description: t('about.bts.slide3.description') },
+  { title: t('about.bts.slide4.title'), image: `${baseURL}images/bts/bts4.png`, description: t('about.bts.slide4.description') },
+])
 
 // Duplicate images for seamless infinite loop
-const duplicatedBtsImages = [...btsImages, ...btsImages, ...btsImages]
+const duplicatedBtsImages = computed(() => [...btsImages.value, ...btsImages.value, ...btsImages.value])
 
 const { clientLogos } = useClientLogos({ placeholders: 0 })
 
@@ -118,7 +102,7 @@ onMounted(() => {
         // Get the width of one image (including gap)
         const firstImage = images[0] as HTMLElement
         const imageWidth = firstImage.offsetWidth + 16 // 16px gap (gap-4)
-        const totalImages = btsImages.length
+        const totalImages = btsImages.value.length
         const totalWidth = imageWidth * totalImages
         
         // Set initial scroll position to middle (second set)
@@ -280,10 +264,10 @@ onMounted(() => {
           <div class="flex flex-col space-y-8">
             <div
               v-for="(stat, index) in [
-                { number: t('about.stats.stat1.number'), title: 'Projects delivered', description: t('about.stats.stat1.description').replace(/^Projects delivered, /, '') },
-                { number: t('about.stats.stat2.number'), title: 'Managed units & assets', description: t('about.stats.stat2.description').replace(/^Managed units & assets — /, '') },
-                { number: t('about.stats.stat3.number'), title: 'Square meters cleaned by drones', description: t('about.stats.stat3.description').replace(/^Square meters cleaned by drones — /, '') },
-                { number: t('about.stats.stat4.number'), title: 'Years of excellence', description: t('about.stats.stat4.description').replace(/^Years of excellence — /, '') },
+                { number: t('about.stats.stat1.number'), title: t('about.stats.stat1.title'), body: t('about.stats.stat1.body') },
+                { number: t('about.stats.stat2.number'), title: t('about.stats.stat2.title'), body: t('about.stats.stat2.body') },
+                { number: t('about.stats.stat3.number'), title: t('about.stats.stat3.title'), body: t('about.stats.stat3.body') },
+                { number: t('about.stats.stat4.number'), title: t('about.stats.stat4.title'), body: t('about.stats.stat4.body') },
               ]"
               :key="index"
               class="relative"
@@ -469,7 +453,7 @@ onMounted(() => {
           :class="(logo.name === 'Thabat' || logo.name === 'GDC' || logo.name === 'Qiddiya' || logo.name === 'Barghash') ? 'h-12 max-h-14 w-auto sm:h-14 sm:max-h-16 md:h-16 md:max-h-20' : 'h-8 max-h-10 w-auto sm:h-10 sm:max-h-12 md:h-12 md:max-h-14'"
           loading="lazy"
         />
-        <span v-else class="text-xs font-medium text-slate-500">Client placeholder</span>
+        <span v-else class="text-xs font-medium text-slate-500">{{ t('clients.placeholder') }}</span>
       </div>
     </div>
   </section>

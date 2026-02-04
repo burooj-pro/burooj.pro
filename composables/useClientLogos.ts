@@ -6,6 +6,7 @@ export interface ClientLogo {
 export const useClientLogos = (options: { placeholders?: number } = {}) => {
   const config = useRuntimeConfig()
   const baseURL = config.app.baseURL || '/'
+  const { t } = useI18n()
 
   const placeholders = options.placeholders ?? 0
 
@@ -25,7 +26,7 @@ export const useClientLogos = (options: { placeholders?: number } = {}) => {
   ]
 
   for (let i = 0; i < placeholders; i++) {
-    logos.push({ name: 'Client placeholder' })
+    logos.push({ name: t('clients.placeholder') })
   }
 
   return { clientLogos: logos }

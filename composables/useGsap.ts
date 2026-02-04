@@ -195,10 +195,12 @@ export const useGsap = () => {
 
     const obj = { value: 0 }
     
-    // Check if element is already in viewport (might be visible due to fixed hero)
+    // Check if element is already in viewport (might be visible due to fixed hero).
+    // Use requestAnimationFrame to avoid forced reflow: read layout in its own frame.
     const checkAndAnimate = () => {
-      const rect = el.getBoundingClientRect()
-      const isInView = rect.top < window.innerHeight && rect.bottom > 0
+      requestAnimationFrame(() => {
+        const rect = el.getBoundingClientRect()
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0
       
       if (isInView) {
         // If already visible, animate immediately
@@ -232,6 +234,7 @@ export const useGsap = () => {
           },
         })
       }
+      })
     }
     
     // Check immediately and also after a short delay to account for hero section pinning

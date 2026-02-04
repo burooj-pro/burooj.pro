@@ -7,7 +7,8 @@
     "dev": "nuxt dev --port 3001",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "convert-hero-video": "node scripts/convert-hero-to-mp4.mjs"
   },
   "imports": {
     "#app": "./.nuxt/dist/app/index.mjs",
@@ -22,6 +23,9 @@
     "#internal/nuxt/paths": "./.nuxt/dist/server/paths.mjs",
     "#nuxt": "./.nuxt/dist/app/index.mjs",
     "#nuxt/*": "./.nuxt/dist/app/*"
+  },
+  "devDependencies": {
+    "ffmpeg-static": "^5.2.0"
   },
   "dependencies": {
     "@nuxtjs/i18n": "^10.2.1",
