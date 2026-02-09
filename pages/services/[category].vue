@@ -193,11 +193,11 @@ onMounted(() => {
       <div class="container px-6 md:px-12 lg:px-16 xl:px-20">
         <div class="max-w-4xl space-y-8">
           <h2 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
-            {{ t('home.about.title') }}<span class="text-primary">{{ t('home.about.titleHighlight') }}</span>{{ t('home.about.titleSuffix') }}
+            {{ t('home.services.about.title') }}<span class="text-primary">{{ t('home.services.about.titleHighlight') }}</span>{{ t('home.services.about.titleSuffix') }}
           </h2>
 
           <p class="text-base font-serif leading-relaxed text-ink md:text-lg">
-            {{ t('home.about.description') }}
+            {{ t('home.services.about.description') }}
           </p>
         </div>
       </div>

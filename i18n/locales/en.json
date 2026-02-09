@@ -491,16 +491,22 @@
       "subheadline": "Burooj unifies engineering, property management, and drone-powered cleaning into one seamless experience—delivering efficiency, precision, and long-lasting value across every project."
     },
     "about": {
-      "title": "Comprehensive ",
-      "titleHighlight": "Construction & Engineering",
-      "titleSuffix": " Solutions",
-      "titleLine2": "shaping modern built environments.",
-      "description": "We provide end-to-end construction and engineering services that bring architecture, interiors, MEP, and smart systems together under one coordinated process. Our approach focuses on technical accuracy, efficient execution, and long-term performance, ensuring every project is delivered with clarity, quality, and control from design through completion.",
+      "title": "A multi-disciplinary Saudi company ",
+      "titleHighlight": "shaping modern built environments",
+      "titleSuffix": ".",
+      "titleLine2": "",
+      "description": "Burooj delivers integrated solutions across construction, interior design, fit-out, property services, and smart building systems. With a strong focus on quality, efficiency, and precision, we support projects across their full lifecycle from early planning and execution to ongoing operations and maintenance.\n\nOur unified approach allows clients to rely on a single trusted partner for their property needs. By combining design expertise with technical execution, we create spaces that balance functionality, durability, and refined aesthetics, ensuring long-term value and consistent performance.",
       "parentCompany": ""
     },
     "services": {
       "title": "Core Services",
       "subtitle": "Focused disciplines covering design, interiors, and fit-out—executed with technical accuracy and on-site coordination.",
+      "about": {
+        "title": "Comprehensive ",
+        "titleHighlight": "Construction & Engineering",
+        "titleSuffix": " Solutions",
+        "description": "We provide end-to-end construction and engineering services that bring architecture, interiors, MEP, and smart systems together under one coordinated process. Our approach focuses on technical accuracy, efficient execution, and long-term performance, ensuring every project is delivered with clarity, quality, and control from design through completion."
+      },
       "construction": {
         "title": "CONSTRUCTION",
         "titleFull": "Construction & Engineering Services",
