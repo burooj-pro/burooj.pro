@@ -132,12 +132,13 @@ onUnmounted(() => {
           />
         </div>
         <div class="relative z-10 mt-4 space-y-3">
-          <div class="flex flex-wrap gap-2">
-            <span class="rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary">
-              {{ getCategoryLabel(project.category) }}
-            </span>
-            <span class="rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary">
-              {{ getStatusLabel(project.status) }}
+          <div v-if="project.services && project.services.length > 0" class="flex flex-wrap gap-2">
+            <span
+              v-for="service in project.services"
+              :key="service"
+              class="rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary"
+            >
+              {{ service }}
             </span>
           </div>
           <h2 class="text-xl font-bold leading-tight text-ink md:text-2xl">

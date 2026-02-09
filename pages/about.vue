@@ -23,6 +23,12 @@ const btsSection = ref<HTMLElement | null>(null)
 const clientsSection = ref<HTMLElement | null>(null)
 const clientLogosRefs = ref<HTMLElement[]>([])
 
+// Defer hero background video to improve LCP
+const enableHeroVideo = ref(false)
+// When video fails (e.g. unsupported format), don't show the video element
+const heroVideoFailed = ref(false)
+const heroVideoEl = ref<HTMLVideoElement | null>(null)
+
 const btsContainer = ref<HTMLElement | null>(null)
 const btsWrapper = ref<HTMLElement | null>(null)
 
@@ -52,6 +58,28 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
 
 onMounted(() => {
   if (typeof window === 'undefined') return
+  
+  // Defer loading of large background videos until after first paint
+  const defer = (cb: () => void) => {
+    if ('requestIdleCallback' in window) {
+      ;(window as any).requestIdleCallback(cb, { timeout: 2000 })
+    } else {
+      setTimeout(cb, 1200)
+    }
+  }
+  defer(() => {
+    enableHeroVideo.value = true
+    // Ensure video starts playing (helps when autoplay is delayed)
+    nextTick(() => {
+      setTimeout(() => {
+        const video = heroVideoEl.value
+        if (video && !heroVideoFailed.value) {
+          video.muted = true
+          video.play().catch(() => { /* autoplay blocked or failed */ })
+        }
+      }, 300)
+    })
+  })
   
   // Animate sections on scroll
   fadeInUp(heroSection)
@@ -205,23 +233,42 @@ onMounted(() => {
   <section
     ref="heroSection"
     data-hero
-    class="relative isolate flex min-h-[70vh] w-full items-end justify-center overflow-hidden"
+    class="relative isolate h-screen w-full"
   >
-    <img
-      :src="`${baseURL}images/hero-image.png`"
-      :alt="t('about.hero.headline')"
-      class="absolute inset-0 h-full w-full object-cover"
-    />
-    <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
-    <div class="relative z-10 w-full pb-8 text-left text-white md:pb-12 lg:pb-16">
+    <!-- Sticky Background - positioned to stick while scrolling -->
+    <div class="fixed inset-x-0 top-0 z-0 h-screen w-full">
+      <video
+        v-if="enableHeroVideo && !heroVideoFailed"
+        ref="heroVideoEl"
+        class="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        aria-label="Burooj hero background video"
+        @error="heroVideoFailed = true"
+        @canplay="($event.target as HTMLVideoElement)?.play()"
+      >
+        <!-- MP4 for Chrome/Edge/Firefox -->
+        <source :src="`${baseURL}videos/hero.mp4`" type="video/mp4" />
+      </video>
+      <!-- Fallback image if video fails or is disabled -->
+      <img
+        v-if="!enableHeroVideo || heroVideoFailed"
+        :src="`${baseURL}images/hero-image.png`"
+        :alt="t('about.hero.headline')"
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
+    </div>
+    <!-- Content Overlay - visible in the hero section -->
+    <div class="relative z-20 flex h-full w-full items-end justify-center pb-8 text-left text-white md:pb-12 lg:pb-16">
       <div class="container w-full px-6 md:px-12 lg:px-16 xl:px-20">
         <div class="max-w-7xl space-y-6">
           <h1 class="w-full text-4xl font-normal leading-[1.1] tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
             {{ t('about.hero.headline') }}
           </h1>
-          <p class="max-w-4xl text-base font-normal leading-relaxed text-white/95 md:text-lg lg:text-xl">
-            {{ t('about.hero.subheadline') }}
-          </p>
         </div>
       </div>
     </div>
@@ -238,6 +285,9 @@ onMounted(() => {
           </h2>
           <p class="whitespace-pre-line text-base font-serif leading-relaxed text-ink md:text-lg">
             {{ t('home.about.description') }}
+          </p>
+          <p v-if="t('home.about.parentCompany')" class="text-base font-serif leading-relaxed text-ink/90 md:text-lg">
+            {{ t('home.about.parentCompany') }}
           </p>
         </div>
 
@@ -433,7 +483,7 @@ onMounted(() => {
   </section>
 
   <!-- Clients Section -->
-  <section ref="clientsSection" class="section-wrapper relative z-10">
+  <section ref="clientsSection" class="section-wrapper relative z-10 bg-white">
     <h2 class="mb-8 text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
       {{ t('clients.title') }}
     </h2>

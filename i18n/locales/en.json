@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About",
+    "about": "About Burooj",
     "services": "Services",
     "projects": "Projects",
     "contact": "Contact",
@@ -79,9 +79,9 @@
       "sectionTitle": "A Message from Our Leader",
       "heading": "",
       "intro": "At Burooj, we design beyond convention. Every detail, every project, every moment — crafted to redefine what integrated property solutions can be.",
-      "messagePart1": "At Burooj, we build more than properties — we craft experiences with purpose. Standing at the intersection of engineering, management, and innovation, we create solutions that move developments forward and leave a lasting impact.",
-      "messagePart2": "We don't chase trends — we challenge them. Guided by excellence, we operate at the edge of innovation — blending precision, technology, and reliability to craft services that resonate deeper than expectations. We're not here to follow the market. We're here to define what's next.",
-      "messagePart3": "That's why we've powered projects, shaped communities, and built platforms for developments that refuse to stay ordinary — from residential villas to commercial towers. Whatever the scale, the goal is the same: create work that endures."
+      "messagePart1": "At Burooj, we build more than properties, we craft experiences with purpose. Standing at the intersection of engineering, management, and innovation, we create solutions that move developments forward and leave a lasting impact.",
+      "messagePart2": "We don't chase trends, we challenge them. Guided by excellence, we operate at the edge of innovation, blending precision, technology, and reliability to craft services that resonate deeper than expectations. We're not here to follow the market. We're here to define what's next.",
+      "messagePart3": "That's why we've powered projects, shaped communities, and built platforms for developments that refuse to stay ordinary, from residential villas to commercial towers. Whatever the scale, the goal is the same: create work that endures."
     },
     "bts": {
       "title": "Behind The Scenes",
@@ -232,6 +232,7 @@
   },
   "footer": {
     "description": "Integrated construction, property management, and drone cleaning solutions powered by technology and Saudi expertise.",
+    "parentCompany": "A subsidiary of Naqsh Holding.",
     "quickLinks": "Quick Links",
     "contact": "Contact",
     "copyright": "All rights reserved.",
@@ -492,8 +493,9 @@
       "title": "A ",
       "titleHighlight": "multi-disciplinary",
       "titleSuffix": " Saudi company",
-      "titleLine2": "shaping modern property experiences.",
-      "description": "Burooj delivers integrated solutions across engineering, construction, property management, and drone-powered cleaning. With a focus on quality, speed, and technology-driven efficiency, we support buildings throughout their entire lifecycle—from design and development to daily operations and long-term maintenance.\n\nOur unified approach allows clients to rely on one trusted partner for everything their property needs—architecture, fit-outs, smart systems, asset management, and advanced cleaning solutions."
+      "titleLine2": "shaping modern built environments.",
+      "description": "Burooj delivers integrated solutions across construction, interior design, fit-out, property services, and smart building systems. With a strong focus on quality, efficiency, and precision, we support projects across their full lifecycle, from early planning and execution to ongoing operations and maintenance.\n\nOur unified approach allows clients to rely on a single trusted partner for their property needs. By combining design expertise with technical execution, we create spaces that balance functionality, durability, and refined aesthetics, ensuring long-term value and consistent performance.",
+      "parentCompany": ""
     },
     "services": {
       "title": "Our Services",

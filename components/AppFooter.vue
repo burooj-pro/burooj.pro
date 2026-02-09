@@ -13,6 +13,9 @@ const baseURL = config.app.baseURL || '/'
         <p class="text-sm text-slate-300">
           {{ t('footer.description') }}
         </p>
+        <p class="text-xs text-slate-400">
+          {{ t('footer.parentCompany') }}
+        </p>
       </div>
 
       <div>

@@ -253,6 +253,9 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
         <p class="whitespace-pre-line text-base font-serif leading-relaxed text-ink md:text-lg">
           {{ t('home.about.description') }}
         </p>
+        <p v-if="t('home.about.parentCompany')" class="text-base font-serif leading-relaxed text-ink/90 md:text-lg">
+          {{ t('home.about.parentCompany') }}
+        </p>
       </div>
     </div>
 
@@ -442,13 +445,14 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
           <p class="text-sm leading-relaxed text-slate-600 md:text-base">
             {{ project.description }}
           </p>
-          <!-- Tags -->
-          <div class="flex flex-wrap gap-2 pt-1">
-            <span class="rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary">
-              {{ getCategoryLabel(project.category) }}
-            </span>
-            <span class="rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary">
-              {{ getStatusLabel(project.status) }}
+          <!-- Services -->
+          <div v-if="project.services && project.services.length > 0" class="flex flex-wrap gap-2 pt-1">
+            <span
+              v-for="service in project.services"
+              :key="service"
+              class="rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary"
+            >
+              {{ service }}
             </span>
           </div>
         </div>

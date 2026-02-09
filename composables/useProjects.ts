@@ -18,8 +18,18 @@ export interface Project {
   servicesAr?: string[]
   overview?: string
   overviewAr?: string
+  exteriorDesign?: string
+  exteriorDesignAr?: string
+  interiorDesign?: string
+  interiorDesignAr?: string
   diagramText?: string
   diagramTextAr?: string
+  midGalleryText?: string
+  midGalleryTextAr?: string
+  entranceText?: string
+  entranceTextAr?: string
+  gymText?: string
+  gymTextAr?: string
   challenge?: string
   challengeAr?: string
   solution?: string
@@ -49,23 +59,21 @@ export const useProjects = () => {
   const projects: Project[] = [
     {
       slug: 'albahar-villas',
-      title: 'Hay Albahar Villas',
+      title: 'Hay Albahr Villas',
       titleAr: 'فلل حي البحر',
       category: 'Construction & Engineering',
       status: 'Completed',
-      description: 'Modern design for four villas located in Hay Albahar, Al Khobar.',
-      descriptionAr: 'تصميم حديث لأربع فلل في حي البحر، الخبر.',
+      description: 'A high-end residential development redefining modern villa living through architectural elegance, smart technology, and functional comfort.',
+      descriptionAr: 'تطوير سكني فاخر يعيد تعريف الحياة الفيلية العصرية عبر الأناقة المعمارية والتكنولوجيا الذكية والراحة الوظيفية.',
       image: '/images/projects/1/1.png',
       images: [
         '/images/projects/1/1.png',
         '/images/projects/1/2.png',
-        '/images/projects/1/3.png',
         '/images/projects/1/4.png',
         '/images/projects/1/5.png',
         '/images/projects/1/6.png',
         '/images/projects/1/7.png',
         '/images/projects/1/8.png',
-        '/images/projects/1/9.png',
         '/images/projects/1/10.png',
         '/images/projects/1/11.png',
         '/images/projects/1/12.png',
@@ -81,16 +89,25 @@ export const useProjects = () => {
       services: [
         'Architecture Design',
         'Site Analysis',
+        'Site Supervision',
         'Interior Design',
         'Landscape Design',
         'Smart Systems',
         'Finishing & Fit-Out',
       ],
-      servicesAr: ['التصميم المعماري', 'تحليل الموقع', 'التصميم الداخلي', 'تصميم المناظر الطبيعية', 'الأنظمة الذكية', 'التشطيب والتجهيز'],
+      servicesAr: ['التصميم المعماري', 'تحليل الموقع', 'الإشراف على الموقع', 'التصميم الداخلي', 'تصميم المناظر الطبيعية', 'الأنظمة الذكية', 'التشطيب والتجهيز'],
       overview:
-        'A modern residential development of four villas in Hay Albahar. The design combines clean architectural lines with practical layouts, supported by site analysis and climate/solar orientation studies to optimize comfort and daylight.',
+        'Our scope of work covered the full design and execution of the project, including architectural development, spatial planning, and technical coordination. We translated the initial vision into a cohesive residential solution by aligning architectural form with functional layouts, climate-responsive strategies, and smart system integration. Detailed site analysis and solar orientation studies were conducted to optimize daylight, comfort, and energy efficiency, ensuring a well-balanced outcome across design intent and on-site execution.',
       overviewAr:
-        'تطوير سكني حديث لأربع فلل في حي البحر. يجمع التصميم بين خطوط معمارية نظيفة وتخطيطات عملية، مدعومة بدراسات تحليل الموقع والمناخ والاتجاه الشمسي لتحسين الراحة والإضاءة النهارية.',
+        'شمل نطاق أعمالنا التصميم الكامل والتنفيذ للمشروع، بما في ذلك التطوير المعماري وتخطيط المساحات والتنسيق الفني. حوّلنا الرؤية الأولية إلى حل سكني متسق من خلال مواءمة الشكل المعماري مع التخطيطات الوظيفية واستراتيجيات الاستجابة للمناخ ودمج الأنظمة الذكية. أُجريت دراسات تفصيلية للموقع وتوجه الشمس لتحسين الإضاءة النهارية والراحة وكفاءة الطاقة، مما يضمن نتيجة متوازنة بين نية التصميم والتنفيذ في الموقع.',
+      exteriorDesign:
+        'The exterior design reflects a contemporary architectural language defined by clean lines, balanced proportions, and a refined material palette. Each villa was carefully composed to achieve visual harmony while maintaining individuality, with façades designed to enhance privacy, natural light, and thermal performance. Shading elements and façade orientation were thoughtfully considered to respond to the local climate, resulting in an exterior that is both elegant and functional, and seamlessly integrated within the Hay Albahr urban context.',
+      exteriorDesignAr:
+        'يعكس التصميم الخارجي لغة معمارية معاصرة تتميز بخطوط نظيفة ونسب متوازنة ولوحة مواد راقية. تم تأليف كل فيلا بعناية لتحقيق انسجام بصري مع الحفاظ على الهوية الفردية، مع واجهات مصممة لتعزيز الخصوصية والإضاءة الطبيعية والأداء الحراري. تم النظر بعناية في عناصر التظليل وتوجيه الواجهات للاستجابة للمناخ المحلي، مما أدى إلى خارج أنيق وعملي ومتكامل بسلاسة مع السياق الحضري لحي البحر.',
+      interiorDesign:
+        'The interior design was developed to deliver a modern, comfortable living experience through well-planned spaces and a clear spatial flow. Layouts were carefully designed to balance openness and privacy, with an emphasis on natural light, functionality, and ease of movement. High-quality finishes and a neutral material palette were selected to create a warm and refined atmosphere, while integrated smart systems enhance everyday comfort and allow for intuitive control of lighting, climate, and key home functions.',
+      interiorDesignAr:
+        'تم تطوير التصميم الداخلي لتقديم تجربة معيشة عصرية ومريحة من خلال مساحات مُخططة جيداً وتدفق مكاني واضح. صُممت التخطيطات بعناية لموازنة الانفتاح والخصوصية، مع التركيز على الإضاءة الطبيعية والوظيفة وسهولة الحركة. تم اختيار تشطيبات عالية الجودة ولوحة ألوان محايدة لخلق أجواء دافئة وراقية، بينما تعزز الأنظمة الذكية المتكاملة الراحة اليومية وتتيح التحكم البديهي بالإضاءة والمناخ ووظائف المنزل الرئيسية.',
       diagramText:
         'These villa diagrams summarize the overall zoning and circulation strategy across the four units—supporting privacy, daylight access, and smooth movement between living, service, and outdoor areas.',
       diagramTextAr:
@@ -110,8 +127,8 @@ export const useProjects = () => {
     },
     {
       slug: 'efficiency-center-khobar',
-      title: 'GDC',
-      titleAr: 'مركز الجودة والكفاءة',
+      title: 'GDC Middle East – Riyadh Office Fit-Out',
+      titleAr: 'تشطيب مكتب جي دي سي الشرق الأوسط – الرياض',
       category: 'Construction & Engineering',
       status: 'Completed',
       description: 'A modern office and workspace project delivered under our Construction & Engineering services.',
@@ -134,17 +151,43 @@ export const useProjects = () => {
         '/images/projects/6/14.png',
       ],
       fullWidthImage: '/images/projects/6/14.png',
-      location: 'Saudi Arabia',
-      locationAr: 'المملكة العربية السعودية',
+      location: 'Riyadh, Saudi Arabia',
+      locationAr: 'الرياض، المملكة العربية السعودية',
       year: '2024',
-      client: 'GDC',
-      clientAr: 'GDC',
-      services: ['Interior Design', 'Finishing & Fit-Out', 'Smart Systems', 'Electrical Works', 'HVAC Installation'],
-      servicesAr: ['التصميم الداخلي', 'التشطيب والتجهيز', 'الأنظمة الذكية', 'الأعمال الكهربائية', 'تركيب أنظمة التكييف'],
+      client: 'GDC Middle East',
+      clientAr: 'جي دي سي الشرق الأوسط',
+      services: [
+        'Interior Design',
+        'Finishing & Fit-Out',
+        'Custom Furniture Design & Installation',
+        'Smart Systems & Building Automation',
+        'IT Infrastructure',
+        'Electrical Works',
+        'HVAC Installation',
+        'Access Control Systems',
+        'Project Management',
+        'Site Supervision',
+      ],
+      servicesAr: [
+        'التصميم الداخلي',
+        'التشطيب والتجهيز',
+        'تصميم وتركيب الأثاث المخصص',
+        'الأنظمة الذكية وأتمتة المباني',
+        'البنية التحتية لتقنية المعلومات',
+        'الأعمال الكهربائية',
+        'تركيب أنظمة التكييف',
+        'أنظمة التحكم في الوصول',
+        'إدارة المشاريع',
+        'الإشراف على الموقع',
+      ],
       overview:
-        'A modern office and workspace project designed to support productivity and day-to-day operations, with a clean material palette, integrated lighting, and coordinated building systems.',
+        'Our work involved the end-to-end delivery of a comprehensive office fit-out for GDC Middle East\'s Riyadh headquarters, covering a total area of 2,437 sqm. We managed the project from design development through execution, ensuring a seamless translation of concept into a functional and refined workspace. The fit-out was completed within an accelerated timeline of 16 weeks, reflecting a high level of coordination, precision, and execution efficiency.',
       overviewAr:
-        'مشروع مكتب ومساحة عمل حديث مصمم لدعم الإنتاجية والعمليات اليومية، مع لوحة مواد نظيفة وإضاءة متكاملة وأنظمة مبنى منسقة.',
+        'شمل عملنا التسليم المتكامل لتشطيب مكتبي شامل لمقر جي دي سي الشرق الأوسط في الرياض، بمساحة إجمالية 2,437 متراً مربعاً. أدارنا المشروع من تطوير التصميم حتى التنفيذ، مع ضمان ترجمة سلسة للمفهوم إلى مساحة عمل وظيفية وراقية. اكتمل التشطيب خلال جدول زمني مُسرّع قدره 16 أسبوعاً، مما يعكس مستوى عالٍ من التنسيق والدقة وكفاءة التنفيذ.',
+      midGalleryText:
+        'The conference room was designed as a focused collaboration space, combining ergonomic planning with integrated lighting, ceiling features, and acoustic considerations. Custom architectural elements and controlled lighting create a balanced environment that supports productivity while maintaining a strong industrial-modern character.',
+      midGalleryTextAr:
+        'صُممت غرفة الاجتماعات كمساحة تعاون مركزة، تجمع بين التخطيط المريح والإضاءة المتكاملة وميزات السقف والاعتبارات الصوتية. عناصر معمارية مخصصة وإضاءة مضبوطة تخلق بيئة متوازنة تدعم الإنتاجية مع الحفاظ على طابع صناعي-حديث واضح.',
       challenge:
         'Creating a functional workspace layout while coordinating multiple disciplines (interiors, finishing, and MEP) to a consistent quality standard.',
       challengeAr:
@@ -168,12 +211,12 @@ export const useProjects = () => {
     // },
     {
       slug: 'private-shalet',
-      title: 'Halfmoon Villa',
-      titleAr: 'فيلا هافمون',
+      title: 'Beachfront Najdi Villas',
+      titleAr: 'فلل نجدية على الواجهة البحرية',
       category: 'Construction & Engineering',
       status: 'Completed',
-      description: 'Villa project delivered under our Construction & Engineering services.',
-      descriptionAr: 'مشروع فيلا نفذ ضمن خدمات البناء والهندسة.',
+      description: 'Interior design development for nine private beachfront villas in traditional Najdi style with a contemporary Saudi identity.',
+      descriptionAr: 'تطوير التصميم الداخلي لتسع فلل سكنية خاصة على الواجهة البحرية بأسلوب نجدي تقليدي وهوية سعودية معاصرة.',
       image: '/images/projects/4/1.png',
       images: [
         '/images/projects/4/1.png',
@@ -192,15 +235,31 @@ export const useProjects = () => {
       fullWidthImage: '/images/projects/4/12.png',
       location: 'Saudi Arabia',
       locationAr: 'المملكة العربية السعودية',
-      year: '2024',
+      year: '2026',
       client: 'Private Client',
       clientAr: 'عميل خاص',
-      services: ['Architecture Design', 'Interior Design', 'Finishing & Fit-Out', 'Smart Systems'],
-      servicesAr: ['التصميم المعماري', 'التصميم الداخلي', 'التشطيب والتجهيز', 'الأنظمة الذكية'],
+      services: [
+        'Interior Design',
+        'Concept Development',
+        'Material & Finish Selection',
+        'Custom Furniture Design',
+        'Interior Detailing & Specifications',
+      ],
+      servicesAr: [
+        'التصميم الداخلي',
+        'تطوير المفهوم',
+        'اختيار المواد والتشطيبات',
+        'تصميم الأثاث المخصص',
+        'التفاصيل الداخلية والمواصفات',
+      ],
       overview:
-        'A contemporary villa project focused on a clean architectural identity, functional spatial planning, and premium finishing details designed for comfort and long-term durability.',
+        'Our scope of work focused exclusively on the interior design development of a private beachfront residential project consisting of nine villas. The interiors were designed in a traditional Najdi style with a contemporary Saudi identity, carefully reinterpreted to suit modern living while preserving cultural authenticity.\n\nThe design approach emphasized warmth, craftsmanship, and spatial balance, creating interiors that feel rooted in heritage yet refined and comfortable for a coastal lifestyle.',
       overviewAr:
-        'مشروع فيلا معاصر يركز على هوية معمارية واضحة وتخطيط مكاني وظيفي وتفاصيل تشطيب عالية الجودة مصممة للراحة والمتانة على المدى الطويل.',
+        'ركز نطاق أعمالنا حصرياً على تطوير التصميم الداخلي لمشروع سكني خاص على الواجهة البحرية يتألف من تسع فلل. صُممت الدواخل بأسلوب نجدي تقليدي وهوية سعودية معاصرة، مع إعادة تفسير مدروسة تلائم العيش الحديث مع الحفاظ على الأصالة الثقافية.\n\nركّز نهج التصميم على الدفء والحرفية والتوازن المكاني، مخلّفاً دواخل متجذرة في التراث وراقية ومريحة لنمط الحياة الساحلي.',
+      midGalleryText:
+        'The kitchen was designed as a light, simple space tailored for holiday living, combining functional layouts with natural materials and subtle Najdi detailing. Open shelving and natural daylight create an informal, comfortable environment suited for relaxed daily use.',
+      midGalleryTextAr:
+        'صُممت المطبخ كمساحة مضيئة وبسيطة ملائمة للحياة العطلية، تجمع بين تخطيطات وظيفية ومواد طبيعية وتفاصيل نجدية رفيعة. الرفوف المفتوحة والإضاءة النهارية الطبيعية تخلق بيئة غير رسمية ومريحة مناسبة للاستخدام اليومي المريح.',
       challenge:
         'Balancing privacy, daylight, and circulation while maintaining a cohesive modern look across the exterior and interior spaces.',
       challengeAr:
@@ -216,12 +275,12 @@ export const useProjects = () => {
     },
     {
       slug: 'gdc',
-      title: 'Co-working Space',
-      titleAr: 'مساحة العمل المشترك',
+      title: 'Co-Working Space – Riyadh',
+      titleAr: 'مساحة العمل المشترك – الرياض',
       category: 'Construction & Engineering',
       status: 'Completed',
-      description: 'A modern co-working space designed for focus, collaboration, and premium day-to-day usability.',
-      descriptionAr: 'مساحة عمل مشترك حديثة مصممة للتركيز والتعاون والاستخدام اليومي المريح.',
+      description: 'Interior design development of a large-scale co-working space in Riyadh, 2,666.6 sqm across five floors, supporting flexible working and collaboration.',
+      descriptionAr: 'تطوير التصميم الداخلي لمساحة عمل مشترك واسعة النطاق في الرياض، 2,666.6 متر مربع على خمسة طوابق، لدعم العمل المرن والتعاون.',
       image: '/images/projects/5/1.png',
       images: [
         '/images/projects/5/1.png',
@@ -244,17 +303,35 @@ export const useProjects = () => {
         '/images/projects/5/18.png',
       ],
       fullWidthImage: '/images/projects/5/18.png',
-      location: 'Saudi Arabia',
-      locationAr: 'المملكة العربية السعودية',
+      location: 'Riyadh, Saudi Arabia',
+      locationAr: 'الرياض، المملكة العربية السعودية',
       year: '2024',
-      client: 'Private Client',
-      clientAr: 'عميل خاص',
-      services: ['Interior Design', 'Finishing & Fit-Out', 'Smart Systems', 'Electrical Works', 'HVAC Installation'],
-      servicesAr: ['التصميم الداخلي', 'التشطيب والتجهيز', 'الأنظمة الذكية', 'الأعمال الكهربائية', 'تركيب أنظمة التكييف'],
+      client: 'Co-Working Operator',
+      clientAr: 'مشغل مساحة العمل المشترك',
+      services: [
+        'Interior Design',
+        'Concept Development',
+        'Space Planning & Zoning',
+        'Material & Finish Selection',
+        'Custom Interior Elements',
+        'Interior Detailing & Specifications',
+      ],
+      servicesAr: [
+        'التصميم الداخلي',
+        'تطوير المفهوم',
+        'تخطيط المساحة والتقسيم',
+        'اختيار المواد والتشطيبات',
+        'عناصر داخلية مخصصة',
+        'التفاصيل الداخلية والمواصفات',
+      ],
       overview:
-        'A contemporary co-working environment designed to support productive focus and social collaboration. The space balances open areas, meeting zones, and comfortable circulation with a clean material palette and modern lighting.',
+        'Our scope of work focused on the interior design development of a large-scale co-working space in Riyadh, spanning a total area of 2,666.6 sqm across five floors. The project was designed to support flexible working styles, collaboration, and individual productivity through a cohesive industrial interior concept.\n\nOur approach translated the functional requirements of a modern co-working environment into a clear spatial language that balances openness, structure, and visual identity.',
       overviewAr:
-        'بيئة عمل مشترك معاصرة مصممة لدعم التركيز الإنتاجي والتعاون الاجتماعي. توازن المساحة بين المناطق المفتوحة ومناطق الاجتماعات والحركة المريحة مع لوحة مواد نظيفة وإضاءة حديثة.',
+        'ركز نطاق أعمالنا على تطوير التصميم الداخلي لمساحة عمل مشترك واسعة النطاق في الرياض، بمساحة إجمالية 2,666.6 متر مربع موزعة على خمسة طوابق. صُمم المشروع لدعم أنماط العمل المرنة والتعاون والإنتاجية الفردية من خلال مفهوم داخلي صناعي متسق.\n\nترجم نهجنا متطلبات بيئة العمل المشترك الحديث الوظيفية إلى لغة مكانية واضحة توازن بين الانفتاح والهيكلة والهوية البصرية.',
+      midGalleryText:
+        'The interior concept was inspired by industrial architecture, expressed through exposed concrete finishes, visible services, metal elements, and a restrained material palette. These elements were refined to create a professional yet welcoming environment suitable for long working hours and diverse user needs.\n\nEach floor was designed to maintain visual continuity while offering varied spatial experiences, ensuring the workspace feels dynamic rather than repetitive.',
+      midGalleryTextAr:
+        'استُلهم المفهوم الداخلي من العمارة الصناعية، معبّراً عنه بتشطيبات خرسانية مكشوفة وخدمات ظاهرة وعناصر معدنية ولوحة مواد محتشمة. عُدّلت هذه العناصر لخلق بيئة احترافية ومرحّبة تلائم ساعات العمل الطويلة واحتياجات المستخدمين المتنوعة.\n\nصُمم كل طابق للحفاظ على الاستمرارية البصرية مع تقديم تجارب مكانية متنوعة، مما يضمن أن تشعر مساحة العمل بالديناميكية بدلاً من التكرار.',
       challenge:
         'Creating a flexible layout that serves different work styles while maintaining acoustic comfort, clear wayfinding, and a consistent premium feel across all zones.',
       challengeAr:
@@ -278,11 +355,12 @@ export const useProjects = () => {
     // },
     {
       slug: 'albarghash',
-      title: 'AlBarghash Business Lounge',
-      titleAr: 'صالة أعمال البرغش',
+      title: 'Albargash Tower – Executive Lounge',
+      titleAr: 'برج البرغش – الصالة التنفيذية',
       category: 'Construction & Engineering',
       status: 'Completed',
-      description: 'Construction & engineering project delivered by Burooj.',
+      description: 'Design and execution of an executive lounge on the 10th floor of Albargash Tower, refined for executive use with flexibility for large-scale events.',
+      descriptionAr: 'التصميم والتنفيذ لصالة تنفيذية في الطابق العاشر من برج البرغش، راقية للاستخدام التنفيذي مع مرونة لفعاليات واسعة النطاق.',
       image: '/images/projects/2/1.png',
       images: [
         '/images/projects/2/1.png',
@@ -311,23 +389,51 @@ export const useProjects = () => {
       fullWidthImage: '/images/projects/2/14.png',
       location: 'Al Khobar, Saudi Arabia',
       locationAr: 'الخبر، المملكة العربية السعودية',
-      year: '2024',
-      client: 'Private Client',
-      clientAr: 'عميل خاص',
-      services: ['Architecture Design', 'Interior Design', 'Finishing & Fit-Out', 'Smart Systems'],
-      servicesAr: ['التصميم المعماري', 'التصميم الداخلي', 'التشطيب والتجهيز', 'الأنظمة الذكية'],
+      year: '2026',
+      client: 'Albargash Tower',
+      clientAr: 'برج البرغش',
+      services: [
+        'Interior Design',
+        'Concept Development',
+        'Space Planning & Zoning',
+        'Flexible Layout Design',
+        'Entrance Design',
+        'Finishing & Fit-Out',
+        'Site Supervision & Execution',
+      ],
+      servicesAr: [
+        'التصميم الداخلي',
+        'تطوير المفهوم',
+        'تخطيط المساحة والتقسيم',
+        'تصميم التخطيط المرن',
+        'تصميم المدخل',
+        'التشطيب والتجهيز',
+        'الإشراف على الموقع والتنفيذ',
+      ],
       overview:
-        'A modern residential project delivered under Burooj’s Construction & Engineering division. The scope focused on a clean architectural identity, functional planning, and premium finishes—supported by coordinated interior details and smart-ready infrastructure.',
+        'Our work covered the design and execution of an executive lounge located on the 10th floor of Albargash Tower. The project was developed to provide a refined, functional environment tailored for executive use, while also offering high spatial flexibility to accommodate large-scale events.\n\nThe scope included the full development of the lounge area, starting from the entrance experience through to the main seating and functional zones, ensuring all client requirements were met with precision and clarity.',
       overviewAr:
-        'مشروع سكني حديث نفذته قسم البناء والهندسة في بروج. ركز النطاق على هوية معمارية واضحة وتخطيط وظيفي وتشطيبات عالية الجودة—بدعم من تفاصيل داخلية منسقة وبنية تحتية جاهزة للأنظمة الذكية.',
+        'شمل عملنا التصميم والتنفيذ لصالة تنفيذية تقع في الطابق العاشر من برج البرغش. طُوّر المشروع لتوفير بيئة راقية ووظيفية مصممة للاستخدام التنفيذي، مع تقديم مرونة مكانية عالية لاستيعاب الفعاليات واسعة النطاق.\n\nتضمن النطاق التطوير الكامل لمنطقة الصالة، من تجربة المدخل وصولاً إلى مناطق الجلوس الرئيسية والمناطق الوظيفية، مع ضمان تلبية جميع متطلبات العميل بدقة ووضوح.',
+      midGalleryText:
+        'The cigar lounge area was designed to combine luxury and comfort within an open and welcoming setting. The space features rich materials, warm tones, and carefully selected seating to create a relaxed yet sophisticated atmosphere that complements the overall flow of the executive lounge.\n\nA key design focus was placed on the ceiling, where specialized insulation and ventilation solutions were integrated to effectively contain smoke and prevent odors from spreading to surrounding areas. This allowed the cigar lounge to remain visually and spatially connected to the rest of the floor, while ensuring comfort and air quality for all users.',
+      midGalleryTextAr:
+        'صُممت منطقة صالة السيجار لدمج الفخامة والراحة في إعداد مفتوح ومرحّب. تتميز المساحة بمواد غنية وألوان دافئة ومقاعد مُختارة بعناية لخلق أجواء مريحة وراقية تتماشى مع التدفق العام للصالة التنفيذية.\n\nوُضع تركيز تصميمي رئيسي على السقف، حيث دُمجت حلول عزل وتهوية متخصصة لاحتواء الدخان بفعالية ومنع انتشار الروائح إلى المناطق المحيطة. وهذا أتاح لصالة السيجار أن تبقى متصلة بصرياً ومكانياً ببقية الطابق، مع ضمان الراحة وجودة الهواء لجميع المستخدمين.',
       challenge:
-        'Delivering a consistent modern look while maintaining practical day-to-day living needs, and coordinating multiple disciplines (architecture, interiors, and finishing) to a single quality standard.',
+        'The executive lounge includes three meeting rooms, each designed to accommodate different capacities and meeting formats, ensuring flexibility for various business needs. While unified by a consistent design language, each room offers a distinct spatial experience tailored to its function.\n\nThe meeting rooms feature clean architectural lines, warm material palettes, and refined finishes, creating a professional yet welcoming environment. Large tables, ergonomically selected seating, and integrated technology support efficient meetings, presentations, and collaborative discussions.\n\nGlass partitions were strategically used to maintain visual openness and allow natural light to flow throughout the lounge, while still ensuring acoustic comfort and privacy when required.',
       challengeAr:
-        'تحقيق مظهر حديث متناسق مع الحفاظ على احتياجات الحياة العملية اليومية، وتنسيق عدة تخصصات (المعمار والديكور الداخلي والتشطيب) وفق معيار جودة واحد.',
+        'تتضمن الصالة التنفيذية ثلاث قاعات اجتماعات، صُمم كل منها لاستيعاب سعات وتنسيقات اجتماعات مختلفة، مما يضمن مرونة لمختلف الاحتياجات التجارية. ومع توحيدها بلغة تصميم متسقة، تقدم كل غرفة تجربة مكانية متميزة ملائمة لوظيفتها.\n\nتتميز قاعات الاجتماعات بخطوط معمارية نظيفة ولوحات مواد دافئة وتشطيبات راقية، مخلّفة بيئة احترافية ومرحّبة. طاولات كبيرة ومقاعد مُختارة من حيث ارتياح الاستخدام وتقنية متكاملة تدعم الاجتماعات والعروض التقديمية والنقاشات التعاونية بكفاءة.\n\nاستُخدمت فواصل زجاجية بشكل استراتيجي للحفاظ على الانفتاح البصري والسماح للضوء الطبيعي بالتدفق في أنحاء الصالة، مع ضمان الراحة الصوتية والخصوصية عند الحاجة.',
       solution:
-        'We aligned architecture and interior details early, then executed finishing packages with clear drawings, material coordination, and on-site quality control to ensure consistency across all spaces.',
+        'Located at the heart of the executive floor, the central lounge was designed as a key gathering point that seamlessly connects all surrounding areas. The space features organic-shaped furniture with soft, flowing forms that emphasize comfort, smoothness, and visual harmony. These sculptural elements create an inviting environment that encourages informal interaction, relaxation, and moments of pause between meetings.\n\nNatural materials, warm tones, and integrated greenery were carefully selected to enhance the sense of calm and balance within the lounge. The design achieves a refined atmosphere that feels both contemporary and welcoming, making the central lounge a focal point that supports social engagement while maintaining the elegance expected in an executive setting.',
       solutionAr:
-        'نسقنا التفاصيل المعمارية والداخلية مبكراً، ثم نفذنا حزم التشطيب برسومات واضحة وتنسيق المواد ومراقبة الجودة في الموقع لضمان التناسق في جميع المساحات.',
+        'تقع الصالة المركزية في قلب الطابق التنفيذي، وصُممت كنقطة تجمع رئيسية تربط بسلاسة جميع المناطق المحيطة. تتميز المساحة بأثاث ذي أشكال عضوية ذات هيئات ناعمة ومتدفقة تؤكد على الراحة والسلاسة والانسجام البصري. هذه العناصر النحتية تخلق بيئة مرحّبة تشجع على التفاعل غير الرسمي والاسترخاء ولحظات التوقف بين الاجتماعات.\n\nاخْتُيرت مواد طبيعية وألوان دافئة ومساحات خضراء متكاملة بعناية لتعزيز الإحساس بالهدوء والتوازن داخل الصالة. يحقق التصميم أجواء راقية تبدو معاصرة ومرحّبة في آن، مما يجعل الصالة المركزية نقطة تركيز تدعم التواصل الاجتماعي مع الحفاظ على الأناقة المتوقعة في إعداد تنفيذي.',
+      entranceText:
+        'The entrance to the Executive Lounge was designed with a simple yet luxurious approach, creating a strong first impression while maintaining a sense of calm and refinement. Travertine finishes were used as a key material, paired with warm neutral tones and soft, indirect lighting to enhance the sense of elegance and timelessness.\n\nThe reception desk acts as a sculptural focal point, while the integrated lighting and curated display elements add depth and warmth to the space. The overall design achieves a balance between prestige and subtlety, ensuring the entrance feels welcoming, sophisticated, and representative of the executive character of the lounge.',
+      entranceTextAr:
+        'صُمم مدخل الصالة التنفيذية بنهج بسيط وراقٍ، مخلّفاً انطباعاً أولاً قوياً مع الحفاظ على إحساس بالهدوء والأناقة. استُخدمت تشطيبات الترافرتين كمادة رئيسية، مزدوجة بألوان محايدة دافئة وإضاءة ناعمة غير مباشرة لتعزيز الإحساس بالأناقة والخلود.\n\nيعمل مكتب الاستقبال كنقطة تركيز نحتية، بينما تضيف الإضاءة المتكاملة وعناصر العرض المُنتقاة عمقاً ودفئاً للمساحة. يحقق التصميم العام توازناً بين الهيبة واللباقة، مما يضمن أن يشعر المدخل بالترحيب والرقي وتمثيل الطابع التنفيذي للصالة.',
+      gymText:
+        'The gym area was designed as a premium fitness zone that complements the overall executive character of the lounge. The space features a modern, performance-driven layout with clearly defined training zones, combining strength, cardio, and functional workout areas. Dark, muted finishes are balanced with warm wood accents and subtle lighting to create a focused yet inviting atmosphere.',
+      gymTextAr:
+        'صُممت منطقة الجيم كمنطقة لياقة راقية تتماشى مع الطابع التنفيذي العام للصالة. تتميز المساحة بتخطيط حديث قائم على الأداء مع مناطق تدريب محددة بوضوح، تجمع بين مناطق القوة والكارديو والتمارين الوظيفية. تتوازن التشطيبات الداكنة الهادئة مع لمسات خشبية دافئة وإضاءة خفيفة لخلق أجواء مركزة ومرحّبة.',
       results:
         'A cohesive, modern residential outcome with premium finishes and a layout that balances aesthetics, comfort, and long-term maintainability.',
       resultsAr:
@@ -335,12 +441,12 @@ export const useProjects = () => {
     },
     {
       slug: 'al-fakhreyah-villa-project',
-      title: 'Al-Fakhreyah Villa Project',
-      titleAr: 'مشروع فيلا الفخرية',
+      title: 'Diwaniya Cinema Lounge',
+      titleAr: 'صالة ديوانية السينما',
       category: 'Construction & Engineering',
       status: 'Completed',
-      description: 'A modern villa project featuring cohesive architectural design and premium finishing.',
-      descriptionAr: 'مشروع فيلا حديثة بتصميم معماري متناسق وتشطيبات عالية الجودة.',
+      description: 'This project was designed for a private client in Dammam in 2023. The space features full-height glass walls, allowing it to function as an open and inviting lounge during the day.',
+      descriptionAr: 'صُمم هذا المشروع لعميل خاص في الدمام عام 2023. تتميز المساحة بجدران زجاجية كاملة الارتفاع، مما يسمح لها أن تعمل كصالة مفتوحة ومرحّبة خلال النهار.',
       image: '/images/projects/3/1.png',
       images: [
         '/images/projects/3/1.png',
@@ -350,17 +456,17 @@ export const useProjects = () => {
         '/images/projects/3/5.png',
       ],
       fullWidthImage: '/images/projects/3/5.png',
-      location: 'Saudi Arabia',
-      locationAr: 'المملكة العربية السعودية',
-      year: '2024',
+      location: 'Dammam, Saudi Arabia',
+      locationAr: 'الدمام، المملكة العربية السعودية',
+      year: '2023',
       client: 'Private Client',
       clientAr: 'عميل خاص',
-      services: ['Architecture Design', 'Interior Design', 'Finishing & Fit-Out'],
-      servicesAr: ['التصميم المعماري', 'التصميم الداخلي', 'التشطيب والتجهيز'],
+      services: ['Interior Design', 'Custom Furniture & Lighting', 'Audio-Visual Integration'],
+      servicesAr: ['التصميم الداخلي', 'الأثاث والإضاءة المخصصان', 'دمج الصوت والصورة'],
       overview:
-        'A residential villa project focused on clean modern lines, practical spatial planning, and a premium material palette that elevates the day-to-day living experience.',
+        'In the evening, the diwaniya seamlessly transforms into a cinema room through the integration of a ceiling-mounted projector. The window areas were designed as open seating zones, enhancing comfort while preserving the openness of the space. The design focuses on flexibility, atmosphere, and a smooth transition between daytime and nighttime use.',
       overviewAr:
-        'مشروع فيلا سكنية يركز على خطوط معمارية حديثة، وتخطيط عملي للمساحات، واختيار مواد عالية الجودة لرفع تجربة السكن اليومية.',
+        'في المساء، تتحول الديوانية بسلاسة إلى غرفة سينما من خلال دمج جهاز إسقاط مثبت في السقف. صُممت مناطق النوافذ كمناطق جلوس مفتوحة، معززة الراحة مع الحفاظ على انفتاح المساحة. يركز التصميم على المرونة والأجواء والانتقال السلس بين الاستخدام النهاري والليلي.',
       challenge:
         'Maintaining a consistent modern identity while balancing privacy, natural light, and smooth circulation across the villa’s main zones.',
       challengeAr:
@@ -384,16 +490,14 @@ export const useProjects = () => {
     // },
     {
       slug: 'roaya',
-      title: 'Roaya',
-      titleAr: 'رواية',
+      title: 'Roaya Waiting Area',
+      titleAr: 'منطقة انتظار رواية',
       category: 'Construction & Engineering',
       status: 'Completed',
-      description: 'Construction & engineering project delivered by Burooj.',
-      descriptionAr: 'مشروع بناء وهندسة نفذته بروج.',
-      image: '/images/projects/9/1.png',
+      description: 'This project focuses on the design of a refined and welcoming waiting area for Roaya, where comfort, calmness, and functionality come together in a cohesive interior concept. The space was carefully designed to create a warm first impression while maintaining a modern and elegant atmosphere suitable for daily visitors.',
+      descriptionAr: 'يركز هذا المشروع على تصميم منطقة انتظار راقية ومرحّبة لرواية، حيث تلتقي الراحة والهدوء والوظيفة في مفهوم داخلي متسق. صُممت المساحة بعناية لخلق انطباع أول دافئ مع الحفاظ على أجواء عصرية وأنيقة مناسبة للزوار اليوميين.',
+      image: '/images/projects/9/4.png',
       images: [
-        '/images/projects/9/1.png',
-        '/images/projects/9/2.png',
         '/images/projects/9/3.png',
         '/images/projects/9/4.png',
         '/images/projects/9/5.png',
@@ -405,21 +509,21 @@ export const useProjects = () => {
       year: '2024',
       client: 'Roaya',
       clientAr: 'رواية',
-      services: ['Construction', 'Engineering'],
-      servicesAr: ['البناء', 'الهندسة'],
+      services: ['Interior Design', 'Finishing & Fit-Out'],
+      servicesAr: ['التصميم الداخلي', 'التشطيب والتأثيث'],
       overview:
-        'Construction and engineering project delivered by Burooj, covering design, execution, and delivery to meet the client’s requirements.',
+        'This project focuses on the design of a refined and welcoming waiting area for Roaya, where comfort, calmness, and functionality come together in a cohesive interior concept. The space was carefully designed to create a warm first impression while maintaining a modern and elegant atmosphere suitable for daily visitors.',
       overviewAr:
-        'مشروع بناء وهندسة نفذته بروج، يشمل التصميم والتنفيذ والتسليم لتحقيق متطلبات العميل.',
+        'يركز هذا المشروع على تصميم منطقة انتظار راقية ومرحّبة لرواية، حيث تلتقي الراحة والهدوء والوظيفة في مفهوم داخلي متسق. صُممت المساحة بعناية لخلق انطباع أول دافئ مع الحفاظ على أجواء عصرية وأنيقة مناسبة للزوار اليوميين.',
     },
     {
       slug: 'thabat',
-      title: 'Thabat Booth',
-      titleAr: 'كشك ثابت',
+      title: 'Thabat Reception & Display Space',
+      titleAr: 'مساحة استقبال وعرض ثابت',
       category: 'Construction & Engineering',
       status: 'Completed',
-      description: 'A branded booth project delivered under our Construction & Engineering services.',
-      descriptionAr: 'مشروع كشك ذو علامة تجارية نفذ ضمن خدمات البناء والهندسة.',
+      description: 'This project involved the interior design of a two-floor space for Thabat, created to reflect a refined and luxurious identity while supporting both hospitality and presentation needs.\n\nThe design was planned to deliver a strong first impression, with carefully curated spaces that balance elegance, functionality, and brand presence.',
+      descriptionAr: 'تضمن هذا المشروع التصميم الداخلي لمساحة من طابقين لثابت، تم إنشاؤها لتعكس هوية راقية وفاخرة مع دعم احتياجات الضيافة والعرض.\n\nتم تخطيط التصميم لتقديم انطباع أول قوي، مع مساحات مختارة بعناية توازن بين الأناقة والوظيفة والحضور العلامة التجارية.',
       image: '/images/projects/8/1.png',
       images: [
         '/images/projects/8/1.png',
@@ -434,12 +538,12 @@ export const useProjects = () => {
       year: '2024',
       client: 'Thabat',
       clientAr: 'ثابت',
-      services: ['Interior Design', 'Finishing & Fit-Out', 'Electrical Works'],
-      servicesAr: ['التصميم الداخلي', 'التشطيب والتجهيز', 'الأعمال الكهربائية'],
+      services: ['Interior Design'],
+      servicesAr: ['التصميم الداخلي'],
       overview:
-        'A modern booth design focused on clear branding, clean lines, and an inviting visitor flow—built with durable finishes suitable for high-traffic events.',
+        'This project involved the interior design of a two-floor space for Thabat, created to reflect a refined and luxurious identity while supporting both hospitality and presentation needs.\n\nThe design was planned to deliver a strong first impression, with carefully curated spaces that balance elegance, functionality, and brand presence.',
       overviewAr:
-        'تصميم كشك حديث يركز على العلامة التجارية الواضحة والخطوط النظيفة وتدفق الزوار المريح—مبني بتشطيبات متينة مناسبة للفعاليات ذات الازدحام العالي.',
+        'تضمن هذا المشروع التصميم الداخلي لمساحة من طابقين لثابت، تم إنشاؤها لتعكس هوية راقية وفاخرة مع دعم احتياجات الضيافة والعرض.\n\nتم تخطيط التصميم لتقديم انطباع أول قوي، مع مساحات مختارة بعناية توازن بين الأناقة والوظيفة والحضور العلامة التجارية.',
       challenge:
         'Delivering a strong brand presence in a compact footprint while keeping circulation smooth and the build details clean and consistent.',
       challengeAr:
@@ -463,22 +567,57 @@ export const useProjects = () => {
     // },
     {
       slug: 'ec',
-      title: 'EC',
-      titleAr: 'EC',
+      title: 'Efficiency Center – Co-Working Space',
+      titleAr: 'مركز الكفاءة – مساحة العمل المشترك',
       category: 'Construction & Engineering',
-      status: 'Completed',
-      description: 'Construction & engineering project delivered by Burooj.',
-      descriptionAr: 'مشروع بناء وهندسة نفذته بروج.',
-      image: '/images/project3.png',
+      status: 'Ongoing',
+      description: 'This project is a co-working space located in Al Khobar, developed for Efficiency Center to support a modern, flexible, and efficient work environment. Our scope of work covered the finishing and fit-out of the entire facility, with a strong focus on functionality, adaptability, and user experience.',
+      descriptionAr: 'هذا المشروع هو مساحة عمل مشترك تقع في الخبر، طُوّرت لمركز الكفاءة لدعم بيئة عمل عصرية ومرنة وفعالة. شمل نطاق أعمالنا التشطيب والتجهيز للمنشأة بأكملها، مع تركيز قوي على الوظيفة والقابلية للتكيف وتجربة المستخدم.',
+      image: '/images/projects/10/1.png',
+      images: [
+        '/images/projects/10/1.png',
+        '/images/projects/10/2.png',
+        '/images/projects/10/3.png',
+        '/images/projects/10/4.png',
+        '/images/projects/10/5.png',
+        '/images/projects/10/6.png',
+        '/images/projects/10/7.png',
+        '/images/projects/10/9.png',
+      ],
+      location: 'Al Khobar, Saudi Arabia',
+      locationAr: 'الخبر، المملكة العربية السعودية',
+      year: '2020 – Ongoing',
+      client: 'Efficiency Center',
+      clientAr: 'مركز الكفاءة',
+      services: [
+        'Finishing & Fit-Out',
+        'HVAC Installation',
+        'Smart Systems',
+        'Maintenance & Technical Support',
+      ],
+      servicesAr: [
+        'التشطيب والتجهيز',
+        'تركيب أنظمة التكييف',
+        'الأنظمة الذكية',
+        'الصيانة والدعم الفني',
+      ],
+      overview:
+        'The design follows an industrial-style concept, emphasizing natural lighting as a core design element. The building features full-height glass façades, while internal office partitions are also designed using glass, allowing daylight to flow throughout the space and enhancing visual openness.',
+      overviewAr:
+        'يتبع التصميم مفهوماً على الطراز الصناعي، مع التركيز على الإضاءة الطبيعية كعنصر تصميمي أساسي. تتميز المبنى بواجهات زجاجية كاملة الارتفاع، بينما صُممت الفواصل الداخلية للمكاتب أيضاً باستخدام الزجاج، مما يسمح للضوء النهاري بالتدفق في أنحاء المساحة ويعزز الانفتاح البصري.',
+      results:
+        'The space includes 31 private offices, open-plan workstations, balconies, one conference room, one meeting room, and a business lounge, all thoughtfully planned to encourage collaboration while maintaining comfort and productivity.',
+      resultsAr:
+        'تشمل المساحة 31 مكتباً خاصاً ومحطات عمل مفتوحة التخطيط وشرفات وقاعة مؤتمرات واحدة وغرفة اجتماعات واحدة وصالة أعمال، جميعها مُخططة بعناية لتشجيع التعاون مع الحفاظ على الراحة والإنتاجية.',
     },
     {
       slug: 'tulip-spa',
-      title: 'Tulip Spa',
-      titleAr: 'توليب سبا',
+      title: 'Tulip Spa & Salon',
+      titleAr: 'توليب سبا وصالون',
       category: 'Construction & Engineering',
       status: 'Completed',
-      description: 'A premium spa fit-out project delivered under our Construction & Engineering services.',
-      descriptionAr: 'مشروع تجهيز سبا فاخر نفذ ضمن خدمات البناء والهندسة.',
+      description: 'This project involved the interior design of Tulip Spa, a spa and salon located in Dhahran, completed in 2025.\n\nThe design concept was carefully planned to enhance privacy, calmness, and comfort for visitors. The salon area was designed on the ground floor, allowing easy access and an open, welcoming atmosphere, while the mezzanine floor was dedicated entirely to the spa, creating a quieter and more private experience away from the main circulation.',
+      descriptionAr: 'تضمن هذا المشروع التصميم الداخلي لتوليب سبا، وهو سبا وصالون يقع في الظهران، اكتمل في عام 2025.\n\nتم تخطيط مفهوم التصميم بعناية لتعزيز الخصوصية والهدوء والراحة للزوار. تم تصميم منطقة الصالون في الطابق الأرضي، مما يسمح بالوصول السهل وجو مفتوح ومرحب، بينما خُصص الطابق المتوسط بالكامل للسبا، مما يخلق تجربة أكثر هدوءًا وخصوصية بعيدًا عن الحركة الرئيسية.',
       image: '/images/projects/7/1.png',
       images: [
         '/images/projects/7/1.png',
@@ -490,17 +629,17 @@ export const useProjects = () => {
         '/images/projects/7/7.png',
       ],
       fullWidthImage: '/images/projects/7/7.png',
-      location: 'Saudi Arabia',
-      locationAr: 'المملكة العربية السعودية',
-      year: '2024',
+      location: 'Dhahran, Saudi Arabia',
+      locationAr: 'الظهران، المملكة العربية السعودية',
+      year: '2025',
       client: 'Tulip Spa',
       clientAr: 'توليب سبا',
       services: ['Interior Design', 'Finishing & Fit-Out', 'Electrical Works', 'Plumbing Services', 'HVAC Installation'],
       servicesAr: ['التصميم الداخلي', 'التشطيب والتجهيز', 'الأعمال الكهربائية', 'خدمات السباكة', 'تركيب أنظمة التكييف'],
       overview:
-        'A modern spa environment designed to feel calm and premium, with cohesive materials, controlled lighting, and practical circulation for guests and staff.',
+        'This project involved the interior design of Tulip Spa, a spa and salon located in Dhahran, completed in 2025.\n\nThe design concept was carefully planned to enhance privacy, calmness, and comfort for visitors. The salon area was designed on the ground floor, allowing easy access and an open, welcoming atmosphere, while the mezzanine floor was dedicated entirely to the spa, creating a quieter and more private experience away from the main circulation.',
       overviewAr:
-        'بيئة سبا حديثة مصممة لتبث الهدوء والرفاهية، مع مواد متناسقة وإضاءة مضبوطة وحركة عملية للضيوف والطاقم.',
+        'تضمن هذا المشروع التصميم الداخلي لتوليب سبا، وهو سبا وصالون يقع في الظهران، اكتمل في عام 2025.\n\nتم تخطيط مفهوم التصميم بعناية لتعزيز الخصوصية والهدوء والراحة للزوار. تم تصميم منطقة الصالون في الطابق الأرضي، مما يسمح بالوصول السهل وجو مفتوح ومرحب، بينما خُصص الطابق المتوسط بالكامل للسبا، مما يخلق تجربة أكثر هدوءًا وخصوصية بعيدًا عن الحركة الرئيسية.',
       challenge:
         'Delivering a high-end guest experience while coordinating MEP requirements, wet-area detailing, and finishing quality across multiple treatment zones.',
       challengeAr:
@@ -587,7 +726,12 @@ export const useProjects = () => {
       location: project.locationAr || project.location,
       client: project.clientAr || project.client,
       overview: project.overviewAr || project.overview,
+      exteriorDesign: project.exteriorDesignAr || project.exteriorDesign,
+      interiorDesign: project.interiorDesignAr || project.interiorDesign,
       diagramText: project.diagramTextAr || project.diagramText,
+      midGalleryText: project.midGalleryTextAr || project.midGalleryText,
+      entranceText: project.entranceTextAr || project.entranceText,
+      gymText: project.gymTextAr || project.gymText,
       challenge: project.challengeAr || project.challenge,
       solution: project.solutionAr || project.solution,
       results: project.resultsAr || project.results,

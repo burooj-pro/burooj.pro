@@ -375,13 +375,14 @@ onMounted(() => {
             <p class="text-sm leading-relaxed text-slate-600 md:text-base">
               {{ project.description }}
             </p>
-            <!-- Tags -->
-            <div class="flex flex-wrap gap-2 pt-1">
-              <span class="rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary">
-                {{ getCategoryLabel(project.category) }}
-              </span>
-              <span class="rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary">
-                {{ getStatusLabel(project.status) }}
+            <!-- Services -->
+            <div v-if="project.services && project.services.length > 0" class="flex flex-wrap gap-2 pt-1">
+              <span
+                v-for="service in project.services"
+                :key="service"
+                class="rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary"
+              >
+                {{ service }}
               </span>
             </div>
           </div>

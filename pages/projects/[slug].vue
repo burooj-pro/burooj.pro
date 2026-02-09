@@ -251,6 +251,26 @@ const project7HeroImages = computed(() => {
   return [img3, img1, img2]
 })
 
+// Project EC (efficiency-center): 10/3, 10/4 together as pair
+const projectECPairImages = computed(() => {
+  if (projectSlug !== 'ec') return [] as string[]
+
+  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/10/3.png'))
+  const img4 = galleryImages.value.find((img) => img.endsWith('/images/projects/10/4.png'))
+  if (!img3 || !img4) return [] as string[]
+  return [img3, img4]
+})
+
+// Project EC: 10/5, 10/9 together as pair
+const projectECFinalPairImages = computed(() => {
+  if (projectSlug !== 'ec') return [] as string[]
+
+  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/10/5.png'))
+  const img9 = galleryImages.value.find((img) => img.endsWith('/images/projects/10/9.png'))
+  if (!img5 || !img9) return [] as string[]
+  return [img5, img9]
+})
+
 const galleryImagesForLayout = computed(() => {
   const remove = new Set<string>()
 
@@ -366,6 +386,17 @@ const galleryImagesForLayout = computed(() => {
     }
   }
 
+  if (projectSlug === 'ec') {
+    if (projectECPairImages.value.length === 2) {
+      remove.add('/images/projects/10/3.png')
+      remove.add('/images/projects/10/4.png')
+    }
+    if (projectECFinalPairImages.value.length === 2) {
+      remove.add('/images/projects/10/5.png')
+      remove.add('/images/projects/10/9.png')
+    }
+  }
+
   if (remove.size === 0) return galleryImages.value
 
   return galleryImages.value.filter((img) => {
@@ -471,7 +502,10 @@ onMounted(async () => {
           <h1 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
             {{ localizedProject.title }}
           </h1>
-          <p v-if="localizedProject.overview" class="text-base leading-relaxed text-slate-600 md:text-lg">
+          <p v-if="projectSlug === 'ec' && localizedProject.description" class="text-base leading-relaxed text-slate-600 md:text-lg">
+            {{ localizedProject.description }}
+          </p>
+          <p v-else-if="localizedProject.overview" class="text-base leading-relaxed text-slate-600 md:text-lg">
             {{ localizedProject.overview }}
           </p>
           <p v-else class="text-base leading-relaxed text-slate-600 md:text-lg">
@@ -499,7 +533,7 @@ onMounted(async () => {
               <span
                 v-for="service in localizedProject.services"
                 :key="service"
-                class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700"
+                class="inline-flex items-center rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary"
               >
                 {{ service }}
               </span>
@@ -511,7 +545,7 @@ onMounted(async () => {
 
     <!-- Images Grid Section -->
     <section
-      v-if="galleryImagesForLayout.length > 0 || project2CigarRoomImages.length === 3 || project2ShowcaseImages.length === 6 || project2QuadImages.length === 4 || project2FinalBlockImages.length === 3 || project2SixImages.length === 6 || project3HeroImages.length === 3 || project8HeroImages.length === 3 || project7HeroImages.length === 3 || diagramPairImages.length === 2 || quadImages.length === 4 || gdcQuadImages.length === 4 || project4QuadImages.length === 4 || project5QuadImages.length === 4 || project4TailPairImages.length === 2 || project9TailPairImages.length === 2 || gdcTailPairImages.length === 2 || midPairImages.length === 2 || tailPairImages.length === 2"
+      v-if="galleryImagesForLayout.length > 0 || project2CigarRoomImages.length === 3 || project2ShowcaseImages.length === 6 || project2QuadImages.length === 4 || project2FinalBlockImages.length === 3 || project2SixImages.length === 6 || project3HeroImages.length === 3 || project8HeroImages.length === 3 || project7HeroImages.length === 3 || projectECPairImages.length === 2 || projectECFinalPairImages.length === 2 || diagramPairImages.length === 2 || quadImages.length === 4 || gdcQuadImages.length === 4 || project4QuadImages.length === 4 || project5QuadImages.length === 4 || project4TailPairImages.length === 2 || project9TailPairImages.length === 2 || gdcTailPairImages.length === 2 || midPairImages.length === 2 || tailPairImages.length === 2"
       :ref="registerContentSection"
       class="section-wrapper relative z-10 py-16 md:py-24"
     >
@@ -546,12 +580,6 @@ onMounted(async () => {
               />
             </div>
           </div>
-          <p
-            v-if="localizedProject.overview"
-            class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl"
-          >
-            {{ localizedProject.overview }}
-          </p>
         </div>
 
         <!-- Project 8 (Thabat): 8/1 full width, then 8/2 and 8/3 side by side -->
@@ -648,9 +676,9 @@ onMounted(async () => {
               />
             </div>
           </div>
-          <div v-if="localizedProject.overview || localizedProject.description" class="py-6 md:py-8">
+          <div v-if="(projectSlug === 'albarghash' && localizedProject.midGalleryText) || (projectSlug !== 'albarghash' && (localizedProject.overview || localizedProject.description))" class="py-6 md:py-8">
             <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
-              {{ localizedProject.overview || localizedProject.description }}
+              {{ projectSlug === 'albarghash' && localizedProject.midGalleryText ? localizedProject.midGalleryText : (localizedProject.overview || localizedProject.description) }}
             </p>
           </div>
         </div>
@@ -674,9 +702,9 @@ onMounted(async () => {
               />
             </div>
           </div>
-          <div v-if="localizedProject.challenge || localizedProject.solution || localizedProject.results" class="py-6 md:py-8">
+          <div v-if="(projectSlug === 'albarghash' && localizedProject.challenge) || (projectSlug !== 'albarghash' && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa' && (localizedProject.challenge || localizedProject.solution || localizedProject.results))" class="py-6 md:py-8">
             <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
-              {{ localizedProject.challenge || localizedProject.solution || localizedProject.results }}
+              {{ projectSlug === 'albarghash' ? localizedProject.challenge : (localizedProject.challenge || localizedProject.solution || localizedProject.results) }}
             </p>
           </div>
         </div>
@@ -700,9 +728,9 @@ onMounted(async () => {
               />
             </div>
           </div>
-          <div v-if="localizedProject.challenge || localizedProject.solution || localizedProject.results" class="py-6 md:py-8">
+          <div v-if="(projectSlug === 'albarghash' && localizedProject.solution) || (projectSlug !== 'albarghash' && (localizedProject.challenge || localizedProject.solution || localizedProject.results))" class="py-6 md:py-8">
             <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
-              {{ localizedProject.challenge || localizedProject.solution || localizedProject.results }}
+              {{ projectSlug === 'albarghash' ? localizedProject.solution : (localizedProject.challenge || localizedProject.solution || localizedProject.results) }}
             </p>
           </div>
         </div>
@@ -737,25 +765,32 @@ onMounted(async () => {
               />
             </div>
           </div>
-          <div v-if="localizedProject.challenge || localizedProject.solution || localizedProject.results" class="py-6 md:py-8">
+          <div v-if="(projectSlug === 'albarghash' && localizedProject.entranceText) || (projectSlug !== 'albarghash' && (localizedProject.challenge || localizedProject.solution || localizedProject.results))" class="py-6 md:py-8">
             <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
-              {{ localizedProject.challenge || localizedProject.solution || localizedProject.results }}
+              {{ projectSlug === 'albarghash' ? localizedProject.entranceText : (localizedProject.challenge || localizedProject.solution || localizedProject.results) }}
             </p>
           </div>
         </div>
 
         <!-- Project 2 (AlBarghash): 2/4, 2/18–2/22 together -->
-        <div v-if="project2SixImages.length === 6" class="grid gap-6 grid-cols-2 md:grid-cols-3">
-          <div
-            v-for="(image, index) in project2SixImages"
-            :key="`project2-six-${index}`"
-            class="aspect-[4/3] overflow-hidden rounded-xl"
-          >
-            <img
-              :src="image"
-              :alt="`${localizedProject.title} - Image ${index + 1}`"
-              class="h-full w-full object-cover"
-            />
+        <div v-if="project2SixImages.length === 6" class="space-y-6">
+          <div class="grid gap-6 grid-cols-2 md:grid-cols-3">
+            <div
+              v-for="(image, index) in project2SixImages"
+              :key="`project2-six-${index}`"
+              class="aspect-[4/3] overflow-hidden rounded-xl"
+            >
+              <img
+                :src="image"
+                :alt="`${localizedProject.title} - Image ${index + 1}`"
+                class="h-full w-full object-cover"
+              />
+            </div>
+          </div>
+          <div v-if="projectSlug === 'albarghash' && localizedProject.gymText" class="py-6 md:py-8">
+            <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
+              {{ localizedProject.gymText }}
+            </p>
           </div>
         </div>
 
@@ -773,13 +808,22 @@ onMounted(async () => {
             />
           </div>
 
-          <!-- Mid-gallery paragraph -->
+          <!-- Mid-gallery paragraph: for Burooj Villas only exterior design; for others (except albarghash, roaya, thabat, and tulip-spa – has its own blocks) midGalleryText, overview, or exterior -->
           <div
-            v-if="localizedProject.overview || localizedProject.description"
-            class="md:col-span-2 py-10 md:py-14"
+            v-if="(projectSlug === 'albahar-villas' && localizedProject.exteriorDesign) || (projectSlug !== 'albahar-villas' && projectSlug !== 'albarghash' && projectSlug !== 'roaya' && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa' && (localizedProject.midGalleryText || localizedProject.overview || localizedProject.description || localizedProject.exteriorDesign))"
+            class="md:col-span-2 py-10 md:py-14 space-y-6"
           >
-            <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
-              {{ localizedProject.overview || localizedProject.description }}
+            <p
+              v-if="projectSlug !== 'albahar-villas' && projectSlug !== 'albarghash' && projectSlug !== 'roaya' && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa' && (localizedProject.midGalleryText || localizedProject.overview || localizedProject.description)"
+              class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl"
+            >
+              {{ localizedProject.midGalleryText || localizedProject.overview || localizedProject.description }}
+            </p>
+            <p
+              v-if="localizedProject.exteriorDesign"
+              class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl"
+            >
+              {{ localizedProject.exteriorDesign }}
             </p>
           </div>
 
@@ -1028,10 +1072,52 @@ onMounted(async () => {
               </div>
             </div>
           </div>
+
+          <!-- Project EC: 10/3, 10/4 together as pair -->
+          <div v-if="projectECPairImages.length === 2" class="md:col-span-2">
+            <div class="grid gap-6 md:grid-cols-2">
+              <div
+                v-for="(image, index) in projectECPairImages"
+                :key="`ec-pair-${index}`"
+                class="aspect-[4/3] overflow-hidden rounded-xl"
+              >
+                <img
+                  :src="image"
+                  :alt="`${localizedProject.title} - Image ${index + 3}`"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Project EC: 10/5, 10/9 together as pair -->
+          <div v-if="projectECFinalPairImages.length === 2" class="md:col-span-2">
+            <div class="grid gap-6 md:grid-cols-2">
+              <div
+                v-for="(image, index) in projectECFinalPairImages"
+                :key="`ec-final-pair-${index}`"
+                class="aspect-[4/3] overflow-hidden rounded-xl"
+              >
+                <img
+                  :src="image"
+                  :alt="`${localizedProject.title} - Image ${index === 0 ? 5 : 9}`"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
         </div>
         
         <!-- Full Width Image -->
-        <div v-if="shouldShowFullWidthImage" class="aspect-[16/9] w-full overflow-hidden rounded-xl">
+        <div v-if="shouldShowFullWidthImage && projectSlug !== 'ec'" class="aspect-[16/9] w-full overflow-hidden rounded-xl">
           <img
             :src="localizedProject.fullWidthImage"
             :alt="`${localizedProject.title} - Full Width`"
@@ -1041,6 +1127,26 @@ onMounted(async () => {
             decoding="async"
             class="h-full w-full object-cover"
           />
+        </div>
+
+        <!-- Interior design (after last images, e.g. Burooj Villas) -->
+        <div
+          v-if="localizedProject.interiorDesign && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa'"
+          class="w-full py-10 md:py-14"
+        >
+          <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
+            {{ localizedProject.interiorDesign }}
+          </p>
+        </div>
+
+        <!-- Results (after last images, e.g. Efficiency Center) -->
+        <div
+          v-if="localizedProject.results && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa'"
+          class="w-full py-10 md:py-14"
+        >
+          <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
+            {{ localizedProject.results }}
+          </p>
         </div>
       </div>
     </section>
