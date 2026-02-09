@@ -121,9 +121,9 @@ export const useProjects = () => {
       solutionAr:
         'بدأنا بتحليل مفصل للموقع (سياق الموقع والمباني المحيطة والاتجاه الشمسي)، ثم طورنا مفهوماً متكاملاً للعمارة والديكور الداخلي مع تنسيق المناظر الطبيعية والأنظمة الذكية.',
       results:
-        'A cohesive villa development with a clear modern identity, optimized orientation, and a premium finish standard aligned with the client’s expectations.',
+        '',
       resultsAr:
-        'تطوير فلل متكامل بهوية حديثة واضحة وتوجيه محسّن ومعيار تشطيب عالي يتوافق مع توقعات العميل.',
+        '',
     },
     {
       slug: 'efficiency-center-khobar',
@@ -197,9 +197,9 @@ export const useProjects = () => {
       solutionAr:
         'نسقنا تخطيط المساحة مع تفاصيل الديكور الداخلي مبكراً، ثم قدمنا رسومات منسقة وحزمة تشطيب مدعومة بمراقبة الجودة في الموقع.',
       results:
-        'A cohesive, modern workspace with premium finishes and reliable systems—ready for daily use with consistent performance and maintainability.',
+        '',
       resultsAr:
-        'مساحة عمل حديثة متكاملة بتشطيبات عالية وأنظمة موثوقة—جاهزة للاستخدام اليومي بأداء متسق وسهولة صيانة.',
+        '',
     },
     // {
     //   slug: 'mada-tower',
@@ -269,9 +269,9 @@ export const useProjects = () => {
       solutionAr:
         'تم تنسيق المفهوم المعماري مع تفاصيل الديكور الداخلي مبكراً، ثم تنفيذ حزمة تشطيب منسقة برسومات واضحة ومراقبة جودة في الموقع.',
       results:
-        'A refined villa outcome with consistent design language, premium finishes, and spaces optimized for daily living and maintainability.',
+        '',
       resultsAr:
-        'نتيجة فيلا منسقة بلغة تصميم متسقة وتشطيبات عالية ومساحات محسّنة للمعيشة اليومية وسهولة الصيانة.',
+        '',
     },
     {
       slug: 'gdc',
@@ -341,9 +341,9 @@ export const useProjects = () => {
       solutionAr:
         'طورنا استراتيجية تقسيم واضحة (مناطق تركيز وتعاون ودعم)، ونسقنا الإضاءة والتشطيبات لكل منطقة، ونسقنا البنية التحتية الجاهزة للذكاء لجعل المساحة قابلة للتكيف.',
       results:
-        'A cohesive co-working destination with a strong modern identity, functional flow, and durable finishes—ready for daily high-traffic use.',
+        '',
       resultsAr:
-        'وجهة عمل مشترك متكاملة بهوية حديثة قوية وتدفق وظيفي وتشطيبات متينة—جاهزة للاستخدام اليومي العالي الازدحام.',
+        '',
     },
     // {
     //   slug: 'almazroeyah',
@@ -435,9 +435,9 @@ export const useProjects = () => {
       gymTextAr:
         'صُممت منطقة الجيم كمنطقة لياقة راقية تتماشى مع الطابع التنفيذي العام للصالة. تتميز المساحة بتخطيط حديث قائم على الأداء مع مناطق تدريب محددة بوضوح، تجمع بين مناطق القوة والكارديو والتمارين الوظيفية. تتوازن التشطيبات الداكنة الهادئة مع لمسات خشبية دافئة وإضاءة خفيفة لخلق أجواء مركزة ومرحّبة.',
       results:
-        'A cohesive, modern residential outcome with premium finishes and a layout that balances aesthetics, comfort, and long-term maintainability.',
+        '',
       resultsAr:
-        'نتيجة سكنية حديثة متكاملة بتشطيبات عالية الجودة وتخطيط يوازن بين الجمال والراحة وسهولة الصيانة على المدى الطويل.',
+        '',
     },
     {
       slug: 'al-fakhreyah-villa-project',
@@ -476,9 +476,9 @@ export const useProjects = () => {
       solutionAr:
         'طورنا مفهومًا متكاملًا ينسق بين المعمار والتفاصيل الداخلية، ثم وثقنا حزم التشطيب لضمان تنفيذ متناسق وجودة عالية في الموقع.',
       results:
-        'A cohesive villa outcome with refined details, high-quality finishes, and a layout that supports comfort, functionality, and long-term maintainability.',
+        '',
       resultsAr:
-        'نتيجة متكاملة بفيلا بتفاصيل دقيقة وتشطيبات عالية الجودة وتخطيط يدعم الراحة والوظيفة وسهولة الصيانة على المدى الطويل.',
+        '',
     },
     // {
     //   slug: 'omco',
