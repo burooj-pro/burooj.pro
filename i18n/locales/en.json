@@ -46,27 +46,27 @@
       "titleLine2": "that Define Us",
       "stat1": {
         "number": "150+",
-        "title": "Projects delivered",
-        "body": "Covering residential villas, commercial fit-outs, smart systems, and high-rise drone cleaning.",
-        "description": "Projects delivered, covering residential villas, commercial fit-outs, smart systems, and high-rise drone cleaning."
+        "title": "Projects Delivered",
+        "body": "Across residential villas, commercial fit-outs, smart systems, and high-rise drone cleaning projects.",
+        "description": "Projects Delivered — across residential villas, commercial fit-outs, smart systems, and high-rise drone cleaning projects."
       },
       "stat2": {
         "number": "500+",
-        "title": "Managed units & assets",
-        "body": "Providing structured, data-driven property management with reporting automation.",
-        "description": "Managed units & assets — providing structured, data-driven property management with reporting automation."
+        "title": "Managed Units & Assets",
+        "body": "Delivering structured, data-driven property management with automated reporting.",
+        "description": "Managed Units & Assets — delivering structured, data-driven property management with automated reporting."
       },
       "stat3": {
         "number": "20,000+",
-        "title": "Square meters cleaned by drones",
-        "body": "Fast, safe, and eco-efficient façade and solar panel cleaning across the Kingdom.",
-        "description": "Square meters cleaned by drones — fast, safe, and eco-efficient façade and solar panel cleaning across the Kingdom."
+        "title": "m² Cleaned by Drones",
+        "body": "Safe, fast, and eco-efficient façade and solar panel cleaning across the Kingdom.",
+        "description": "m² Cleaned by Drones — safe, fast, and eco-efficient façade and solar panel cleaning across the Kingdom."
       },
       "stat4": {
         "number": "7+",
-        "title": "Years of excellence",
-        "body": "Delivering integrated solutions across engineering, property management, and innovation.",
-        "description": "Years of excellence — delivering integrated solutions across engineering, property management, and innovation."
+        "title": "Years of Experience",
+        "body": "Providing integrated solutions across engineering, property services, and innovation.",
+        "description": "Years of Experience — providing integrated solutions across engineering, property services, and innovation."
       }
     },
     "values": {
@@ -98,22 +98,22 @@
     "story": "OUR STORY"
   },
   "stats": {
-    "title": "Burooj in Numbers",
+    "title": "Numbers that Define Us",
     "stat1": {
       "title": "Projects Delivered",
-      "description": "Covering residential villas, commercial fit-outs, smart systems, and high-rise drone cleaning."
+      "description": "Across residential villas, commercial fit-outs, smart systems, and high-rise drone cleaning projects."
     },
     "stat2": {
       "title": "Managed Units & Assets",
-      "description": "Providing structured, data-driven property management with reporting automation."
+      "description": "Delivering structured, data-driven property management with automated reporting."
     },
     "stat3": {
-      "title": "Cleaned by Drones",
-      "description": "Fast, safe, and eco-efficient façade and solar panel cleaning across the Kingdom."
+      "title": "m² Cleaned by Drones",
+      "description": "Safe, fast, and eco-efficient façade and solar panel cleaning across the Kingdom."
     },
     "stat4": {
-      "title": "Years of Excellence",
-      "description": "Years of excellence — delivering integrated solutions across engineering, property management, and innovation."
+      "title": "Years of Experience",
+      "description": "Providing integrated solutions across engineering, property services, and innovation."
     }
   },
   "errors": {
@@ -201,6 +201,7 @@
     "title": "Recent Projects",
     "viewAll": "View All Projects",
     "ourWork": "OUR WORK",
+    "ourWorkDescription": "A curated selection of projects showcasing our integrated approach to architecture, interiors, fit-out, and smart systems—delivered with precision, coordination, and long-term performance in mind.",
     "showAll": "SHOW ALL",
     "constructionEngineering": "CONSTRUCTION & ENGINEERING",
     "droneCleaning": "DRONE CLEANING",
@@ -221,7 +222,7 @@
     "backToProjects": "Back to Projects"
   },
   "clients": {
-    "title": "Trusted by Leading Developers and Corporates",
+    "title": "Partnered with Leading Developers & Organizations",
     "description": "Trusted by leading companies, developers, investors, and organizations across Saudi Arabia.",
     "placeholder": "Client placeholder"
   },
@@ -490,20 +491,20 @@
       "subheadline": "Burooj unifies engineering, property management, and drone-powered cleaning into one seamless experience—delivering efficiency, precision, and long-lasting value across every project."
     },
     "about": {
-      "title": "A ",
-      "titleHighlight": "multi-disciplinary",
-      "titleSuffix": " Saudi company",
+      "title": "Comprehensive ",
+      "titleHighlight": "Construction & Engineering",
+      "titleSuffix": " Solutions",
       "titleLine2": "shaping modern built environments.",
-      "description": "Burooj delivers integrated solutions across construction, interior design, fit-out, property services, and smart building systems. With a strong focus on quality, efficiency, and precision, we support projects across their full lifecycle, from early planning and execution to ongoing operations and maintenance.\n\nOur unified approach allows clients to rely on a single trusted partner for their property needs. By combining design expertise with technical execution, we create spaces that balance functionality, durability, and refined aesthetics, ensuring long-term value and consistent performance.",
+      "description": "We provide end-to-end construction and engineering services that bring architecture, interiors, MEP, and smart systems together under one coordinated process. Our approach focuses on technical accuracy, efficient execution, and long-term performance, ensuring every project is delivered with clarity, quality, and control from design through completion.",
       "parentCompany": ""
     },
     "services": {
-      "title": "Our Services",
-      "subtitle": "Engineering, property management, and drone-powered cleaning—designed to support every stage of a building's lifecycle with clarity, precision, and modern efficiency.",
+      "title": "Core Services",
+      "subtitle": "Focused disciplines covering design, interiors, and fit-out—executed with technical accuracy and on-site coordination.",
       "construction": {
         "title": "CONSTRUCTION",
         "titleFull": "Construction & Engineering Services",
-        "description": "Architecture, interiors, MEP, and smart systems that keep developments future-ready. Every solution is documented with detailed drawings and 3D visuals for clients and partners."
+        "description": "Focused disciplines covering design, interiors, and fit-out—executed with technical accuracy and on-site coordination."
       },
       "property": {
         "title": "PROPERTY",

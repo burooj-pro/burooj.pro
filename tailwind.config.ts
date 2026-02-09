@@ -35,6 +35,7 @@ export default <Partial<Config>>{
       fontFamily: {
         sans: ['RedHatDisplay', ...defaultTheme.fontFamily.sans],
         serif: ['RedHatDisplay', ...defaultTheme.fontFamily.serif],
+        arabic: ['AlQabas', 'RedHatDisplay', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.05em' }],

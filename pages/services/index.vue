@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const config = useRuntimeConfig()
 const baseURL = config.app.baseURL || '/'
@@ -29,12 +29,11 @@ const handleServiceLeave = () => {
   isHoveringService.value = false
 }
 
-const tabKeys = ['Construction & Engineering', 'Property Management', 'Drone Cleaning'] as const
+const tabKeys = ['Construction & Engineering', 'Drone Cleaning'] as const
 const activeTabKey = ref<(typeof tabKeys)[number]>('Construction & Engineering')
 
 const tabs = computed(() => [
   t('home.services.construction.title'),
-  t('home.services.property.title'),
   t('home.services.drone.title'),
 ])
 const activeTab = ref<string>(tabs.value[0])
@@ -68,29 +67,29 @@ const tabContent = computed(() => ({
       t('services.construction.items.smart'),
     ],
   },
-  'Property Management': {
-    title: t('home.services.property.titleFull'),
-    description: t('home.services.property.description'),
-    items: [
-      t('services.property.items.marketing'),
-      t('services.property.items.leasing'),
-      t('services.property.items.pricing'),
-      t('services.property.items.listing'),
-      t('services.property.items.tenant'),
-      t('services.property.items.loi'),
-      t('services.property.items.legal'),
-      t('services.property.items.government'),
-      t('services.property.items.contract'),
-      t('services.property.items.revenue'),
-      t('services.property.items.reporting'),
-      t('services.property.items.valuation'),
-      t('services.property.items.cost'),
-      t('services.property.items.cleaning'),
-      t('services.property.items.security'),
-      t('services.property.items.efficiency'),
-      t('services.property.items.zakat'),
-    ],
-  },
+  // 'Property Management': {
+  //   title: t('home.services.property.titleFull'),
+  //   description: t('home.services.property.description'),
+  //   items: [
+  //     t('services.property.items.marketing'),
+  //     t('services.property.items.leasing'),
+  //     t('services.property.items.pricing'),
+  //     t('services.property.items.listing'),
+  //     t('services.property.items.tenant'),
+  //     t('services.property.items.loi'),
+  //     t('services.property.items.legal'),
+  //     t('services.property.items.government'),
+  //     t('services.property.items.contract'),
+  //     t('services.property.items.revenue'),
+  //     t('services.property.items.reporting'),
+  //     t('services.property.items.valuation'),
+  //     t('services.property.items.cost'),
+  //     t('services.property.items.cleaning'),
+  //     t('services.property.items.security'),
+  //     t('services.property.items.efficiency'),
+  //     t('services.property.items.zakat'),
+  //   ],
+  // },
   'Drone Cleaning': {
     title: t('home.services.drone.titleFull'),
     description: t('home.services.drone.description'),
@@ -152,7 +151,7 @@ onUnmounted(() => {
       </div>
 
       <!-- Three Panel Layout - responsive height and text so labels don't crop on small screens -->
-      <div class="grid grid-cols-1 md:grid-cols-3">
+      <div class="grid grid-cols-1 md:grid-cols-2">
         <!-- Service 01: Construction & Engineering -->
         <NuxtLink
           :to="localePath('/services/construction-engineering')"
@@ -174,8 +173,8 @@ onUnmounted(() => {
           </div>
         </NuxtLink>
 
-        <!-- Service 02: Property Management -->
-        <NuxtLink
+        <!-- Service 02: Property Management - Hidden -->
+        <!-- <NuxtLink
           :to="localePath('/services/property-management')"
           class="service-item group relative flex min-h-[280px] max-h-[55vh] items-end overflow-hidden sm:min-h-[340px] sm:max-h-[60vh] md:min-h-[38vh] md:max-h-[520px] lg:min-h-[42vh] lg:max-h-[580px] xl:min-h-[45vh] xl:max-h-[640px]"
           @mouseenter="handleServiceEnter('read-more')"
@@ -185,15 +184,13 @@ onUnmounted(() => {
             class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
             :style="`background-image: url('${baseURL}images/service2.png');`"
           ></div>
-          <!-- Gradient Overlay - Dark from bottom to light at top -->
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-          <!-- Text Overlay - min-w-0 and break-words so text isn't cropped -->
           <div class="relative z-10 min-w-0 w-full p-6 pb-10 sm:p-8 sm:pb-12 md:p-12 md:pb-16">
             <h3 class="text-2xl font-bold uppercase tracking-wide text-white break-words md:text-3xl lg:text-4xl xl:text-5xl">
               {{ t('home.services.property.title') }}
             </h3>
           </div>
-        </NuxtLink>
+        </NuxtLink> -->
 
         <!-- Service 03: Drone Cleaning -->
         <a
@@ -251,7 +248,7 @@ onUnmounted(() => {
             class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-dark"
           >
             {{ t('services.drone.visitWebsite') }}
-            <span class="text-base">→</span>
+            <span class="text-base">{{ locale === 'ar' ? '←' : '→' }}</span>
           </a>
         </div>
       </div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const route = useRoute()
 const config = useRuntimeConfig()
@@ -183,9 +183,6 @@ onMounted(() => {
             <h1 class="w-full text-4xl font-normal leading-[1.1] tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
               {{ t(categoryInfo.titleKey) }}
             </h1>
-            <p class="max-w-4xl text-base font-normal leading-relaxed text-white/95 md:text-lg lg:text-xl">
-              {{ t(categoryInfo.descriptionKey) }}
-            </p>
           </div>
         </div>
       </div>
@@ -200,7 +197,7 @@ onMounted(() => {
           </h2>
 
           <p class="text-base font-serif leading-relaxed text-ink md:text-lg">
-            {{ t(categoryInfo.descriptionKey) }}
+            {{ t('home.about.description') }}
           </p>
         </div>
       </div>
@@ -336,7 +333,7 @@ onMounted(() => {
           class="flex items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-slate-700"
         >
           {{ t('projects.viewAll') }}
-          <span class="text-base">→</span>
+          <span class="text-base">{{ locale === 'ar' ? '←' : '→' }}</span>
         </NuxtLink>
       </div>
 

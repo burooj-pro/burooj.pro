@@ -29,28 +29,8 @@ onMounted(() => {
   }
 })
 
-type FilterKey = 'ALL' | 'CONSTRUCTION' | 'PROPERTY' | 'DRONE'
-
-const filters = computed(() => [
-  { key: 'ALL' as const, label: t('projects.showAll') },
-  { key: 'CONSTRUCTION' as const, label: t('projects.constructionEngineering') },
-  { key: 'PROPERTY' as const, label: t('projects.propertyManagement') },
-  { key: 'DRONE' as const, label: t('projects.droneCleaning') },
-])
-
-const activeFilterKey = ref<FilterKey>('ALL')
-
+// Filters removed - showing all projects
 const filteredProjects = computed(() => {
-  if (activeFilterKey.value === 'ALL') return projects.value
-  if (activeFilterKey.value === 'CONSTRUCTION') {
-    return projects.value.filter((project: any) => project.category === 'Construction & Engineering')
-  }
-  if (activeFilterKey.value === 'PROPERTY') {
-    return projects.value.filter((project: any) => project.category === 'Property Management')
-  }
-  if (activeFilterKey.value === 'DRONE') {
-    return projects.value.filter((project: any) => project.category === 'Drone Cleaning')
-  }
   return projects.value
 })
 
@@ -93,24 +73,13 @@ onUnmounted(() => {
 <template>
   <section ref="projectsSection" class="section-wrapper py-16 md:py-24">
     <!-- Header Section -->
-    <div class="mb-12 space-y-6">
+    <div class="mb-12 space-y-4">
       <h1 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
         {{ t('projects.ourWork') }}
       </h1>
-      
-      <!-- Filter Navigation -->
-      <div class="flex flex-wrap gap-6 text-sm font-medium uppercase tracking-wide">
-        <button
-          v-for="filter in filters"
-          :key="filter.key"
-          class="transition-colors hover:text-primary"
-          :class="filter.key === activeFilterKey ? 'text-ink underline decoration-2 underline-offset-4' : 'text-slate-500'"
-          type="button"
-          @click="activeFilterKey = filter.key"
-        >
-          {{ filter.label }}
-        </button>
-      </div>
+      <p class="max-w-3xl text-base leading-relaxed text-slate-600 md:text-lg">
+        {{ t('projects.ourWorkDescription') }}
+      </p>
     </div>
 
     <!-- Projects Grid -->

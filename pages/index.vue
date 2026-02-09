@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const config = useRuntimeConfig()
 const baseURL = config.app.baseURL || '/'
@@ -327,11 +327,11 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
     </div>
 
     <!-- Three Panel Layout - responsive height: viewport-relative with min/max -->
-    <div class="grid grid-cols-1 md:grid-cols-3">
+    <div class="grid grid-cols-1 md:grid-cols-2">
       <!-- Service 01: Construction & Engineering -->
       <NuxtLink
         :to="localePath('/services/construction-engineering')"
-        class="service-item group relative flex min-h-[280px] max-h-[55vh] items-end overflow-hidden sm:min-h-[340px] sm:max-h-[60vh] md:min-h-[38vh] md:max-h-[520px] lg:min-h-[42vh] lg:max-h-[580px] xl:min-h-[45vh] xl:max-h-[640px]"
+        class="service-item group relative flex min-h-[320px] max-h-[60vh] items-end overflow-hidden sm:min-h-[380px] sm:max-h-[65vh] md:min-h-[42vh] md:max-h-[560px] lg:min-h-[46vh] lg:max-h-[620px] xl:min-h-[50vh] xl:max-h-[680px]"
         @mouseenter="handleServiceEnter('read-more')"
         @mouseleave="handleServiceLeave"
       >
@@ -349,10 +349,10 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
         </div>
       </NuxtLink>
 
-      <!-- Service 02: Property Management -->
-      <NuxtLink
+      <!-- Service 02: Property Management - Hidden -->
+      <!-- <NuxtLink
         :to="localePath('/services/property-management')"
-        class="service-item group relative flex min-h-[280px] max-h-[55vh] items-end overflow-hidden sm:min-h-[340px] sm:max-h-[60vh] md:min-h-[38vh] md:max-h-[520px] lg:min-h-[42vh] lg:max-h-[580px] xl:min-h-[45vh] xl:max-h-[640px]"
+        class="service-item group relative flex min-h-[320px] max-h-[60vh] items-end overflow-hidden sm:min-h-[380px] sm:max-h-[65vh] md:min-h-[42vh] md:max-h-[560px] lg:min-h-[46vh] lg:max-h-[620px] xl:min-h-[50vh] xl:max-h-[680px]"
         @mouseenter="handleServiceEnter('read-more')"
         @mouseleave="handleServiceLeave"
       >
@@ -360,22 +360,20 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
           class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
                 :style="`background-image: url('${baseURL}images/service2.png');`"
         ></div>
-        <!-- Gradient Overlay - Dark from bottom to light at top -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-        <!-- Text Overlay - min-w-0 so grid cell can shrink; break-words so long text wraps and isn't clipped -->
         <div class="relative z-10 min-w-0 w-full p-8 pb-12 md:p-12 md:pb-16">
           <h3 class="text-2xl font-bold uppercase tracking-wide text-white break-words md:text-3xl lg:text-4xl xl:text-5xl">
             {{ t('home.services.property.title') }}
           </h3>
         </div>
-      </NuxtLink>
+      </NuxtLink> -->
 
       <!-- Service 03: Drone Cleaning -->
       <a
         href="https://buroojair.com"
         target="_blank"
         rel="noopener noreferrer"
-        class="service-item group relative flex min-h-[280px] max-h-[55vh] items-end overflow-hidden sm:min-h-[340px] sm:max-h-[60vh] md:min-h-[38vh] md:max-h-[520px] lg:min-h-[42vh] lg:max-h-[580px] xl:min-h-[45vh] xl:max-h-[640px]"
+        class="service-item group relative flex min-h-[320px] max-h-[60vh] items-end overflow-hidden sm:min-h-[380px] sm:max-h-[65vh] md:min-h-[42vh] md:max-h-[560px] lg:min-h-[46vh] lg:max-h-[620px] xl:min-h-[50vh] xl:max-h-[680px]"
         @mouseenter="handleServiceEnter('visit-website')"
         @mouseleave="handleServiceLeave"
       >
@@ -406,7 +404,7 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
         class="flex items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-slate-700"
       >
         {{ t('projects.viewAll') }}
-        <span class="text-base">→</span>
+        <span class="text-base">{{ locale === 'ar' ? '←' : '→' }}</span>
       </NuxtLink>
     </div>
 
