@@ -502,7 +502,10 @@ onMounted(async () => {
           <h1 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
             {{ localizedProject.title }}
           </h1>
-          <p v-if="projectSlug === 'ec' && localizedProject.description" class="text-base leading-relaxed text-slate-600 md:text-lg">
+          <p
+            v-if="(projectSlug === 'ec' || projectSlug === 'al-fakhreyah-villa-project') && localizedProject.description"
+            class="text-base leading-relaxed text-slate-600 md:text-lg"
+          >
             {{ localizedProject.description }}
           </p>
           <p v-else-if="localizedProject.overview" class="text-base leading-relaxed text-slate-600 md:text-lg">
@@ -646,7 +649,76 @@ onMounted(async () => {
           </div>
         </div>
 
-        <!-- Project 2 (AlBarghash): 2/1 full width, then 2/2 and 2/3 side by side, then description -->
+        <!-- Project 2 (AlBarghash): Entrance block (2/14 full width, then 2/16 and 2/17 side by side) -->
+        <div v-if="project2FinalBlockImages.length === 3" class="space-y-6">
+          <div class="aspect-[16/9] w-full overflow-hidden rounded-xl">
+            <img
+              :src="project2FinalBlockImages[0]"
+              :alt="`${localizedProject.title} - Image 14`"
+              width="800"
+              height="450"
+              loading="lazy"
+              decoding="async"
+              class="h-full w-full object-cover"
+            />
+          </div>
+          <div class="grid gap-6 grid-cols-1 md:grid-cols-2">
+            <div
+              v-for="(image, index) in project2FinalBlockImages.slice(1, 3)"
+              :key="`project2-final-${index}`"
+              class="aspect-[4/3] overflow-hidden rounded-xl"
+            >
+              <img
+                :src="image"
+                :alt="`${localizedProject.title} - Image ${index === 0 ? 16 : 17}`"
+                width="800"
+                height="450"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover"
+              />
+            </div>
+          </div>
+          <div
+            v-if="(projectSlug === 'albarghash' && localizedProject.entranceText) || (projectSlug !== 'albarghash' && (localizedProject.challenge || localizedProject.solution || localizedProject.results))"
+            class="py-6 md:py-8"
+          >
+            <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
+              {{ projectSlug === 'albarghash' ? localizedProject.entranceText : (localizedProject.challenge || localizedProject.solution || localizedProject.results) }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Project 2 (AlBarghash): Central lounge block (2/6, 2/5, 2/8, 2/7 in 2x2) -->
+        <div v-if="project2QuadImages.length === 4" class="space-y-6">
+          <div class="grid gap-6 grid-cols-2">
+            <div
+              v-for="(image, index) in project2QuadImages"
+              :key="`project2-quad-${index}`"
+              class="aspect-[4/3] overflow-hidden rounded-xl"
+            >
+              <img
+                :src="image"
+                :alt="`${localizedProject.title} - Image ${index + 5}`"
+                width="800"
+                height="450"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover"
+              />
+            </div>
+          </div>
+          <div
+            v-if="(projectSlug === 'albarghash' && localizedProject.solution) || (projectSlug !== 'albarghash' && (localizedProject.challenge || localizedProject.solution || localizedProject.results))"
+            class="py-6 md:py-8"
+          >
+            <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
+              {{ projectSlug === 'albarghash' ? localizedProject.solution : (localizedProject.challenge || localizedProject.solution || localizedProject.results) }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Project 2 (AlBarghash): 2/1 full width, then 2/2 and 2/3 side by side, then cigar lounge description -->
         <div v-if="project2CigarRoomImages.length === 3" class="space-y-6">
           <div class="aspect-[16/9] w-full overflow-hidden rounded-xl">
             <img
@@ -683,7 +755,7 @@ onMounted(async () => {
           </div>
         </div>
 
-        <!-- Project 2 (AlBarghash): 2/9–2/13 in pairs (two together), then description below -->
+        <!-- Project 2 (AlBarghash): 2/9–2/13 in pairs (two together), then descriptive text below -->
         <div v-if="project2ShowcaseImages.length === 6" class="space-y-6">
           <div class="grid gap-6 grid-cols-2">
             <div
@@ -705,69 +777,6 @@ onMounted(async () => {
           <div v-if="(projectSlug === 'albarghash' && localizedProject.challenge) || (projectSlug !== 'albarghash' && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa' && (localizedProject.challenge || localizedProject.solution || localizedProject.results))" class="py-6 md:py-8">
             <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
               {{ projectSlug === 'albarghash' ? localizedProject.challenge : (localizedProject.challenge || localizedProject.solution || localizedProject.results) }}
-            </p>
-          </div>
-        </div>
-
-        <!-- Project 2 (AlBarghash): 2/6, 2/5, 2/8, 2/7 in 2x2 after showcase, then text -->
-        <div v-if="project2QuadImages.length === 4" class="space-y-6">
-          <div class="grid gap-6 grid-cols-2">
-            <div
-              v-for="(image, index) in project2QuadImages"
-              :key="`project2-quad-${index}`"
-              class="aspect-[4/3] overflow-hidden rounded-xl"
-            >
-              <img
-                :src="image"
-                :alt="`${localizedProject.title} - Image ${index + 5}`"
-                width="800"
-                height="450"
-                loading="lazy"
-                decoding="async"
-                class="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-          <div v-if="(projectSlug === 'albarghash' && localizedProject.solution) || (projectSlug !== 'albarghash' && (localizedProject.challenge || localizedProject.solution || localizedProject.results))" class="py-6 md:py-8">
-            <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
-              {{ projectSlug === 'albarghash' ? localizedProject.solution : (localizedProject.challenge || localizedProject.solution || localizedProject.results) }}
-            </p>
-          </div>
-        </div>
-
-        <!-- Project 2 (AlBarghash): 2/14 full width, then 2/16 and 2/17 side by side -->
-        <div v-if="project2FinalBlockImages.length === 3" class="space-y-6">
-          <div class="aspect-[16/9] w-full overflow-hidden rounded-xl">
-            <img
-              :src="project2FinalBlockImages[0]"
-              :alt="`${localizedProject.title} - Image 14`"
-              width="800"
-              height="450"
-              loading="lazy"
-              decoding="async"
-              class="h-full w-full object-cover"
-            />
-          </div>
-          <div class="grid gap-6 grid-cols-1 md:grid-cols-2">
-            <div
-              v-for="(image, index) in project2FinalBlockImages.slice(1, 3)"
-              :key="`project2-final-${index}`"
-              class="aspect-[4/3] overflow-hidden rounded-xl"
-            >
-              <img
-                :src="image"
-                :alt="`${localizedProject.title} - Image ${index === 0 ? 16 : 17}`"
-                width="800"
-                height="450"
-                loading="lazy"
-                decoding="async"
-                class="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-          <div v-if="(projectSlug === 'albarghash' && localizedProject.entranceText) || (projectSlug !== 'albarghash' && (localizedProject.challenge || localizedProject.solution || localizedProject.results))" class="py-6 md:py-8">
-            <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
-              {{ projectSlug === 'albarghash' ? localizedProject.entranceText : (localizedProject.challenge || localizedProject.solution || localizedProject.results) }}
             </p>
           </div>
         </div>

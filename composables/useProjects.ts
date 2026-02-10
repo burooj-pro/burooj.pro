@@ -411,9 +411,9 @@ export const useProjects = () => {
         'الإشراف على الموقع والتنفيذ',
       ],
       overview:
-        'Our work covered the design and execution of an executive lounge located on the 10th floor of Albargash Tower. The project was developed to provide a refined, functional environment tailored for executive use, while also offering high spatial flexibility to accommodate large-scale events.\n\nThe scope included the full development of the lounge area, starting from the entrance experience through to the main seating and functional zones, ensuring all client requirements were met with precision and clarity.',
+        'Our work covered the design and execution of an executive lounge at Albargash Tower. The project was developed to provide a refined, functional environment tailored for executive use, while also offering high spatial flexibility to accommodate large-scale events.\n\nThe scope included the full development of the lounge area, starting from the entrance experience through to the main seating and functional zones, ensuring all client requirements were met with precision and clarity.',
       overviewAr:
-        'شمل عملنا التصميم والتنفيذ لصالة تنفيذية تقع في الطابق العاشر من برج البرغش. طُوّر المشروع لتوفير بيئة راقية ووظيفية مصممة للاستخدام التنفيذي، مع تقديم مرونة مكانية عالية لاستيعاب الفعاليات واسعة النطاق.\n\nتضمن النطاق التطوير الكامل لمنطقة الصالة، من تجربة المدخل وصولاً إلى مناطق الجلوس الرئيسية والمناطق الوظيفية، مع ضمان تلبية جميع متطلبات العميل بدقة ووضوح.',
+        'شمل عملنا التصميم والتنفيذ لصالة تنفيذية في برج البرغش. طُوّر المشروع لتوفير بيئة راقية ووظيفية مصممة للاستخدام التنفيذي، مع تقديم مرونة مكانية عالية لاستيعاب الفعاليات واسعة النطاق.\n\nتضمن النطاق التطوير الكامل لمنطقة الصالة، من تجربة المدخل وصولاً إلى مناطق الجلوس الرئيسية والمناطق الوظيفية، مع ضمان تلبية جميع متطلبات العميل بدقة ووضوح.',
       midGalleryText:
         'The cigar lounge area was designed to combine luxury and comfort within an open and welcoming setting. The space features rich materials, warm tones, and carefully selected seating to create a relaxed yet sophisticated atmosphere that complements the overall flow of the executive lounge.\n\nA key design focus was placed on the ceiling, where specialized insulation and ventilation solutions were integrated to effectively contain smoke and prevent odors from spreading to surrounding areas. This allowed the cigar lounge to remain visually and spatially connected to the rest of the floor, while ensuring comfort and air quality for all users.',
       midGalleryTextAr:
@@ -445,8 +445,10 @@ export const useProjects = () => {
       titleAr: 'صالة ديوانية السينما',
       category: 'Construction & Engineering',
       status: 'Completed',
-      description: 'A flexible dual-purpose space in Dammam featuring full-height glass walls that transforms from an open daytime lounge into an evening cinema room through integrated projection technology.',
-      descriptionAr: 'مساحة مرنة متعددة الأغراض في الدمام تتميز بجدران زجاجية كاملة الارتفاع تتحول من صالة مفتوحة نهارية إلى غرفة سينما مسائية من خلال تقنية الإسقاط المتكاملة.',
+      description:
+        'This project was designed for a private client in Dammam in 2023. The space features full-height glass walls, allowing it to function as an open and inviting lounge during the day.',
+      descriptionAr:
+        'تم تصميم هذا المشروع لعميل خاص في الدمام عام 2023، ويتميز بجدران زجاجية كاملة الارتفاع تسمح للمساحة بأن تعمل كصالة مفتوحة ومرحّبة خلال النهار.',
       image: '/images/projects/3/1.png',
       images: [
         '/images/projects/3/1.png',
@@ -509,8 +511,8 @@ export const useProjects = () => {
       year: '2024',
       client: 'Roaya',
       clientAr: 'رواية',
-      services: ['Interior Design', 'Finishing & Fit-Out'],
-      servicesAr: ['التصميم الداخلي', 'التشطيب والتأثيث'],
+      services: ['Interior Design', 'Concept Development', 'Material Selection'],
+      servicesAr: ['التصميم الداخلي', 'تطوير المفهوم', 'اختيار المواد'],
       overview:
         'This project focuses on the design of a refined and welcoming waiting area for Roaya, where comfort, calmness, and functionality come together in a cohesive interior concept. The space was carefully designed to create a warm first impression while maintaining a modern and elegant atmosphere suitable for daily visitors.',
       overviewAr:
@@ -518,8 +520,8 @@ export const useProjects = () => {
     },
     {
       slug: 'thabat',
-      title: 'Thabat Reception & Display Space',
-      titleAr: 'مساحة استقبال وعرض ثابت',
+      title: 'Thabat Booth',
+      titleAr: 'جناح ثابت',
       category: 'Construction & Engineering',
       status: 'Completed',
       description: 'Interior design of a two-floor reception and display space for Thabat, reflecting a refined and luxurious identity while balancing hospitality, presentation needs, and strong brand presence.',
@@ -538,8 +540,8 @@ export const useProjects = () => {
       year: '2024',
       client: 'Thabat',
       clientAr: 'ثابت',
-      services: ['Interior Design'],
-      servicesAr: ['التصميم الداخلي'],
+      services: ['Interior Design', 'Concept Development', 'Booth Design', 'Material & Finish Selection'],
+      servicesAr: ['التصميم الداخلي', 'تطوير المفهوم', 'تصميم الجناح', 'اختيار المواد والتشطيبات'],
       overview:
         'This project involved the interior design of a two-floor space for Thabat, created to reflect a refined and luxurious identity while supporting both hospitality and presentation needs.\n\nThe design was planned to deliver a strong first impression, with carefully curated spaces that balance elegance, functionality, and brand presence.',
       overviewAr:
@@ -634,8 +636,8 @@ export const useProjects = () => {
       year: '2025',
       client: 'Tulip Spa',
       clientAr: 'توليب سبا',
-      services: ['Interior Design', 'Finishing & Fit-Out', 'Electrical Works', 'Plumbing Services', 'HVAC Installation'],
-      servicesAr: ['التصميم الداخلي', 'التشطيب والتجهيز', 'الأعمال الكهربائية', 'خدمات السباكة', 'تركيب أنظمة التكييف'],
+      services: ['Interior Design', 'Concept Development', 'Material Selection'],
+      servicesAr: ['التصميم الداخلي', 'تطوير المفهوم', 'اختيار المواد'],
       overview:
         'This project involved the interior design of Tulip Spa, a spa and salon located in Dhahran, completed in 2025.\n\nThe design concept was carefully planned to enhance privacy, calmness, and comfort for visitors. The salon area was designed on the ground floor, allowing easy access and an open, welcoming atmosphere, while the mezzanine floor was dedicated entirely to the spa, creating a quieter and more private experience away from the main circulation.',
       overviewAr:
@@ -747,8 +749,31 @@ export const useProjects = () => {
     }
   }
 
+  // Explicit display order for projects across the site
+  const projectOrder: Record<string, number> = {
+    'efficiency-center-khobar': 1, // GDC Middle East – Riyadh Office Fit-Out
+    albarghash: 2, // Albargash Tower – Executive Lounge
+    gdc: 3, // Co-Working Space – Riyadh
+    ec: 4, // Efficiency Center – Co-Working Space
+    'albahar-villas': 5, // Hay Albahr Villas
+    'private-shalet': 6, // Beachfront Najdi Villas
+    'al-fakhreyah-villa-project': 7, // Diwaniya Cinema Lounge
+    roaya: 8, // Roaya Waiting Area
+    thabat: 9, // Thabat Booth
+    'tulip-spa': 10, // Tulip Spa & Salon
+  }
+
+  const orderedProjects = computed(() => {
+    return [...projects].sort((a, b) => {
+      const orderA = projectOrder[a.slug] ?? 999
+      const orderB = projectOrder[b.slug] ?? 999
+      return orderA - orderB
+    })
+  })
+
   return {
-    projects,
+    // Expose a plain array (not a Ref) so callers can use .map directly
+    projects: orderedProjects.value,
     getProjectBySlug,
     getLocalizedProject,
   }

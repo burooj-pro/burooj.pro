@@ -203,7 +203,7 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- Subservices Section - Exact same as Home page services -->
+      <!-- Subservices Section - Same title as Home page services, shared subtitle -->
     <section v-if="categoryServices.length > 0" ref="subservicesSection" class="relative z-10 w-full">
       <!-- Section Title - Same as home page -->
       <div class="section-wrapper py-16 md:py-24">
@@ -215,7 +215,7 @@ onMounted(() => {
           </div>
           <div>
             <p class="text-base leading-relaxed text-slate-600 md:text-lg">
-              {{ t(categoryInfo.descriptionKey) }}
+                {{ t('home.services.subtitle') }}
             </p>
           </div>
         </div>
