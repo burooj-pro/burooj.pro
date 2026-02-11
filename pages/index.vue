@@ -23,6 +23,11 @@ const enableHeroVideo = ref(false)
 const heroVideoFailed = ref(false)
 const heroVideoEl = ref<HTMLVideoElement | null>(null)
 
+// CTA section background video (deferred)
+const enableCtaVideo = ref(false)
+const ctaVideoFailed = ref(false)
+const ctaVideoEl = ref<HTMLVideoElement | null>(null)
+
 // Custom cursor for service items
 const cursorPosition = ref({ x: 0, y: 0 })
 const isHoveringService = ref(false)
@@ -95,6 +100,20 @@ onMounted(() => {
       setTimeout(() => {
         const video = heroVideoEl.value
         if (video && !heroVideoFailed.value) {
+          video.muted = true
+          video.play().catch(() => { /* autoplay blocked or failed */ })
+        }
+      }, 300)
+    })
+  })
+
+  // Defer CTA section background video
+  defer(() => {
+    enableCtaVideo.value = true
+    nextTick(() => {
+      setTimeout(() => {
+        const video = ctaVideoEl.value
+        if (video && !ctaVideoFailed.value) {
           video.muted = true
           video.play().catch(() => { /* autoplay blocked or failed */ })
         }
@@ -498,9 +517,23 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
 
   <section id="contact" ref="ctaSection" class="relative z-30 w-full overflow-hidden">
     <div
-      class="relative min-h-[500px] overflow-hidden"
+      class="relative min-h-[600px] overflow-hidden"
     >
+      <video
+        v-if="enableCtaVideo && !ctaVideoFailed"
+        ref="ctaVideoEl"
+        class="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"
+        @error="ctaVideoFailed = true"
+      >
+        <source :src="`${baseURL}videos/cta.mp4`" type="video/mp4" />
+      </video>
       <img
+        v-if="!enableCtaVideo || ctaVideoFailed"
         :src="`${baseURL}images/hero-image.png`"
         alt=""
         width="1920"
@@ -509,9 +542,9 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
         decoding="async"
         class="absolute inset-0 h-full w-full object-cover"
       />
-      <!-- Same gradient overlay as hero section -->
-      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20"></div>
-      <div class="section-wrapper relative z-10 flex min-h-[500px] flex-col items-center justify-center py-16 text-center">
+      <!-- Gradient overlay: dark at bottom, transparent toward top -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+      <div class="section-wrapper relative z-10 flex min-h-[600px] flex-col items-center justify-center py-16 text-center">
         <h3 class="text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
           <span>{{ t('cta.title') }}</span><br />
           <span>{{ t('cta.titleLine2') }}</span>
