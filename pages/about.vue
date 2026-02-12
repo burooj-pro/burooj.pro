@@ -379,9 +379,9 @@ onMounted(() => {
             <div class="relative overflow-hidden rounded-lg bg-stone-50">
               <div class="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
                 <img
-                  :src="`${baseURL}images/team/mohammedF.png`"
+                  :src="`${baseURL}images/team/mohammedF_optimized.webp`"
                   :alt="t('about.founder.name')"
-                  class="h-full w-full object-cover object-center"
+                  class="h-full w-full object-cover object-center grayscale"
                 />
               </div>
             </div>

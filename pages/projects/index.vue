@@ -101,7 +101,14 @@ onUnmounted(() => {
           />
         </div>
         <div class="relative z-10 mt-4 space-y-3">
-          <div v-if="project.services && project.services.length > 0" class="flex flex-wrap gap-2">
+          <h2 class="text-xl font-bold leading-tight text-ink md:text-2xl">
+            {{ project.title }}
+          </h2>
+          <p class="text-sm leading-relaxed text-slate-600 md:text-base">
+            {{ project.description }}
+          </p>
+          <!-- Services -->
+          <div v-if="project.services && project.services.length > 0" class="flex flex-wrap gap-2 pt-1">
             <span
               v-for="service in project.services"
               :key="service"
@@ -110,12 +117,6 @@ onUnmounted(() => {
               {{ service }}
             </span>
           </div>
-          <h2 class="text-xl font-bold leading-tight text-ink md:text-2xl">
-            {{ project.title }}
-          </h2>
-          <p class="text-sm leading-relaxed text-slate-600 md:text-base">
-            {{ project.description }}
-          </p>
         </div>
       </NuxtLink>
     </div>
