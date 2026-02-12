@@ -271,6 +271,28 @@ const projectECFinalPairImages = computed(() => {
   return [img5, img9]
 })
 
+// Mada Tower: Group all images into pairs
+const madaTowerImagePairs = computed(() => {
+  if (projectSlug !== 'mada-tower') return [] as string[][]
+  
+  const pairs: string[][] = []
+  const images = galleryImages.value.filter(img => 
+    img.includes('/images/projects/11/')
+  )
+  
+  // Group images into pairs
+  for (let i = 0; i < images.length; i += 2) {
+    if (i + 1 < images.length) {
+      pairs.push([images[i], images[i + 1]])
+    } else {
+      // If odd number, last image alone
+      pairs.push([images[i]])
+    }
+  }
+  
+  return pairs
+})
+
 const galleryImagesForLayout = computed(() => {
   const remove = new Set<string>()
 
@@ -397,9 +419,14 @@ const galleryImagesForLayout = computed(() => {
     }
   }
 
-  if (remove.size === 0) return galleryImages.value
+  if (remove.size === 0 && projectSlug !== 'mada-tower') return galleryImages.value
 
   return galleryImages.value.filter((img) => {
+    // Mada Tower: exclude all images from project 11
+    if (projectSlug === 'mada-tower' && img.includes('/images/projects/11/')) {
+      return false
+    }
+    
     for (const suffix of remove) {
       if (img.endsWith(suffix)) return false
     }
@@ -412,6 +439,24 @@ const remainingGalleryImages = computed(() => {
   const list = galleryImagesForLayout.value
   if (gdcQuadImages.value.length === 4 || project4QuadImages.value.length === 4 || project5QuadImages.value.length === 4) return list.slice(2)
   return list.slice(5)
+})
+
+// Group remaining images into pairs
+const remainingImagePairs = computed(() => {
+  const images = remainingGalleryImages.value
+  const pairs: string[][] = []
+  
+  // Group images into pairs
+  for (let i = 0; i < images.length; i += 2) {
+    if (i + 1 < images.length) {
+      pairs.push([images[i], images[i + 1]])
+    } else {
+      // If odd number, last image alone
+      pairs.push([images[i]])
+    }
+  }
+  
+  return pairs
 })
 
 useHead({
@@ -427,6 +472,11 @@ useHead({
 // GSAP animations
 const heroImage = ref<HTMLElement | null>(null)
 const contentSections = ref<HTMLElement[]>([])
+
+// CTA section background video (deferred)
+const enableCtaVideo = ref(false)
+const ctaVideoFailed = ref(false)
+const ctaVideoEl = ref<HTMLVideoElement | null>(null)
 
 const registerContentSection = (el: any) => {
   const node = (el as any)?.$el ?? el
@@ -451,6 +501,28 @@ onMounted(async () => {
       ease: 'power2.out',
     })
   }
+
+  // Defer loading of CTA background video until after first paint
+  const defer = (cb: () => void) => {
+    if ('requestIdleCallback' in window) {
+      ;(window as any).requestIdleCallback(cb, { timeout: 2000 })
+    } else {
+      setTimeout(cb, 1200)
+    }
+  }
+
+  defer(() => {
+    enableCtaVideo.value = true
+    nextTick(() => {
+      setTimeout(() => {
+        const video = ctaVideoEl.value
+        if (video && !ctaVideoFailed.value) {
+          video.muted = true
+          video.play().catch(() => { /* autoplay blocked or failed */ })
+        }
+      }, 300)
+    })
+  })
 
   // Content sections fade in on scroll
   contentSections.value.forEach((section, index) => {
@@ -548,7 +620,7 @@ onMounted(async () => {
 
     <!-- Images Grid Section -->
     <section
-      v-if="galleryImagesForLayout.length > 0 || project2CigarRoomImages.length === 3 || project2ShowcaseImages.length === 6 || project2QuadImages.length === 4 || project2FinalBlockImages.length === 3 || project2SixImages.length === 6 || project3HeroImages.length === 3 || project8HeroImages.length === 3 || project7HeroImages.length === 3 || projectECPairImages.length === 2 || projectECFinalPairImages.length === 2 || diagramPairImages.length === 2 || quadImages.length === 4 || gdcQuadImages.length === 4 || project4QuadImages.length === 4 || project5QuadImages.length === 4 || project4TailPairImages.length === 2 || project9TailPairImages.length === 2 || gdcTailPairImages.length === 2 || midPairImages.length === 2 || tailPairImages.length === 2"
+      v-if="galleryImagesForLayout.length > 0 || madaTowerImagePairs.length > 0 || project2CigarRoomImages.length === 3 || project2ShowcaseImages.length === 6 || project2QuadImages.length === 4 || project2FinalBlockImages.length === 3 || project2SixImages.length === 6 || project3HeroImages.length === 3 || project8HeroImages.length === 3 || project7HeroImages.length === 3 || projectECPairImages.length === 2 || projectECFinalPairImages.length === 2 || diagramPairImages.length === 2 || quadImages.length === 4 || gdcQuadImages.length === 4 || project4QuadImages.length === 4 || project5QuadImages.length === 4 || project4TailPairImages.length === 2 || project9TailPairImages.length === 2 || gdcTailPairImages.length === 2 || midPairImages.length === 2 || tailPairImages.length === 2"
       :ref="registerContentSection"
       class="section-wrapper relative z-10 py-16 md:py-24"
     >
@@ -680,7 +752,7 @@ onMounted(async () => {
             </div>
           </div>
           <div
-            v-if="(projectSlug === 'albarghash' && localizedProject.entranceText) || (projectSlug !== 'albarghash' && (localizedProject.challenge || localizedProject.solution || localizedProject.results))"
+            v-if="(projectSlug === 'albarghash' && localizedProject.entranceText) || (projectSlug !== 'albarghash' && projectSlug !== 'mada-tower' && (localizedProject.challenge || localizedProject.solution || localizedProject.results))"
             class="py-6 md:py-8"
           >
             <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
@@ -709,7 +781,7 @@ onMounted(async () => {
             </div>
           </div>
           <div
-            v-if="(projectSlug === 'albarghash' && localizedProject.solution) || (projectSlug !== 'albarghash' && (localizedProject.challenge || localizedProject.solution || localizedProject.results))"
+            v-if="(projectSlug === 'albarghash' && localizedProject.solution) || (projectSlug !== 'albarghash' && projectSlug !== 'mada-tower' && (localizedProject.challenge || localizedProject.solution || localizedProject.results))"
             class="py-6 md:py-8"
           >
             <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
@@ -748,7 +820,7 @@ onMounted(async () => {
               />
             </div>
           </div>
-          <div v-if="(projectSlug === 'albarghash' && localizedProject.midGalleryText) || (projectSlug !== 'albarghash' && (localizedProject.overview || localizedProject.description))" class="py-6 md:py-8">
+          <div v-if="(projectSlug === 'albarghash' && localizedProject.midGalleryText) || (projectSlug !== 'albarghash' && projectSlug !== 'mada-tower' && (localizedProject.overview || localizedProject.description))" class="py-6 md:py-8">
             <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
               {{ projectSlug === 'albarghash' && localizedProject.midGalleryText ? localizedProject.midGalleryText : (localizedProject.overview || localizedProject.description) }}
             </p>
@@ -774,7 +846,7 @@ onMounted(async () => {
               />
             </div>
           </div>
-          <div v-if="(projectSlug === 'albarghash' && localizedProject.challenge) || (projectSlug !== 'albarghash' && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa' && (localizedProject.challenge || localizedProject.solution || localizedProject.results))" class="py-6 md:py-8">
+          <div v-if="(projectSlug === 'albarghash' && localizedProject.challenge) || (projectSlug !== 'albarghash' && projectSlug !== 'mada-tower' && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa' && (localizedProject.challenge || localizedProject.solution || localizedProject.results))" class="py-6 md:py-8">
             <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
               {{ projectSlug === 'albarghash' ? localizedProject.challenge : (localizedProject.challenge || localizedProject.solution || localizedProject.results) }}
             </p>
@@ -803,36 +875,56 @@ onMounted(async () => {
           </div>
         </div>
 
-        <!-- Two Column Grid -->
-        <div class="grid gap-6 md:grid-cols-2">
+        <!-- Mada Tower: All images in pairs -->
+        <template v-if="projectSlug === 'mada-tower'">
           <div
-            v-for="(image, index) in galleryImagesForLayout.slice(0, 2)"
-            :key="`img-top-${index}`"
-            class="aspect-[4/3] overflow-hidden rounded-xl"
+            v-for="(pair, pairIndex) in madaTowerImagePairs"
+            :key="`mada-pair-${pairIndex}`"
+            class="md:col-span-2"
           >
-            <img
-              :src="image"
-              :alt="`${localizedProject.title} - Image ${index + 1}`"
-              class="h-full w-full object-cover"
-            />
+            <div class="grid gap-6 md:grid-cols-2">
+              <div
+                v-for="(image, imgIndex) in pair"
+                :key="`mada-img-${pairIndex}-${imgIndex}`"
+                class="aspect-[4/3] overflow-hidden rounded-xl"
+              >
+                <img
+                  :src="image"
+                  :alt="`${localizedProject.title} - Image ${pairIndex * 2 + imgIndex + 1}`"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </template>
+
+        <!-- Default gallery layout for all other projects -->
+        <template v-else>
+          <div class="grid gap-6 md:grid-cols-2">
+            <div
+              v-for="(image, index) in galleryImagesForLayout.slice(0, 2)"
+              :key="`img-top-${index}`"
+              class="aspect-[4/3] overflow-hidden rounded-xl"
+            >
+              <img
+                :src="image"
+                :alt="`${localizedProject.title} - Image ${index + 1}`"
+                class="h-full w-full object-cover"
+              />
+            </div>
           </div>
 
-          <!-- Mid-gallery paragraph: for Burooj Villas only exterior design; for others (except albarghash, roaya, thabat, and tulip-spa – has its own blocks) midGalleryText, overview, or exterior -->
+          <!-- Efficiency Center Khobar: midGalleryText right after first two images -->
           <div
-            v-if="(projectSlug === 'albahar-villas' && localizedProject.exteriorDesign) || (projectSlug !== 'albahar-villas' && projectSlug !== 'albarghash' && projectSlug !== 'roaya' && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa' && (localizedProject.midGalleryText || localizedProject.overview || localizedProject.description || localizedProject.exteriorDesign))"
-            class="md:col-span-2 py-10 md:py-14 space-y-6"
+            v-if="projectSlug === 'efficiency-center-khobar' && localizedProject.midGalleryText"
+            class="md:col-span-2 py-6 md:py-8"
           >
-            <p
-              v-if="projectSlug !== 'albahar-villas' && projectSlug !== 'albarghash' && projectSlug !== 'roaya' && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa' && (localizedProject.midGalleryText || localizedProject.overview || localizedProject.description)"
-              class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl"
-            >
-              {{ localizedProject.midGalleryText || localizedProject.overview || localizedProject.description }}
-            </p>
-            <p
-              v-if="localizedProject.exteriorDesign"
-              class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl"
-            >
-              {{ localizedProject.exteriorDesign }}
+            <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
+              {{ localizedProject.midGalleryText }}
             </p>
           </div>
 
@@ -957,22 +1049,49 @@ onMounted(async () => {
             </div>
           </div>
 
-          <!-- Remaining images (after first 2 + quad or first 5) -->
+          <!-- Mid-gallery paragraph: for Burooj Villas only exterior design; for others (except albarghash, roaya, thabat, tulip-spa, efficiency-center-khobar, and mada-tower – has its own blocks) midGalleryText, overview, or exterior -->
           <div
-            v-for="(image, index) in remainingGalleryImages"
-            :key="`img-rest-${index}`"
-            :class="isProjectOne ? 'aspect-[16/10]' : 'aspect-[4/3]'"
-            class="overflow-hidden rounded-xl"
+            v-if="projectSlug !== 'mada-tower' && projectSlug !== 'efficiency-center-khobar' && ((projectSlug === 'albahar-villas' && localizedProject.exteriorDesign) || (projectSlug !== 'albahar-villas' && projectSlug !== 'albarghash' && projectSlug !== 'roaya' && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa' && (localizedProject.midGalleryText || localizedProject.overview || localizedProject.description || localizedProject.exteriorDesign)))"
+            class="md:col-span-2 py-10 md:py-14 space-y-6"
           >
-            <img
-              :src="image"
-              :alt="`${localizedProject.title} - Image ${index + (gdcQuadImages.length === 4 || project4QuadImages.length === 4 || project5QuadImages.length === 4 ? 3 : 6)}`"
-              width="800"
-              height="600"
-              loading="lazy"
-              decoding="async"
-              class="h-full w-full object-cover"
-            />
+            <p
+              v-if="projectSlug !== 'albahar-villas' && projectSlug !== 'albarghash' && projectSlug !== 'roaya' && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa' && projectSlug !== 'mada-tower' && projectSlug !== 'efficiency-center-khobar' && (localizedProject.midGalleryText || localizedProject.overview || localizedProject.description)"
+              class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl"
+            >
+              {{ localizedProject.midGalleryText || localizedProject.overview || localizedProject.description }}
+            </p>
+            <p
+              v-if="localizedProject.exteriorDesign && projectSlug !== 'mada-tower'"
+              class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl"
+            >
+              {{ localizedProject.exteriorDesign }}
+            </p>
+          </div>
+
+          <!-- Remaining images (after first 2 + quad or first 5) - displayed in pairs -->
+          <div
+            v-for="(pair, pairIndex) in remainingImagePairs"
+            :key="`remaining-pair-${pairIndex}`"
+            class="md:col-span-2"
+          >
+            <div class="grid gap-6 md:grid-cols-2">
+              <div
+                v-for="(image, imgIndex) in pair"
+                :key="`remaining-img-${pairIndex}-${imgIndex}`"
+                :class="isProjectOne ? 'aspect-[16/10]' : 'aspect-[4/3]'"
+                class="overflow-hidden rounded-xl"
+              >
+                <img
+                  :src="image"
+                  :alt="`${localizedProject.title} - Image ${pairIndex * 2 + imgIndex + (gdcQuadImages.length === 4 || project4QuadImages.length === 4 || project5QuadImages.length === 4 ? 3 : 6)}`"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+            </div>
           </div>
 
           <!-- Project 1: keep 10 & 12 together -->
@@ -1123,7 +1242,7 @@ onMounted(async () => {
               </div>
             </div>
           </div>
-        </div>
+        </template>
         
         <!-- Full Width Image -->
         <div v-if="shouldShowFullWidthImage && projectSlug !== 'ec'" class="aspect-[16/9] w-full overflow-hidden rounded-xl">
@@ -1140,7 +1259,7 @@ onMounted(async () => {
 
         <!-- Interior design (after last images, e.g. Burooj Villas) -->
         <div
-          v-if="localizedProject.interiorDesign && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa'"
+          v-if="projectSlug !== 'mada-tower' && localizedProject.interiorDesign && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa'"
           class="w-full py-10 md:py-14"
         >
           <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
@@ -1150,20 +1269,35 @@ onMounted(async () => {
 
         <!-- Results (after last images, e.g. Efficiency Center) -->
         <div
-          v-if="localizedProject.results && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa'"
+          v-if="projectSlug !== 'mada-tower' && localizedProject.results && projectSlug !== 'thabat' && projectSlug !== 'tulip-spa'"
           class="w-full py-10 md:py-14"
         >
           <p class="text-base leading-relaxed text-slate-600 md:text-lg lg:text-xl">
             {{ localizedProject.results }}
           </p>
         </div>
+
       </div>
     </section>
 
     <!-- Project CTA -->
     <section :ref="registerContentSection" class="relative z-10 w-full overflow-hidden">
-      <div class="relative min-h-[500px] overflow-hidden">
+      <div class="relative min-h-[600px] overflow-hidden">
+        <video
+          v-if="enableCtaVideo && !ctaVideoFailed"
+          ref="ctaVideoEl"
+          class="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+          autoplay
+          muted
+          loop
+          playsinline
+          aria-hidden="true"
+          @error="ctaVideoFailed = true"
+        >
+          <source :src="`${baseURL}videos/cta.mp4`" type="video/mp4" />
+        </video>
         <img
+          v-if="!enableCtaVideo || ctaVideoFailed"
           :src="`${baseURL}images/hero-image.png`"
           alt=""
           width="1920"
@@ -1172,9 +1306,9 @@ onMounted(async () => {
           decoding="async"
           class="absolute inset-0 h-full w-full object-cover"
         />
-        <!-- Same gradient overlay as hero section -->
-        <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20"></div>
-        <div class="section-wrapper relative z-10 flex min-h-[500px] flex-col items-center justify-center py-16 text-center">
+        <!-- Gradient overlay: dark at bottom, transparent toward top -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+        <div class="section-wrapper relative z-10 flex min-h-[600px] flex-col items-center justify-center py-16 text-center">
           <h2 class="text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
             <span>{{ t('cta.title') }}</span><br />
             <span>{{ t('cta.titleLine2') }}</span>

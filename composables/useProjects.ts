@@ -655,6 +655,64 @@ export const useProjects = () => {
       resultsAr:
         'تجهيز سبا منسق بتفاصيل متسقة وتشطيبات متينة وأجواء ترحيبية جاهزة للتشغيل اليومي.',
     },
+    {
+      slug: 'mada-tower',
+      title: 'Mada Tower',
+      titleAr: 'برج مادة',
+      category: 'Construction & Engineering',
+      status: 'Completed',
+      description: 'Interior design of the tower\'s reception area and internal corridors, creating a modern, refined atmosphere that reflects the building\'s contemporary character.',
+      descriptionAr: 'التصميم الداخلي لمنطقة الاستقبال والممرات الداخلية للبرج، مخلّفاً أجواء عصرية وراقية تعكس الطابع المعاصر للمبنى.',
+      image: '/images/projects/11/Ground 01_optimized.webp',
+      images: [
+        '/images/projects/11/Ground 01_optimized.webp',
+        '/images/projects/11/Ground 02 (1)_optimized.webp',
+        '/images/projects/11/Ground 04_optimized.webp',
+        '/images/projects/11/Ground 06_optimized.webp',
+        '/images/projects/11/First Floor A1_optimized.webp',
+        '/images/projects/11/First Floor A4_optimized.webp',
+        '/images/projects/11/First Floor B2_optimized.webp',
+        '/images/projects/11/First Floor B3_optimized.webp',
+        '/images/projects/11/Basment 01_optimized.webp',
+        '/images/projects/11/Basment 03_optimized.webp',
+      ],
+      fullWidthImage: '/images/projects/11/Ground 01_optimized.webp',
+      location: 'Saudi Arabia',
+      locationAr: 'المملكة العربية السعودية',
+      year: '2024',
+      client: 'Mada Tower',
+      clientAr: 'برج مادة',
+      services: [
+        'Interior Design',
+        'Space Planning',
+        'Material Selection',
+        'Lighting Concept',
+        'Visual Coordination',
+      ],
+      servicesAr: [
+        'التصميم الداخلي',
+        'تخطيط المساحة',
+        'اختيار المواد',
+        'مفهوم الإضاءة',
+        'التنسيق البصري',
+      ],
+      overview:
+        'This project focused on the interior design of the tower\'s reception area and internal corridors, aiming to create a modern, refined atmosphere that reflects the building\'s contemporary character. The design combines raw concrete finishes with warm lighting and clean architectural lines to achieve a balanced, welcoming environment. Our scope included space planning, material selection, lighting concept, and overall visual coordination to ensure a cohesive experience throughout the public areas of the tower. Project duration: 2 weeks.',
+      overviewAr:
+        'ركز هذا المشروع على التصميم الداخلي لمنطقة الاستقبال والممرات الداخلية للبرج، بهدف خلق أجواء عصرية وراقية تعكس الطابع المعاصر للمبنى. يجمع التصميم بين تشطيبات الخرسانة الخام والإضاءة الدافئة والخطوط المعمارية النظيفة لتحقيق بيئة متوازنة ومرحّبة. شمل نطاقنا تخطيط المساحة واختيار المواد ومفهوم الإضاءة والتنسيق البصري الشامل لضمان تجربة متسقة في جميع المناطق العامة للبرج.',
+      challenge:
+        'Creating a cohesive interior design that balances modern aesthetics with functional requirements while maintaining visual consistency across reception and corridor spaces.',
+      challengeAr:
+        'إنشاء تصميم داخلي متسق يوازن بين الجماليات العصرية والمتطلبات الوظيفية مع الحفاظ على الاتساق البصري عبر مساحات الاستقبال والممرات.',
+      solution:
+        'We developed an integrated design concept combining raw concrete finishes with warm lighting and clean architectural lines, ensuring coordinated space planning, material selection, and visual coordination throughout the public areas.',
+      solutionAr:
+        'طورنا مفهوماً تصميمياً متكاملاً يجمع بين تشطيبات الخرسانة الخام والإضاءة الدافئة والخطوط المعمارية النظيفة، مع ضمان تخطيط مساحة منسق واختيار مواد وتنسيق بصري في جميع المناطق العامة.',
+      results:
+        'A modern, refined interior environment that successfully reflects the building\'s contemporary character while providing a welcoming and balanced atmosphere for visitors and occupants.',
+      resultsAr:
+        'بيئة داخلية عصرية وراقية تعكس بنجاح الطابع المعاصر للمبنى مع توفير أجواء مرحّبة ومتوازنة للزوار والمقيمين.',
+    },
     // {
     //   slug: 'aramco-facade-cleaning',
     //   title: 'Aramco Façade Cleaning – Burooj Air',
@@ -753,14 +811,15 @@ export const useProjects = () => {
   const projectOrder: Record<string, number> = {
     'efficiency-center-khobar': 1, // GDC Middle East – Riyadh Office Fit-Out
     albarghash: 2, // Albargash Tower – Executive Lounge
-    gdc: 3, // Co-Working Space – Riyadh
-    ec: 4, // Efficiency Center – Co-Working Space
-    'albahar-villas': 5, // Hay Albahr Villas
-    'private-shalet': 6, // Beachfront Najdi Villas
-    'al-fakhreyah-villa-project': 7, // Diwaniya Cinema Lounge
-    roaya: 8, // Roaya Waiting Area
-    thabat: 9, // Thabat Booth
-    'tulip-spa': 10, // Tulip Spa & Salon
+    'mada-tower': 3, // Mada Tower
+    gdc: 4, // Co-Working Space – Riyadh
+    ec: 5, // Efficiency Center – Co-Working Space
+    'albahar-villas': 6, // Hay Albahr Villas
+    'private-shalet': 7, // Beachfront Najdi Villas
+    'al-fakhreyah-villa-project': 8, // Diwaniya Cinema Lounge
+    roaya: 9, // Roaya Waiting Area
+    thabat: 10, // Thabat Booth
+    'tulip-spa': 11, // Tulip Spa & Salon
   }
 
   const orderedProjects = computed(() => {
