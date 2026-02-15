@@ -169,11 +169,15 @@ onMounted(() => {
     <section
       ref="heroSection"
       data-hero
-      class="relative isolate flex min-h-[70vh] w-full items-end justify-center overflow-hidden"
+      class="relative isolate flex min-h-[70vh] w-full items-end justify-center overflow-hidden bg-slate-200"
     >
       <img
         :src="categoryInfo.image"
         :alt="t(categoryInfo.titleKey)"
+        width="1920"
+        height="1080"
+        fetchpriority="high"
+        decoding="async"
         class="absolute inset-0 h-full w-full object-cover"
       />
       <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
@@ -385,10 +389,14 @@ onMounted(() => {
           </div>
 
           <!-- Right Column: Visual -->
-          <div class="relative z-10 aspect-[16/9] overflow-hidden rounded-xl group">
+          <div class="relative z-10 aspect-[16/9] overflow-hidden rounded-xl bg-slate-200 group">
             <img
               :src="project.image"
               :alt="project.title"
+              width="800"
+              height="450"
+              loading="lazy"
+              decoding="async"
               class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
           </div>
@@ -413,9 +421,12 @@ onMounted(() => {
             v-if="'image' in logo && logo.image"
             :src="logo.image"
             :alt="logo.name"
+            width="160"
+            height="80"
+            loading="lazy"
+            decoding="async"
             class="max-h-full max-w-full object-contain opacity-80 grayscale transition group-hover:opacity-100"
             :class="(logo.name === 'Thabat' || logo.name === 'GDC' || logo.name === 'Qiddiya' || logo.name === 'Barghash') ? 'h-12 max-h-14 w-auto sm:h-14 sm:max-h-16 md:h-16 md:max-h-20' : 'h-8 max-h-10 w-auto sm:h-10 sm:max-h-12 md:h-12 md:max-h-14'"
-            loading="lazy"
           />
           <span v-else class="text-xs font-medium text-slate-500">Client placeholder</span>
         </div>
@@ -425,12 +436,11 @@ onMounted(() => {
     <!-- CTA Section -->
     <section ref="ctaSection" class="relative z-10 w-full overflow-hidden">
       <div
-        class="relative min-h-[500px] overflow-hidden"
+        class="relative min-h-[500px] overflow-hidden bg-slate-200"
       >
-        <img
-          :src="`${baseURL}images/hero-image.png`"
-          alt=""
-          class="absolute inset-0 h-full w-full object-cover"
+        <OptimizedHeroImage
+          lazy
+          class="absolute inset-0"
         />
         <!-- Same gradient overlay as hero section -->
         <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20"></div>

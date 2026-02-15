@@ -236,10 +236,11 @@ onMounted(() => {
     class="relative isolate h-screen w-full"
   >
     <!-- Sticky Background - positioned to stick while scrolling -->
-    <div class="fixed inset-x-0 top-0 z-0 h-screen w-full">
+    <div class="fixed inset-x-0 top-0 z-0 h-screen w-full bg-slate-200">
       <video
         v-if="enableHeroVideo && !heroVideoFailed"
         ref="heroVideoEl"
+        :poster="`${baseURL}images/hero-image.png`"
         class="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
         autoplay
         muted
@@ -253,12 +254,12 @@ onMounted(() => {
         <!-- MP4 for Chrome/Edge/Firefox -->
         <source :src="`${baseURL}videos/hero.mp4`" type="video/mp4" />
       </video>
-      <!-- Fallback image if video fails or is disabled -->
-      <img
+      <!-- Fallback image if video fails or is disabled: priority for LCP -->
+      <OptimizedHeroImage
         v-if="!enableHeroVideo || heroVideoFailed"
-        :src="`${baseURL}images/hero-image.png`"
+        priority
         :alt="t('about.hero.headline')"
-        class="absolute inset-0 h-full w-full object-cover"
+        class="absolute inset-0"
       />
       <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
     </div>
@@ -377,10 +378,14 @@ onMounted(() => {
           <div class="flex flex-col space-y-8">
             <!-- Visual Element with Founder Photo -->
             <div class="relative overflow-hidden rounded-lg bg-stone-50">
-              <div class="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+              <div class="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-slate-200">
                 <img
                   :src="`${baseURL}images/team/mohammedF_optimized.webp`"
                   :alt="t('about.founder.name')"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                   class="h-full w-full object-cover object-center grayscale"
                 />
               </div>
@@ -437,11 +442,15 @@ onMounted(() => {
         <div
           v-for="(item, index) in btsImages"
           :key="`set1-${index}`"
-          class="bts-image-item group relative flex-shrink-0 overflow-hidden rounded-xl w-[85vw] min-w-[260px] h-[320px] sm:w-[70vw] sm:min-w-[300px] sm:h-[380px] md:w-[45vw] md:h-[460px] lg:w-[28vw] lg:min-w-[350px] lg:h-[500px]"
+          class="bts-image-item group relative flex-shrink-0 overflow-hidden rounded-xl bg-slate-200 w-[85vw] min-w-[260px] h-[320px] sm:w-[70vw] sm:min-w-[300px] sm:h-[380px] md:w-[45vw] md:h-[460px] lg:w-[28vw] lg:min-w-[350px] lg:h-[500px]"
         >
           <img
             :src="item.image"
             :alt="item.title"
+            width="400"
+            height="500"
+            loading="lazy"
+            decoding="async"
             class="h-full w-full object-cover grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
           />
         </div>
@@ -449,11 +458,15 @@ onMounted(() => {
         <div
           v-for="(item, index) in btsImages"
           :key="`set2-${index}`"
-          class="bts-image-item group relative flex-shrink-0 overflow-hidden rounded-xl w-[85vw] min-w-[260px] h-[320px] sm:w-[70vw] sm:min-w-[300px] sm:h-[380px] md:w-[45vw] md:h-[460px] lg:w-[28vw] lg:min-w-[350px] lg:h-[500px]"
+          class="bts-image-item group relative flex-shrink-0 overflow-hidden rounded-xl bg-slate-200 w-[85vw] min-w-[260px] h-[320px] sm:w-[70vw] sm:min-w-[300px] sm:h-[380px] md:w-[45vw] md:h-[460px] lg:w-[28vw] lg:min-w-[350px] lg:h-[500px]"
         >
           <img
             :src="item.image"
             :alt="item.title"
+            width="400"
+            height="500"
+            loading="lazy"
+            decoding="async"
             class="h-full w-full object-cover grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
           />
         </div>
@@ -461,11 +474,15 @@ onMounted(() => {
         <div
           v-for="(item, index) in btsImages"
           :key="`set3-${index}`"
-          class="bts-image-item group relative flex-shrink-0 overflow-hidden rounded-xl w-[85vw] min-w-[260px] h-[320px] sm:w-[70vw] sm:min-w-[300px] sm:h-[380px] md:w-[45vw] md:h-[460px] lg:w-[28vw] lg:min-w-[350px] lg:h-[500px]"
+          class="bts-image-item group relative flex-shrink-0 overflow-hidden rounded-xl bg-slate-200 w-[85vw] min-w-[260px] h-[320px] sm:w-[70vw] sm:min-w-[300px] sm:h-[380px] md:w-[45vw] md:h-[460px] lg:w-[28vw] lg:min-w-[350px] lg:h-[500px]"
         >
           <img
             :src="item.image"
             :alt="item.title"
+            width="400"
+            height="500"
+            loading="lazy"
+            decoding="async"
             class="h-full w-full object-cover grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
           />
         </div>
@@ -499,9 +516,12 @@ onMounted(() => {
           v-if="'image' in logo && logo.image"
           :src="logo.image"
           :alt="logo.name"
+          width="160"
+          height="80"
+          loading="lazy"
+          decoding="async"
           class="max-h-full max-w-full object-contain opacity-80 grayscale transition group-hover:opacity-100"
           :class="(logo.name === 'Thabat' || logo.name === 'GDC' || logo.name === 'Qiddiya' || logo.name === 'Barghash') ? 'h-12 max-h-14 w-auto sm:h-14 sm:max-h-16 md:h-16 md:max-h-20' : 'h-8 max-h-10 w-auto sm:h-10 sm:max-h-12 md:h-12 md:max-h-14'"
-          loading="lazy"
         />
         <span v-else class="text-xs font-medium text-slate-500">{{ t('clients.placeholder') }}</span>
       </div>

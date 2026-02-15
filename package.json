@@ -8,7 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "convert-hero-video": "node scripts/convert-hero-to-mp4.mjs"
+    "convert-hero-video": "node scripts/convert-hero-to-mp4.mjs",
+    "optimize-images": "node scripts/optimize-images.mjs"
   },
   "imports": {
     "#app": "./.nuxt/dist/app/index.mjs",
@@ -25,7 +26,8 @@
     "#nuxt/*": "./.nuxt/dist/app/*"
   },
   "devDependencies": {
-    "ffmpeg-static": "^5.2.0"
+    "ffmpeg-static": "^5.2.0",
+    "sharp": "^0.33.5"
   },
   "dependencies": {
     "@nuxtjs/i18n": "^10.2.1",

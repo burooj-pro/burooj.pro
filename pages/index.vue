@@ -226,10 +226,11 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
     class="relative isolate h-screen w-full"
   >
     <!-- Sticky Background - positioned to stick while scrolling -->
-    <div class="fixed inset-x-0 top-0 z-0 h-screen w-full">
+    <div class="fixed inset-x-0 top-0 z-0 h-screen w-full bg-slate-200">
       <video
         v-if="enableHeroVideo && !heroVideoFailed"
         ref="heroVideoEl"
+        :poster="`${baseURL}images/hero-image.png`"
         class="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
         autoplay
         muted
@@ -244,6 +245,13 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
         <source :src="`${baseURL}videos/hero.mp4`" type="video/mp4" />
         <source :src="`${baseURL}videos/hero.MOV`" type="video/quicktime" />
       </video>
+      <!-- Fallback when video disabled or fails: priority so LCP is fast -->
+      <OptimizedHeroImage
+        v-if="!enableHeroVideo || heroVideoFailed"
+        priority
+        :alt="t('home.hero.headline')"
+        class="absolute inset-0"
+      />
       <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
     </div>
     <!-- Content Overlay - visible in the hero section -->
@@ -475,7 +483,7 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
         </div>
 
             <!-- Right Column: Visual -->
-            <div class="relative z-10 aspect-[16/9] overflow-hidden rounded-xl group">
+            <div class="relative z-10 aspect-[16/9] overflow-hidden rounded-xl bg-slate-200 group">
               <img
                 :src="project.image"
                 :alt="project.title"
@@ -506,9 +514,12 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
           v-if="'image' in logo && logo.image"
           :src="logo.image"
           :alt="logo.name"
+          width="160"
+          height="80"
+          loading="lazy"
+          decoding="async"
           class="max-h-full max-w-full object-contain opacity-80 grayscale transition group-hover:opacity-100"
           :class="(logo.name === 'Thabat' || logo.name === 'GDC' || logo.name === 'Qiddiya' || logo.name === 'Barghash') ? 'h-12 max-h-14 w-auto sm:h-14 sm:max-h-16 md:h-16 md:max-h-20' : 'h-8 max-h-10 w-auto sm:h-10 sm:max-h-12 md:h-12 md:max-h-14'"
-          loading="lazy"
         />
         <span v-else class="text-xs font-medium text-slate-500">{{ t('clients.placeholder') }}</span>
       </div>
@@ -517,11 +528,12 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
 
   <section id="contact" ref="ctaSection" class="relative z-30 w-full overflow-hidden">
     <div
-      class="relative min-h-[600px] overflow-hidden"
+      class="relative min-h-[600px] overflow-hidden bg-slate-200"
     >
       <video
         v-if="enableCtaVideo && !ctaVideoFailed"
         ref="ctaVideoEl"
+        :poster="`${baseURL}images/hero-image.png`"
         class="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
         autoplay
         muted
@@ -532,15 +544,10 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
       >
         <source :src="`${baseURL}videos/cta.mp4`" type="video/mp4" />
       </video>
-      <img
+      <OptimizedHeroImage
         v-if="!enableCtaVideo || ctaVideoFailed"
-        :src="`${baseURL}images/hero-image.png`"
-        alt=""
-        width="1920"
-        height="1080"
-        loading="lazy"
-        decoding="async"
-        class="absolute inset-0 h-full w-full object-cover"
+        lazy
+        class="absolute inset-0"
       />
       <!-- Gradient overlay: dark at bottom, transparent toward top -->
       <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>

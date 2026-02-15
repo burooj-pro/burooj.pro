@@ -200,3 +200,8 @@ body {
   opacity: 1;
 }
 
+/* Image placeholder: dominant color so browser reserves space before image loads (reduces CLS) */
+.img-placeholder {
+  background-color: #e2e8f0; /* slate-200 */
+}
+

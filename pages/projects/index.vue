@@ -93,10 +93,14 @@ onUnmounted(() => {
         @mouseenter="handleProjectEnter(projectIndex)"
         @mouseleave="handleProjectLeave"
       >
-        <div class="relative z-10 aspect-[4/3] overflow-hidden rounded-xl">
+        <div class="relative z-10 aspect-[4/3] overflow-hidden rounded-xl bg-slate-200">
           <img
             :src="project.image"
             :alt="project.title"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
             class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
         </div>

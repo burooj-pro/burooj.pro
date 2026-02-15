@@ -31,16 +31,18 @@ try {
   process.exit(1)
 }
 
+// CRF 28: good quality/size balance; lower = better quality, larger file. Target hero ~250–500 KB/s for short loops.
 const args = [
   '-i', src,
   '-c:v', 'libx264',
+  '-crf', '28',
   '-movflags', '+faststart',
   '-an',
   '-y',
   out
 ]
 
-console.log('Converting hero.MOV to hero.mp4 (H.264) for Chrome...')
+console.log('Converting hero.MOV to hero.mp4 (H.264, CRF 28)...')
 const proc = spawn(ffmpegPath, args, { stdio: 'inherit' })
 proc.on('close', code => {
   if (code === 0) {

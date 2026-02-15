@@ -549,7 +549,7 @@ onMounted(async () => {
     <section
       ref="heroImage"
       data-hero
-      class="relative isolate flex min-h-screen w-full items-end justify-center overflow-hidden"
+      class="relative isolate flex min-h-screen w-full items-end justify-center overflow-hidden bg-slate-200"
     >
       <img
         :src="localizedProject.image"
@@ -627,7 +627,7 @@ onMounted(async () => {
       <div class="space-y-6">
         <!-- Project 3 (Al-Fakhreyah): 3/1 full width, then 3/2 and 3/3 side by side -->
         <div v-if="project3HeroImages.length === 3" class="space-y-6">
-          <div class="aspect-[16/9] w-full overflow-hidden rounded-xl">
+          <div class="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-200">
             <img
               :src="project3HeroImages[0]"
               :alt="`${localizedProject.title} - Image 1`"
@@ -642,7 +642,7 @@ onMounted(async () => {
             <div
               v-for="(image, index) in project3HeroImages.slice(1, 3)"
               :key="`project3-hero-${index}`"
-              class="aspect-[4/3] overflow-hidden rounded-xl"
+              class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
               <img
                 :src="image"
@@ -659,7 +659,7 @@ onMounted(async () => {
 
         <!-- Project 8 (Thabat): 8/1 full width, then 8/2 and 8/3 side by side -->
         <div v-if="project8HeroImages.length === 3" class="space-y-6">
-          <div class="aspect-[16/9] w-full overflow-hidden rounded-xl">
+          <div class="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-200">
             <img
               :src="project8HeroImages[0]"
               :alt="`${localizedProject.title} - Image 1`"
@@ -674,7 +674,7 @@ onMounted(async () => {
             <div
               v-for="(image, index) in project8HeroImages.slice(1, 3)"
               :key="`project8-hero-${index}`"
-              class="aspect-[4/3] overflow-hidden rounded-xl"
+              class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
               <img
                 :src="image"
@@ -691,7 +691,7 @@ onMounted(async () => {
 
         <!-- Project 7 (Tulip Spa): 7/3 full width, then 7/1 and 7/2 side by side -->
         <div v-if="project7HeroImages.length === 3" class="space-y-6">
-          <div class="aspect-[16/9] w-full overflow-hidden rounded-xl">
+          <div class="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-200">
             <img
               :src="project7HeroImages[0]"
               :alt="`${localizedProject.title} - Image 3`"
@@ -706,7 +706,7 @@ onMounted(async () => {
             <div
               v-for="(image, index) in project7HeroImages.slice(1, 3)"
               :key="`project7-hero-${index}`"
-              class="aspect-[4/3] overflow-hidden rounded-xl"
+              class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
               <img
                 :src="image"
@@ -723,7 +723,7 @@ onMounted(async () => {
 
         <!-- Project 2 (AlBarghash): Entrance block (2/14 full width, then 2/16 and 2/17 side by side) -->
         <div v-if="project2FinalBlockImages.length === 3" class="space-y-6">
-          <div class="aspect-[16/9] w-full overflow-hidden rounded-xl">
+          <div class="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-200">
             <img
               :src="project2FinalBlockImages[0]"
               :alt="`${localizedProject.title} - Image 14`"
@@ -738,7 +738,7 @@ onMounted(async () => {
             <div
               v-for="(image, index) in project2FinalBlockImages.slice(1, 3)"
               :key="`project2-final-${index}`"
-              class="aspect-[4/3] overflow-hidden rounded-xl"
+              class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
               <img
                 :src="image"
@@ -767,7 +767,7 @@ onMounted(async () => {
             <div
               v-for="(image, index) in project2QuadImages"
               :key="`project2-quad-${index}`"
-              class="aspect-[4/3] overflow-hidden rounded-xl"
+              class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
               <img
                 :src="image"
@@ -792,7 +792,7 @@ onMounted(async () => {
 
         <!-- Project 2 (AlBarghash): 2/1 full width, then 2/2 and 2/3 side by side, then cigar lounge description -->
         <div v-if="project2CigarRoomImages.length === 3" class="space-y-6">
-          <div class="aspect-[16/9] w-full overflow-hidden rounded-xl">
+          <div class="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-200">
             <img
               :src="project2CigarRoomImages[0]"
               :alt="`${localizedProject.title} - Image 1`"
@@ -807,7 +807,7 @@ onMounted(async () => {
             <div
               v-for="(image, index) in project2CigarRoomImages.slice(1, 3)"
               :key="`cigar-room-${index + 1}`"
-              class="aspect-[4/3] overflow-hidden rounded-xl"
+              class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
               <img
                 :src="image"
@@ -833,7 +833,7 @@ onMounted(async () => {
             <div
               v-for="(image, index) in project2ShowcaseImages"
               :key="`showcase-${index}`"
-              class="aspect-[4/3] overflow-hidden rounded-xl"
+              class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
               <img
                 :src="image"
@@ -859,11 +859,15 @@ onMounted(async () => {
             <div
               v-for="(image, index) in project2SixImages"
               :key="`project2-six-${index}`"
-              class="aspect-[4/3] overflow-hidden rounded-xl"
+              class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
               <img
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index + 1}`"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
                 class="h-full w-full object-cover"
               />
             </div>
@@ -886,7 +890,7 @@ onMounted(async () => {
               <div
                 v-for="(image, imgIndex) in pair"
                 :key="`mada-img-${pairIndex}-${imgIndex}`"
-                class="aspect-[4/3] overflow-hidden rounded-xl"
+                class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
                 <img
                   :src="image"
@@ -908,11 +912,15 @@ onMounted(async () => {
             <div
               v-for="(image, index) in galleryImagesForLayout.slice(0, 2)"
               :key="`img-top-${index}`"
-              class="aspect-[4/3] overflow-hidden rounded-xl"
+              class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
               <img
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index + 1}`"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
                 class="h-full w-full object-cover"
               />
             </div>
@@ -936,7 +944,7 @@ onMounted(async () => {
               <div
                 v-for="(img, i) in diagramPairImages"
                 :key="`diagram-${i}`"
-                class="aspect-[4/3] overflow-hidden rounded-xl"
+                class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
                 <img
                   :src="img"
@@ -980,7 +988,7 @@ onMounted(async () => {
               <div
                 v-for="(image, index) in gdcQuadImages"
                 :key="`img-gdc-quad-${index}`"
-                class="aspect-[4/3] overflow-hidden rounded-xl"
+                class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
                 <img
                   :src="image"
@@ -995,7 +1003,7 @@ onMounted(async () => {
               <div
                 v-for="(image, index) in project4QuadImages"
                 :key="`img-project4-quad-${index}`"
-                class="aspect-[4/3] overflow-hidden rounded-xl"
+                class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
                 <img
                   :src="image"
@@ -1014,7 +1022,7 @@ onMounted(async () => {
               <div
                 v-for="(image, index) in project5QuadImages"
                 :key="`img-project5-quad-${index}`"
-                class="aspect-[4/3] overflow-hidden rounded-xl"
+                class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
                 <img
                   :src="image"
@@ -1122,7 +1130,7 @@ onMounted(async () => {
               <div
                 v-for="(img, i) in gdcTailPairImages"
                 :key="`gdc-tail-pair-${i}`"
-                class="aspect-[4/3] overflow-hidden rounded-xl"
+                class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
                 <img
                   :src="img"
@@ -1164,7 +1172,7 @@ onMounted(async () => {
               <div
                 v-for="(img, i) in project9TailPairImages"
                 :key="`project9-tail-pair-${i}`"
-                class="aspect-[4/3] overflow-hidden rounded-xl"
+                class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
                 <img
                   :src="img"
@@ -1207,7 +1215,7 @@ onMounted(async () => {
               <div
                 v-for="(image, index) in projectECPairImages"
                 :key="`ec-pair-${index}`"
-                class="aspect-[4/3] overflow-hidden rounded-xl"
+                class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
                 <img
                   :src="image"
@@ -1228,7 +1236,7 @@ onMounted(async () => {
               <div
                 v-for="(image, index) in projectECFinalPairImages"
                 :key="`ec-final-pair-${index}`"
-                class="aspect-[4/3] overflow-hidden rounded-xl"
+                class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
                 <img
                   :src="image"
@@ -1245,7 +1253,7 @@ onMounted(async () => {
         </template>
         
         <!-- Full Width Image -->
-        <div v-if="shouldShowFullWidthImage && projectSlug !== 'ec'" class="aspect-[16/9] w-full overflow-hidden rounded-xl">
+        <div v-if="shouldShowFullWidthImage && projectSlug !== 'ec'" class="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-200">
           <img
             :src="localizedProject.fullWidthImage"
             :alt="`${localizedProject.title} - Full Width`"
@@ -1282,10 +1290,11 @@ onMounted(async () => {
 
     <!-- Project CTA -->
     <section :ref="registerContentSection" class="relative z-10 w-full overflow-hidden">
-      <div class="relative min-h-[600px] overflow-hidden">
+      <div class="relative min-h-[600px] overflow-hidden bg-slate-200">
         <video
           v-if="enableCtaVideo && !ctaVideoFailed"
           ref="ctaVideoEl"
+          :poster="`${baseURL}images/hero-image.png`"
           class="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
           autoplay
           muted
@@ -1296,15 +1305,10 @@ onMounted(async () => {
         >
           <source :src="`${baseURL}videos/cta.mp4`" type="video/mp4" />
         </video>
-        <img
+        <OptimizedHeroImage
           v-if="!enableCtaVideo || ctaVideoFailed"
-          :src="`${baseURL}images/hero-image.png`"
-          alt=""
-          width="1920"
-          height="1080"
-          loading="lazy"
-          decoding="async"
-          class="absolute inset-0 h-full w-full object-cover"
+          lazy
+          class="absolute inset-0"
         />
         <!-- Gradient overlay: dark at bottom, transparent toward top -->
         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>

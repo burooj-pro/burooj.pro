@@ -677,9 +677,9 @@ export const useProjects = () => {
         '/images/projects/11/Basment 03_optimized.webp',
       ],
       fullWidthImage: '/images/projects/11/Ground 01_optimized.webp',
-      location: 'Saudi Arabia',
-      locationAr: 'المملكة العربية السعودية',
-      year: '2024',
+      location: 'Khobar, Saudi Arabia',
+      locationAr: 'الخبر، المملكة العربية السعودية',
+      year: '2025',
       client: 'Mada Tower',
       clientAr: 'برج مادة',
       services: [
@@ -688,6 +688,9 @@ export const useProjects = () => {
         'Material Selection',
         'Lighting Concept',
         'Visual Coordination',
+        'Fit-Out',
+        'Project Management',
+        'Supervision',
       ],
       servicesAr: [
         'التصميم الداخلي',
@@ -695,6 +698,9 @@ export const useProjects = () => {
         'اختيار المواد',
         'مفهوم الإضاءة',
         'التنسيق البصري',
+        'التشطيب والتجهيز',
+        'إدارة المشاريع',
+        'الإشراف',
       ],
       overview:
         'This project focused on the interior design of the tower\'s reception area and internal corridors, aiming to create a modern, refined atmosphere that reflects the building\'s contemporary character. The design combines raw concrete finishes with warm lighting and clean architectural lines to achieve a balanced, welcoming environment. Our scope included space planning, material selection, lighting concept, and overall visual coordination to ensure a cohesive experience throughout the public areas of the tower. Project duration: 2 weeks.',
