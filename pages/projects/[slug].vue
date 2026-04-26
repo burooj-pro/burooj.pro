@@ -459,13 +459,22 @@ const remainingImagePairs = computed(() => {
   return pairs
 })
 
+const pageTitle = `${localizedProject.value.title} · ${t('projects.title')}`
+const pageDescription = localizedProject.value.description
+const pageImage = localizedProject.value.image
+
 useHead({
-  title: `${localizedProject.value.title} · ${t('projects.title')}`,
+  title: pageTitle,
   meta: [
-    {
-      name: 'description',
-      content: localizedProject.value.description,
-    },
+    { name: 'description', content: pageDescription },
+    { property: 'og:title', content: pageTitle },
+    { property: 'og:description', content: pageDescription },
+    { property: 'og:image', content: pageImage },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: pageTitle },
+    { name: 'twitter:description', content: pageDescription },
+    { name: 'twitter:image', content: pageImage },
   ],
 })
 
@@ -514,13 +523,11 @@ onMounted(async () => {
   defer(() => {
     enableCtaVideo.value = true
     nextTick(() => {
-      setTimeout(() => {
-        const video = ctaVideoEl.value
-        if (video && !ctaVideoFailed.value) {
-          video.muted = true
-          video.play().catch(() => { /* autoplay blocked or failed */ })
-        }
-      }, 300)
+      const video = ctaVideoEl.value
+      if (video && !ctaVideoFailed.value) {
+        video.muted = true
+        video.play().catch(() => {})
+      }
     })
   })
 
@@ -546,22 +553,7 @@ onMounted(async () => {
 <template>
   <div v-if="localizedProject" class="min-h-screen bg-white">
     <!-- Hero Section -->
-    <section
-      ref="heroImage"
-      data-hero
-      class="relative isolate flex min-h-screen w-full items-end justify-center overflow-hidden bg-slate-200"
-    >
-      <img
-        :src="localizedProject.image"
-        :alt="localizedProject.title"
-        width="1920"
-        height="1080"
-        fetchpriority="high"
-        decoding="async"
-        class="absolute inset-0 h-full w-full object-cover"
-      />
-      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
-    </section>
+    <ProjectHero ref="heroImage" :src="localizedProject.image" :alt="localizedProject.title" />
 
     <!-- About Section -->
     <section :ref="registerContentSection" class="section-wrapper relative z-10 py-16 md:py-24">
@@ -589,32 +581,12 @@ onMounted(async () => {
         </div>
 
         <!-- Right Column: Project Details -->
-        <div class="space-y-6">
-          <div v-if="localizedProject.location" class="grid grid-cols-1 gap-1 sm:grid-cols-[120px_1fr] sm:gap-4">
-            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">{{ t('projectDetail.location') }}</p>
-            <p class="text-sm text-ink break-words">{{ localizedProject.location }}</p>
-          </div>
-          <div v-if="localizedProject.year" class="grid grid-cols-1 gap-1 sm:grid-cols-[120px_1fr] sm:gap-4">
-            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">{{ t('projectDetail.year') }}</p>
-            <p class="text-sm text-ink break-words">{{ localizedProject.year }}</p>
-          </div>
-          <div v-if="localizedProject.client" class="grid grid-cols-1 gap-1 sm:grid-cols-[120px_1fr] sm:gap-4">
-            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">{{ t('projectDetail.client') }}</p>
-            <p class="text-sm text-ink break-words">{{ localizedProject.client }}</p>
-          </div>
-          <div v-if="localizedProject.services && localizedProject.services.length > 0" class="grid grid-cols-1 gap-1 sm:grid-cols-[120px_1fr] sm:gap-4">
-            <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">{{ t('projectDetail.services') }}</p>
-            <div class="flex flex-wrap gap-2">
-              <span
-                v-for="service in localizedProject.services"
-                :key="service"
-                class="inline-flex items-center rounded-lg bg-primary-light px-3 py-1.5 text-xs font-medium leading-normal text-primary"
-              >
-                {{ service }}
-              </span>
-            </div>
-          </div>
-        </div>
+        <ProjectMeta
+          :location="localizedProject.location"
+          :year="localizedProject.year"
+          :client="localizedProject.client"
+          :services="localizedProject.services"
+        />
       </div>
     </section>
 

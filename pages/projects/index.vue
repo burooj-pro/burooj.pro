@@ -7,17 +7,19 @@ const { fadeInUp, staggerFadeIn } = useGsap()
 const projectsSection = ref<HTMLElement | null>(null)
 const projectItems = ref<HTMLElement[]>([])
 
+import type { Project } from '~/types'
+
 const { projects: allProjects, getLocalizedProject } = useProjects()
 
 // Localize projects to get correct image paths with baseURL
 const projects = computed(() => {
-  return allProjects.map((project: any) => getLocalizedProject(project))
+  return allProjects.value.map((project: Project) => getLocalizedProject(project))
 })
 
 onMounted(() => {
+  window.addEventListener('mousemove', handleMouseMove)
   fadeInUp(projectsSection)
-  
-  // Stagger animate project items
+
   if (import.meta.client) {
     nextTick(() => {
       setTimeout(() => {
@@ -60,10 +62,6 @@ const handleProjectLeave = () => {
   isHoveringProject.value = false
   hoveredProjectIndex.value = null
 }
-
-onMounted(() => {
-  window.addEventListener('mousemove', handleMouseMove)
-})
 
 onUnmounted(() => {
   window.removeEventListener('mousemove', handleMouseMove)
@@ -129,6 +127,7 @@ onUnmounted(() => {
   <!-- Custom Cursor for Projects -->
   <div
     v-if="isHoveringProject"
+    aria-hidden="true"
     class="pointer-events-none fixed z-[100] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
     :style="{ left: cursorPosition.x - 70 + 'px', top: cursorPosition.y - 18 + 'px' }"
   >

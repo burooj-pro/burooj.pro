@@ -121,13 +121,22 @@ const processSteps = computed(() => {
   ]
 })
 
+const pageTitle = `${t(categoryInfo.titleKey)} · ${t('services.title')}`
+const pageDescription = t(categoryInfo.descriptionKey)
+const pageImage = categoryInfo.image
+
 useHead({
-  title: `${t(categoryInfo.titleKey)} · ${t('services.title')}`,
+  title: pageTitle,
   meta: [
-    {
-      name: 'description',
-      content: t(categoryInfo.descriptionKey),
-    },
+    { name: 'description', content: pageDescription },
+    { property: 'og:title', content: pageTitle },
+    { property: 'og:description', content: pageDescription },
+    { property: 'og:image', content: pageImage },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: pageTitle },
+    { name: 'twitter:description', content: pageDescription },
+    { name: 'twitter:image', content: pageImage },
   ],
 })
 

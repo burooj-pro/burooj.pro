@@ -1,11 +1,5 @@
 <script setup lang="ts">
 import { nextTick, onUnmounted } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-if (import.meta.client) {
-  gsap.registerPlugin(ScrollTrigger)
-}
 
 const { t } = useI18n()
 const localePath = useLocalePath()

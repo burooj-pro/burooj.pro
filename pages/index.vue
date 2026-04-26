@@ -77,7 +77,7 @@ const aboutStats = computed(() => [
   { value: 150, prefix: '+', label: { title: t('stats.stat1.title'), description: t('stats.stat1.description') } },
   { value: 500, prefix: '+', label: { title: t('stats.stat2.title'), description: t('stats.stat2.description') } },
   { value: 20000, prefix: '+', suffix: ' m²', label: { title: t('stats.stat3.title'), description: t('stats.stat3.description') } },
-  { value: 7, prefix: '+', label: { title: t('stats.stat4.title'), description: t('about.stats.stat4.description') } },
+  { value: 7, prefix: '+', label: { title: t('stats.stat4.title'), description: t('stats.stat4.description') } },
 ])
 
 onMounted(() => {
@@ -95,33 +95,27 @@ onMounted(() => {
   }
   defer(() => {
     enableHeroVideo.value = true
-    // Ensure video starts playing (helps when autoplay is delayed)
     nextTick(() => {
-      setTimeout(() => {
-        const video = heroVideoEl.value
-        if (video && !heroVideoFailed.value) {
-          video.muted = true
-          video.play().catch(() => { /* autoplay blocked or failed */ })
-        }
-      }, 300)
+      const video = heroVideoEl.value
+      if (video && !heroVideoFailed.value) {
+        video.muted = true
+        video.play().catch(() => {})
+      }
     })
   })
 
-  // Defer CTA section background video
   defer(() => {
     enableCtaVideo.value = true
     nextTick(() => {
-      setTimeout(() => {
-        const video = ctaVideoEl.value
-        if (video && !ctaVideoFailed.value) {
-          video.muted = true
-          video.play().catch(() => { /* autoplay blocked or failed */ })
-        }
-      }, 300)
+      const video = ctaVideoEl.value
+      if (video && !ctaVideoFailed.value) {
+        video.muted = true
+        video.play().catch(() => {})
+      }
     })
   })
   
-  // Animate sections on scroll - these will be triggered by ScrollTrigger
+  // ScrollTrigger-based section animations — registered immediately, fire on scroll
   fadeInUp(heroSection)
   fadeInUp(aboutSection)
   fadeInUp(statsSection)
@@ -129,37 +123,16 @@ onMounted(() => {
   fadeInUp(projectsSection)
   scaleIn(clientsSection)
   fadeInUp(ctaSection)
-  
-  // Animate counters - wait for DOM to be ready and refs to be assigned
+
+  // DOM-ref-dependent animations — one nextTick is enough for refs to populate
   if (import.meta.client) {
     nextTick(() => {
-      // Wait for ScrollTrigger to be ready after hero section pins
-      setTimeout(() => {
-        import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
-          // Initialize counters after ensuring refs are set
-          setTimeout(() => {
-            if (statRefs.value[0]) animateCounter(statRefs.value[0], 150, { prefix: '+', duration: 2 })
-            if (statRefs.value[1]) animateCounter(statRefs.value[1], 500, { prefix: '+', duration: 2 })
-            if (statRefs.value[2]) animateCounter(statRefs.value[2], 20000, { prefix: '+', suffix: ' m²', duration: 2 })
-            if (statRefs.value[3]) animateCounter(statRefs.value[3], 7, { prefix: '+', duration: 2 })
-          
-            // Stagger animate project items - wait a bit more for refs to populate
-            setTimeout(() => {
-              if (projectItems.value.length > 0) {
-                staggerFadeIn(projectItems, { stagger: 0.15 })
-              }
-              
-              // Stagger animate client logos
-              if (clientLogosRefs.value.length > 0) {
-                staggerFadeIn(clientLogosRefs, { stagger: 0.05 })
-              }
-            }, 200)
-          
-            // Refresh ScrollTrigger after all animations are initialized
-            // ScrollTrigger.refresh() // avoid forced reflow on load
-          }, 500)
-        })
-      }, 1200)
+      if (statRefs.value[0]) animateCounter(statRefs.value[0], 150, { prefix: '+', duration: 2 })
+      if (statRefs.value[1]) animateCounter(statRefs.value[1], 500, { prefix: '+', duration: 2 })
+      if (statRefs.value[2]) animateCounter(statRefs.value[2], 20000, { prefix: '+', suffix: ' m²', duration: 2 })
+      if (statRefs.value[3]) animateCounter(statRefs.value[3], 7, { prefix: '+', duration: 2 })
+      if (projectItems.value.length > 0) staggerFadeIn(projectItems, { stagger: 0.15 })
+      if (clientLogosRefs.value.length > 0) staggerFadeIn(clientLogosRefs, { stagger: 0.05 })
     })
   }
 })
@@ -206,11 +179,13 @@ const droneServices = computed(() => [
   t('services.drone.services.signage'),
 ])
 
+import type { Project } from '~/types'
+
 const { projects: allProjects, getLocalizedProject } = useProjects()
 
 // Localize projects to get correct image paths with baseURL
 const projects = computed(() => {
-  return allProjects.map((project: any) => getLocalizedProject(project))
+  return allProjects.value.map((project: Project) => getLocalizedProject(project))
 })
 
 // Home page: show only 5 featured projects
@@ -571,6 +546,7 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
   <!-- Custom Cursor for Services -->
   <div
     v-if="isHoveringService"
+    aria-hidden="true"
     class="pointer-events-none fixed z-[100] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
     :style="{ left: cursorPosition.x - 70 + 'px', top: cursorPosition.y - 18 + 'px' }"
   >
@@ -580,10 +556,11 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
   <!-- Custom Cursor for Projects -->
   <div
     v-if="isHoveringProject"
+    aria-hidden="true"
     class="pointer-events-none fixed z-[100] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
     :style="{ left: cursorPosition.x - 70 + 'px', top: cursorPosition.y - 18 + 'px' }"
   >
-    View the Project
+    {{ t('projects.viewProject') }}
   </div>
 </template>
 

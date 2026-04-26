@@ -32,7 +32,10 @@ jobs:
       
       - name: Optimize images (WebP + responsive sizes)
         run: npm run optimize-images
-      
+
+      - name: Generate sitemap
+        run: npm run generate-sitemap
+
       - name: Generate static site
         run: npm run generate
         env:

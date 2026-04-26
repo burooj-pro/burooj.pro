@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   },
   ssr: false, // Enable static site generation for GitHub Pages
   css: ['~/assets/css/tailwind.css'],
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n', '@nuxt/eslint'],
   tailwindcss: {
     exposeConfig: false,
   },
@@ -27,6 +27,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl: 'https://burooj.pro',
+      pipedriveFormUrl:
+        'https://webforms.pipedrive.com/f/6W8B7uZHws18uQtXpbXhoS7DhXv8sUTQlw9zzy8SYAESjOJ1MNxMfXt9X4ZqryjL2j',
+      pipedriveLoaderSrc: 'https://webforms.pipedrive.com/f/loader',
     },
   },
   i18n: {
@@ -74,12 +77,83 @@ export default defineNuxtConfig({
             'Burooj delivers integrated construction, property management, and drone-powered cleaning solutions across Saudi Arabia.',
         },
         { name: 'theme-color', content: '#050915' },
+        {
+          'http-equiv': 'Content-Security-Policy',
+          content: [
+            "default-src 'self'",
+            "script-src 'self' 'unsafe-inline' https://webforms.pipedrive.com",
+            "style-src 'self' 'unsafe-inline'",
+            "img-src 'self' data: blob: https:",
+            "font-src 'self'",
+            "media-src 'self'",
+            "frame-src https://webforms.pipedrive.com",
+            "connect-src 'self' https://*.pipedrive.com",
+          ].join('; '),
+        },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/burooj.pro/favicon.ico' },
         { rel: 'apple-touch-icon', href: '/burooj.pro/favicon.ico' },
         // Preload LCP: hero video (or fallback image) for faster First Contentful Paint / LCP
         { rel: 'preload', as: 'image', href: '/burooj.pro/images/hero-image.png', fetchpriority: 'high' },
+        // Preconnect to Pipedrive CDN to reduce DNS + TCP delay on contact page
+        { rel: 'preconnect', href: 'https://webforms.pipedrive.com' },
+      ],
+      script: [
+        // Synchronously set dir/lang before first paint to avoid RTL FOUC on Arabic routes
+        {
+          innerHTML:
+            "(function(){var p=window.location.pathname;if(p.includes('/ar/')||p.endsWith('/ar')){document.documentElement.setAttribute('dir','rtl');document.documentElement.setAttribute('lang','ar');}})();",
+          type: 'text/javascript',
+        },
+        // schema.org LocalBusiness + Organization structured data
+        {
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@graph': [
+              {
+                '@type': 'Organization',
+                '@id': 'https://burooj.pro/#organization',
+                name: 'Burooj',
+                url: 'https://burooj.pro',
+                logo: 'https://burooj.pro/burooj.pro/favicon.ico',
+                sameAs: [
+                  'https://www.instagram.com/buroojsa',
+                  'https://x.com/buroojsa',
+                ],
+                contactPoint: {
+                  '@type': 'ContactPoint',
+                  telephone: '+966-54-836-6111',
+                  contactType: 'customer service',
+                  areaServed: 'SA',
+                  availableLanguage: ['Arabic', 'English'],
+                },
+              },
+              {
+                '@type': 'LocalBusiness',
+                '@id': 'https://burooj.pro/#localbusiness',
+                name: 'Burooj',
+                description:
+                  'Burooj delivers integrated construction, property management, and drone-powered cleaning solutions across Saudi Arabia.',
+                url: 'https://burooj.pro',
+                telephone: '+966-54-836-6111',
+                address: {
+                  '@type': 'PostalAddress',
+                  addressCountry: 'SA',
+                  addressRegion: 'Eastern Province',
+                },
+                geo: {
+                  '@type': 'GeoCoordinates',
+                  latitude: '26.4207',
+                  longitude: '50.0888',
+                },
+                priceRange: '$$',
+                hasMap: 'https://maps.google.com/?q=Al+Khobar,+Saudi+Arabia',
+              },
+            ],
+          }),
+        },
       ],
     },
   },

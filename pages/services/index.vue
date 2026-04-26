@@ -257,6 +257,7 @@ onUnmounted(() => {
     <!-- Custom Cursor for Services -->
     <div
       v-if="isHoveringService"
+      aria-hidden="true"
       class="pointer-events-none fixed z-[100] flex items-center justify-center rounded-full bg-primary/60 px-8 py-3 text-sm font-medium text-white backdrop-blur-md transition-opacity duration-300"
       :style="{ left: cursorPosition.x - 70 + 'px', top: cursorPosition.y - 18 + 'px' }"
     >
