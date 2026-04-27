@@ -61,7 +61,7 @@ export default defineNuxtConfig({
     vueI18n: './i18n.config.ts',
   },
   app: {
-    baseURL: '/burooj.pro/', // Match GitHub Pages subdirectory
+    baseURL: '/', // Custom domain burooj.pro — served from root
     buildAssetsDir: '/_nuxt/',
     head: {
       titleTemplate: '%s · Burooj',
@@ -92,10 +92,10 @@ export default defineNuxtConfig({
         },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/burooj.pro/favicon.ico' },
-        { rel: 'apple-touch-icon', href: '/burooj.pro/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', href: '/favicon.ico' },
         // Preload LCP: hero video (or fallback image) for faster First Contentful Paint / LCP
-        { rel: 'preload', as: 'image', href: '/burooj.pro/images/hero-image.webp', fetchpriority: 'high' },
+        { rel: 'preload', as: 'image', href: '/images/hero-image.webp', fetchpriority: 'high' },
         // Preconnect to Pipedrive CDN to reduce DNS + TCP delay on contact page
         { rel: 'preconnect', href: 'https://webforms.pipedrive.com' },
       ],
@@ -117,7 +117,7 @@ export default defineNuxtConfig({
                 '@id': 'https://burooj.pro/#organization',
                 name: 'Burooj',
                 url: 'https://burooj.pro',
-                logo: 'https://burooj.pro/burooj.pro/favicon.ico',
+                logo: 'https://burooj.pro/favicon.ico',
                 sameAs: [
                   'https://www.instagram.com/buroojsa',
                   'https://x.com/buroojsa',
