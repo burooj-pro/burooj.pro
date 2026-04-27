@@ -1,6 +1,9 @@
 <script setup lang="ts">
 const { t } = useI18n()
-useHead({ title: t('contact.title') })
+useHead({
+  title: t('contact.title'),
+  meta: [{ name: 'description', content: t('contact.description') }],
+})
 
 const { fadeInUp, fadeInFromSide } = useGsap()
 const contactSection = ref<HTMLElement | null>(null)

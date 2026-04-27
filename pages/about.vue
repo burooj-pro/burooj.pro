@@ -5,7 +5,10 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 const config = useRuntimeConfig()
 const baseURL = config.app.baseURL || '/'
-useHead({ title: t('about.title') })
+useHead({
+  title: t('about.title'),
+  meta: [{ name: 'description', content: t('about.description') }],
+})
 
 const { fadeInUp, fadeInFromSide, scaleIn, staggerFadeIn, animateCounter } = useGsap()
 const heroSection = ref<HTMLElement | null>(null)

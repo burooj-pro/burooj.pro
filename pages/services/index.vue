@@ -3,7 +3,10 @@ const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const config = useRuntimeConfig()
 const baseURL = config.app.baseURL || '/'
-useHead({ title: t('services.title') })
+useHead({
+  title: t('services.title'),
+  meta: [{ name: 'description', content: t('footer.description') }],
+})
 
 const { fadeInUp, fadeInFromSide, staggerFadeIn } = useGsap()
 const heroSection = ref<HTMLElement | null>(null)

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Project } from '~/types'
+
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const route = useRoute()
@@ -82,8 +84,8 @@ const { projects: allProjects, getLocalizedProject } = useProjects()
 // Get projects for this category
 const categoryProjects = computed(() => {
   return allProjects
-    .filter((project: any) => project.category === categoryInfo.key)
-    .map((project: any) => getLocalizedProject(project))
+    .filter((project: Project) => project.category === categoryInfo.key)
+    .map((project: Project) => getLocalizedProject(project))
 })
 
 const getCategoryLabel = (category: string) => {

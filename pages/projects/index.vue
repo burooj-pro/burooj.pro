@@ -1,7 +1,10 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const localePath = useLocalePath()
-useHead({ title: t('projects.title') })
+useHead({
+  title: t('projects.title'),
+  meta: [{ name: 'description', content: t('projects.ourWorkDescription') }],
+})
 
 const { fadeInUp, staggerFadeIn } = useGsap()
 const projectsSection = ref<HTMLElement | null>(null)
