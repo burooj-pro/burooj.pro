@@ -95,13 +95,12 @@ onUnmounted(() => {
         @mouseleave="handleProjectLeave"
       >
         <div class="relative z-10 aspect-[4/3] overflow-hidden rounded-xl bg-slate-200">
-          <img
+          <ResponsiveImg
             :src="project.image"
             :alt="project.title"
-            width="800"
-            height="600"
-            loading="lazy"
-            decoding="async"
+            :width="800"
+            :height="600"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
         </div>

@@ -600,7 +600,7 @@ onMounted(async () => {
         <!-- Project 3 (Al-Fakhreyah): 3/1 full width, then 3/2 and 3/3 side by side -->
         <div v-if="project3HeroImages.length === 3" class="space-y-6">
           <div class="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-200">
-            <img
+            <ResponsiveImg
               :src="project3HeroImages[0]"
               :alt="`${localizedProject.title} - Image 1`"
               width="800"
@@ -616,7 +616,7 @@ onMounted(async () => {
               :key="`project3-hero-${index}`"
               class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
-              <img
+              <ResponsiveImg
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index + 2}`"
                 width="800"
@@ -632,7 +632,7 @@ onMounted(async () => {
         <!-- Project 8 (Thabat): 8/1 full width, then 8/2 and 8/3 side by side -->
         <div v-if="project8HeroImages.length === 3" class="space-y-6">
           <div class="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-200">
-            <img
+            <ResponsiveImg
               :src="project8HeroImages[0]"
               :alt="`${localizedProject.title} - Image 1`"
               width="800"
@@ -648,7 +648,7 @@ onMounted(async () => {
               :key="`project8-hero-${index}`"
               class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
-              <img
+              <ResponsiveImg
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index + 2}`"
                 width="800"
@@ -664,7 +664,7 @@ onMounted(async () => {
         <!-- Project 7 (Tulip Spa): 7/3 full width, then 7/1 and 7/2 side by side -->
         <div v-if="project7HeroImages.length === 3" class="space-y-6">
           <div class="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-200">
-            <img
+            <ResponsiveImg
               :src="project7HeroImages[0]"
               :alt="`${localizedProject.title} - Image 3`"
               width="800"
@@ -680,7 +680,7 @@ onMounted(async () => {
               :key="`project7-hero-${index}`"
               class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
-              <img
+              <ResponsiveImg
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index + 1}`"
                 width="800"
@@ -696,7 +696,7 @@ onMounted(async () => {
         <!-- Project 2 (AlBarghash): Entrance block (2/14 full width, then 2/16 and 2/17 side by side) -->
         <div v-if="project2FinalBlockImages.length === 3" class="space-y-6">
           <div class="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-200">
-            <img
+            <ResponsiveImg
               :src="project2FinalBlockImages[0]"
               :alt="`${localizedProject.title} - Image 14`"
               width="800"
@@ -712,7 +712,7 @@ onMounted(async () => {
               :key="`project2-final-${index}`"
               class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
-              <img
+              <ResponsiveImg
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index === 0 ? 16 : 17}`"
                 width="800"
@@ -741,7 +741,7 @@ onMounted(async () => {
               :key="`project2-quad-${index}`"
               class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
-              <img
+              <ResponsiveImg
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index + 5}`"
                 width="800"
@@ -765,7 +765,7 @@ onMounted(async () => {
         <!-- Project 2 (AlBarghash): 2/1 full width, then 2/2 and 2/3 side by side, then cigar lounge description -->
         <div v-if="project2CigarRoomImages.length === 3" class="space-y-6">
           <div class="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-200">
-            <img
+            <ResponsiveImg
               :src="project2CigarRoomImages[0]"
               :alt="`${localizedProject.title} - Image 1`"
               width="800"
@@ -781,7 +781,7 @@ onMounted(async () => {
               :key="`cigar-room-${index + 1}`"
               class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
-              <img
+              <ResponsiveImg
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index + 2}`"
                 width="800"
@@ -807,7 +807,7 @@ onMounted(async () => {
               :key="`showcase-${index}`"
               class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
-              <img
+              <ResponsiveImg
                 :src="image"
                 :alt="`${localizedProject.title} - Showcase image ${index + 1}`"
                 width="800"
@@ -833,7 +833,7 @@ onMounted(async () => {
               :key="`project2-six-${index}`"
               class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
-              <img
+              <ResponsiveImg
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index + 1}`"
                 width="800"
@@ -864,7 +864,7 @@ onMounted(async () => {
                 :key="`mada-img-${pairIndex}-${imgIndex}`"
                 class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
-                <img
+                <ResponsiveImg
                   :src="image"
                   :alt="`${localizedProject.title} - Image ${pairIndex * 2 + imgIndex + 1}`"
                   width="800"
@@ -886,7 +886,7 @@ onMounted(async () => {
               :key="`img-top-${index}`"
               class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
             >
-              <img
+              <ResponsiveImg
                 :src="image"
                 :alt="`${localizedProject.title} - Image ${index + 1}`"
                 width="800"
@@ -918,7 +918,7 @@ onMounted(async () => {
                 :key="`diagram-${i}`"
                 class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
-                <img
+                <ResponsiveImg
                   :src="img"
                   :alt="`${localizedProject.title} - Diagram ${i + 1}`"
                   width="800"
@@ -943,7 +943,7 @@ onMounted(async () => {
                 :class="isProjectOne ? 'aspect-[16/10]' : 'aspect-[4/3]'"
                 class="overflow-hidden rounded-xl"
               >
-                <img
+                <ResponsiveImg
                   :src="image"
                   :alt="`${localizedProject.title} - Image ${index + 4}`"
                   width="800"
@@ -962,7 +962,7 @@ onMounted(async () => {
                 :key="`img-gdc-quad-${index}`"
                 class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
-                <img
+                <ResponsiveImg
                   :src="image"
                   :alt="`${localizedProject.title} - Image ${index + 1}`"
                   class="h-full w-full object-cover"
@@ -977,7 +977,7 @@ onMounted(async () => {
                 :key="`img-project4-quad-${index}`"
                 class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
-                <img
+                <ResponsiveImg
                   :src="image"
                   :alt="`${localizedProject.title} - Image ${index + 3}`"
                   width="800"
@@ -996,7 +996,7 @@ onMounted(async () => {
                 :key="`img-project5-quad-${index}`"
                 class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
-                <img
+                <ResponsiveImg
                   :src="image"
                   :alt="`${localizedProject.title} - Image ${index + 3}`"
                   width="800"
@@ -1016,7 +1016,7 @@ onMounted(async () => {
                 :class="isProjectOne ? 'aspect-[16/10]' : 'aspect-[4/3]'"
                 class="overflow-hidden rounded-xl"
               >
-                <img
+                <ResponsiveImg
                   :src="image"
                   :alt="`${localizedProject.title} - Image ${index + 3}`"
                   width="800"
@@ -1061,7 +1061,7 @@ onMounted(async () => {
                 :class="isProjectOne ? 'aspect-[16/10]' : 'aspect-[4/3]'"
                 class="overflow-hidden rounded-xl"
               >
-                <img
+                <ResponsiveImg
                   :src="image"
                   :alt="`${localizedProject.title} - Image ${pairIndex * 2 + imgIndex + (gdcQuadImages.length === 4 || project4QuadImages.length === 4 || project5QuadImages.length === 4 ? 3 : 6)}`"
                   width="800"
@@ -1083,7 +1083,7 @@ onMounted(async () => {
                 :class="isProjectOne ? 'aspect-[3/4]' : 'aspect-[4/3]'"
                 class="overflow-hidden rounded-xl"
               >
-                <img
+                <ResponsiveImg
                   :src="img"
                   :alt="`${localizedProject.title} - Image ${i === 0 ? 10 : 12}`"
                   width="800"
@@ -1104,7 +1104,7 @@ onMounted(async () => {
                 :key="`gdc-tail-pair-${i}`"
                 class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
-                <img
+                <ResponsiveImg
                   :src="img"
                   :alt="`${localizedProject.title} - Image ${i === 0 ? 12 : 13}`"
                   width="800"
@@ -1125,7 +1125,7 @@ onMounted(async () => {
                 :key="`project4-tail-pair-${i}`"
                 class="aspect-[3/4] overflow-hidden rounded-xl"
               >
-                <img
+                <ResponsiveImg
                   :src="img"
                   :alt="`${localizedProject.title} - Image ${i === 0 ? 10 : 11}`"
                   width="800"
@@ -1146,7 +1146,7 @@ onMounted(async () => {
                 :key="`project9-tail-pair-${i}`"
                 class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
-                <img
+                <ResponsiveImg
                   :src="img"
                   :alt="`${localizedProject.title} - Image ${i === 0 ? 5 : 6}`"
                   width="800"
@@ -1168,7 +1168,7 @@ onMounted(async () => {
                 :class="isProjectOne ? 'aspect-[16/10]' : 'aspect-[4/3]'"
                 class="overflow-hidden rounded-xl"
               >
-                <img
+                <ResponsiveImg
                   :src="img"
                   :alt="`${localizedProject.title} - Image ${i === 0 ? 13 : 14}`"
                   width="800"
@@ -1189,7 +1189,7 @@ onMounted(async () => {
                 :key="`ec-pair-${index}`"
                 class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
-                <img
+                <ResponsiveImg
                   :src="image"
                   :alt="`${localizedProject.title} - Image ${index + 3}`"
                   width="800"
@@ -1210,7 +1210,7 @@ onMounted(async () => {
                 :key="`ec-final-pair-${index}`"
                 class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
               >
-                <img
+                <ResponsiveImg
                   :src="image"
                   :alt="`${localizedProject.title} - Image ${index === 0 ? 5 : 9}`"
                   width="800"
@@ -1226,7 +1226,7 @@ onMounted(async () => {
         
         <!-- Full Width Image -->
         <div v-if="shouldShowFullWidthImage && projectSlug !== 'ec'" class="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-200">
-          <img
+          <ResponsiveImg
             :src="localizedProject.fullWidthImage"
             :alt="`${localizedProject.title} - Full Width`"
             width="1200"

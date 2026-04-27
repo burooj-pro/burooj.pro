@@ -460,13 +460,12 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
 
             <!-- Right Column: Visual -->
             <div class="relative z-10 aspect-[16/9] overflow-hidden rounded-xl bg-slate-200 group">
-              <img
+              <ResponsiveImg
                 :src="project.image"
                 :alt="project.title"
-                width="800"
-                height="450"
-                loading="lazy"
-                decoding="async"
+                :width="800"
+                :height="450"
+                sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 800px"
                 class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
             </div>
