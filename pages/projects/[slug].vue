@@ -58,8 +58,8 @@ const diagramPairImages = computed(() => {
   // Special case: Hay Albahar Villas diagrams should be side-by-side.
   if (projectSlug !== 'albahar-villas') return [] as string[]
 
-  const diagram3 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/3.png'))
-  const diagram9 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/9.png'))
+  const diagram3 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/3.webp'))
+  const diagram9 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/9.webp'))
   if (!diagram3 || !diagram9) return [] as string[]
   return [diagram3, diagram9]
 })
@@ -68,8 +68,8 @@ const tailPairImages = computed(() => {
   // Special case: keep these two images together for Project 1.
   if (projectSlug !== 'albahar-villas') return [] as string[]
 
-  const img13 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/13.png'))
-  const img14 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/14.png'))
+  const img13 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/13.webp'))
+  const img14 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/14.webp'))
   if (!img13 || !img14) return [] as string[]
   return [img13, img14]
 })
@@ -78,8 +78,8 @@ const midPairImages = computed(() => {
   // Special case: keep these two images together for Project 1.
   if (projectSlug !== 'albahar-villas') return [] as string[]
 
-  const img10 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/10.png'))
-  const img12 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/12.png'))
+  const img10 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/10.webp'))
+  const img12 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/12.webp'))
   if (!img10 || !img12) return [] as string[]
   return [img10, img12]
 })
@@ -88,10 +88,10 @@ const quadImages = computed(() => {
   // Special case: keep these four images together for Project 1.
   if (projectSlug !== 'albahar-villas') return [] as string[]
 
-  const img4 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/4.png'))
-  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/5.png'))
-  const img6 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/6.png'))
-  const img7 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/7.png'))
+  const img4 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/4.webp'))
+  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/5.webp'))
+  const img6 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/6.webp'))
+  const img7 = galleryImages.value.find((img) => img.endsWith('/images/projects/1/7.webp'))
   if (!img4 || !img5 || !img6 || !img7) return [] as string[]
   return [img4, img5, img6, img7]
 })
@@ -100,10 +100,10 @@ const quadImages = computed(() => {
 const gdcQuadImages = computed(() => {
   if (projectSlug !== 'efficiency-center-khobar') return [] as string[]
 
-  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/6/3.png'))
-  const img4 = galleryImages.value.find((img) => img.endsWith('/images/projects/6/4.png'))
-  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/6/5.png'))
-  const img11 = galleryImages.value.find((img) => img.endsWith('/images/projects/6/11.png'))
+  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/6/3.webp'))
+  const img4 = galleryImages.value.find((img) => img.endsWith('/images/projects/6/4.webp'))
+  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/6/5.webp'))
+  const img11 = galleryImages.value.find((img) => img.endsWith('/images/projects/6/11.webp'))
   if (!img3 || !img4 || !img5 || !img11) return [] as string[]
   return [img3, img4, img5, img11]
 })
@@ -112,8 +112,8 @@ const gdcQuadImages = computed(() => {
 const gdcTailPairImages = computed(() => {
   if (projectSlug !== 'efficiency-center-khobar') return [] as string[]
 
-  const img12 = galleryImages.value.find((img) => img.endsWith('/images/projects/6/12.png'))
-  const img13 = galleryImages.value.find((img) => img.endsWith('/images/projects/6/13.png'))
+  const img12 = galleryImages.value.find((img) => img.endsWith('/images/projects/6/12.webp'))
+  const img13 = galleryImages.value.find((img) => img.endsWith('/images/projects/6/13.webp'))
   if (!img12 || !img13) return [] as string[]
   return [img12, img13]
 })
@@ -122,10 +122,10 @@ const gdcTailPairImages = computed(() => {
 const project4QuadImages = computed(() => {
   if (projectSlug !== 'private-shalet') return [] as string[]
 
-  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/4/3.png'))
-  const img4 = galleryImages.value.find((img) => img.endsWith('/images/projects/4/4.png'))
-  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/4/5.png'))
-  const img6 = galleryImages.value.find((img) => img.endsWith('/images/projects/4/6.png'))
+  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/4/3.webp'))
+  const img4 = galleryImages.value.find((img) => img.endsWith('/images/projects/4/4.webp'))
+  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/4/5.webp'))
+  const img6 = galleryImages.value.find((img) => img.endsWith('/images/projects/4/6.webp'))
   if (!img3 || !img4 || !img5 || !img6) return [] as string[]
   return [img3, img4, img5, img6]
 })
@@ -134,8 +134,8 @@ const project4QuadImages = computed(() => {
 const project4TailPairImages = computed(() => {
   if (projectSlug !== 'private-shalet') return [] as string[]
 
-  const img10 = galleryImages.value.find((img) => img.endsWith('/images/projects/4/10.png'))
-  const img11 = galleryImages.value.find((img) => img.endsWith('/images/projects/4/11.png'))
+  const img10 = galleryImages.value.find((img) => img.endsWith('/images/projects/4/10.webp'))
+  const img11 = galleryImages.value.find((img) => img.endsWith('/images/projects/4/11.webp'))
   if (!img10 || !img11) return [] as string[]
   return [img10, img11]
 })
@@ -144,8 +144,8 @@ const project4TailPairImages = computed(() => {
 const project9TailPairImages = computed(() => {
   if (projectSlug !== 'roaya') return [] as string[]
 
-  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/9/5.png'))
-  const img6 = galleryImages.value.find((img) => img.endsWith('/images/projects/9/6.png'))
+  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/9/5.webp'))
+  const img6 = galleryImages.value.find((img) => img.endsWith('/images/projects/9/6.webp'))
   if (!img5 || !img6) return [] as string[]
   return [img5, img6]
 })
@@ -154,10 +154,10 @@ const project9TailPairImages = computed(() => {
 const project5QuadImages = computed(() => {
   if (projectSlug !== 'gdc') return [] as string[]
 
-  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/5/3.png'))
-  const img4 = galleryImages.value.find((img) => img.endsWith('/images/projects/5/4.png'))
-  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/5/5.png'))
-  const img6 = galleryImages.value.find((img) => img.endsWith('/images/projects/5/6.png'))
+  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/5/3.webp'))
+  const img4 = galleryImages.value.find((img) => img.endsWith('/images/projects/5/4.webp'))
+  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/5/5.webp'))
+  const img6 = galleryImages.value.find((img) => img.endsWith('/images/projects/5/6.webp'))
   if (!img3 || !img4 || !img5 || !img6) return [] as string[]
   return [img3, img4, img5, img6]
 })
@@ -166,9 +166,9 @@ const project5QuadImages = computed(() => {
 const project2CigarRoomImages = computed(() => {
   if (projectSlug !== 'albarghash') return [] as string[]
 
-  const img1 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/1.png'))
-  const img2 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/2.png'))
-  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/3.png'))
+  const img1 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/1.webp'))
+  const img2 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/2.webp'))
+  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/3.webp'))
   if (!img1 || !img2 || !img3) return [] as string[]
   return [img1, img2, img3]
 })
@@ -178,7 +178,7 @@ const project2ShowcaseImages = computed(() => {
   if (projectSlug !== 'albarghash') return [] as string[]
 
   const imgs = [9, 10, 11, 12, 13, 15].map((n) =>
-    galleryImages.value.find((img) => img.endsWith(`/images/projects/2/${n}.png`))
+    galleryImages.value.find((img) => img.endsWith(`/images/projects/2/${n}.webp`))
   )
   if (imgs.some((i) => !i)) return [] as string[]
   return imgs as string[]
@@ -188,10 +188,10 @@ const project2ShowcaseImages = computed(() => {
 const project2QuadImages = computed(() => {
   if (projectSlug !== 'albarghash') return [] as string[]
 
-  const img6 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/6.png'))
-  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/5.png'))
-  const img8 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/8.png'))
-  const img7 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/7.png'))
+  const img6 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/6.webp'))
+  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/5.webp'))
+  const img8 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/8.webp'))
+  const img7 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/7.webp'))
   if (!img6 || !img5 || !img8 || !img7) return [] as string[]
   return [img6, img5, img8, img7]
 })
@@ -200,9 +200,9 @@ const project2QuadImages = computed(() => {
 const project2FinalBlockImages = computed(() => {
   if (projectSlug !== 'albarghash') return [] as string[]
 
-  const img14 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/14.png'))
-  const img16 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/16.png'))
-  const img17 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/17.png'))
+  const img14 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/14.webp'))
+  const img16 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/16.webp'))
+  const img17 = galleryImages.value.find((img) => img.endsWith('/images/projects/2/17.webp'))
   if (!img14 || !img16 || !img17) return [] as string[]
   return [img14, img16, img17]
 })
@@ -212,7 +212,7 @@ const project2SixImages = computed(() => {
   if (projectSlug !== 'albarghash') return [] as string[]
 
   const imgs = [4, 18, 19, 20, 21, 22].map((n) =>
-    galleryImages.value.find((img) => img.endsWith(`/images/projects/2/${n}.png`))
+    galleryImages.value.find((img) => img.endsWith(`/images/projects/2/${n}.webp`))
   )
   if (imgs.some((i) => !i)) return [] as string[]
   return imgs as string[]
@@ -222,9 +222,9 @@ const project2SixImages = computed(() => {
 const project3HeroImages = computed(() => {
   if (projectSlug !== 'al-fakhreyah-villa-project') return [] as string[]
 
-  const img1 = galleryImages.value.find((img) => img.endsWith('/images/projects/3/1.png'))
-  const img2 = galleryImages.value.find((img) => img.endsWith('/images/projects/3/2.png'))
-  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/3/3.png'))
+  const img1 = galleryImages.value.find((img) => img.endsWith('/images/projects/3/1.webp'))
+  const img2 = galleryImages.value.find((img) => img.endsWith('/images/projects/3/2.webp'))
+  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/3/3.webp'))
   if (!img1 || !img2 || !img3) return [] as string[]
   return [img1, img2, img3]
 })
@@ -233,9 +233,9 @@ const project3HeroImages = computed(() => {
 const project8HeroImages = computed(() => {
   if (projectSlug !== 'thabat') return [] as string[]
 
-  const img1 = galleryImages.value.find((img) => img.endsWith('/images/projects/8/1.png'))
-  const img2 = galleryImages.value.find((img) => img.endsWith('/images/projects/8/2.png'))
-  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/8/3.png'))
+  const img1 = galleryImages.value.find((img) => img.endsWith('/images/projects/8/1.webp'))
+  const img2 = galleryImages.value.find((img) => img.endsWith('/images/projects/8/2.webp'))
+  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/8/3.webp'))
   if (!img1 || !img2 || !img3) return [] as string[]
   return [img1, img2, img3]
 })
@@ -244,9 +244,9 @@ const project8HeroImages = computed(() => {
 const project7HeroImages = computed(() => {
   if (projectSlug !== 'tulip-spa') return [] as string[]
 
-  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/7/3.png'))
-  const img1 = galleryImages.value.find((img) => img.endsWith('/images/projects/7/1.png'))
-  const img2 = galleryImages.value.find((img) => img.endsWith('/images/projects/7/2.png'))
+  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/7/3.webp'))
+  const img1 = galleryImages.value.find((img) => img.endsWith('/images/projects/7/1.webp'))
+  const img2 = galleryImages.value.find((img) => img.endsWith('/images/projects/7/2.webp'))
   if (!img1 || !img2 || !img3) return [] as string[]
   return [img3, img1, img2]
 })
@@ -255,8 +255,8 @@ const project7HeroImages = computed(() => {
 const projectECPairImages = computed(() => {
   if (projectSlug !== 'ec') return [] as string[]
 
-  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/10/3.png'))
-  const img4 = galleryImages.value.find((img) => img.endsWith('/images/projects/10/4.png'))
+  const img3 = galleryImages.value.find((img) => img.endsWith('/images/projects/10/3.webp'))
+  const img4 = galleryImages.value.find((img) => img.endsWith('/images/projects/10/4.webp'))
   if (!img3 || !img4) return [] as string[]
   return [img3, img4]
 })
@@ -265,8 +265,8 @@ const projectECPairImages = computed(() => {
 const projectECFinalPairImages = computed(() => {
   if (projectSlug !== 'ec') return [] as string[]
 
-  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/10/5.png'))
-  const img9 = galleryImages.value.find((img) => img.endsWith('/images/projects/10/9.png'))
+  const img5 = galleryImages.value.find((img) => img.endsWith('/images/projects/10/5.webp'))
+  const img9 = galleryImages.value.find((img) => img.endsWith('/images/projects/10/9.webp'))
   if (!img5 || !img9) return [] as string[]
   return [img5, img9]
 })
@@ -298,124 +298,124 @@ const galleryImagesForLayout = computed(() => {
 
   if (projectSlug === 'albahar-villas') {
     if (diagramPairImages.value.length === 2) {
-      remove.add('/images/projects/1/3.png')
-      remove.add('/images/projects/1/9.png')
+      remove.add('/images/projects/1/3.webp')
+      remove.add('/images/projects/1/9.webp')
     }
     if (tailPairImages.value.length === 2) {
-      remove.add('/images/projects/1/13.png')
-      remove.add('/images/projects/1/14.png')
+      remove.add('/images/projects/1/13.webp')
+      remove.add('/images/projects/1/14.webp')
     }
     if (midPairImages.value.length === 2) {
-      remove.add('/images/projects/1/10.png')
-      remove.add('/images/projects/1/12.png')
+      remove.add('/images/projects/1/10.webp')
+      remove.add('/images/projects/1/12.webp')
     }
     if (quadImages.value.length === 4) {
-      remove.add('/images/projects/1/4.png')
-      remove.add('/images/projects/1/5.png')
-      remove.add('/images/projects/1/6.png')
-      remove.add('/images/projects/1/7.png')
+      remove.add('/images/projects/1/4.webp')
+      remove.add('/images/projects/1/5.webp')
+      remove.add('/images/projects/1/6.webp')
+      remove.add('/images/projects/1/7.webp')
     }
   }
 
   if (projectSlug === 'efficiency-center-khobar') {
     if (gdcQuadImages.value.length === 4) {
-      remove.add('/images/projects/6/3.png')
-      remove.add('/images/projects/6/4.png')
-      remove.add('/images/projects/6/5.png')
-      remove.add('/images/projects/6/11.png')
+      remove.add('/images/projects/6/3.webp')
+      remove.add('/images/projects/6/4.webp')
+      remove.add('/images/projects/6/5.webp')
+      remove.add('/images/projects/6/11.webp')
     }
     if (gdcTailPairImages.value.length === 2) {
-      remove.add('/images/projects/6/12.png')
-      remove.add('/images/projects/6/13.png')
+      remove.add('/images/projects/6/12.webp')
+      remove.add('/images/projects/6/13.webp')
     }
   }
 
   if (projectSlug === 'private-shalet') {
     if (project4QuadImages.value.length === 4) {
-      remove.add('/images/projects/4/3.png')
-      remove.add('/images/projects/4/4.png')
-      remove.add('/images/projects/4/5.png')
-      remove.add('/images/projects/4/6.png')
+      remove.add('/images/projects/4/3.webp')
+      remove.add('/images/projects/4/4.webp')
+      remove.add('/images/projects/4/5.webp')
+      remove.add('/images/projects/4/6.webp')
     }
     if (project4TailPairImages.value.length === 2) {
-      remove.add('/images/projects/4/10.png')
-      remove.add('/images/projects/4/11.png')
+      remove.add('/images/projects/4/10.webp')
+      remove.add('/images/projects/4/11.webp')
     }
   }
 
   if (projectSlug === 'gdc' && project5QuadImages.value.length === 4) {
-    remove.add('/images/projects/5/3.png')
-    remove.add('/images/projects/5/4.png')
-    remove.add('/images/projects/5/5.png')
-    remove.add('/images/projects/5/6.png')
+    remove.add('/images/projects/5/3.webp')
+    remove.add('/images/projects/5/4.webp')
+    remove.add('/images/projects/5/5.webp')
+    remove.add('/images/projects/5/6.webp')
   }
 
   if (projectSlug === 'al-fakhreyah-villa-project' && project3HeroImages.value.length === 3) {
-    remove.add('/images/projects/3/1.png')
-    remove.add('/images/projects/3/2.png')
-    remove.add('/images/projects/3/3.png')
+    remove.add('/images/projects/3/1.webp')
+    remove.add('/images/projects/3/2.webp')
+    remove.add('/images/projects/3/3.webp')
   }
 
   if (projectSlug === 'roaya' && project9TailPairImages.value.length === 2) {
-    remove.add('/images/projects/9/5.png')
-    remove.add('/images/projects/9/6.png')
+    remove.add('/images/projects/9/5.webp')
+    remove.add('/images/projects/9/6.webp')
   }
 
   if (projectSlug === 'thabat' && project8HeroImages.value.length === 3) {
-    remove.add('/images/projects/8/1.png')
-    remove.add('/images/projects/8/2.png')
-    remove.add('/images/projects/8/3.png')
+    remove.add('/images/projects/8/1.webp')
+    remove.add('/images/projects/8/2.webp')
+    remove.add('/images/projects/8/3.webp')
   }
 
   if (projectSlug === 'tulip-spa' && project7HeroImages.value.length === 3) {
-    remove.add('/images/projects/7/1.png')
-    remove.add('/images/projects/7/2.png')
-    remove.add('/images/projects/7/3.png')
+    remove.add('/images/projects/7/1.webp')
+    remove.add('/images/projects/7/2.webp')
+    remove.add('/images/projects/7/3.webp')
   }
 
   if (projectSlug === 'albarghash') {
     if (project2CigarRoomImages.value.length === 3) {
-      remove.add('/images/projects/2/1.png')
-      remove.add('/images/projects/2/2.png')
-      remove.add('/images/projects/2/3.png')
+      remove.add('/images/projects/2/1.webp')
+      remove.add('/images/projects/2/2.webp')
+      remove.add('/images/projects/2/3.webp')
     }
     if (project2ShowcaseImages.value.length === 6) {
-      remove.add('/images/projects/2/9.png')
-      remove.add('/images/projects/2/10.png')
-      remove.add('/images/projects/2/11.png')
-      remove.add('/images/projects/2/12.png')
-      remove.add('/images/projects/2/13.png')
-      remove.add('/images/projects/2/15.png')
+      remove.add('/images/projects/2/9.webp')
+      remove.add('/images/projects/2/10.webp')
+      remove.add('/images/projects/2/11.webp')
+      remove.add('/images/projects/2/12.webp')
+      remove.add('/images/projects/2/13.webp')
+      remove.add('/images/projects/2/15.webp')
     }
     if (project2QuadImages.value.length === 4) {
-      remove.add('/images/projects/2/5.png')
-      remove.add('/images/projects/2/6.png')
-      remove.add('/images/projects/2/7.png')
-      remove.add('/images/projects/2/8.png')
+      remove.add('/images/projects/2/5.webp')
+      remove.add('/images/projects/2/6.webp')
+      remove.add('/images/projects/2/7.webp')
+      remove.add('/images/projects/2/8.webp')
     }
     if (project2FinalBlockImages.value.length === 3) {
-      remove.add('/images/projects/2/14.png')
-      remove.add('/images/projects/2/16.png')
-      remove.add('/images/projects/2/17.png')
+      remove.add('/images/projects/2/14.webp')
+      remove.add('/images/projects/2/16.webp')
+      remove.add('/images/projects/2/17.webp')
     }
     if (project2SixImages.value.length === 6) {
-      remove.add('/images/projects/2/4.png')
-      remove.add('/images/projects/2/18.png')
-      remove.add('/images/projects/2/19.png')
-      remove.add('/images/projects/2/20.png')
-      remove.add('/images/projects/2/21.png')
-      remove.add('/images/projects/2/22.png')
+      remove.add('/images/projects/2/4.webp')
+      remove.add('/images/projects/2/18.webp')
+      remove.add('/images/projects/2/19.webp')
+      remove.add('/images/projects/2/20.webp')
+      remove.add('/images/projects/2/21.webp')
+      remove.add('/images/projects/2/22.webp')
     }
   }
 
   if (projectSlug === 'ec') {
     if (projectECPairImages.value.length === 2) {
-      remove.add('/images/projects/10/3.png')
-      remove.add('/images/projects/10/4.png')
+      remove.add('/images/projects/10/3.webp')
+      remove.add('/images/projects/10/4.webp')
     }
     if (projectECFinalPairImages.value.length === 2) {
-      remove.add('/images/projects/10/5.png')
-      remove.add('/images/projects/10/9.png')
+      remove.add('/images/projects/10/5.webp')
+      remove.add('/images/projects/10/9.webp')
     }
   }
 
@@ -1266,7 +1266,7 @@ onMounted(async () => {
         <video
           v-if="enableCtaVideo && !ctaVideoFailed"
           ref="ctaVideoEl"
-          :poster="`${baseURL}images/hero-image.png`"
+          :poster="`${baseURL}images/hero-image.webp`"
           class="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
           autoplay
           muted

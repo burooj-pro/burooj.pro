@@ -81,7 +81,7 @@ if (import.meta.client) {
         <div class="flex items-center justify-between px-6 py-4 md:px-12 lg:px-16 xl:px-20 md:py-5">
         <NuxtLink :to="localePath('/')" class="flex items-center" prefetch>
           <img
-            :src="isScrolledPastHero ? `${baseURL}images/Burroj-dark-logo.png` : `${baseURL}images/Burooj-logo.png`"
+            :src="isScrolledPastHero ? `${baseURL}images/Burroj-dark-logo.webp` : `${baseURL}images/Burooj-logo.webp`"
             alt="Burooj"
             width="120"
             height="40"

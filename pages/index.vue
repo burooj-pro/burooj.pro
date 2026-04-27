@@ -205,7 +205,7 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
       <video
         v-if="enableHeroVideo && !heroVideoFailed"
         ref="heroVideoEl"
-        :poster="`${baseURL}images/hero-image.png`"
+        :poster="`${baseURL}images/hero-image.webp`"
         class="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
         autoplay
         muted
@@ -339,7 +339,7 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
       >
         <div
           class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
-                :style="`background-image: url('${baseURL}images/service1.png');`"
+                :style="`background-image: url('${baseURL}images/service1.webp');`"
         ></div>
         <!-- Gradient Overlay - Dark from bottom to light at top -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -360,7 +360,7 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
       >
         <div
           class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
-                :style="`background-image: url('${baseURL}images/service2.png');`"
+                :style="`background-image: url('${baseURL}images/service2.webp');`"
         ></div>
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
         <div class="relative z-10 min-w-0 w-full p-8 pb-12 md:p-12 md:pb-16">
@@ -381,7 +381,7 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
       >
         <div
           class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
-                :style="`background-image: url('${baseURL}images/service3.png');`"
+                :style="`background-image: url('${baseURL}images/service3.webp');`"
         ></div>
         <!-- Gradient Overlay - Dark from bottom to light at top -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -508,7 +508,7 @@ const { clientLogos } = useClientLogos({ placeholders: 0 })
       <video
         v-if="enableCtaVideo && !ctaVideoFailed"
         ref="ctaVideoEl"
-        :poster="`${baseURL}images/hero-image.png`"
+        :poster="`${baseURL}images/hero-image.webp`"
         class="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
         autoplay
         muted

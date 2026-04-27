@@ -95,7 +95,7 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/burooj.pro/favicon.ico' },
         { rel: 'apple-touch-icon', href: '/burooj.pro/favicon.ico' },
         // Preload LCP: hero video (or fallback image) for faster First Contentful Paint / LCP
-        { rel: 'preload', as: 'image', href: '/burooj.pro/images/hero-image.png', fetchpriority: 'high' },
+        { rel: 'preload', as: 'image', href: '/burooj.pro/images/hero-image.webp', fetchpriority: 'high' },
         // Preconnect to Pipedrive CDN to reduce DNS + TCP delay on contact page
         { rel: 'preconnect', href: 'https://webforms.pipedrive.com' },
       ],

@@ -52,7 +52,7 @@ export const services: Service[] = [
         description: 'We complete final walkthroughs, address snags, and provide post-handover support.',
       },
     ],
-    image: '/images/arch.png',
+    image: '/images/arch.webp',
   },
   {
     slug: 'interior-design',
@@ -108,7 +108,7 @@ export const services: Service[] = [
         description: 'We oversee installation and add final styling touches to bring your space to life.',
       },
     ],
-    image: '/images/inter.png',
+    image: '/images/inter.webp',
   },
   {
     slug: 'finishing-fit-out',
@@ -130,7 +130,7 @@ export const services: Service[] = [
       'Timely project completion',
       'Comprehensive service coverage',
     ],
-    image: '/images/fitout.png',
+    image: '/images/fitout.webp',
   },
   // Property Management Services
   {
@@ -187,7 +187,7 @@ export const services: Service[] = [
         description: 'We monitor campaign performance and adjust strategies to optimize results.',
       },
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'real-estate-leasing',
@@ -243,7 +243,7 @@ export const services: Service[] = [
         description: 'We finalize all documentation, collect deposits, and complete the lease signing process.',
       },
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'pricing-optimization',
@@ -265,7 +265,7 @@ export const services: Service[] = [
       'Reduced vacancy risk',
       'Optimized return on investment',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'real-estate-listing',
@@ -287,7 +287,7 @@ export const services: Service[] = [
       'Professional presentation',
       'Optimized listing performance',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'tenant-request-management',
@@ -309,7 +309,7 @@ export const services: Service[] = [
       'Organized request tracking',
       'Professional tenant relations',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'loi-documentation',
@@ -331,7 +331,7 @@ export const services: Service[] = [
       'Professional representation',
       'Reduced legal risks',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'legal-affairs',
@@ -353,7 +353,7 @@ export const services: Service[] = [
       'Expert legal guidance',
       'Peace of mind',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'government-requirements',
@@ -375,7 +375,7 @@ export const services: Service[] = [
       'Professional handling',
       'Peace of mind',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'contract-documentation',
@@ -397,7 +397,7 @@ export const services: Service[] = [
       'Reduced disputes',
       'Professional management',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'revenue-collection',
@@ -419,7 +419,7 @@ export const services: Service[] = [
       'Financial transparency',
       'Professional tenant relations',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'automated-reporting',
@@ -441,7 +441,7 @@ export const services: Service[] = [
       'Financial transparency',
       'Performance insights',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'real-estate-valuation',
@@ -463,7 +463,7 @@ export const services: Service[] = [
       'Professional documentation',
       'Market expertise',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'operational-cost-reduction',
@@ -485,7 +485,7 @@ export const services: Service[] = [
       'Better vendor relationships',
       'Enhanced efficiency',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'cleaning-maintenance',
@@ -507,7 +507,7 @@ export const services: Service[] = [
       'Reduced major repairs',
       'Professional service delivery',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'security-monitoring-logs',
@@ -529,7 +529,7 @@ export const services: Service[] = [
       'Peace of mind',
       'Professional security management',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'improving-operational-efficiency',
@@ -551,7 +551,7 @@ export const services: Service[] = [
       'Cost savings',
       'Enhanced productivity',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
   {
     slug: 'zakat-tax-services',
@@ -573,6 +573,6 @@ export const services: Service[] = [
       'Expert guidance',
       'Peace of mind',
     ],
-    image: '/images/service2.png',
+    image: '/images/service2.webp',
   },
 ]

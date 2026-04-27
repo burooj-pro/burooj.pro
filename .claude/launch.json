@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Nuxt Dev",
+      "runtimeExecutable": "node_modules/.bin/nuxt",
+      "runtimeArgs": ["dev"],
+      "port": 3001,
+      "autoPort": true
+    },
+    {
+      "name": "Nuxt Preview",
+      "runtimeExecutable": "node_modules/.bin/nuxt",
+      "runtimeArgs": ["preview"],
+      "port": 3000,
+      "autoPort": true
+    }
+  ]
+}

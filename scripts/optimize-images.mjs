@@ -1,13 +1,10 @@
 #!/usr/bin/env node
 /**
- * Generates WebP versions and responsive widths for hero/section images.
+ * Converts all PNGs in public/images/ to WebP recursively.
+ * Also generates responsive hero widths for full-bleed images.
  * Run: npm run optimize-images
  *
- * Outputs:
- *   public/images/hero-image-400w.webp, hero-image-800w.webp, hero-image-1200w.webp, hero-image-1920w.webp
- *   (and optionally other configured images)
- *
- * Targets: hero ~250–500 KB, section images ~100–250 KB (via quality + widths).
+ * Skips files where a same-named .webp already exists (idempotent).
  */
 
 import fs from 'node:fs'
@@ -16,63 +13,101 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const projectRoot = path.resolve(__dirname, '..')
-const publicDir = path.join(projectRoot, 'public', 'images')
+const publicImagesDir = path.join(projectRoot, 'public', 'images')
 
-// Hero/CTA full-bleed: multiple widths, quality for ~250–500 KB at 1920w
+const WEBP_QUALITY = 82
+const MAX_WIDTH = 1920
+
+// Hero images get additional responsive srcset variants
+const HERO_IMAGES = ['hero-image.png']
 const HERO_WIDTHS = [400, 800, 1200, 1920]
-const HERO_WEBP_QUALITY = 82
 
-// Section images (e.g. about, project cards): smaller max width
-const SECTION_WIDTHS = [400, 800]
-const SECTION_WEBP_QUALITY = 80
+let sharp
+try {
+  sharp = (await import('sharp')).default
+} catch {
+  console.error('Install sharp: npm install --save-dev sharp')
+  process.exit(1)
+}
 
-const PRESETS = [
-  {
-    name: 'hero-image',
-    widths: HERO_WIDTHS,
-    quality: HERO_WEBP_QUALITY,
-    description: 'Hero/CTA full-bleed',
-  },
-  // Add more entries as needed, e.g. about1.png, about2.png
-]
-
-async function optimizeImage(preset, ext = '.png') {
-  const baseName = preset.name.replace(/\.[^.]+$/, '')
-  const inputPath = path.join(publicDir, baseName + ext)
-  if (!fs.existsSync(inputPath)) {
-    console.warn('Skip (not found):', inputPath)
-    return
+function getAllPngs(dir) {
+  const results = []
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name)
+    if (entry.isDirectory()) {
+      results.push(...getAllPngs(full))
+    } else if (entry.isFile() && entry.name.toLowerCase().endsWith('.png')) {
+      results.push(full)
+    }
   }
+  return results
+}
 
-  let sharp
-  try {
-    sharp = (await import('sharp')).default
-  } catch (e) {
-    console.error('Install sharp: npm install --save-dev sharp')
-    process.exit(1)
+async function convertToWebP(inputPath) {
+  const outPath = inputPath.replace(/\.png$/i, '.webp')
+  if (fs.existsSync(outPath)) {
+    const inStat = fs.statSync(inputPath)
+    const outStat = fs.statSync(outPath)
+    if (outStat.mtimeMs >= inStat.mtimeMs) return null // already up to date
   }
+  await sharp(inputPath)
+    .resize(MAX_WIDTH, null, { withoutEnlargement: true })
+    .webp({ quality: WEBP_QUALITY })
+    .toFile(outPath)
+  const inSize = fs.statSync(inputPath).size
+  const outSize = fs.statSync(outPath).size
+  return { outPath, inSize, outSize }
+}
 
-  const { widths, quality } = preset
-  for (const w of widths) {
-    const outName = `${baseName}-${w}w.webp`
-    const outPath = path.join(publicDir, outName)
+async function generateHeroVariants(inputPath) {
+  const baseName = path.basename(inputPath, '.png')
+  const dir = path.dirname(inputPath)
+  for (const w of HERO_WIDTHS) {
+    const outPath = path.join(dir, `${baseName}-${w}w.webp`)
     await sharp(inputPath)
       .resize(w, null, { withoutEnlargement: true })
-      .webp({ quality })
+      .webp({ quality: WEBP_QUALITY })
       .toFile(outPath)
     const stat = fs.statSync(outPath)
-    console.log('  ', outName, `${(stat.size / 1024).toFixed(1)} KB`)
+    console.log(`  ${baseName}-${w}w.webp  ${(stat.size / 1024).toFixed(1)} KB`)
   }
 }
 
 async function main() {
-  console.log('Optimizing images to WebP (responsive widths)...\n')
-  for (const preset of PRESETS) {
-    console.log(preset.name)
-    await optimizeImage(preset)
-    console.log('')
+  const pngs = getAllPngs(publicImagesDir)
+  console.log(`Found ${pngs.length} PNG files. Converting to WebP...\n`)
+
+  let converted = 0
+  let skipped = 0
+  let savedBytes = 0
+
+  for (const inputPath of pngs) {
+    const rel = path.relative(publicImagesDir, inputPath)
+    const result = await convertToWebP(inputPath)
+    if (result === null) {
+      skipped++
+    } else {
+      converted++
+      savedBytes += result.inSize - result.outSize
+      const pct = (((result.inSize - result.outSize) / result.inSize) * 100).toFixed(0)
+      console.log(`  ✔ ${rel}  ${(result.inSize / 1024 / 1024).toFixed(1)}MB → ${(result.outSize / 1024 / 1024).toFixed(1)}MB  (-${pct}%)`)
+    }
   }
-  console.log('Done. Use <picture> + srcset in templates for these images.')
+
+  console.log(`\nConverted: ${converted}, Skipped (up to date): ${skipped}`)
+  console.log(`Total saved: ${(savedBytes / 1024 / 1024).toFixed(1)} MB`)
+
+  // Generate hero responsive variants
+  console.log('\nGenerating hero responsive variants...')
+  for (const heroName of HERO_IMAGES) {
+    const heroPath = path.join(publicImagesDir, heroName)
+    if (fs.existsSync(heroPath)) {
+      console.log(heroName)
+      await generateHeroVariants(heroPath)
+    }
+  }
+
+  console.log('\nDone.')
 }
 
 main().catch((err) => {

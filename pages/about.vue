@@ -39,10 +39,10 @@ const handleBtsMouseMove = (e: MouseEvent) => {
 
 
 const btsImages = computed(() => [
-  { title: t('about.bts.slide1.title'), image: `${baseURL}images/bts/bts1.png`, description: t('about.bts.slide1.description') },
-  { title: t('about.bts.slide2.title'), image: `${baseURL}images/bts/bts2.png`, description: t('about.bts.slide2.description') },
-  { title: t('about.bts.slide3.title'), image: `${baseURL}images/bts/bts3.png`, description: t('about.bts.slide3.description') },
-  { title: t('about.bts.slide4.title'), image: `${baseURL}images/bts/bts4.png`, description: t('about.bts.slide4.description') },
+  { title: t('about.bts.slide1.title'), image: `${baseURL}images/bts/bts1.webp`, description: t('about.bts.slide1.description') },
+  { title: t('about.bts.slide2.title'), image: `${baseURL}images/bts/bts2.webp`, description: t('about.bts.slide2.description') },
+  { title: t('about.bts.slide3.title'), image: `${baseURL}images/bts/bts3.webp`, description: t('about.bts.slide3.description') },
+  { title: t('about.bts.slide4.title'), image: `${baseURL}images/bts/bts4.webp`, description: t('about.bts.slide4.description') },
 ])
 
 // Duplicate images for seamless infinite loop
@@ -234,7 +234,7 @@ onMounted(() => {
       <video
         v-if="enableHeroVideo && !heroVideoFailed"
         ref="heroVideoEl"
-        :poster="`${baseURL}images/hero-image.png`"
+        :poster="`${baseURL}images/hero-image.webp`"
         class="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
         autoplay
         muted

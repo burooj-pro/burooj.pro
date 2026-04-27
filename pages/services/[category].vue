@@ -51,19 +51,19 @@ const categoryMap: Record<string, { key: string; titleKey: string; descriptionKe
     key: 'Construction & Engineering',
     titleKey: 'home.services.construction.titleFull',
     descriptionKey: 'home.services.construction.description',
-    image: `${baseURL}images/service1.png`,
+    image: `${baseURL}images/service1.webp`,
   },
   'property-management': {
     key: 'Property Management',
     titleKey: 'home.services.property.titleFull',
     descriptionKey: 'home.services.property.description',
-    image: `${baseURL}images/service2.png`,
+    image: `${baseURL}images/service2.webp`,
   },
   'drone-cleaning': {
     key: 'Drone Cleaning',
     titleKey: 'home.services.drone.titleFull',
     descriptionKey: 'home.services.drone.description',
-    image: `${baseURL}images/service3.png`,
+    image: `${baseURL}images/service3.webp`,
   },
 }
 
