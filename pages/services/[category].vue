@@ -83,7 +83,7 @@ const { projects: allProjects, getLocalizedProject } = useProjects()
 
 // Get projects for this category
 const categoryProjects = computed(() => {
-  return allProjects
+  return allProjects.value
     .filter((project: Project) => project.category === categoryInfo.key)
     .map((project: Project) => getLocalizedProject(project))
 })
