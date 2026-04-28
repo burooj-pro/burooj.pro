@@ -5,9 +5,23 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 const config = useRuntimeConfig()
 const baseURL = config.app.baseURL || '/'
+const pageTitle = t('about.title')
+const pageDescription = t('about.description')
+const pageImage = `${baseURL}images/about1.webp`
+
 useHead({
-  title: t('about.title'),
-  meta: [{ name: 'description', content: t('about.description') }],
+  title: pageTitle,
+  meta: [
+    { name: 'description', content: pageDescription },
+    { property: 'og:title', content: pageTitle },
+    { property: 'og:description', content: pageDescription },
+    { property: 'og:image', content: pageImage },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: pageTitle },
+    { name: 'twitter:description', content: pageDescription },
+    { name: 'twitter:image', content: pageImage },
+  ],
 })
 
 const { fadeInUp, fadeInFromSide, scaleIn, staggerFadeIn, animateCounter } = useGsap()
