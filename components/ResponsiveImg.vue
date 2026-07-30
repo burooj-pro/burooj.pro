@@ -12,6 +12,9 @@ const props = defineProps<{
 }>()
 
 const srcset = computed(() => {
+  // لا نبني srcset تخميني لصور سترابي (روابط كاملة تبدأ بـ http) — لأنها مو موجودة بهالأحجام أصلاً
+  if (props.src?.startsWith('http')) return undefined
+
   if (!props.src?.endsWith('.webp')) return undefined
   const base = props.src.replace(/\.webp$/, '')
   return `${base}-400w.webp 400w, ${base}-800w.webp 800w, ${props.src} 1920w`

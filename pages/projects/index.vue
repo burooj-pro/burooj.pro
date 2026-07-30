@@ -10,14 +10,22 @@ const { fadeInUp, staggerFadeIn } = useGsap()
 const projectsSection = ref<HTMLElement | null>(null)
 const projectItems = ref<HTMLElement[]>([])
 
-import type { Project } from '~/types'
+const { locale } = useI18n()
+const { data: siteData } = useSiteData('burooj')
+const strapiProjects = useStrapiProjects(siteData)
 
-const { projects: allProjects, getLocalizedProject } = useProjects()
-
-// Localize projects to get correct image paths with baseURL
 const projects = computed(() => {
-  return allProjects.value.map((project: Project) => getLocalizedProject(project))
+  return strapiProjects.value.map((p: any) => ({
+    slug: p.slug,
+    title: p[`title_${locale.value}`],
+    description: p[`summary_${locale.value}`],
+    image: useStrapiImage(p.thumbnail?.url),
+    services: (p.services ?? []).map((s: any) => s[`name_${locale.value}`]),
+  }))
 })
+
+// Home page: show only 5 featured projects
+const featuredProjects = computed(() => projects.value.slice(0, 5))
 
 onMounted(() => {
   window.addEventListener('mousemove', handleMouseMove)

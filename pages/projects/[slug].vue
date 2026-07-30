@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const route = useRoute()
 const config = useRuntimeConfig()
@@ -14,11 +14,37 @@ const projectSlug = Array.isArray(route.params.slug)
 
 const project = getProjectBySlug(projectSlug)
 
-if (!project) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: t('errors.projectNotFound'),
-  })
+// --- Strapi fallback: مشاريع جديدة مضافة من سترابي ومو موجودة بالبيانات الثابتة ---
+const { data: siteData, pending: siteDataPending } = useSiteData('burooj')
+const strapiProjectsList = useStrapiProjects(siteData)
+const strapiProject = computed(() => {
+  if (project) return null
+  return strapiProjectsList.value.find((p: any) => p.slug === projectSlug) ?? null
+})
+
+const strapiField = (obj: any, base: string) =>
+  obj?.[`${base}_${locale.value}`] ?? obj?.[`${base}_en`] ?? ''
+
+const strapiServices = computed(() => {
+  return (strapiProject.value?.services ?? []).map((s: any) => strapiField(s, 'name'))
+})
+
+const strapiCards = computed(() => {
+  return (strapiProject.value?.cards ?? []).map((card: any) => ({
+    description: strapiField(card, 'description'),
+    images: (card.images ?? []).map((img: any) => useStrapiImage(img?.url)),
+    imagePosition: card.image_position === 'above' ? 'above' : 'below', // من سترابي، تتحكمين فيه يدوياً بكل card
+  }))
+})
+
+const strapiHeroImage = computed(() =>
+  useStrapiImage(strapiProject.value?.background?.url || strapiProject.value?.thumbnail?.url),
+)
+
+const strapiGridClass = (count: number) => {
+  if (count === 2) return 'grid gap-6 grid-cols-1 md:grid-cols-2'
+  if (count === 4) return 'grid gap-6 grid-cols-2'
+  return ''
 }
 
 const getCategoryLabel = (category: string) => {
@@ -28,11 +54,11 @@ const getCategoryLabel = (category: string) => {
   return category
 }
 
-const localizedProject = computed(() => getLocalizedProject(project))
+const localizedProject = computed(() => (project ? getLocalizedProject(project) : null))
 const isProjectOne = computed(() => projectSlug === 'albahar-villas')
 
 const galleryImages = computed(() => {
-  const imgs = localizedProject.value.images ?? []
+  const imgs = localizedProject.value?.images ?? []
   // De-dupe while preserving order
   const seen = new Set<string>()
   const unique: string[] = []
@@ -45,7 +71,7 @@ const galleryImages = computed(() => {
 })
 
 const shouldShowFullWidthImage = computed(() => {
-  const full = localizedProject.value.fullWidthImage
+  const full = localizedProject.value?.fullWidthImage
   if (!full) return false
   // AlBarghash: 2/14 is shown in project2FinalBlockImages, so don't show again at end
   if (project2FinalBlockImages.value.length === 3) return false
@@ -459,9 +485,15 @@ const remainingImagePairs = computed(() => {
   return pairs
 })
 
-const pageTitle = `${localizedProject.value.title} · ${t('projects.title')}`
-const pageDescription = localizedProject.value.description
-const pageImage = localizedProject.value.image
+const pageTitle = localizedProject.value
+  ? `${localizedProject.value.title} · ${t('projects.title')}`
+  : strapiProject.value
+    ? `${strapiField(strapiProject.value, 'title')} · ${t('projects.title')}`
+    : t('projects.title')
+const pageDescription = localizedProject.value
+  ? localizedProject.value.description
+  : strapiField(strapiProject.value, 'description')
+const pageImage = localizedProject.value ? localizedProject.value.image : strapiHeroImage.value
 
 useHead({
   title: pageTitle,
@@ -1301,5 +1333,106 @@ onMounted(async () => {
       </div>
     </section>
   </div>
-</template>
 
+  <!-- مشروع جديد من سترابي، مو موجود بالبيانات الثابتة -->
+  <div v-else-if="strapiProject" class="min-h-screen bg-white">
+    <div class="aspect-[16/9] w-full overflow-hidden bg-slate-200">
+      <ResponsiveImg
+        :src="strapiHeroImage"
+        :alt="strapiField(strapiProject, 'title')"
+        class="h-full w-full object-cover"
+      />
+    </div>
+
+    <section class="section-wrapper relative z-10 py-16 md:py-24">
+      <div class="grid gap-12 md:grid-cols-2 md:items-start lg:gap-16">
+        <div class="space-y-6">
+          <p class="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
+            {{ strapiField(strapiProject, 'category') }}
+          </p>
+          <h1 class="text-4xl font-serif leading-tight text-ink md:text-5xl lg:text-6xl">
+            {{ strapiField(strapiProject, 'title') }}
+          </h1>
+          <p class="text-base leading-relaxed text-slate-600 md:text-lg">
+            {{ strapiField(strapiProject, 'description') }}
+          </p>
+        </div>
+
+        <ProjectMeta
+          :location="strapiField(strapiProject, 'location')"
+          :year="strapiProject.year"
+          :client="strapiField(strapiProject, 'client')"
+          :services="strapiServices"
+        />
+      </div>
+    </section>
+
+<section v-if="strapiCards.length" :ref="registerContentSection" class="section-wrapper relative z-10 space-y-16 pb-16 md:pb-24">
+  <div v-for="(card, ci) in strapiCards" :key="`strapi-card-${ci}`" class="space-y-6">
+    <!-- النص فوق الصور -->
+    <p
+      v-if="card.description && card.imagePosition === 'above'"
+      class="text-base leading-relaxed text-slate-600 md:text-lg"
+    >
+      {{ card.description }}
+    </p>
+
+    <div
+      v-if="card.images.length === 1"
+      class="aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-200"
+    >
+      <ResponsiveImg
+        :src="card.images[0]"
+        :alt="`${strapiField(strapiProject, 'title')} - ${ci + 1}`"
+        class="h-full w-full object-cover"
+      />
+    </div>
+    <div v-else-if="card.images.length" :class="strapiGridClass(card.images.length)">
+      <div
+        v-for="(img, ii) in card.images"
+        :key="`strapi-card-${ci}-img-${ii}`"
+        class="aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
+      >
+        <ResponsiveImg
+          :src="img"
+          :alt="`${strapiField(strapiProject, 'title')} - ${ci + 1}.${ii + 1}`"
+          class="h-full w-full object-cover"
+        />
+      </div>
+    </div>
+
+    <!-- النص تحت الصور (الافتراضي) -->
+    <p
+      v-if="card.description && card.imagePosition !== 'above'"
+      class="text-base leading-relaxed text-slate-600 md:text-lg"
+    >
+      {{ card.description }}
+    </p>
+  </div>
+</section>
+
+    <section class="relative z-10 w-full overflow-hidden">
+      <div class="relative min-h-[400px] overflow-hidden bg-slate-900">
+        <div class="section-wrapper relative z-10 flex min-h-[400px] flex-col items-center justify-center py-16 text-center">
+          <h2 class="text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
+            <span>{{ t('cta.title') }}</span><br />
+            <span>{{ t('cta.titleLine2') }}</span>
+          </h2>
+          <div class="mt-8">
+            <NuxtLink
+              :to="localePath('/contact')"
+              class="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold text-ink transition hover:bg-white/90"
+            >
+              {{ t('cta.button') }}
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ما لقيناه لا محلياً ولا بسترابي -->
+  <div v-else-if="!siteDataPending" class="flex min-h-screen items-center justify-center">
+    <p class="text-slate-500">{{ t('errors.projectNotFound') }}</p>
+  </div>
+</template>

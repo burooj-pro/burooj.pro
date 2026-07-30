@@ -182,16 +182,19 @@ const droneServices = computed(() => [
   t('services.drone.services.signage'),
 ])
 
-import type { Project } from '~/types'
+const { data: siteData } = useSiteData('burooj')
+const strapiProjects = useStrapiProjects(siteData)
 
-const { projects: allProjects, getLocalizedProject } = useProjects()
-
-// Localize projects to get correct image paths with baseURL
 const projects = computed(() => {
-  return allProjects.value.map((project: Project) => getLocalizedProject(project))
+  return strapiProjects.value.map((p: any) => ({
+    slug: p.slug,
+    title: p[`title_${locale.value}`],
+    description: p[`summary_${locale.value}`],
+    image: useStrapiImage(p.thumbnail?.url),
+    services: (p.services ?? []).map((s: any) => s[`name_${locale.value}`]),
+  }))
 })
 
-// Home page: show only 5 featured projects
 const featuredProjects = computed(() => projects.value.slice(0, 5))
 
 const { clientLogos } = useClientLogos({ placeholders: 0 })

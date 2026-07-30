@@ -9,6 +9,15 @@ export default defineNuxtConfig({
       },
     },
   },
+runtimeConfig: {
+  public: {
+    apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:1337',
+    siteUrl: 'https://burooj.pro',
+    pipedriveFormUrl:
+      'https://webforms.pipedrive.com/f/6W8B7uZHws18uQtXpbXhoS7DhXv8sUTQlw9zzy8SYAESjOJ1MNxMfXt9X4ZqryjL2j',
+    pipedriveLoaderSrc: 'https://webforms.pipedrive.com/f/loader',
+  },
+},
   devServer: {
     port: 3001,
   },
@@ -24,14 +33,6 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  runtimeConfig: {
-    public: {
-      siteUrl: 'https://burooj.pro',
-      pipedriveFormUrl:
-        'https://webforms.pipedrive.com/f/6W8B7uZHws18uQtXpbXhoS7DhXv8sUTQlw9zzy8SYAESjOJ1MNxMfXt9X4ZqryjL2j',
-      pipedriveLoaderSrc: 'https://webforms.pipedrive.com/f/loader',
-    },
-  },
   i18n: {
     locales: [
       {
@@ -83,11 +84,11 @@ export default defineNuxtConfig({
             "default-src 'self'",
             "script-src 'self' 'unsafe-inline' https://webforms.pipedrive.com",
             "style-src 'self' 'unsafe-inline'",
-            "img-src 'self' data: blob: https:",
+            "img-src 'self' data: blob: https: http://localhost:1337",
             "font-src 'self'",
             "media-src 'self'",
             "frame-src https://webforms.pipedrive.com",
-            "connect-src 'self' https://*.pipedrive.com",
+            "connect-src 'self' https://*.pipedrive.com http://localhost:1337",
           ].join('; '),
         },
       ],
