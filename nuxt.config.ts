@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   },
 runtimeConfig: {
   public: {
-    apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:1337',
+    apiBase: process.env.NUXT_PUBLIC_API_BASE || 'https://sixdegreescms-production.up.railway.app',
     siteUrl: 'https://burooj.pro',
     pipedriveFormUrl:
       'https://webforms.pipedrive.com/f/6W8B7uZHws18uQtXpbXhoS7DhXv8sUTQlw9zzy8SYAESjOJ1MNxMfXt9X4ZqryjL2j',
