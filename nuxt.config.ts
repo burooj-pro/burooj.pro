@@ -61,9 +61,9 @@ export default defineNuxtConfig({
     },
     vueI18n: './i18n.config.ts',
   },
-  app: {
-    baseURL: '/', // Custom domain burooj.pro — served from root
-    buildAssetsDir: '/_nuxt/',
+app: {
+  baseURL: '/burooj-frontend/',
+  buildAssetsDir: '/_nuxt/',
     head: {
       titleTemplate: '%s · Burooj',
       title: 'Burooj — Design. Manage. Clean.',
