@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'https://sixdegreescms-production.up.railway.app',
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'https://strapi.6d.com.sa',
       siteUrl: 'https://burooj.pro',
       pipedriveFormUrl:
         'https://webforms.pipedrive.com/f/6W8B7uZHws18uQtXpbXhoS7DhXv8sUTQlw9zzy8SYAESjOJ1MNxMfXt9X4ZqryjL2j',
@@ -84,11 +84,11 @@ app: {
             "default-src 'self'",
             "script-src 'self' 'unsafe-inline' https://webforms.pipedrive.com",
             "style-src 'self' 'unsafe-inline'",
-            "img-src 'self' data: blob: https: http://localhost:1337 https://sixdegreescms-production.up.railway.app",
+            "img-src 'self' data: blob: https: http://localhost:1337 https://strapi.6d.com.sa",
             "font-src 'self'",
             "media-src 'self'",
             "frame-src https://webforms.pipedrive.com",
-            "connect-src 'self' https://*.pipedrive.com http://localhost:1337 https://sixdegreescms-production.up.railway.app",
+            "connect-src 'self' https://*.pipedrive.com http://localhost:1337 https://strapi.6d.com.sa",
           ].join('; '),
         },
       ],
