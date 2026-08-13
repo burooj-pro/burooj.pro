@@ -61,9 +61,9 @@ export default defineNuxtConfig({
     },
     vueI18n: './i18n.config.ts',
   },
-app: {
-  baseURL: '/burooj-frontend/',
-  buildAssetsDir: '/_nuxt/',
+  app: {
+    baseURL: '/',
+    buildAssetsDir: '/_nuxt/',
     head: {
       titleTemplate: '%s · Burooj',
       title: 'Burooj — Design. Manage. Clean.',
@@ -104,7 +104,7 @@ app: {
         // Synchronously set dir/lang before first paint to avoid RTL FOUC on Arabic routes
         {
           innerHTML:
-            "(function(){var p=window.location.pathname;if(p.includes('/ar/')||p.endsWith('/ar')){document.documentElement.setAttribute('dir','rtl');document.documentElement.setAttribute('lang','ar');}})();",
+            '(function(){var p=window.location.pathname;if(p.includes(\'/ar/\')||p.endsWith(\'/ar\')){document.documentElement.setAttribute(\'dir\',\'rtl\');document.documentElement.setAttribute(\'lang\',\'ar\');}})();',
           type: 'text/javascript',
         },
         // schema.org LocalBusiness + Organization structured data
